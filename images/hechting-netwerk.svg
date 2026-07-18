@@ -1,0 +1,36 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Hechting als veranderlijk netwerk</title>
+  <desc id="desc">Een centrale persoon is verbonden met partner, vriend, familie, gemeenschap en zichzelf. De verbindingen verschillen en kunnen veranderen.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102f35"/><stop offset=".52" stop-color="#18534f"/><stop offset="1" stop-color="#4c2e4d"/></linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(360 355) rotate(90) scale(285)"><stop stop-color="#efc467" stop-opacity=".24"/><stop offset="1" stop-color="#efc467" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="720" rx="30" fill="url(#bg)"/><rect width="1200" height="720" rx="30" fill="url(#glow)"/>
+  <g fill="none" stroke-linecap="round">
+    <path d="M354 360C270 265 204 226 130 218" stroke="#efc467" stroke-width="5"/>
+    <path d="M354 360C244 355 183 365 112 420" stroke="#d5e7df" stroke-opacity=".72" stroke-width="4"/>
+    <path d="M354 360C298 470 253 519 179 561" stroke="#d5e7df" stroke-opacity=".48" stroke-width="3" stroke-dasharray="8 10"/>
+    <path d="M354 360C449 275 493 247 556 227" stroke="#efc467" stroke-opacity=".7" stroke-width="4"/>
+    <path d="M354 360C458 398 504 440 556 505" stroke="#d5e7df" stroke-opacity=".58" stroke-width="3"/>
+    <path d="M354 360C376 447 367 510 340 580" stroke="#efc467" stroke-opacity=".72" stroke-width="4"/>
+    <circle cx="354" cy="360" r="112" stroke="#fff" stroke-opacity=".12"/><circle cx="354" cy="360" r="154" stroke="#fff" stroke-opacity=".07"/>
+  </g>
+  <g font-family="Arial, sans-serif" text-anchor="middle">
+    <g transform="translate(354 360)"><circle r="73" fill="#fff9ea"/><text y="-5" fill="#153f3e" font-size="15" font-weight="800" letter-spacing="2">JIJ</text><text y="23" fill="#5b6b68" font-size="13">vandaag</text></g>
+    <g transform="translate(118 215)"><circle r="49" fill="#efc467"/><text y="5" fill="#173e3d" font-size="14" font-weight="800">PARTNER</text></g>
+    <g transform="translate(103 425)"><circle r="43" fill="#e7eee8"/><text y="5" fill="#173e3d" font-size="14" font-weight="800">VRIEND</text></g>
+    <g transform="translate(169 566)"><circle r="39" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-opacity=".36"/><text y="5" fill="#fff" font-size="12" font-weight="800">FAMILIE</text></g>
+    <g transform="translate(565 222)"><circle r="43" fill="#e7eee8"/><text y="5" fill="#173e3d" font-size="12" font-weight="800">BEGELEIDER</text></g>
+    <g transform="translate(566 510)"><circle r="46" fill="#fff" fill-opacity=".18" stroke="#fff" stroke-opacity=".36"/><text y="5" fill="#fff" font-size="12" font-weight="800">GROEP</text></g>
+    <g transform="translate(340 592)"><circle r="39" fill="#efc467" fill-opacity=".85"/><text y="5" fill="#173e3d" font-size="12" font-weight="800">ZELF</text></g>
+  </g>
+  <g font-family="Arial, sans-serif" font-weight="700">
+    <text x="680" y="125" fill="#efc467" font-size="15" letter-spacing="3">GEEN TYPE · EEN BEWEEGLIJK NETWERK</text>
+    <text x="680" y="184" fill="#fff9ea" font-family="Georgia, serif" font-size="28">Je hecht niet overal hetzelfde.</text>
+    <g transform="translate(680 246)"><rect width="450" height="82" rx="17" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="22" y="31" fill="#efc467" font-size="12" letter-spacing="2">VERWACHTING</text><text x="22" y="59" fill="#fff" font-size="19">“Ben jij er wanneer het moeilijk wordt?”</text></g>
+    <g transform="translate(680 346)"><rect width="450" height="82" rx="17" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="22" y="31" fill="#efc467" font-size="12" letter-spacing="2">ERVARING</text><text x="22" y="59" fill="#fff" font-size="19">Een werkelijk antwoord, hier en nu.</text></g>
+    <g transform="translate(680 446)"><rect width="450" height="82" rx="17" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="22" y="31" fill="#efc467" font-size="12" letter-spacing="2">BIJSTELLING</text><text x="22" y="59" fill="#fff" font-size="19">Kleine updates worden een nieuw patroon.</text></g>
+    <text x="680" y="590" fill="#d5e7df" font-family="Georgia, serif" font-size="23" font-style="italic">Plastisch betekent veranderbaar —</text>
+    <text x="680" y="623" fill="#d5e7df" font-family="Georgia, serif" font-size="23" font-style="italic">niet grenzeloos maakbaar.</text>
+  </g>
+</svg>

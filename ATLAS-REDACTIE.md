@@ -70,6 +70,11 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Bertrand Russell, Philip Goff en Yujin Nagasawa — Russelliaans monisme, panpsychisme en kosmopsychisme; metafysische mogelijkheden, geen empirisch vastgestelde kosmologie.
 - Donald Hoffman — interface theory of perception en conscious realism; evolutionaire modellen en bewustzijn-eerst-ontologie worden als afzonderlijke claims behandeld.
 - Roger Penrose en Stuart Hameroff — Orch OR als radicale, fysische hypothese; quantumtaal wordt nooit gebruikt als vrijbrief voor magie, manifestatie of onbewezen bewustzijn buiten het brein.
+- R. Chris Fraley, Keely Dugan en Omri Gillath — hechting als dimensioneel, veranderlijk en relatiespecifiek netwerk; tijdelijke verschuiving is niet automatisch duurzame verandering.
+- Paula Pietromonaco, Nickola Overall, Ximena Arriaga en TeKisha Rice — wederzijdse buffering, spillover en partnerresponsiviteit; hechtingsveiligheid ontstaat mede tussen mensen.
+- Judi Mesman en Heidi Keller — culturele variatie, meerdere verzorgers en kritiek op westerse normen; universele behoefte betekent geen uniforme zorgpraktijk.
+- Ross Thompson, Jeffry Simpson en Lisa Berlin — hedendaagse veldconsensus én blijvende fundamentele vragen rond meting, stabiliteit, cultuur en interventie.
+- James Coan — Social Baseline Theory: gedeelde last en nabijheid als menselijke uitgangssituatie; een aanvullend model, geen totaalverklaring van hechting.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 

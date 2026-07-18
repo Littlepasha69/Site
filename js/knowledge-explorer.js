@@ -12,6 +12,8 @@
   const activeList = document.querySelector('[data-active-filter-list]');
   const resetButton = document.querySelector('[data-reset-filters]');
   const empty = document.querySelector('[data-knowledge-empty]');
+  const randomButtons = document.querySelectorAll('[data-random-dossier]');
+  const focusSearchButtons = document.querySelectorAll('[data-focus-atlas-search]');
   const params = new URLSearchParams(location.search);
   let activeCategory = params.get('gebied') || '';
   const activeTags = new Set(params.getAll('thema'));
@@ -197,5 +199,17 @@
   sortSelect.addEventListener('change', render);
   resetButton.addEventListener('click', reset);
   document.querySelector('[data-empty-reset]').addEventListener('click', reset);
+  focusSearchButtons.forEach(button => button.addEventListener('click', () => {
+    queryInput.focus({ preventScroll: true });
+    document.querySelector('.knowledge-search').scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }));
+  randomButtons.forEach(button => button.addEventListener('click', () => {
+    if (!dossiers.length) return;
+    const previousUrl = sessionStorage.getItem('atlas-last-random');
+    const choices = dossiers.length > 1 ? dossiers.filter(item => item.url !== previousUrl) : dossiers;
+    const item = choices[Math.floor(Math.random() * choices.length)];
+    sessionStorage.setItem('atlas-last-random', item.url);
+    location.href = item.url;
+  }));
   render();
 })();

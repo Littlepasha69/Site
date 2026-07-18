@@ -5,17 +5,25 @@
   <meta name="description" content="De Menselijke Atlas: psychologisch onderzoek over brein, gedrag, relaties, verandering en bewustzijn in gewone mensentaal.">
   <title>De Menselijke Atlas — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/knowledge-2026.css?v=10">
-  <script src="js/site-shell.js?v=12" defer></script><script src="js/search-data.js?v=21" defer></script><script src="js/search.js" defer></script><script src="js/knowledge-explorer.js?v=7" defer></script>
+  <link rel="stylesheet" href="css/knowledge-2026.css?v=11">
+  <script src="js/site-shell.js?v=12" defer></script><script src="js/search-data.js?v=25" defer></script><script src="js/search.js" defer></script><script src="js/knowledge-explorer.js?v=8" defer></script>
 </head>
 <body>
   <site-header active="kennisbank"></site-header>
   <main id="inhoud">
     <section class="knowledge-hero">
+      <svg class="atlas-topography" viewBox="0 0 720 520" aria-hidden="true" focusable="false">
+        <path d="M67 371c33-73 9-145 65-210 49-56 130-76 198-46 74 33 93 102 168 120 59 14 112-14 161 27 48 40 36 113-8 154-54 50-124 22-187 33-76 13-118 66-196 51-84-17-143-67-201-129Z"/>
+        <path d="M119 354c24-56 9-116 54-164 43-46 106-56 159-29 62 31 77 89 141 105 51 13 101-10 138 23 33 30 22 82-11 111-43 38-98 15-149 25-64 13-102 52-164 39-68-14-116-56-168-110Z"/>
+        <path d="M184 335c18-40 9-84 43-117 31-31 78-35 116-13 45 26 58 67 105 79 37 10 74-4 101 20 24 21 16 58-8 79-31 27-71 10-109 18-46 9-75 36-119 26-49-11-84-41-129-92Z"/>
+        <path d="M254 317c10-23 8-48 28-66 19-17 46-18 67-4 26 17 35 40 62 47 22 6 43-1 59 13 14 13 9 34-4 46-18 16-41 5-62 10-27 6-44 20-69 14-29-7-50-24-81-60Z"/>
+        <path class="atlas-topography__route" d="M91 425c73-54 111-12 159-68 39-46 9-94 59-127 54-36 96 19 145-6 54-27 41-88 102-112 39-15 75-3 102 18"/>
+        <circle cx="309" cy="230" r="8"/><circle cx="556" cy="112" r="8"/>
+      </svg>
       <div class="knowledge-hero__inner">
         <p class="eyebrow">De Menselijke Atlas</p>
         <h1>Geen mens is één rechte lijn.</h1>
-        <p>Verken de gebieden die samen onze binnenwereld vormen — van zenuwstelsel en hechting tot identiteit, verandering en het raadsel van bewustzijn.</p>
+        <p>Een open schatkist van vragen, sporen en onverwachte zijgangen. Je hoeft de route niet te kennen. Nieuwsgierigheid is genoeg.</p>
         <label class="knowledge-search" for="knowledge-query">
           <span aria-hidden="true">⌕</span>
           <span class="visually-hidden">Zoek in De Menselijke Atlas</span>
@@ -25,18 +33,20 @@
         <p class="knowledge-hint">Zoek met je eigen woorden. Je hoeft de psychologische term nog niet te kennen.</p>
         <a class="atlas-compass-link" href="atlas-kompas.html">Lees het kompas achter de Atlas <span aria-hidden="true">→</span></a>
       </div>
+      <nav class="atlas-entryways" aria-label="Kies een ingang tot de Atlas">
+        <a href="#vraagpoorten"><span>01</span><strong>Volg een vraag</strong><small>Begin bij iets dat aan je trekt</small></a>
+        <a href="#gebiedenkaart"><span>02</span><strong>Betreed een gebied</strong><small>Kies een streek op de kaart</small></a>
+        <button type="button" data-focus-atlas-search><span>03</span><strong>Zoek een spoor</strong><small>Gebruik je eigen woorden</small></button>
+        <button type="button" data-random-dossier><span>?</span><strong>Laat de Atlas kiezen</strong><small>Open een onverwachte vondst</small></button>
+      </nav>
     </section>
 
     <section class="knowledge-explorer" aria-labelledby="explorer-title">
       <div class="explorer-head">
-        <div><p class="eyebrow">Waar begint jouw route?</p><h2 id="explorer-title">Begin bij een vraag die je herkent.</h2></div>
+        <div><p class="eyebrow">De eerste poorten</p><h2 id="explorer-title">Welke vraag laat jou even stilstaan?</h2><p>Er is geen juiste volgorde. Kies wat rammelt, schuurt of simpelweg nieuwsgierig maakt.</p></div>
         <button class="reset-filters" type="button" data-reset-filters hidden>Wis alle filters</button>
       </div>
-      <div class="atlas-featured">
-        <a class="atlas-expedition" href="veranderroute.html"><span>Atlasexpeditie · Leren & veranderen</span><strong>De Veranderroute</strong><p>Begrijp waarom oude patronen terugkeren, bouw één kleine nieuwe reactie en onderzoek ze zeven dagen.</p><b>Start de expeditie →</b></a>
-        <a class="atlas-featured-dossier" href="onderwerpen/bewustzijn.html"><span class="atlas-featured-dossier__head"><i aria-hidden="true">☾</i><span>Nieuw vlaggenschipdossier · Bewustzijn &amp; metafysica</span></span><strong>Bewustzijn</strong><p>Waarom is er überhaupt iets dat het is om mij te zijn?</p><b>Open het dossier →</b></a>
-      </div>
-      <div class="atlas-prompts">
+      <div class="atlas-prompts" id="vraagpoorten">
         <a href="onderwerpen.html?gebied=Emoties+%26+regulatie"><span>Ik wil begrijpen</span><strong>Waarom reageer ik soms sterker dan ik wil?</strong><small>Emoties & regulatie →</small></a>
         <a href="onderwerpen.html?gebied=Trauma+%26+herstel"><span>Ik blijf terugkomen bij</span><strong>Waarom blijft iets ouds zo aanwezig?</strong><small>Trauma & herstel →</small></a>
         <a href="onderwerpen.html?gebied=Leren+%26+veranderen"><span>Ik wil bewegen</span><strong>Kan een ingesleten patroon werkelijk veranderen?</strong><small>Leren & veranderen →</small></a>
@@ -44,11 +54,18 @@
         <a href="onderwerpen.html?gebied=Persoonlijkheid+%26+identiteit"><span>Ik vraag me af</span><strong>Wie ben ik buiten mijn rollen en gewoontes?</strong><small>Persoonlijkheid & identiteit →</small></a>
         <a href="onderwerpen.html?gebied=Bewustzijn+%26+metafysica"><span>Ik kijk voorbij het meetbare</span><strong>Wat is bewustzijn eigenlijk?</strong><small>Bewustzijn & metafysica →</small></a>
       </div>
-      <div class="atlas-area-heading"><h3>Of kies rechtstreeks een gebied op de kaart</h3><p>De atlas groeit mee met nieuwe dossiers.</p></div>
+
+      <div class="atlas-findings-heading"><span aria-hidden="true">✦</span><div><p class="eyebrow">Nu op de vondsttafel</p><h3>Twee openingen om dieper te graven</h3></div></div>
+      <div class="atlas-featured">
+        <a class="atlas-expedition" href="veranderroute.html"><span>Atlasexpeditie · Leren & veranderen</span><strong>De Veranderroute</strong><p>Begrijp waarom oude patronen terugkeren, bouw één kleine nieuwe reactie en onderzoek ze zeven dagen.</p><b>Start de expeditie →</b></a>
+        <a class="atlas-featured-dossier" href="onderwerpen/hechting.html"><span class="atlas-featured-dossier__head"><i aria-hidden="true">∞</i><span>Pas blootgelegd · Relaties &amp; hechting</span></span><strong>Hechting</strong><p>Ben ik veroordeeld om lief te hebben zoals ik ooit leerde overleven?</p><b>Open het dossier →</b></a>
+      </div>
+
+      <div class="atlas-area-heading" id="gebiedenkaart"><div><p class="eyebrow">De gebiedenkaart</p><h3>Kies waar je wilt graven</h3></div><p>Elk teken opent een eigen landschap. De Atlas groeit mee met nieuwe dossiers.</p></div>
       <div class="category-routes" data-category-routes aria-label="Filter op kennisgebied"></div>
 
       <div class="topic-filter">
-        <div class="topic-filter__intro"><h3>Of volg een spoor</h3><p>Combineer gerust meerdere thema’s.</p></div>
+        <div class="topic-filter__intro"><p class="eyebrow">Kleine aanwijzingen</p><h3>Of volg een spoor</h3><p>Combineer meerdere thema’s en kijk waar ze elkaar kruisen.</p></div>
         <div class="topic-chips" data-topic-filters aria-label="Filter op thema"></div>
       </div>
 
@@ -65,7 +82,7 @@
 
     <section class="section knowledge-results" aria-labelledby="results-title">
       <div class="results-toolbar">
-        <div><p class="eyebrow">Gevonden dossiers</p><h2 id="results-title" data-knowledge-count aria-live="polite"></h2></div>
+        <div><p class="eyebrow">Het vondstenregister</p><h2 id="results-title"><span data-knowledge-count aria-live="polite"></span> liggen voor je open.</h2><p>Niet afwerken. Rondkijken. Eén dossier kan al een nieuwe gang blootleggen.</p></div>
         <label class="sort-control">Sorteer
           <select data-knowledge-sort><option value="relevant">Meest passend</option><option value="az">A–Z</option><option value="category">Per kennisgebied</option></select>
         </label>

@@ -22,7 +22,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Een kind is geen dossier', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '11/07/2025',
     summary: 'Over trauma, opvoeding en kinderen die dreigen te verdwijnen in systemen en papieren.',
-    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/een-kind-geen-dossier-dada.png'
+    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/een-kind-geen-dossier-redactioneel.jpg'
   },
   {
     title: 'Zaadolie: van smeermiddel tot smeersel', type: 'denkstuk', kind: 'hypothese', category: 'Gezondheid & dagelijks leven', date: '01/07/2025',
@@ -42,7 +42,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Het zenuwstelsel dat niet stilzit', type: 'denkstuk', kind: 'ervaring', category: 'Brein, lichaam & zenuwstelsel', date: '25/07/2025',
     summary: 'Over ADHD, eenzaamheid, overleven en wat het betekent om werkelijk een plek te zijn.',
-    url: 'denk-box06.html', tags: ['adhd', 'zenuwstelsel', 'eenzaamheid', 'overprikkeling'], image: 'images/zenuwstelsel-tarot-vi.png'
+    url: 'denk-box06.html', tags: ['adhd', 'zenuwstelsel', 'eenzaamheid', 'overprikkeling'], image: 'images/zenuwstelsel-stad-collage.jpg'
   },
   {
     title: 'Ik speel niet meer mee', type: 'denkstuk', kind: 'opinie', category: 'Groei, patronen & herstel', date: '04/08/2025',
@@ -83,6 +83,11 @@ window.ONWIJZE_CONTENT = [
     title: 'De neuro-archeoloog in mij', type: 'ervaring', kind: 'ervaring', category: 'Groei, patronen & herstel', date: '05/09/2025',
     summary: 'Een persoonlijke afdaling langs oude overtuigingen, beschermende rollen en de kleine, herhaalde stappen waarmee een nieuw pad kan ontstaan.',
     url: 'denk-box15.html', tags: ['persoonlijk essay', 'innerlijk kompas', 'oude patronen', 'neuroplasticiteit'], image: 'images/neuro-archeoloog-lara-tarot-xx.png?v=1'
+  },
+  {
+    title: 'Wie is de heks?', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '16/09/2025',
+    summary: 'Een gedachte-experiment over angst, groepsvorming en de vraag wat er gebeurt wanneer een label een volledig mens vervangt.',
+    url: 'denk-box16.html', tags: ['hokjesdenken', 'wij-zijdenken', 'groepsdenken', 'zondebok'], image: 'images/wie-is-de-heks-tarot-xxi.png?v=1'
   },
   {
     title: 'Zonder wekker', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '18/08/2025',
@@ -169,6 +174,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Een diepgaande kaart van persoonlijkheid: aanleg en omgeving, trekken en situaties, vaardigheden, levensverhalen, verandering en de grenzen van tests.',
     url: 'onderwerpen/persoonlijkheid.html', tags: ['persoonlijkheid', 'identiteit', 'big five', 'karakter', 'zelfbeeld', 'zelfkennis', 'levensverhaal', 'trekken', 'context', 'veranderen'],
     updated: '2026-07-18T19:05:00+03:00', featureImage: 'images/persoonlijkheid-kaart.svg', areaIcon: 'fingerprint'
+  },
+  {
+    title: 'Hechting', type: 'dossier', category: 'Relaties & hechting', level: 'Redelijk stevig',
+    summary: 'Hechting zonder levenslang vonnis: geen vast type uit je jeugd, maar een veranderlijk netwerk van verwachtingen, relaties, cultuur en nieuwe ervaringen.',
+    url: 'onderwerpen/hechting.html', tags: ['hechting', 'relaties', 'relationele plasticiteit', 'hechtingsstijl', 'angst', 'vermijding', 'nabijheid', 'partnerresponsiviteit', 'veiligheid', 'werkmodellen', 'hechtingsnetwerk', 'cultuur', 'co-regulatie', 'grenzen'],
+    updated: '2026-07-18T21:30:00+03:00', featureImage: 'images/hechting-netwerk.svg', areaIcon: '∞'
   },
   {
     title: 'Bewustzijn', type: 'dossier', category: 'Bewustzijn & metafysica', level: 'Onderzocht',
