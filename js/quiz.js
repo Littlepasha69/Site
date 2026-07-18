@@ -17,6 +17,15 @@ document.getElementById("dierQuiz").addEventListener("submit", function (e) {
     }
   });
 
+  const ingevuld = antwoorden.every((vraag) =>
+    document.querySelector(`input[name="${vraag}"]:checked`)
+  );
+
+  if (!ingevuld) {
+    alert("Beantwoord eerst alle vijf vragen.");
+    return;
+  }
+
   // Meest gekozen dier zoeken
   const dier = Object.entries(scores).reduce((a, b) => (b[1] > a[1] ? b : a))[0];
 
@@ -38,6 +47,6 @@ document.getElementById("dierQuiz").addEventListener("submit", function (e) {
 
   document.getElementById("dierNaam").textContent = dierNamen[dier];
   document.getElementById("dierGeslacht").textContent = dierGeslacht[dier];
-  document.getElementById("dierAfbeelding").src = `images/${dier}.png`;
   document.getElementById("resultaat").style.display = "block";
+  document.getElementById("resultaat").scrollIntoView({ behavior: "smooth", block: "center" });
 });

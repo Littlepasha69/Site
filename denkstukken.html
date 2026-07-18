@@ -1,180 +1,47 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Denkstukken — De Onwijze Wijsheden</title>
-
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/thoughts-2026.css?v=1">
+  <script src="js/site-shell.js?v=8" defer></script><script src="js/search-data.js?v=3" defer></script><script src="js/search.js" defer></script><script src="js/thoughts-collection.js?v=3" defer></script>
 </head>
-
-
-<body class="denkstukken-page">
-<header>
-  <div class="header-topbar"></div>
-  <div class="site-logo-container">
-    <img src="images/logo.png" alt="De Onwijze Wijsheid logo" class="site-logo">
-  </div>
-  <div class="slogan-divider"></div>
-  
-<nav class="main-navigation">
-  <ul>
-    <li><a href="home.html">Home</a></li>
-    <li><a href="denkstukken.html" class="active-tab">Denkstukken</a></li>
-    <li><a href="onderwerpen.html">Onderwerpen</a></li>
-    <li><a href="forum.html">Forum</a></li>
-    <li><a href="manifest.html">Manifest</a></li>
-    <li><a href="jouw-bijdrage.html">Jouw Bijdrage</a></li>
-  </ul>
-</nav>
-</header>
-
-<section class="filter-container">
-  <button class="filter-btn" data-filter="column">#column</button>
-  <button class="filter-btn" data-filter="informatief">#informatief</button>
-  <button class="filter-btn" data-filter="trauma">#trauma</button>
-  <button class="filter-btn" data-filter="Eenzaamheid">#eenzaamheid</button>
-  <button class="filter-btn" data-filter="klimaat">#klimaat</button>
-  <button class="filter-btn" data-filter="opvoeding">#opvoeding</button>
-    <button class="filter-btn" data-filter="opvoeding">#persoonlijkeGroei</button>
-
-</section>
-
-
-  <main class="denkstukken-overzicht">
-
-    <!-- DENKBLOK 1 -->
-<a href="denk-box01.html" class="denkblok" data-tags="column informatief klimaat">
-      <div class="denk-tags">
-        <span class="tag tag-column">#Column</span>
-        <span class="tag tag-informatief">#Informatief</span>
-        <span class="tag tag-klimaat">#Klimaat</span>
+<body>
+  <site-header active="denkstukken"></site-header>
+  <main id="inhoud">
+    <section class="thoughts-hero">
+      <div class="thoughts-hero__inner">
+        <p class="eyebrow">Menselijk, eerlijk & onaf</p>
+        <h1>Wat in een mens leeft, mag woorden krijgen.</h1>
+        <p>Persoonlijke ervaringen, filosofische verkenningen, kritiek en open vragen over hoe we voelen, veranderen en samenleven.</p>
+        <div class="thoughts-stats"><span><strong data-thought-total>11</strong> publicaties</span><span><strong>6</strong> mogelijke vormen</span><span><strong>∞</strong> ruimte voor twijfel</span></div>
       </div>
-      <h2>Zwoele Zomers</h2>
-      <p>Juli is officieel de warmste ooit. Maar wat als de zon waar je van houdt, straks niemand meer spaart? Een maandelijks overzicht.</p>
-    </a>
+    </section>
 
-    <!-- DENKBLOK 2 -->
-      <a href="denk-box02.html" class="denkblok" data-tags="column informatief trauma opvoeding">
-      <div class="denk-tags">
-        <span class="tag tag-column">#Column</span>
-        <span class="tag tag-informatief">#Informatief</span>
-        <span class="tag tag-trauma">#trauma</span>
-        <span class="tag tag-Opvoeding">#Opvoeding</span>
-
+    <section class="thoughts-browser" aria-labelledby="thoughts-title">
+      <div class="thoughts-controls">
+        <div class="thoughts-controls__heading"><p class="eyebrow">De verzameling</p><h2 id="thoughts-title">Lees op jouw manier</h2></div>
+        <label class="thoughts-search" for="thought-query"><span aria-hidden="true">⌕</span><span class="visually-hidden">Zoek in de denkstukken</span><input id="thought-query" type="search" data-thought-query placeholder="Zoek in titels en thema’s…" autocomplete="off"></label>
       </div>
-      <h2>Een kind is geen dossier</h2>
-      <p>Een systeem dat niet werkt. Een kind dat verdwijnt in papieren. En een droom over een boerderij waar je mag bestaan.</p>
-    </a>
-
-     <!-- DENKBLOK 3 -->
-      <a href="denk-box03.html" class="denkblok" data-tags="column informatief  voeding">
-      <div class="denk-tags">
-        <span class="tag tag-column">#column</span>
-        <span class="tag tag-informatief">#informatief</span>
-        <span class="tag tag-voeding">#voeding</span>
-      </div>
-      <h2>Zaadolie: Van smeermiddel tot smeersel </h2>
-      <p> De eerste stap in mijn voedings-wake-upcall: wantrouw wat je ooit als ‘gezond’ leerde.</p>
-    </a>
-
-    <!-- DENKBLOK 4-->
-      <a href="denk-box04.html" class="denkblok" data-tags="column kort  hersenspinsel">
-      <div class="denk-tags">
-        <span class="tag tag-column">#column</span>
-        <span class="tag tag-kort">#kort</span>
-        <span class="tag tag-voeding">#hersenspinsel</span>
-      </div>
-      <h2> Rooftocht met Delta </h2>
-      <p> Een persoonlijk verhaal over bramen, overvloed en gemiste kansen.</p>
-    </a>
-
-    <!-- DENKBLOK 5-->
-      <a href="denk-box05.html" class="denkblok" data-tags="Column Persoonlijk">
-      <div class="denk-tags">
-        <span class="tag tag-Column">#Column</span>
-        <span class="tag tag-Persoonlijk">#Persoonlijk</span>
-      </div>
-       <h2> Lieve Mama </h2>
-        <p>Dit is een brief aan jou omdat mijn stem vaak verdwijnt als wij spreken. En omdat ik voel dat het nu moet.</p>
-   </a>
-    <!-- DENKBLOK 6-->
-      <a href="denk-box06.html" class="denkblok" data-tags="Column Eenzaamheid  Zenuwstelsel">
-      <div class="denk-tags">
-        <span class="tag tag-Column">#column</span>
-        <span class="tag tag-Eenzaamheid">#Eenzaamheid</span>
-        <span class="tag tag-Zenuwstelsel">#Zenuwstelsel</span>
-      </div>
-       <h2> Een Plek Zijn </h2>
-        <p> Wat als ADHD geen stoornis is, maar een reactie op een wereld die te veel vraagt? Een denkstuk over eenzaamheid, overleven en wat het betekent om écht een plek te zijn.</p>
-   </a>
-    <!-- DENKBLOK 7-->
-      <a href="denk-box07.html" class="denkblok" data-tags="Column Persoonlijk  Zenuwstelsel">
-      <div class="denk-tags">
-        <span class="tag tag-Column">#Column</span>
-        <span class="tag tag-PersoonlijkeGroei">#PersoonlijkeGroei</span>
-        <span class="tag tag-Zenuwstelsel">#Zenuwstelsel</span>
-
-      </div>
-       <h2> Ik speel niet meer mee. </h2>
-        <p> Over patronen, existentiele crisissen en het universum.  </p>
-   </a>
-    <!-- DENKBLOK 8-->
-      <a href="denk-box08.html" class="denkblok" data-tags="Column ExistentiëleCrisis  Persoonlijk Zenuwstelsel">
-      <div class="denk-tags">
-        <span class="tag tag-Column">#Column</span>
-        <span class="tag tag-Existentiëlecrisis">#Existentiëlecrisis</span>
-       <span class="tag tag-Persoonlijke">#Persoonlijk</span>
-       <span class="tag tag-Zenuwstelsel">#Zenuwstelsel</span>
-
-
-      </div>
-       <h2> Kompas sterfelijkheid </h2>
-        <p> Een ode aan de lijm van het universum en wat ons allemaal kosmisch verbindt.</p>
-   </a>
-
-     <!-- DENKBLOK 9-->
-      <a href="denk-box09.html" class="denkblok" data-tags="colunn Poezië  Persoonlijk Zenuwstelsel">
-      <div class="denk-tags">
-        <span class="tag tag-Column">#Column</span>
-        <span class="tag tag-Poezië">#Poezië</span>
-         <span class="tag tag-Intiem">#Persoonlijk</span>
-           <span class="tag tag-Zenuwstelsel">#Zenuwstelsel</span>
-
-      </div>
-       <h2> Terugkwispelen </h2>
-        <p> Over oude patronen die blijven aankloppen, en het verlangen om te leven zonder brandstof.</p>
-   </a>
-
-     <!-- DENKBLOK 10-->
-      <a href="denk-box10.html" class="denkblok" data-tags="column Oerbrein Tribe Eenzaamheid Informatief">
-      <div class="denk-tags">
-        <span class="tag tag-column">#Column</span>
-        <span class="tag tag-Oerbrein">#Oerbrein</span>
-        <span class="tag tag-Stamleven">#Tribe</span>
-        <span class="tag tag-Eenzaamheid">#Eenzaamheid</span>
-        <span class="tag tag-Informatief">#Informatief</span>
-
+      <div class="thought-filter-row">
+        <div class="thought-tabs" data-thought-types aria-label="Filter op soort publicatie">
+          <button type="button" data-thought-type="alles" aria-pressed="true">Alles</button>
+          <button type="button" data-thought-type="ervaring" aria-pressed="false">Persoonlijke ervaring</button>
+          <button type="button" data-thought-type="opinie" aria-pressed="false">Opinie</button>
+          <button type="button" data-thought-type="filosofie" aria-pressed="false">Filosofische verkenning</button>
+          <button type="button" data-thought-type="maatschappij" aria-pressed="false">Maatschappijkritiek</button>
+          <button type="button" data-thought-type="vraag" aria-pressed="false">Open vraag</button>
+          <button type="button" data-thought-type="hypothese" aria-pressed="false">Persoonlijke hypothese</button>
         </div>
-       <h2> Het aapje in ons </h2>
-        <p> aarom je oerbrein nog in de jungle leeft. </p>
-   </a>
-
-     <!-- DENKBLOK 11-->
-      <a href="denk-box11.html" class="denkblok" data-tags="column Persoonlijk Oerbrein">
-      <div class="denk-tags">
-        <span class="tag tag-column">#Column</span>
-        <span class="tag tag-Oerbrein">#Persoonlijk</span>
-        <span class="tag tag-Oerbrein">#Oerbrein</span>
-
+        <label class="thought-category">Thema <select data-thought-category><option value="">Alle thema’s</option></select></label>
       </div>
-       <h2> Wat ik wil is niet te koop </h2>
-        <p> WLiever een klein schip met hart, dan een groot zonder ziel
- </p>
-   </a>
-
+      <div class="thoughts-result-head"><p data-thought-count aria-live="polite"></p><button type="button" data-thought-reset hidden>Wis filters</button></div>
+      <div class="thoughts-grid" data-thought-results></div>
+      <div class="thoughts-empty" data-thought-empty hidden><h2>Geen tekst gevonden</h2><p>Probeer een ander woord of bekijk opnieuw alle denkstukken.</p><button type="button" data-thought-empty-reset>Toon alles</button></div>
+    </section>
+    <section class="thoughts-invite"><div><p class="eyebrow">Jouw binnenwereld telt mee</p><h2>Heb jij iets meegemaakt, beseft of bevraagd?</h2><p>Maak veilig een lokaal concept. Later kunnen lezers steun betuigen en een respectvol gesprek starten rond jouw denkstuk.</p></div><div><a class="button" href="jouw-bijdrage.html">Schrijf jouw denkstuk</a><a class="text-link" href="forum.html">Bekijk de community →</a></div></section>
   </main>
+  <site-footer></site-footer>
 </body>
 </html>

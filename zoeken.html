@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Doorzoek De Menselijke Atlas, denkstukken en persoonlijke ervaringen van De Onwijze Wijsheden.">
+  <title>Zoeken — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <script src="js/site-shell.js?v=8" defer></script>
+  <script src="js/search-data.js?v=3" defer></script>
+  <script src="js/search.js" defer></script>
+</head>
+<body>
+  <site-header></site-header>
+  <main id="inhoud">
+    <section class="page-hero">
+      <div class="page-intro">
+        <p class="eyebrow">Doorzoek de hele ontdekplek</p>
+        <h1>Wat wil je onderzoeken?</h1>
+        <p>Zoek tegelijk in De Menselijke Atlas, persoonlijke ervaringen en vrije denkstukken. Externe onderzoeken en communitypublicaties volgen in een latere fase.</p>
+        <form class="search-box library-search" data-search-form role="search">
+          <label class="visually-hidden" for="library-search">Zoekterm</label>
+          <input id="library-search" name="q" type="search" placeholder="Bijvoorbeeld: trauma, gewoontes of bewustzijn" autocomplete="off">
+          <button type="submit">Zoek</button>
+        </form>
+      </div>
+    </section>
+    <section class="section section--tight">
+      <div class="filter-bar" aria-label="Filter op publicatietype">
+        <button type="button" data-type-filter="alles" aria-pressed="true">Alles</button>
+        <button type="button" data-type-filter="dossier">Menselijke Atlas</button>
+        <button type="button" data-type-filter="denkstuk">Denkstukken</button>
+        <button type="button" data-type-filter="ervaring">Ervaringen</button>
+      </div>
+      <p class="search-status" data-search-status aria-live="polite"></p>
+      <div class="result-grid" data-search-results></div>
+    </section>
+  </main>
+  <site-footer></site-footer>
+</body>
+</html>

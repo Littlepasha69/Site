@@ -1,46 +1,89 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>De Onwijze Wijsheden</title>
-
-  <!-- STIJLEN -->
-  <link rel="stylesheet" href="css/style.css">
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Een veilige eerste aanzet voor de community van De Onwijze Wijsheden.">
+  <title>Community — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/forum-2026.css?v=1">
+  <script src="js/site-shell.js?v=8" defer></script>
+  <script src="js/forum.js?v=3" defer></script>
 </head>
+<body>
+  <site-header active="community"></site-header>
+  <main id="inhoud">
+    <section class="forum-hero">
+      <div class="forum-hero__inner">
+        <div><p class="eyebrow">Community in ontwerpmodus</p><h1>Praat mét elkaar.<br>Niet over elkaar heen.</h1><p>Een plek voor vragen, ervaringen en bronnen — met ruimte voor twijfel én verantwoordelijkheid.</p></div>
+        <div class="forum-promise"><span aria-hidden="true">✦</span><strong>Eerst veilig, dan groot</strong><p>Accounts en openbare reacties komen pas wanneer moderatie en beveiligde opslag klaar zijn.</p></div>
+      </div>
+    </section>
 
-<body class="forum-page">
+    <div class="forum-mode" role="status"><span class="forum-mode__dot" aria-hidden="true"></span><div><strong>Dit is een werkend lokaal prototype.</strong><p>De onderstaande gesprekken zijn voorbeelden, geen echte ledenactiviteit. Wat jij invult wordt nog niet verzonden of online bewaard.</p></div></div>
 
-  <!-- HEADER & NAVIGATIE -->
-  <header>
-    <div class="header-topbar"></div>
-    <div class="site-logo-container">
-    <img src="images/logo.png" alt="De Onwijze Wijsheid logo" class="site-logo" />
-    </div>
-    <div class="slogan-divider"></div>
+    <section class="forum-shell" aria-label="Forumprototype">
+      <aside class="forum-sidebar">
+        <div class="sidebar-heading"><p class="eyebrow">Gespreksruimtes</p><h2>Waar denk je over mee?</h2></div>
+        <nav data-forum-spaces aria-label="Filter gesprekken per ruimte"></nav>
+        <div class="house-card"><span aria-hidden="true">◉</span><h3>Onze gespreksbelofte</h3><p>We onderzoeken ideeën, vallen geen mensen aan en maken zichtbaar waarop een bewering steunt.</p><a href="communityregels.html">Lees de communityregels →</a></div>
+      </aside>
 
-<nav class="main-navigation">
-  <ul>
-    <li><a href="index.html">Home</a></li>
-    <li><a href="denkstukken.html">Denkstukken</a></li>
-    <li><a href="onderwerpen.html">Onderwerpen</a></li>
-    <li><a href="forum.html" class="active-tab">Forum</a></li>
-    <li><a href="manifest.html">Manifest</a></li>
-    <li><a href="jouw-bijdrage.html">Jouw Bijdrage</a></li>
-  </ul>
-</nav>
-  </header>
+      <div class="forum-main">
+        <div class="forum-toolbar">
+          <label class="forum-search" for="forum-query"><span aria-hidden="true">⌕</span><span class="visually-hidden">Zoek in gesprekken</span><input id="forum-query" type="search" data-forum-query placeholder="Zoek een vraag, thema of bron…" autocomplete="off"></label>
+          <button class="start-thread" type="button" data-open-composer><span aria-hidden="true">＋</span> Start een gesprek</button>
+        </div>
+        <div class="forum-feed-head"><div><p class="eyebrow">Open gesprekken</p><h2 data-forum-heading>Alle voorbeeldgesprekken</h2></div><p data-forum-count aria-live="polite"></p></div>
+        <div class="thread-list" data-thread-list></div>
+        <div class="forum-empty" data-forum-empty hidden><h2>Nog geen passend gesprek</h2><p>Probeer een ander woord of start zelf een nieuw concept.</p><button type="button" data-empty-compose>Start een gesprek</button></div>
+      </div>
+    </section>
 
- <!-- INHOUD -->
-  <main class="denkbox-container forum-page">
-    <div class="title-box">
-      <h1 class="denktext-title">Forum</h1>
-      <p class="denktext-meta"><em>⚠️ Deze pagina is nog in opbouw. Maar geen paniek. We blijven wakker.</em></p>
-          </div>
-    </div>
+    <section class="thread-reader" data-thread-reader hidden tabindex="-1" aria-labelledby="thread-reader-title">
+      <button class="reader-back" type="button" data-close-thread>← Terug naar alle gesprekken</button>
+      <div class="reader-layout">
+        <article class="reader-post">
+          <div class="reader-labels"><span data-reader-space></span><span>Voorbeeldgesprek</span></div>
+          <h2 id="thread-reader-title" data-reader-title></h2>
+          <p class="reader-intro" data-reader-intro></p>
+          <div class="reader-body" data-reader-body></div>
+          <div class="reader-source" data-reader-source-wrap><strong>Vertrekpunt</strong><a data-reader-source></a></div>
+        </article>
+        <aside class="reader-side"><h3>Een goed antwoord…</h3><ul><li>reageert op het idee, niet op de persoon;</li><li>benoemt ervaring als ervaring;</li><li>voegt bij feitelijke claims liefst een bron toe;</li><li>laat ruimte om van mening te veranderen.</li></ul><button type="button" data-reply-prototype>Start een verwant gesprek</button><p>Antwoorden worden in deze fase nog niet bewaard.</p></aside>
+      </div>
+    </section>
+
+    <section class="forum-composer" data-forum-composer hidden tabindex="-1" aria-labelledby="composer-title">
+      <div class="composer-head"><div><p class="eyebrow">Nieuw gesprek</p><h2 id="composer-title">Zet je vraag rustig op scherp.</h2><p>Je maakt eerst een lokale voorvertoning. Er wordt niets gepubliceerd of verstuurd.</p></div><button type="button" data-close-composer aria-label="Sluit formulier">×</button></div>
+      <form data-thread-form novalidate>
+        <div class="bot-field" aria-hidden="true"><label for="forum-website">Website</label><input id="forum-website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+        <div class="composer-grid">
+          <div class="forum-field"><label for="thread-space">Gespreksruimte *</label><select id="thread-space" name="space" required aria-describedby="thread-space-error"><option value="">Maak een keuze</option><option>Vragen & twijfel</option><option>Ervaringen</option><option>Bronnen gezocht</option><option>Projectideeën</option><option>Over het platform</option></select><p class="forum-error" id="thread-space-error"></p></div>
+          <div class="forum-field"><label for="thread-name">Naam of pseudoniem</label><input id="thread-name" name="name" maxlength="60" placeholder="Leeg laten voor Anoniem"><p class="field-help">Wordt zichtbaar als het gesprek later wordt gepubliceerd.</p></div>
+          <div class="forum-field forum-field--full"><label for="thread-title">Titel van je gesprek * <span data-title-count>0/100</span></label><input id="thread-title" name="title" maxlength="100" required placeholder="Welke vraag wil je samen onderzoeken?" aria-describedby="thread-title-error"><p class="forum-error" id="thread-title-error"></p></div>
+          <div class="forum-field forum-field--full"><label for="thread-body">Uitleg en context * <span data-body-count>0 woorden</span></label><textarea id="thread-body" name="body" required placeholder="Wat houdt je bezig? Wat weet je al, en waar twijfel je nog over?" aria-describedby="thread-body-error"></textarea><p class="field-help">Minimaal 40 woorden. Deel geen adressen, medische dossiers of andere gevoelige gegevens.</p><p class="forum-error" id="thread-body-error"></p></div>
+          <div class="forum-field forum-field--full"><label for="thread-source">Eventuele bron</label><input id="thread-source" name="source" type="url" placeholder="https://…" aria-describedby="thread-source-error"><p class="forum-error" id="thread-source-error"></p></div>
+        </div>
+        <div class="composer-checks">
+          <label><input type="checkbox" name="respect" data-required-check> Ik reageer op ideeën en val geen personen aan. *</label><p class="forum-error" data-respect-error></p>
+          <label><input type="checkbox" name="privacy" data-required-check> Ik heb onnodige gevoelige gegevens verwijderd. *</label><p class="forum-error" data-privacy-error></p>
+        </div>
+        <div class="composer-actions"><button class="start-thread" type="submit">Bekijk lokaal concept</button><button class="cancel-thread" type="button" data-close-composer>Annuleren</button></div>
+        <p class="composer-status" data-composer-status aria-live="assertive"></p>
+      </form>
+    </section>
+
+    <section class="thread-preview" data-thread-preview hidden tabindex="-1" aria-labelledby="preview-thread-title">
+      <div class="preview-notice"><strong>Nog niets gepubliceerd.</strong> Dit concept bestaat alleen in je huidige browsertabblad.</div>
+      <div class="reader-labels"><span data-preview-space></span><span>Jouw lokale concept</span></div>
+      <h2 id="preview-thread-title" data-preview-thread-title></h2>
+      <p class="preview-author" data-preview-author></p>
+      <div class="reader-body" data-preview-body></div>
+      <a class="preview-source" data-preview-source target="_blank" rel="noopener noreferrer"></a>
+      <div class="composer-actions"><button class="start-thread" type="button" data-save-draft>Bewaar als tekstbestand</button><button class="cancel-thread" type="button" data-edit-draft>Wijzig je concept</button></div>
+    </section>
   </main>
-
+  <site-footer></site-footer>
 </body>
 </html>

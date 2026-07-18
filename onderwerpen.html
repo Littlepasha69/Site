@@ -1,186 +1,83 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Onderwerpen – De Onwijze Wijsheid</title>
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="De Menselijke Atlas: psychologisch onderzoek over brein, gedrag, relaties, verandering en bewustzijn in gewone mensentaal.">
+  <title>De Menselijke Atlas — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/knowledge-2026.css?v=3">
+  <script src="js/site-shell.js?v=8" defer></script><script src="js/search-data.js?v=3" defer></script><script src="js/search.js" defer></script><script src="js/knowledge-explorer.js?v=3" defer></script>
 </head>
+<body>
+  <site-header active="kennisbank"></site-header>
+  <main id="inhoud">
+    <section class="knowledge-hero">
+      <div class="knowledge-hero__inner">
+        <p class="eyebrow">De Menselijke Atlas</p>
+        <h1>Geen mens is één rechte lijn.</h1>
+        <p>Verken de gebieden die samen onze binnenwereld vormen — van zenuwstelsel en hechting tot identiteit, verandering en het raadsel van bewustzijn.</p>
+        <label class="knowledge-search" for="knowledge-query">
+          <span aria-hidden="true">⌕</span>
+          <span class="visually-hidden">Zoek in De Menselijke Atlas</span>
+          <input id="knowledge-query" type="search" placeholder="Zoek bijvoorbeeld trauma, gewoontes of bewustzijn…" autocomplete="off" data-knowledge-query>
+          <kbd>zoek</kbd>
+        </label>
+        <p class="knowledge-hint">Zoek met je eigen woorden. Je hoeft de psychologische term nog niet te kennen.</p>
+      </div>
+    </section>
 
-<body class="onderwerpen-page">
-  <!-- === HEADER === -->
-  <header>
-    <div class="site-logo-container">
-      <img src="images/logo.png" alt="De Onwijze Wijsheid" class="site-logo">
-    </div>
-    <nav class="main-navigation">
-      <ul>
-        <li><a href="home.html">Home</a></li>
-        <li><a href="denkstukken.html">Denkstukken</a></li>
-        <li><a href="onderwerpen.html" class="active-tab">Onderwerpen</a></li>
-        <li><a href="forum.html">Forum</a></li>
-        <li><a href="manifest.html">Manifest</a></li>
-        <li><a href="jouw-bijdrage.html">Jouw Bijdrage</a></li>
-      </ul>
-    </nav>
-  </header>
+    <section class="knowledge-explorer" aria-labelledby="explorer-title">
+      <div class="explorer-head">
+        <div><p class="eyebrow">Waar begint jouw route?</p><h2 id="explorer-title">Begin bij een vraag die je herkent.</h2></div>
+        <button class="reset-filters" type="button" data-reset-filters hidden>Wis alle filters</button>
+      </div>
+      <a class="atlas-expedition" href="veranderroute.html"><span>Nieuwe atlasexpeditie · Leren & veranderen</span><strong>De Veranderroute</strong><p>Begrijp waarom oude patronen terugkeren, bouw één kleine nieuwe reactie en onderzoek ze zeven dagen.</p><b>Start de expeditie →</b></a>
+      <div class="atlas-prompts">
+        <a href="onderwerpen.html?gebied=Emoties+%26+regulatie"><span>Ik wil begrijpen</span><strong>Waarom reageer ik soms sterker dan ik wil?</strong><small>Emoties & regulatie →</small></a>
+        <a href="onderwerpen.html?gebied=Trauma+%26+herstel"><span>Ik blijf terugkomen bij</span><strong>Waarom blijft iets ouds zo aanwezig?</strong><small>Trauma & herstel →</small></a>
+        <a href="onderwerpen.html?gebied=Leren+%26+veranderen"><span>Ik wil bewegen</span><strong>Kan een ingesleten patroon werkelijk veranderen?</strong><small>Leren & veranderen →</small></a>
+        <a href="onderwerpen.html?gebied=Relaties+%26+hechting"><span>Ik merk het vooral bij anderen</span><strong>Waarom zoek én vermijd ik soms nabijheid?</strong><small>Relaties & hechting →</small></a>
+        <a href="onderwerpen.html?gebied=Persoonlijkheid+%26+identiteit"><span>Ik vraag me af</span><strong>Wie ben ik buiten mijn rollen en gewoontes?</strong><small>Persoonlijkheid & identiteit →</small></a>
+        <a href="onderwerpen.html?gebied=Bewustzijn+%26+metafysica"><span>Ik kijk voorbij het meetbare</span><strong>Wat is bewustzijn eigenlijk?</strong><small>Bewustzijn & metafysica →</small></a>
+      </div>
+      <div class="atlas-area-heading"><h3>Of kies rechtstreeks een gebied op de kaart</h3><p>De atlas groeit mee met nieuwe dossiers.</p></div>
+      <div class="category-routes" data-category-routes aria-label="Filter op kennisgebied"></div>
 
-  <!-- === INHOUD === -->
-  <main class="onderwerpen-container">
-    <h1 class="onderwerpen-title">Onderwerpen</h1>
-    <p class="onderwerpen-intro">
-      Kennisbank met heldere definities, context en bronnen. Tik een term in of kies via het alfabet.
-    </p>
+      <div class="topic-filter">
+        <div class="topic-filter__intro"><h3>Of volg een spoor</h3><p>Combineer gerust meerdere thema’s.</p></div>
+        <div class="topic-chips" data-topic-filters aria-label="Filter op thema"></div>
+      </div>
 
-    <!-- Zoekbank -->
-    <div class="onderwerpen-search">
-      <input id="zoekveld" type="search" placeholder="Zoek een onderwerp… (bv. neuroplasticiteit, trauma, hormonen)" autocomplete="off">
-      <button id="wisZoek" aria-label="wis zoeken">×</button>
-    </div>
-    <p id="zoekStatus" class="zoek-status" hidden>0 resultaten</p>
+      <div class="active-filters" data-active-filters hidden>
+        <strong>Jouw verkenning</strong>
+        <div data-active-filter-list></div>
+      </div>
+    </section>
 
-    <!-- Alfabetische index -->
-    <nav class="onderwerpen-index">
-      <a href="#A">A</a> | <a href="#B">B</a> | <a href="#C">C</a> | <a href="#D">D</a> | <a href="#E">E</a> |
-      <a href="#F">F</a> | <a href="#G">G</a> | <a href="#H">H</a> | <a href="#I">I</a> | <a href="#J">J</a> |
-      <a href="#K">K</a> | <a href="#L">L</a> | <a href="#M">M</a> | <a href="#N">N</a> | <a href="#O">O</a> |
-      <a href="#P">P</a> | <a href="#Q">Q</a> | <a href="#R">R</a> | <a href="#S">S</a> | <a href="#T">T</a> |
-      <a href="#U">U</a> | <a href="#V">V</a> | <a href="#W">W</a> | <a href="#X">X</a> | <a href="#Y">Y</a> |
-      <a href="#Z">Z</a>
-    </nav>
+    <section class="knowledge-legend" aria-label="Hoe we soorten kennis onderscheiden">
+      <div><p class="eyebrow">Ook ruimte voor het onbekende</p><h2>Metafysica hoort erbij — met een eerlijke leeswijzer.</h2></div>
+      <div class="knowledge-levels"><span><b>Onderzocht</b> gesteund door onderzoek</span><span><b>Filosofisch</b> beredeneerd, niet bewezen</span><span><b>Speculatief</b> een mogelijkheid, geen feit</span></div>
+    </section>
 
-    <!-- Lijsten per letter -->
-    <section class="onderwerpen-lijst">
-      <h2 id="N">N</h2>
-      <ul>
-        <li>
-          <a href="onderwerpen/neuroplasticiteit.html"
-             data-tags="brein, hersenen, leren, gewoonte, synapsen, gedrag, herstel">
-            Neuroplasticiteit
-          </a> — Hoe ons brein zich voortdurend aanpast en verandert.
-        </li>
-        <li>
-          <a href="onderwerpen/neuronen.html"
-             data-tags="zenuwcellen, actiepotentiaal, synaps, neurotransmitters, axon, dendriet">
-            Neuronen
-          </a> — De bouwstenen van ons zenuwstelsel.
-        </li>
-      </ul>
+    <section class="section knowledge-results" aria-labelledby="results-title">
+      <div class="results-toolbar">
+        <div><p class="eyebrow">Gevonden dossiers</p><h2 id="results-title" data-knowledge-count aria-live="polite"></h2></div>
+        <label class="sort-control">Sorteer
+          <select data-knowledge-sort><option value="relevant">Meest passend</option><option value="az">A–Z</option><option value="category">Per kennisgebied</option></select>
+        </label>
+      </div>
+      <div class="knowledge-grid" data-knowledge-results></div>
+      <div class="knowledge-empty" data-knowledge-empty hidden>
+        <span aria-hidden="true">⌕</span><h2>Nog geen passend dossier</h2><p>Probeer een ruimer woord of verwijder één van je filters.</p><button type="button" data-empty-reset>Begin opnieuw</button>
+      </div>
+    </section>
 
-      <h2 id="T">T</h2>
-      <ul>
-        <li>
-          <a href="onderwerpen/trauma.html"
-             data-tags="ptss, stress, zenuwstelsel, hechting, veiligheid, veerkracht, herstel">
-            Trauma
-          </a> — Geheugen, emotionele reacties en herstel.
-        </li>
-      </ul>
-
-      <!-- lege headings voor ankers (vul later aan) -->
-      <h2 id="A" style="display:none"></h2>
-      <h2 id="B" style="display:none"></h2>
-      <h2 id="C" style="display:none"></h2>
-      <h2 id="D" style="display:none"></h2>
-      <h2 id="E" style="display:none"></h2>
-      <h2 id="F" style="display:none"></h2>
-      <h2 id="G" style="display:none"></h2>
-      <h2 id="H" style="display:none"></h2>
-      <h2 id="I" style="display:none"></h2>
-      <h2 id="J" style="display:none"></h2>
-      <h2 id="K" style="display:none"></h2>
-      <h2 id="L" style="display:none"></h2>
-      <h2 id="M" style="display:none"></h2>
-      <h2 id="O" style="display:none"></h2>
-      <h2 id="P" style="display:none"></h2>
-      <h2 id="Q" style="display:none"></h2>
-      <h2 id="R" style="display:none"></h2>
-      <h2 id="S" style="display:none"></h2>
-      <h2 id="U" style="display:none"></h2>
-      <h2 id="V" style="display:none"></h2>
-      <h2 id="W" style="display:none"></h2>
-      <h2 id="X" style="display:none"></h2>
-      <h2 id="Y" style="display:none"></h2>
-      <h2 id="Z" style="display:none"></h2>
+    <section class="atlas-bridge" aria-labelledby="atlas-next-title">
+      <div><p class="eyebrow">Kennis is een vertrekpunt</p><h2 id="atlas-next-title">Wat herken je — en wat wil je proberen?</h2></div>
+      <a href="menslab.html"><span>Van kennis naar beweging</span><strong>Probeer een reflectie of klein experiment.</strong><small>Naar het Menslab →</small></a>
+      <a href="denkstukken.html"><span>Van ervaring naar woorden</span><strong>Lees hoe het leven van binnenuit voelt.</strong><small>Naar Denkstukken →</small></a>
     </section>
   </main>
-
-  <!-- === FOOTER === -->
-  <footer class="site-footer">
-    <p>© 2025 De Onwijze Wijsheid — Samen leren, samen delen.</p>
-  </footer>
-
-  <!-- === ZOEKSCRIPT === -->
-  <script>
-  (function(){
-    const input = document.getElementById('zoekveld');
-    const clearBtn = document.getElementById('wisZoek');
-    const status = document.getElementById('zoekStatus');
-    const items = Array.from(document.querySelectorAll('.onderwerpen-lijst li'));
-    const links = items.map(li => li.querySelector('a'));
-
-    // Sneltoets "/"
-    window.addEventListener('keydown', (e) => {
-      if (e.key === '/' && document.activeElement !== input) {
-        e.preventDefault(); input.focus(); input.select();
-      }
-    });
-
-    function norm(s){
-      return s.toLowerCase().normalize('NFD').replace(/\p{Diacritic}/gu,'');
-    }
-
-    function highlight(el, query){
-      el.innerHTML = el.textContent;
-      if (!query) return;
-      const parts = norm(query).split(/\s+/).filter(Boolean);
-      let html = el.textContent;
-      parts.forEach(w => { html = html.replace(new RegExp(`(${w})`, 'ig'), '<mark>$1</mark>'); });
-      el.innerHTML = html;
-    }
-
-    function filter(){
-      const q = input.value.trim();
-      const nq = norm(q);
-      let count = 0;
-
-      items.forEach((li, i) => {
-        const a = links[i];
-        const hay = norm(a.textContent + ' ' + (a.getAttribute('data-tags')||''));
-        const match = nq.split(/\s+/).every(t => hay.includes(t));
-        li.style.display = match ? '' : 'none';
-        highlight(a, match ? q : '');
-        if (match) count++;
-      });
-
-      // Letterkopjes verbergen als geen zichtbare items eronder
-      const headers = Array.from(document.querySelectorAll('.onderwerpen-lijst h2'));
-      headers.forEach(h => {
-        let sib = h.nextElementSibling, vis = false;
-        while (sib && sib.tagName !== 'H2') {
-          if (sib.tagName === 'UL') {
-            if (Array.from(sib.children).some(li => li.style.display !== 'none')) { vis = true; break; }
-          }
-          sib = sib.nextElementSibling;
-        }
-        h.style.display = vis ? '' : 'none';
-      });
-
-      if (q) { status.hidden = false; status.textContent = count + (count===1?' resultaat':' resultaten'); }
-      else { status.hidden = true; }
-    }
-
-    // Autofill via ?zoek= of #zoek=
-    const params = new URLSearchParams(location.search);
-    const hashZoek = location.hash.startsWith('#zoek=') ? decodeURIComponent(location.hash.slice(6)) : '';
-    const startQuery = params.get('zoek') || hashZoek || '';
-    if (startQuery) input.value = startQuery;
-
-    input.addEventListener('input', filter);
-    clearBtn.addEventListener('click', () => { input.value=''; input.focus(); filter(); });
-
-    filter();
-  })();
-  </script>
+  <site-footer></site-footer>
 </body>
 </html>

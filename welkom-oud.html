@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/style.css?v=2026-1" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+</head>
+<body class="index-page">
+  <div class="hero-image">
+    <div class="hero-overlay">
+
+      <p class="page-header">welkom</p>
+
+      <div class="impactquote">
+        <span>Voor wie zichzelf niet meer alleen kan sussen...</span>
+      </div>
+
+      <!-- Rook erbuiten -->
+      <div class="smoke smoke1"></div>
+      <div class="smoke smoke2"></div>
+      <div class="smoke smoke3"></div>
+
+      <div class="button-wrapper">
+        <a class="enter-button" id="enterButton" href="index.html" aria-label="Ga naar De Onwijze Wijsheden">
+          <img src="images/enter.png" alt="Enter-knop">
+        </a>
+      </div>
+
+      <!-- 💡 Deze h1 moet hierbinnen staan -->
+      <h1 class="site-title">De Onwijze Wijsheden</h1>
+
+    </div> <!-- einde hero-overlay -->
+  </div> <!-- einde hero-image -->
+
+  <script>
+    const button = document.getElementById('enterButton');
+    const originalImg = button.querySelector('img');
+
+    button.addEventListener('click', function (e) {
+      e.preventDefault();
+      button.style.display = 'none';
+
+      const explodingImg = document.createElement('img');
+      explodingImg.src = originalImg.src;
+      explodingImg.alt = originalImg.alt;
+      explodingImg.classList.add('expand-circle-img');
+
+      document.body.appendChild(explodingImg);
+
+      setTimeout(() => {
+        window.location.href = button.href;
+      }, 1200);
+   });
+</script>
+</body>
+</html>

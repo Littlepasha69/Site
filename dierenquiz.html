@@ -1,97 +1,88 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <title>Ontdek jouw Dier — De Onwijze Wijsheden</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-  <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;1,400&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@700&family=Marcellus+SC&display=swap" rel="stylesheet">
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="css/style.css" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ontdek welk levend, mythisch, prehistorisch of uitgestorven dier bij jouw persoonlijkheidspatroon past.">
+  <title>De Grote Beestenquiz — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/creature-quiz.css?v=2">
+  <script src="js/site-shell.js?v=8" defer></script>
+  <script src="js/creature-data.js?v=2" defer></script>
+  <script src="js/creature-quiz.js?v=2" defer></script>
 </head>
+<body>
+  <site-header></site-header>
+  <main id="inhoud">
+    <section class="beast-hero" data-quiz-intro>
+      <div class="beast-hero__inner">
+        <div class="beast-copy">
+          <p class="eyebrow">De Grote Beestenquiz</p>
+          <h1>Welk beest beweegt er in jou?</h1>
+          <p>Geen vijf voorspelbare vragen, maar een tocht langs hoe jij verbindt, verkent, kiest, voelt, ordent, verbeeldt en terugveert.</p>
+          <div class="quiz-facts"><span><strong>35</strong> vragen</span><span><strong>7</strong> dimensies</span><span><strong>32</strong> mogelijke beesten</span><span><strong>10–12</strong> minuten</span></div>
+          <button class="beast-primary" type="button" data-start-quiz>Begin de tocht <span aria-hidden="true">→</span></button>
+          <p class="quiz-disclaimer">Een speelse oefening in zelfreflectie — geen diagnose of wetenschappelijk gevalideerde persoonlijkheidstest.</p>
+        </div>
+        <div class="beast-orbit" aria-hidden="true">
+          <div class="orbit-core"><span>?</span><small>jouw beest</small></div>
+          <span class="orbit-mark orbit-mark--1">◉</span><span class="orbit-mark orbit-mark--2">✦</span><span class="orbit-mark orbit-mark--3">△</span><span class="orbit-mark orbit-mark--4">◇</span>
+        </div>
+      </div>
+      <div class="world-strip" aria-label="Vier dierenwerelden"><span>Levende dieren</span><span>Mythische wezens</span><span>Prehistorische dieren</span><span>Uitgestorven dieren</span></div>
+    </section>
 
-<body class="denkstukken-page">
-<header>
-  <div class="header-topbar"></div>
-  <div class="site-logo-container">
-    <img src="images/logo.png" alt="De Onwijze Wijsheid logo" class="site-logo">
-  </div>
-  <div class="slogan-divider"></div>
-  <nav class="main-navigation">
-    <ul>
-      <li><a href="home.html">Home</a></li>
-      <li><a href="denkstukken.html">Denkstukken</a></li>
-      <li><a href="onderwerpen.html">Onderwerpen</a></li>
-      <li><a href="forum.html">Forum</a></li>
-      <li><a href="manifest.html">Manifest</a></li>
-      <li><a href="jouw-bijdrage.html">Jouw Bijdrage</a></li>
-    </ul>
-  </nav>
-</header>
+    <section class="quiz-stage" data-quiz-stage hidden aria-labelledby="quiz-question-title">
+      <div class="quiz-topline"><button type="button" data-exit-quiz>← Terug naar uitleg</button><span data-chapter-label>Hoofdstuk 1 van 5</span></div>
+      <div class="quiz-progress" aria-label="Voortgang"><span data-progress-bar></span></div>
+      <div class="quiz-progress-text"><strong data-progress-count>Vraag 1 van 35</strong><span data-progress-percent>3%</span></div>
+      <article class="question-card">
+        <div class="question-symbol" data-question-symbol aria-hidden="true">◉</div>
+        <p class="question-dimension" data-question-dimension></p>
+        <h2 id="quiz-question-title" data-question-text></h2>
+        <fieldset class="answer-scale" data-answer-scale><legend class="visually-hidden">Kies hoe herkenbaar deze uitspraak is</legend></fieldset>
+        <p class="answer-hint">Kies wat meestal bij je past, niet wat je het liefst zou willen zijn.</p>
+      </article>
+      <div class="quiz-navigation"><button class="beast-secondary" type="button" data-previous-question>← Vorige</button><button class="beast-primary" type="button" data-next-question disabled>Volgende →</button></div>
+      <p class="local-note"><span aria-hidden="true">●</span> Antwoorden blijven alleen in dit browsertabblad en verdwijnen bij vernieuwen of sluiten.</p>
+    </section>
 
-<main class="quiz-container">
-  <h1>Ontdek jouw innerlijk dier</h1>
-  <form id="dierQuiz">
-    <div class="quiz-question">
-      <p>1. Hoe breng jij het liefst tijd door?</p>
-      <label><input type="radio" name="vraag1" value="windvos"> Alleen, turend naar de hemel</label><br>
-      <label><input type="radio" name="vraag1" value="stormpanter"> In beweging, liefst met wind in je gezicht</label><br>
-      <label><input type="radio" name="vraag1" value="raaf"> In een diep gesprek vol verborgen lagen</label><br>
-      <label><input type="radio" name="vraag1" value="maanhert"> In stilte, kijkend en voelend</label><br>
-      <label><input type="radio" name="vraag1" value="zwaluw"> Dansend, reizend, springend</label>
-    </div>
+    <section class="quiz-result" data-quiz-result hidden tabindex="-1" aria-labelledby="result-title">
+      <div class="result-celebration"><p class="eyebrow">Jouw dichtste archetype</p><div class="result-sigil" data-result-sigil></div><p data-result-world></p></div>
+      <div class="result-header"><div><p class="result-archetype" data-result-archetype></p><h1 id="result-title" data-result-name></h1><p class="result-essence" data-result-essence></p></div><div class="result-affinity"><strong data-result-affinity></strong><span>archetypische verwantschap</span><small>Geen wetenschappelijke score</small></div></div>
+      <div class="result-grid">
+        <article><span>Kracht</span><h2 data-result-strength></h2></article><article><span>Valkuil</span><h2 data-result-pitfall></h2></article><article><span>Rol in een groep</span><h2 data-result-role></h2></article>
+      </div>
+      <blockquote data-result-motto></blockquote>
+      <section class="trait-section" aria-labelledby="trait-title"><div class="section-minihead"><div><p class="eyebrow">Jouw patroon</p><h2 id="trait-title">Zeven lijnen door je landschap</h2></div><p>Geen lijn is beter dan een andere. De combinatie maakt het profiel.</p></div><div class="trait-chart" data-trait-chart></div></section>
+      <section class="kindred-section" aria-labelledby="kindred-title"><div class="section-minihead"><div><p class="eyebrow">Ook dicht in de buurt</p><h2 id="kindred-title">Je verwante beesten</h2></div><p>Een mens past nooit volledig in één archetype.</p></div><div class="kindred-grid" data-kindred-grid></div></section>
+      <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn proefprofiel</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>
+    </section>
 
-    <div class="quiz-question">
-      <p>2. Wat zegt men vaak over jou?</p>
-      <label><input type="radio" name="vraag2" value="maanhert"> Je hebt scherpe voelsprieten</label><br>
-      <label><input type="radio" name="vraag2" value="stormpanter"> Je bent een vurige geest</label><br>
-      <label><input type="radio" name="vraag2" value="raaf"> Je zegt rare dingen maar raakt altijd iets</label><br>
-      <label><input type="radio" name="vraag2" value="windvos"> Je bent een stille kracht</label><br>
-      <label><input type="radio" name="vraag2" value="zwaluw"> Je bent altijd onderweg</label>
-    </div>
+    <section class="profile-maker" data-profile-maker hidden tabindex="-1" aria-labelledby="profile-maker-title">
+      <div class="profile-maker__intro"><p class="eyebrow">Jouw toekomstige communityprofiel</p><h2 id="profile-maker-title">Geef je beest een naam en een stem.</h2><p>Dit is een lokale voorvertoning. Er wordt nog geen account gemaakt of profiel gepubliceerd.</p></div>
+      <div class="profile-layout">
+        <form data-profile-form novalidate>
+          <div class="profile-field"><label for="profile-name">Naam of pseudoniem *</label><input id="profile-name" name="name" maxlength="50" required placeholder="Hoe mogen anderen je noemen?" aria-describedby="profile-name-error"><p id="profile-name-error"></p></div>
+          <div class="profile-field"><label for="profile-intro">Korte introductie <span data-profile-count>0/180</span></label><textarea id="profile-intro" name="intro" maxlength="180" placeholder="Waarover denk, schrijf of praat je graag?"></textarea></div>
+          <fieldset class="profile-interests"><legend>Kies maximaal drie interessegebieden</legend><div data-interest-options></div><p data-interest-error></p></fieldset>
+          <div class="profile-consent"><label><input type="checkbox" name="understand"> Ik begrijp dat dit profiel nu alleen lokaal wordt getoond. *</label><p data-understand-error></p></div>
+          <div class="profile-buttons"><button class="beast-primary" type="submit">Bekijk mijn profiel</button><button class="beast-secondary" type="button" data-close-profile>Terug naar uitslag</button></div>
+          <p class="profile-status" data-profile-status aria-live="assertive"></p>
+        </form>
+        <div class="profile-example"><p>Voorbeeldweergave</p><div class="mini-profile"><div class="mini-profile__sigil" data-mini-sigil>?</div><div><span data-mini-animal>Jouw beest</span><strong data-mini-name>Jouw naam</strong><small>Nog niet openbaar</small></div></div><p>Later kunnen mensen via zo’n profiel bijdragen, gesprekken starten en hun favoriete kennisgebieden volgen.</p></div>
+      </div>
+    </section>
 
-    <div class="quiz-question">
-      <p>3. Wat is jouw grootste kracht?</p>
-      <label><input type="radio" name="vraag3" value="maanhert"> Intuïtie</label><br>
-      <label><input type="radio" name="vraag3" value="stormpanter"> Wildheid</label><br>
-      <label><input type="radio" name="vraag3" value="raaf"> Woorden</label><br>
-      <label><input type="radio" name="vraag3" value="windvos"> Aanwezigheid</label><br>
-      <label><input type="radio" name="vraag3" value="zwaluw"> Vrijheid</label>
-    </div>
-
-    <div class="quiz-question">
-      <p>4. Waar schuilt jouw pijn?</p>
-      <label><input type="radio" name="vraag4" value="maanhert"> In onzichtbaarheid</label><br>
-      <label><input type="radio" name="vraag4" value="stormpanter"> In te veel denken</label><br>
-      <label><input type="radio" name="vraag4" value="raaf"> In niet gehoord worden</label><br>
-      <label><input type="radio" name="vraag4" value="windvos"> In te veel voelen</label><br>
-      <label><input type="radio" name="vraag4" value="zwaluw"> In geen plek vinden</label>
-    </div>
-
-    <div class="quiz-question">
-  <p>5. Wat is jouw plek in een groep, wanneer alles vanzelf lijkt te gaan?</p>
-  <label><input type="radio" name="vraag5" value="windvos"> Ik zie wie zich ongemakkelijk voelt en ga ernaast zitten</label><br>
-  <label><input type="radio" name="vraag5" value="stormpanter"> Ik neem het voortouw, maar zonder de aandacht te willen</label><br>
-  <label><input type="radio" name="vraag5" value="raaf"> Ik observeer stil, en stel dan één rake vraag</label><br>
-  <label><input type="radio" name="vraag5" value="maanhert"> Ik bied rust zonder iets te zeggen</label><br>
-  <label><input type="radio" name="vraag5" value="zwaluw"> Ik verdwijn even — en kom dan terug met iets onverwachts</label>
-</div>
-
-    <button type="submit">Ontdek mijn dier</button>
-  </form>
-
-  <div id="resultaat" class="profielkaart" style="display:none">
-    <h2>Jij bent een <span id="dierNaam"></span>!</h2>
-    <img id="dierAfbeelding" src="" alt="dier afbeelding">
-    <p><strong>Geslacht:</strong> <span id="dierGeslacht"></span></p>
-    <p><strong>Geboren:</strong> Tussen onzin en openbaring</p>
-  </div>
-</main>
-
-<script src="js/quiz.js"></script>
+    <section class="profile-preview" data-profile-preview hidden tabindex="-1" aria-labelledby="profile-preview-title">
+      <div class="profile-banner"><span>LOKAAL PROEFPROFIEL</span><small>Nog niet openbaar</small></div>
+      <div class="profile-identity"><div class="profile-avatar" data-profile-sigil></div><div><p data-profile-animal></p><h1 id="profile-preview-title" data-profile-name></h1><span data-profile-archetype></span></div></div>
+      <p class="profile-bio" data-profile-bio></p><div class="profile-tags" data-profile-tags></div>
+      <div class="profile-insight"><div><span>Grootste kracht</span><strong data-profile-strength></strong></div><div><span>Let op voor</span><strong data-profile-pitfall></strong></div></div>
+      <p class="profile-privacy"><strong>Privacy:</strong> dit profiel bestaat alleen in dit tabblad. Er is geen account of databaseverbinding.</p>
+      <div class="result-actions"><button class="beast-primary" type="button" data-save-profile>Bewaar als tekstbestand</button><button class="beast-secondary" type="button" data-edit-profile>Wijzig profiel</button><button class="text-action" type="button" data-back-result>Terug naar uitslag</button></div>
+    </section>
+  </main>
+  <site-footer></site-footer>
 </body>
 </html>
