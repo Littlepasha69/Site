@@ -14,6 +14,7 @@
 .dossier-hero--attention { background:radial-gradient(circle at 78% 13%,rgba(240,198,107,.3),transparent 20rem),radial-gradient(circle at 10% 88%,rgba(98,161,157,.25),transparent 28rem),linear-gradient(133deg,#092a32,#124b49 50%,#633349); }
 .dossier-hero--learning { background:radial-gradient(circle at 79% 14%,rgba(240,198,107,.3),transparent 21rem),radial-gradient(circle at 11% 87%,rgba(101,171,149,.24),transparent 28rem),linear-gradient(134deg,#0d3031,#185346 51%,#5e3548); }
 .dossier-hero--trauma { background:radial-gradient(circle at 80% 13%,rgba(240,198,107,.28),transparent 21rem),radial-gradient(circle at 11% 88%,rgba(125,177,157,.24),transparent 28rem),linear-gradient(134deg,#102b34,#174c49 50%,#60354d); }
+.dossier-hero--dissociation { background:radial-gradient(circle at 81% 12%,rgba(240,198,107,.25),transparent 21rem),radial-gradient(circle at 10% 89%,rgba(105,160,170,.25),transparent 28rem),linear-gradient(134deg,#0c2834,#17464c 49%,#57314f); }
 .dossier-hero--basal { background:radial-gradient(circle at 80% 14%,rgba(240,198,107,.28),transparent 21rem),radial-gradient(circle at 14% 86%,rgba(111,165,151,.23),transparent 27rem),linear-gradient(134deg,#092830,#154943 52%,#4b2d49); }
 .dossier-hero--dopamine { background:radial-gradient(circle at 80% 14%,rgba(243,203,104,.3),transparent 21rem),radial-gradient(circle at 12% 86%,rgba(219,145,176,.23),transparent 27rem),linear-gradient(134deg,#21172f,#53304d 52%,#884c3f); }
 .dossier-hero--parkinson { background:radial-gradient(circle at 80% 14%,rgba(241,200,107,.27),transparent 21rem),radial-gradient(circle at 14% 86%,rgba(111,165,151,.23),transparent 27rem),linear-gradient(134deg,#082831,#164a46 52%,#50304a); }
@@ -74,6 +75,8 @@
 .dossier-graphic--parkinson figcaption { background:#092a2f; }
 .dossier-graphic--trauma { background:#173b3d; }
 .dossier-graphic--trauma figcaption { background:#123234; }
+.dossier-graphic--dissociation { background:#132f3d; }
+.dossier-graphic--dissociation figcaption { background:#102936; }
 .hypothesis-box { margin:2rem 0 1.2rem;overflow:hidden;border:1px solid rgba(240,198,107,.45);border-radius:1.35rem;background:linear-gradient(135deg,#251b35,#3d2744 58%,#704248);color:white;box-shadow:0 24px 60px rgba(47,32,56,.18); }
 .hypothesis-box__lead { padding:clamp(1.4rem,5vw,2.4rem);border-bottom:1px solid rgba(255,255,255,.12);background:radial-gradient(circle at 90% 10%,rgba(240,198,107,.2),transparent 18rem); }
 .hypothesis-box__lead span { color:#f0c66b;font-size:.68rem;font-weight:850;letter-spacing:.14em; }

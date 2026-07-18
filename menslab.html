@@ -6,10 +6,10 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=20">
+  <link rel="stylesheet" href="css/menslab.css?v=21">
   <script src="js/site-shell.js?v=17" defer></script>
-  <script src="js/creature-data.js?v=8" defer></script>
-  <script src="js/menslab.js?v=15" defer></script>
+  <script src="js/creature-data.js?v=10" defer></script>
+  <script src="js/menslab.js?v=17" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -83,7 +83,7 @@
 
     <section class="quiz-gateway quiz-gateway--early" id="jij" aria-labelledby="quiz-gateway-title">
       <div class="quiz-gateway__mark" aria-hidden="true">✦</div>
-      <div><p class="eyebrow">Jouw persoonlijke ingang</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
+      <div><p class="eyebrow">Jouw persoonlijke ingang</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 24 levende, mythische of prehistorische beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
       <div class="quiz-gateway__actions"><a class="quiz-gateway__primary" href="dierenquiz.html">Doe de Beestenquiz →</a><a href="#mijn-spoor" data-you-track hidden>Ga naar Mijn spoor →</a></div>
     </section>
 
@@ -177,7 +177,26 @@
         <article><span>Door de tijd heen</span><strong data-track-total>0</strong><p>proeven en bewegingen bewaard</p></article>
         <article><span>Bewaard</span><strong data-track-weeks>0</strong><p>weken in je spoor</p></article>
       </div>
-      <section class="progress-reading" data-reading-history hidden aria-labelledby="reading-history-title"><div><p class="eyebrow">Verder lezen</p><h3 id="reading-history-title">Waar je gebleven was</h3><p>Ook langere artikelen krijgen een lokaal leeslint.</p></div><ol data-reading-history-list></ol></section>
+      <section class="progress-library" data-reading-history hidden aria-labelledby="reading-history-title">
+        <div class="progress-library__head">
+          <div><p class="eyebrow">Mijn vondsten</p><h3 id="reading-history-title">Wat je bewaarde of nog niet uitlas.</h3></div>
+          <p>Atlasdossiers, denkstukken en andere leesroutes komen hier vanzelf samen.</p>
+        </div>
+        <div class="progress-library__tools">
+          <div role="group" aria-label="Filter mijn vondsten">
+            <button type="button" data-library-filter="all" aria-pressed="true">Alles</button>
+            <button type="button" data-library-filter="saved" aria-pressed="false">Bewaard</button>
+            <button type="button" data-library-filter="continue" aria-pressed="false">Nog bezig</button>
+          </div>
+          <span data-library-count></span>
+        </div>
+        <ol data-reading-history-list></ol>
+        <div class="progress-library__foot">
+          <button type="button" data-library-more hidden>Toon meer vondsten</button>
+          <a href="onderwerpen.html">Graaf verder in de Atlas →</a>
+        </div>
+        <p class="progress-library__status" data-library-status aria-live="polite"></p>
+      </section>
       <div class="progress-history"><div><h3>Eerdere weken</h3><p>Een spoor hoeft niet lang te zijn om echt te zijn.</p></div><ol data-track-history><li class="progress-history__empty">Hier verschijnen de weken die je bewust afrondt.</li></ol></div>
       <section class="progress-lab-snapshots" data-lab-snapshots hidden aria-labelledby="lab-snapshots-title"><div><p class="eyebrow">Uit het Menslab</p><h3 id="lab-snapshots-title">Bewaarde proefnotities</h3><p>Verwachtingen en observaties, geen conclusies over wie je bent.</p></div><ol data-lab-snapshot-list></ol></section>
       <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Quizkast</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>

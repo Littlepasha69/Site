@@ -223,6 +223,34 @@
     questionCard.classList.add('mini-question--answered');
   }
 
+  function burstFromElement(element, symbol = '✦', amount = 7) {
+    if (!element || matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    const rect = element.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    const accent = getComputedStyle(stage).getPropertyValue('--quiz-accent').trim() || '#d3a33f';
+    for (let index = 0; index < amount; index += 1) {
+      const particle = document.createElement('i');
+      particle.className = 'quiz-particle';
+      particle.textContent = symbol;
+      particle.style.setProperty('--particle-x', `${x}px`);
+      particle.style.setProperty('--particle-y', `${y}px`);
+      particle.style.setProperty('--particle-rotate', `${Math.round(index * 360 / amount)}deg`);
+      particle.style.setProperty('--particle-distance', `${44 + index % 3 * 14}px`);
+      particle.style.setProperty('--particle-size', `${.7 + index % 3 * .18}rem`);
+      particle.style.color = accent;
+      document.body.append(particle);
+      window.setTimeout(() => particle.remove(), 760);
+    }
+  }
+
+  function flashCustomStatus() {
+    const status = document.querySelector('[data-custom-status]');
+    status.classList.remove('is-flashing');
+    void status.offsetWidth;
+    status.classList.add('is-flashing');
+  }
+
   function renderConversationOptions(question, options) {
     return question.options.map((option, index) => {
       const wrapper = document.createElement('div');
@@ -241,6 +269,7 @@
       input.addEventListener('change', () => {
         answers[current] = option.result;
         missingButton.setAttribute('aria-pressed', 'false');
+        burstFromElement(label, '◌', 5);
         saveQuizProgress();
         document.querySelector('[data-mini-next]').disabled = false;
         animateQuestion();
@@ -288,6 +317,8 @@
         else if (selected.length < 2) selected.push(option.result);
         else selected[1] = option.result;
         answers[current] = selected.length ? selected : null;
+        const newRank = selected.indexOf(option.result);
+        burstFromElement(button, existing >= 0 ? '·' : String(newRank + 1), 5);
         saveQuizProgress();
         syncPathOptions();
         animateQuestion();
@@ -360,6 +391,9 @@
     customBoard.replaceChildren(...activeQuiz.gameOptions.map(option => {
       const card = makeCustomCard(option, 'custom-card--allocation');
       const count = answers.filter(value => value === option.result).length;
+      card.classList.toggle('is-charged', count > 0);
+      card.dataset.sparkCount = String(count);
+      card.style.setProperty('--spark-count', String(count));
       const controls = document.createElement('div');
       controls.className = 'spark-controls';
       const minus = document.createElement('button');
@@ -382,6 +416,7 @@
         renderCustomGame();
       });
       plus.addEventListener('click', () => {
+        burstFromElement(plus, '✦', 8);
         const index = answers.indexOf(null);
         if (index >= 0) answers[index] = option.result;
         saveQuizProgress();
@@ -436,6 +471,7 @@
       choose.disabled = missing || usedAt >= 0 || nextSeat < 0;
       choose.textContent = usedAt >= 0 ? activeQuiz.rankSeats[usedAt].label : nextSeat >= 0 ? `Zet bij: ${activeQuiz.rankSeats[nextSeat].label}` : 'Geplaatst';
       choose.addEventListener('click', () => {
+        burstFromElement(choose, option.symbol, 6);
         const empty = answers.findIndex(value => value === null);
         if (empty >= 0) answers[empty] = option.result;
         saveQuizProgress();
@@ -458,6 +494,7 @@
     customBoard.dataset.customMode = activeQuiz.mode;
     if (activeQuiz.mode === 'allocation') renderAllocationBoard();
     else renderRankingBoard();
+    flashCustomStatus();
     customGame.focus?.({ preventScroll: true });
   }
 
@@ -579,7 +616,7 @@
     if (meta.leaders.length > 1) return `${meta.leaders.length} luisterspiegels kregen elk ${scoreCopy(meta.maxScore, meta.unit)}. Jij koos ${result.title} om verder te onderzoeken.${missedCopy}`;
     const otherScores = activeQuiz.resultOrder.filter(id => id !== result.id && meta.scores[id] > 0).length;
     const spreadCopy = otherScores ? ` Je andere reacties wezen ook naar ${otherScores} andere luisterbeweging${otherScores === 1 ? '' : 'en'}.` : '';
-    return `${scoreCopy(meta.maxScore, meta.unit)} wees${meta.maxScore === 1 ? '' : 'en'} naar deze spiegel.${spreadCopy}${missedCopy}`;
+    return `${scoreCopy(meta.maxScore, meta.unit)} ${meta.maxScore === 1 ? 'wees' : 'wezen'} naar deze spiegel.${spreadCopy}${missedCopy}`;
   }
 
   function renderReading(result) {
@@ -619,6 +656,9 @@
   function renderResult(requestedId = '') {
     resultMeta = calculateResult();
     showOnly(resultSection);
+    resultSection.classList.remove('is-revealed');
+    void resultSection.offsetWidth;
+    resultSection.classList.add('is-revealed');
     if (resultMeta.leaders.length > 1 && !resultMeta.leaders.includes(requestedId)) {
       activeResult = null;
       selectedResultId = '';
@@ -724,6 +764,7 @@
     } else renderResult();
   });
   customMissButton.addEventListener('click', () => {
+    burstFromElement(customMissButton, '?', 6);
     answers = customIsMissing() ? new Array(expectedAnswerCount()).fill(null) : new Array(expectedAnswerCount()).fill(missingAnswer);
     saveQuizProgress();
     renderCustomGame();
@@ -736,6 +777,7 @@
   customFinishButton.addEventListener('click', () => { if (playIsComplete()) renderResult(); });
   fitButtons.forEach(button => button.addEventListener('click', () => {
     fit = button.dataset.miniFit;
+    burstFromElement(button, fit === 'mist' ? '?' : '✦', 6);
     syncReactionControls();
     saveQuizProgress('result');
   }));

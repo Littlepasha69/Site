@@ -76,7 +76,7 @@
   }
 
   const profile = readJson(profileKey, null);
-  const beast = data.beasts.find(item => item.id === profile?.beastId);
+  const beast = data.beasts.find(item => item.id === profile?.beastId || item.legacyIds?.includes(profile?.beastId));
   if (!profile || profile.version !== 1 || !beast) {
     empty.hidden = false;
     content.hidden = true;
@@ -107,7 +107,7 @@
   document.querySelector('[data-profile-role]').textContent = beast.role;
 
   const kindredRoot = document.querySelector('[data-profile-kindred]');
-  const kindred = (profile.kindred || []).map(match => ({ ...match, beast:data.beasts.find(item => item.id === match.id) })).filter(match => match.beast);
+  const kindred = (profile.kindred || []).map(match => ({ ...match, beast:data.beasts.find(item => item.id === match.id || item.legacyIds?.includes(match.id)) })).filter(match => match.beast);
   if (kindred.length) {
     document.querySelector('[data-profile-kindred-section]').hidden = false;
     kindredRoot.replaceChildren(...kindred.map(match => {

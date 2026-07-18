@@ -275,5 +275,11 @@ window.ONWIJZE_CONTENT = [
     summary: 'Waarom bescherming kan blijven doorwerken nadat gevaar voorbij is — en hoe veiligheid, betekenis, relatie en behandeling opnieuw keuzevrijheid kunnen openen.',
     url: 'onderwerpen/trauma.html', tags: ['trauma', 'ptss', 'complexe ptss', 'cptss', 'stress', 'veiligheid', 'herbeleving', 'vermijding', 'dissociatie', 'geheugen', 'zenuwstelsel', 'emdr', 'prolonged exposure', 'cognitive processing therapy', 'veerkracht', 'posttraumatische groei', 'polyvagaaltheorie', 'herstel', 'Judith Herman', 'Anke Ehlers', 'George Bonanno'],
     updated: '2026-07-18T23:59:55+03:00', featureImage: 'images/trauma-herstelkaart.svg', areaIcon: 'mendedHeart'
+  },
+  {
+    title: 'Dissociatie', type: 'dossier', category: 'Trauma & herstel', level: 'In ontwikkeling',
+    summary: 'Een nieuwe kijk op dissociatie als veranderde afstemming tussen lichaam, waarneming, tijd, geheugen en handelingsgevoel — met predictive processing als onderzoeksfront, niet als eindantwoord.',
+    url: 'onderwerpen/dissociatie.html', tags: ['dissociatie', 'depersonalisatie', 'derealisatie', 'zelfmodel', 'predictive processing', 'active inference', 'interoceptie', 'agency', 'handelingsgevoel', 'precisieweging', 'continuïteit', 'geheugen', 'dissociatieve amnesie', 'DID', 'dissociatieve identiteitsstoornis', 'grounding', 'trauma', 'paniek', 'Anna Ciaunica', 'Negar Fani', 'Charlie McDonald'],
+    updated: '2026-07-18T23:59:58+03:00', featureImage: 'images/dissociatie-kaart.svg', areaIcon: 'mendedHeart'
   }
 ];

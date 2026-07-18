@@ -45,6 +45,8 @@
   const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz', route:'Veranderroute' };
   const quizFitLabels = { raakt:'Raakt iets', deels:'Klopt gedeeltelijk', mist:'Mist iets belangrijks' };
   let currentQuestion = 0;
+  let libraryMode = 'all';
+  let libraryExpanded = false;
   let state = emptyState();
 
   function emptyState() {
@@ -127,7 +129,7 @@
     if (Array.isArray(value.labSnapshots)) {
       clean.labSnapshots = value.labSnapshots.slice(0, 250).filter(item => item && typeof item.savedAt === 'string' && typeof item.title === 'string').map(item => ({
         kind: ['daily', 'brain', 'together', 'reflection', 'beast', 'route'].includes(item.kind) ? item.kind : 'daily',
-        title: item.title.slice(0, 140),
+        title: (item.kind === 'beast' && item.title === 'Kraken' ? 'Leviathan' : item.title).slice(0, 140),
         prompt: typeof item.prompt === 'string' ? item.prompt.slice(0, 500) : '',
         expectation: typeof item.expectation === 'string' ? item.expectation.slice(0, 280) : '',
         observation: typeof item.observation === 'string' ? item.observation.slice(0, 500) : '',
@@ -398,30 +400,128 @@
     const section = document.querySelector('[data-reading-history]');
     const list = document.querySelector('[data-reading-history-list]');
     if (!section || !list) return;
-    let items = [];
-    try {
-      const parsed = JSON.parse(localStorage.getItem('onwijze-reading-history-v1') || '[]');
-      if (Array.isArray(parsed)) items = parsed.filter(item => {
-        try { return item?.title && ['file:', 'http:', 'https:'].includes(new URL(item.url, location.href).protocol); }
-        catch (_) { return false; }
-      }).slice(0, 6);
-    } catch (_) {}
+
+    const readArray = key => {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(key) || '[]');
+        return Array.isArray(parsed) ? parsed : [];
+      } catch (_) { return []; }
+    };
+    const safeReadingHref = value => {
+      try {
+        const url = new URL(String(value || ''), location.href);
+        return ['file:', 'http:', 'https:'].includes(url.protocol) ? url.href : '';
+      } catch (_) { return ''; }
+    };
+    const footprintKey = 'onwijze-atlas-footprints-v1';
+    const readingKey = 'onwijze-reading-history-v1';
+    const atlasItems = readArray(footprintKey).map(item => ({
+      source:'atlas', storageKey:footprintKey, storedUrl:item.url,
+      href:safeReadingHref(`${item.url || ''}${item.chapterId ? `#${encodeURIComponent(item.chapterId)}` : ''}`),
+      title:typeof item.title === 'string' ? item.title : '',
+      type:typeof item.category === 'string' ? item.category : 'Atlasdossier',
+      saved:item.saved === true,
+      progress:Math.max(0, Math.min(100, Math.round(Number(item.progress) || 0))),
+      chapter:typeof item.chapterLabel === 'string' ? item.chapterLabel : '',
+      visitedAt:Number(item.visitedAt) || 0
+    }));
+    const readingItems = readArray(readingKey).map(item => ({
+      source:'reading', storageKey:readingKey, storedUrl:item.url,
+      href:safeReadingHref(item.url),
+      title:typeof item.title === 'string' ? item.title : '',
+      type:'Leesroute', saved:false,
+      progress:Math.max(0, Math.min(100, Math.round(Number(item.progress) || 0))),
+      chapter:'', visitedAt:Number(item.visitedAt) || 0
+    }));
+    const items = [...atlasItems, ...readingItems]
+      .filter(item => item.title && item.href)
+      .sort((a, b) => Number(b.saved) - Number(a.saved) || b.visitedAt - a.visitedAt);
+
     section.hidden = !items.length;
     if (section.hidden) return;
-    list.replaceChildren(...items.map(item => {
+
+    const filtered = items.filter(item => {
+      if (libraryMode === 'saved') return item.saved;
+      if (libraryMode === 'continue') return item.progress < 99;
+      return true;
+    });
+    const visible = libraryExpanded ? filtered : filtered.slice(0, 6);
+    const count = document.querySelector('[data-library-count]');
+    const more = document.querySelector('[data-library-more]');
+    if (count) count.textContent = `${filtered.length} ${filtered.length === 1 ? 'vondst' : 'vondsten'}`;
+    document.querySelectorAll('[data-library-filter]').forEach(button => {
+      button.setAttribute('aria-pressed', String(button.dataset.libraryFilter === libraryMode));
+    });
+    if (more) {
+      more.hidden = filtered.length <= 6;
+      more.textContent = libraryExpanded ? 'Toon minder' : `Toon alle ${filtered.length}`;
+    }
+
+    if (!visible.length) {
+      const empty = document.createElement('li');
+      empty.className = 'progress-library__empty';
+      empty.textContent = libraryMode === 'saved'
+        ? 'Nog niets bewust bewaard. Open een dossier en kies daar “Bewaar dit dossier”.'
+        : 'Geen onafgewerkte leesroute gevonden.';
+      list.replaceChildren(empty);
+      return;
+    }
+
+    list.replaceChildren(...visible.map(item => {
       const row = document.createElement('li');
+      if (item.saved) row.classList.add('is-saved');
       const link = document.createElement('a');
-      link.href = item.url;
-      const progress = Math.max(0, Math.min(100, Math.round(Number(item.progress) || 0)));
+      link.href = item.href;
       const meta = document.createElement('span');
-      meta.textContent = progress >= 99 ? 'Uitgelezen' : progress ? `${progress}% gelezen` : 'Net geopend';
+      meta.className = 'progress-library__meta';
+      const kind = document.createElement('span');
+      kind.textContent = item.type;
+      const stateLabel = document.createElement('em');
+      stateLabel.textContent = item.saved ? 'Bewaard' : item.progress >= 99 ? 'Uitgelezen' : item.progress ? `${item.progress}% gelezen` : 'Net geopend';
+      meta.append(kind, stateLabel);
       const title = document.createElement('strong');
       title.textContent = item.title;
-      link.append(meta, title);
-      row.append(link);
+      const action = document.createElement('small');
+      action.textContent = item.progress >= 99 ? 'Lees opnieuw →' : item.chapter ? `Verder bij: ${item.chapter} →` : 'Ga verder →';
+      const progress = document.createElement('i');
+      progress.setAttribute('aria-hidden', 'true');
+      const fill = document.createElement('b');
+      fill.style.width = `${item.progress}%`;
+      progress.append(fill);
+      link.append(meta, title, action, progress);
+
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Verwijder';
+      remove.setAttribute('aria-label', `Verwijder ${item.title} uit Mijn spoor`);
+      remove.addEventListener('click', () => {
+        const remaining = readArray(item.storageKey).filter(entry => entry.url !== item.storedUrl);
+        try {
+          localStorage.setItem(item.storageKey, JSON.stringify(remaining));
+          const status = document.querySelector('[data-library-status]');
+          if (status) status.textContent = `${item.title} is uit Mijn spoor verwijderd.`;
+          renderReadingHistory();
+        } catch (_) {
+          const status = document.querySelector('[data-library-status]');
+          if (status) status.textContent = 'Verwijderen is in deze browser niet beschikbaar.';
+        }
+      });
+      row.append(link, remove);
       return row;
     }));
   }
+
+  document.querySelectorAll('[data-library-filter]').forEach(button => {
+    button.addEventListener('click', () => {
+      libraryMode = ['all', 'saved', 'continue'].includes(button.dataset.libraryFilter) ? button.dataset.libraryFilter : 'all';
+      libraryExpanded = false;
+      renderReadingHistory();
+    });
+  });
+  document.querySelector('[data-library-more]')?.addEventListener('click', () => {
+    libraryExpanded = !libraryExpanded;
+    renderReadingHistory();
+  });
 
   function renderProgress() {
     const done = state.checks.filter(Boolean).length;
@@ -476,7 +576,7 @@
     if (!root) return;
     try {
       const profile = JSON.parse(localStorage.getItem('onwijze-profile-v1') || 'null');
-      const beast = window.BEAST_QUIZ?.beasts?.find(item => item.id === profile?.beastId);
+      const beast = window.BEAST_QUIZ?.beasts?.find(item => item.id === profile?.beastId || item.legacyIds?.includes(profile?.beastId));
       if (!profile || !beast) { root.hidden = true; return; }
       root.querySelector('[data-personal-profile-image]').src = beast.image || `images/beasts/${beast.id}.jpg`;
       root.querySelector('[data-personal-profile-image]').alt = `Illustratie van ${beast.name}`;

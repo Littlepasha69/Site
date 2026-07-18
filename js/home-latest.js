@@ -27,6 +27,18 @@
     path.setAttribute('d', 'M12 10a2 2 0 0 0-2 2c0 1-.1 2.5-.3 4M14 13.1c0 2.4 0 6.4-1 8.9M17.3 21c.1-.6.4-2.3.5-3M2.2 12A9.8 9.8 0 0 1 20 6M2.3 16h.1M21.8 16c.2-2 .1-5.4 0-6M5 19.5c.5-1.5 1-4.5 1-7.5a6 6 0 0 1 .3-2M8.7 22c.2-.7.4-1.3.6-2M9 6.8a6 6 0 0 1 9 5.2v2');
     svg.append(path);
     label.replaceChildren(svg, document.createTextNode(` Nieuw in de Atlas · ${date}`));
+  } else if (latest.areaIcon === 'mendedHeart') {
+    const svg = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
+    svg.setAttribute('class', 'content-label__icon');
+    svg.setAttribute('viewBox', '0 0 24 24');
+    svg.setAttribute('aria-hidden', 'true');
+    svg.setAttribute('focusable', 'false');
+    const heart = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    heart.setAttribute('d', 'M12 20.2S4.6 15.9 4.6 9.8A4.2 4.2 0 0 1 12 7a4.2 4.2 0 0 1 7.4 2.8c0 6.1-7.4 10.4-7.4 10.4Z');
+    const seam = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+    seam.setAttribute('d', 'm12.7 6.2-2 3.1 2.1 1.8-2.2 2.2 2.3 1.8-1.5 2.8');
+    svg.append(heart, seam);
+    label.replaceChildren(svg, document.createTextNode(` Nieuw in de Atlas · ${date}`));
   } else {
     label.textContent = `${latest.areaIcon || '○'} Nieuw in de Atlas · ${date}`;
   }

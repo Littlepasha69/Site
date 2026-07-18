@@ -3,13 +3,13 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Ontdek welk levend, mythisch, prehistorisch of uitgestorven dier bij jouw persoonlijkheidspatroon past.">
+  <meta name="description" content="Ontdek welk levend, mythisch of prehistorisch dier bij jouw persoonlijkheidspatroon past.">
   <title>De Grote Beestenquiz — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/creature-quiz.css?v=10">
+  <link rel="stylesheet" href="css/creature-quiz.css?v=12">
   <script src="js/site-shell.js?v=17" defer></script>
-  <script src="js/creature-data.js?v=8" defer></script>
-  <script src="js/creature-quiz.js?v=15" defer></script>
+  <script src="js/creature-data.js?v=10" defer></script>
+  <script src="js/creature-quiz.js?v=16" defer></script>
 </head>
 <body>
   <site-header></site-header>
@@ -21,7 +21,7 @@
           <h1>Welk beest beweegt er in jou?</h1>
           <p>Geen brave stellingen over wie je graag zou zijn, maar 35 kleine situaties over hoe jij werkelijk verbindt, verkent, kiest, voelt, ordent, verbeeldt en terugveert.</p>
           <div class="quiz-start-actions"><button class="beast-primary" type="button" data-start-quiz>Begin de tocht <span aria-hidden="true">→</span></button><button class="quiz-clear" type="button" data-clear-quiz hidden>Wis opgeslagen antwoorden</button></div>
-          <div class="quiz-facts"><span><strong>35</strong> vragen</span><span><strong>7</strong> dimensies</span><span><strong>32</strong> mogelijke beesten</span><span><strong>10–12</strong> minuten</span></div>
+          <div class="quiz-facts"><span><strong>35</strong> vragen</span><span><strong>7</strong> dimensies</span><span><strong>24</strong> mogelijke beesten</span><span><strong>10–12</strong> minuten</span></div>
           <p class="quiz-disclaimer">Een speelse oefening in zelfreflectie — geen diagnose of wetenschappelijk gevalideerde persoonlijkheidstest.</p>
           <p class="quiz-theory-link"><a href="onderwerpen/persoonlijkheid.html">Waarom je persoonlijkheid meer is dan een type →</a></p>
         </div>
@@ -32,7 +32,7 @@
           <small>Niet wie je bent, wel een mogelijke route voor verder onderzoek.</small>
         </aside>
       </div>
-      <div class="world-strip" aria-label="Vier dierenwerelden"><span>Levende dieren</span><span>Mythische wezens</span><span>Prehistorische dieren</span><span>Uitgestorven dieren</span></div>
+      <div class="world-strip" aria-label="Drie dierenwerelden"><span>Levende dieren</span><span>Mythische wezens</span><span>Prehistorische dieren</span></div>
     </section>
 
     <section class="quiz-stage" data-quiz-stage hidden aria-labelledby="quiz-question-title">
@@ -53,7 +53,7 @@
 
     <section class="quiz-result" data-quiz-result hidden tabindex="-1" aria-labelledby="result-title">
       <div class="result-celebration"><p class="eyebrow">Jouw dichtste archetype</p><div class="result-sigil" data-result-sigil></div><p data-result-world></p></div>
-      <div class="result-header"><div class="result-header__copy"><p class="result-archetype" data-result-archetype></p><h1 id="result-title" data-result-name></h1><p class="result-essence" data-result-essence></p></div><aside class="result-reveal"><figure class="result-portrait" data-result-portrait hidden><img data-result-image src="" alt=""><figcaption>Jouw beest als spiegel</figcaption></figure><div class="result-affinity"><strong data-result-affinity></strong><span>archetypische verwantschap</span><small>Geen wetenschappelijke score</small></div></aside></div>
+      <div class="result-header"><div class="result-header__copy"><p class="result-archetype" data-result-archetype></p><h1 id="result-title" data-result-name></h1><p class="result-essence" data-result-essence></p><p class="result-blend" data-result-blend hidden></p></div><aside class="result-reveal"><figure class="result-portrait" data-result-portrait hidden><img data-result-image src="" alt=""><figcaption>Jouw beest als spiegel</figcaption></figure><div class="result-affinity"><strong data-result-affinity></strong><span>archetypische verwantschap</span><small>Geen wetenschappelijke score</small></div></aside></div>
       <div class="result-grid">
         <article><span>Kracht</span><h2 data-result-strength></h2></article><article><span>Valkuil</span><h2 data-result-pitfall></h2></article><article><span>Rol in een groep</span><h2 data-result-role></h2></article>
       </div>

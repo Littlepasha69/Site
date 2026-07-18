@@ -225,6 +225,7 @@
     currentTraits = traits;
     ranked = rankBeasts(traits);
     const top = ranked[0];
+    const runnerUp = ranked[1];
     const beast = top.beast;
     const saveBeastButton = document.querySelector('[data-save-beast-result]');
     const saveBeastStatus = document.querySelector('[data-save-beast-status]');
@@ -236,6 +237,12 @@
     document.querySelector('[data-result-archetype]').textContent = beast.archetype;
     document.querySelector('[data-result-name]').textContent = beast.name;
     document.querySelector('[data-result-essence]').textContent = beast.essence;
+    const blend = document.querySelector('[data-result-blend]');
+    const closeMatch = runnerUp && top.match - runnerUp.match <= 1;
+    blend.hidden = !closeMatch;
+    blend.textContent = closeMatch
+      ? `Je profiel ligt op de grens: vooral ${beast.name}, met sterke trekken van ${runnerUp.beast.name}.`
+      : '';
     const portrait = document.querySelector('[data-result-portrait]');
     const portraitImage = document.querySelector('[data-result-image]');
     portrait.hidden = false;
@@ -411,7 +418,7 @@
   });
   const previewId = new URLSearchParams(location.search).get('voorbeeld');
   const editProfile = new URLSearchParams(location.search).get('profiel') === 'wijzigen';
-  const previewBeast = previewId && data.beasts.find(beast => beast.id === previewId);
+  const previewBeast = previewId && data.beasts.find(beast => beast.id === previewId || beast.legacyIds?.includes(previewId));
   if (previewBeast) {
     const previewTraits = Object.fromEntries(traitKeys.map((key, index) => [key, previewBeast.vector[index]]));
     renderResult(previewTraits);
@@ -424,7 +431,7 @@
       } else {
         const savedProfile = readProfile();
         const savedTraits = savedProfile?.traitScores;
-        const savedBeast = data.beasts.find(beast => beast.id === savedProfile?.beastId);
+        const savedBeast = data.beasts.find(beast => beast.id === savedProfile?.beastId || beast.legacyIds?.includes(savedProfile?.beastId));
         if (savedBeast && savedTraits && traitKeys.every(key => Number.isFinite(savedTraits[key]))) {
           currentTraits = savedTraits;
           ranked = rankBeasts(savedTraits);

@@ -318,6 +318,43 @@ button, input { font: inherit; }
 .site-footer-new nav a:hover { color: var(--copper); }
 .footer-small { grid-column: 1 / -1; margin-top: .2rem !important; padding-top: .85rem; border-top: 1px solid var(--line); font-size: .76rem; }
 
+/* Actuele wetenschap en klikbare dossierlussen op Ontdekken. */
+.science-now { margin:clamp(2.5rem,6vw,5rem) 0;padding:clamp(1rem,3vw,2rem) 0;background:radial-gradient(circle at 92% 4%,rgba(240,198,107,.2),transparent 24rem),radial-gradient(circle at 5% 92%,rgba(158,102,140,.22),transparent 28rem),linear-gradient(135deg,#092d32,#164845 52%,#432b48);color:white; }
+.science-now .section { padding-block:clamp(3rem,7vw,6rem); }
+.science-now__heading { margin-bottom:2rem;display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:2rem; }
+.science-now__heading h2 { max-width:850px;margin:.35rem 0 .8rem;color:#fffaf0;font:700 clamp(2.4rem,5vw,4.4rem)/.98 var(--serif);letter-spacing:-.045em; }
+.science-now__heading p:last-child { max-width:720px;margin:0;color:rgba(255,255,255,.7);font-size:1rem;line-height:1.65; }
+.science-now__heading .eyebrow,.science-now .text-link { color:#f0c66b; }
+.science-now__grid { display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.85rem; }
+.science-now-card { min-height:22rem;padding:1.35rem;display:flex;flex-direction:column;border:1px solid rgba(255,255,255,.15);border-radius:1.25rem;background:linear-gradient(145deg,rgba(255,255,255,.1),rgba(255,255,255,.04));box-shadow:0 24px 55px rgba(2,23,24,.16); }
+.science-now-card--breaking { border-color:rgba(240,198,107,.52);background:radial-gradient(circle at 90% 8%,rgba(240,198,107,.17),transparent 14rem),linear-gradient(145deg,rgba(255,255,255,.12),rgba(255,255,255,.045)); }
+.science-now-card--counter { border-color:rgba(219,145,176,.42); }
+.science-now-card__meta { display:flex;align-items:center;justify-content:space-between;gap:.7rem;color:rgba(255,255,255,.6);font-size:.68rem;font-weight:750;letter-spacing:.06em;text-transform:uppercase; }
+.science-now-card__meta time { color:#f0c66b; }
+.science-now-card__flag { width:max-content;margin:2.1rem 0 .55rem;padding:.36rem .58rem;border-radius:999px;background:rgba(240,198,107,.13);color:#f5d889;font-size:.65rem;font-weight:850;letter-spacing:.09em;text-transform:uppercase; }
+.science-now-card h3 { max-width:600px;margin:0;color:#fffaf0;font:650 clamp(1.65rem,3vw,2.35rem)/1.03 var(--serif);letter-spacing:-.025em; }
+.science-now-card>p:not(.science-now-card__flag) { margin:.85rem 0 1.3rem;color:rgba(255,255,255,.72);font-size:.9rem;line-height:1.65; }
+.science-now-card__links { margin-top:auto;padding-top:1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.55rem 1rem;border-top:1px solid rgba(255,255,255,.11); }
+.science-now-card__links a { color:#f6d681;font-size:.76rem;font-weight:800;text-decoration:none; }
+.science-now-card__links a:last-child { color:rgba(255,255,255,.55);font-weight:650; }
+.science-now-card__links a:hover { color:white; }
+.dossier-loop-panel { margin-top:1rem;padding:clamp(1.4rem,4vw,2.5rem);border-radius:1.4rem;background:#f7f2e9;color:var(--ink);box-shadow:0 26px 65px rgba(2,23,24,.22); }
+.dossier-loop-panel__intro { max-width:800px; }
+.dossier-loop-panel__intro .eyebrow { color:var(--copper); }
+.dossier-loop-panel__intro h3 { margin:.35rem 0 .65rem;font:700 clamp(2rem,4vw,3.2rem)/1.03 var(--serif);letter-spacing:-.035em; }
+.dossier-loop-panel__intro>p:last-child { margin:0;color:var(--muted);line-height:1.6; }
+.dossier-loops { margin-top:1.8rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem; }
+.dossier-loop { min-height:17rem;padding:1.15rem;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1rem;background:white; }
+.dossier-loop>span { color:var(--copper);font-size:.65rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase; }
+.dossier-loop h4 { margin:.75rem 0 1.25rem;font:650 1.25rem/1.12 var(--serif); }
+.dossier-loop>div { margin-top:auto;display:flex;flex-wrap:wrap;align-items:center;gap:.35rem; }
+.dossier-loop a { padding:.42rem .58rem;border:1px solid #cbd8d2;border-radius:999px;background:#f2f6f3;color:var(--ink);font-size:.7rem;font-weight:800;text-decoration:none; }
+.dossier-loop a:hover { border-color:var(--copper);color:var(--copper); }
+.dossier-loop i { color:#a2b0aa;font-style:normal; }
+.dossier-seeds { margin-top:.8rem;padding:1rem;display:flex;flex-wrap:wrap;align-items:center;gap:.5rem;border:1px dashed #b9c9c1;border-radius:1rem;background:#edf3ef; }
+.dossier-seeds strong { margin-right:.35rem;font-size:.76rem; }
+.dossier-seeds span { padding:.36rem .55rem;border-radius:999px;background:white;color:#566b67;font-size:.68rem;font-weight:700; }
+
 @media (max-width: 900px) {
   .site-header__inner { grid-template-columns: 1fr auto; gap: .5rem; padding: .5rem 0; }
   .brand img { width: min(520px, calc(100vw - 130px)); height: auto; }
@@ -342,6 +379,10 @@ button, input { font: inherit; }
   .world-shortcuts { grid-template-columns:repeat(2,minmax(0,1fr)); }
   .return-path { grid-template-columns:1fr;padding-right:3.6rem; }
   .community-panel--compact { grid-template-columns:1fr; }
+  .science-now__heading { grid-template-columns:1fr;align-items:start; }
+  .science-now__grid { grid-template-columns:1fr; }
+  .science-now-card { min-height:0; }
+  .dossier-loops { grid-template-columns:1fr 1fr; }
 }
 
 @media (max-width: 620px) {
@@ -400,6 +441,17 @@ button, input { font: inherit; }
   .home-about__identity p { margin-top:.75rem;padding-top:.75rem;font-size:.9rem; }
   .home-about__links { align-items:stretch;flex-direction:column; }
   .home-about__links .text-link { padding:.4rem 0; }
+  .science-now { margin-block:2.5rem; }
+  .science-now .section { width:min(100% - 1rem,1180px); }
+  .science-now__heading h2 { font-size:clamp(2.35rem,12vw,3.4rem); }
+  .science-now-card { padding:1rem; }
+  .science-now-card__meta { align-items:flex-start;flex-direction:column; }
+  .science-now-card__flag { margin-top:1.35rem; }
+  .science-now-card__links { align-items:flex-start;flex-direction:column; }
+  .dossier-loop-panel { padding:1rem; }
+  .dossier-loops { grid-template-columns:1fr; }
+  .dossier-loop { min-height:0; }
+  .dossier-seeds { align-items:flex-start;flex-direction:column; }
 }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior:auto; }
