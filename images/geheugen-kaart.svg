@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Geheugen als levende kringloop</title>
+  <desc id="desc">Een gebeurtenis gaat via aandacht en betekenis naar verbinding en rust, wordt later opnieuw opgebouwd en kan daarna worden bijgewerkt.</desc>
+  <defs>
+    <linearGradient id="memory-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf4ef"/><stop offset=".55" stop-color="#fff9ed"/><stop offset="1" stop-color="#f4e9f1"/></linearGradient>
+    <linearGradient id="memory-core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123f3e"/><stop offset="1" stop-color="#4d2c4b"/></linearGradient>
+    <filter id="memory-shadow"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0b2d2c" flood-opacity=".14"/></filter>
+    <marker id="memory-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#b86738"/></marker>
+  </defs>
+  <rect width="1200" height="640" rx="34" fill="url(#memory-bg)"/>
+  <g fill="none" stroke="#b86738" stroke-width="5" stroke-linecap="round" marker-end="url(#memory-arrow)">
+    <path d="M246 139c122-79 254-91 365-52"/><path d="M729 98c129 16 212 88 225 181"/><path d="M956 384c-32 105-125 171-255 175"/><path d="M568 562c-134 3-243-53-290-148"/><path d="M247 302c-7-46 1-86 28-122"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#153f3e">
+    <g transform="translate(65 72)"><rect width="225" height="136" rx="28" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="112.5" y="56" text-anchor="middle" font-size="19" font-weight="700">ERVARING</text><text x="112.5" y="86" text-anchor="middle" font-size="14" fill="#61716e">een stroom wordt moment</text></g>
+    <g transform="translate(488 40)"><rect width="225" height="136" rx="28" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="112.5" y="56" text-anchor="middle" font-size="19" font-weight="700">CODEREN</text><text x="112.5" y="86" text-anchor="middle" font-size="14" fill="#61716e">aandacht · betekenis</text></g>
+    <g transform="translate(875 212)"><rect width="245" height="136" rx="28" fill="#fff" stroke="#d7c8d2" stroke-width="3"/><text x="122.5" y="56" text-anchor="middle" font-size="19" font-weight="700">VERBINDEN</text><text x="122.5" y="86" text-anchor="middle" font-size="14" fill="#6e6170">rust · slaap · kennis</text></g>
+    <g transform="translate(693 458)"><rect width="255" height="136" rx="28" fill="#fff" stroke="#d7c8d2" stroke-width="3"/><text x="127.5" y="56" text-anchor="middle" font-size="19" font-weight="700">HERBOUWEN</text><text x="127.5" y="86" text-anchor="middle" font-size="14" fill="#6e6170">aanwijzing · huidig doel</text></g>
+    <g transform="translate(91 408)"><rect width="255" height="136" rx="28" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="127.5" y="56" text-anchor="middle" font-size="19" font-weight="700">BIJWERKEN</text><text x="127.5" y="86" text-anchor="middle" font-size="14" fill="#61716e">nieuwe context · betekenis</text></g>
+  </g>
+  <g filter="url(#memory-shadow)"><circle cx="600" cy="320" r="156" fill="url(#memory-core)"/><circle cx="600" cy="320" r="125" fill="none" stroke="#f0c66b" stroke-width="2" stroke-dasharray="5 9"/>
+    <path d="M529 335c4-62 49-102 103-96 47 5 81 47 74 92-7 48-54 79-100 65-38-12-60-52-45-88 12-29 48-44 76-28 22 13 30 43 16 64-12 18-38 22-54 8-12-11-12-31 0-41" fill="none" stroke="#f0c66b" stroke-width="9" stroke-linecap="round"/>
+    <text x="600" y="455" text-anchor="middle" fill="#fff9ea" font-family="Georgia,serif" font-size="30" font-weight="700">levend spoor</text>
+  </g>
+  <text x="600" y="622" text-anchor="middle" fill="#695b67" font-family="Arial,sans-serif" font-size="16">Stabiliteit maakt leren mogelijk. Verandering houdt het relevant.</text>
+</svg>

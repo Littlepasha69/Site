@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek welk levend, mythisch, prehistorisch of uitgestorven dier bij jouw persoonlijkheidspatroon past.">
   <title>De Grote Beestenquiz — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/creature-quiz.css?v=7">
+  <link rel="stylesheet" href="css/creature-quiz.css?v=8">
   <script src="js/site-shell.js?v=15" defer></script>
   <script src="js/creature-data.js?v=5" defer></script>
-  <script src="js/creature-quiz.js?v=10" defer></script>
+  <script src="js/creature-quiz.js?v=11" defer></script>
 </head>
 <body>
   <site-header></site-header>
@@ -62,7 +62,8 @@
       <section class="result-counterweight" aria-labelledby="counterweight-title"><p class="eyebrow">De nuttige tegenspraak</p><h2 id="counterweight-title">Waar schuurt deze spiegel?</h2><p>Een goed profiel geeft niet alleen herkenning, maar ook ruimte voor een stevig “nee”. Neem deze drie vragen mee:</p><ul><li>Waar herken je jezelf onmiddellijk — en waar totaal niet?</li><li>Welke antwoorden zeggen vooral iets over je huidige levensfase of omgeving?</li><li>In welke situatie verschijnt er waarschijnlijk een heel ander beest?</li></ul></section>
       <section class="trait-section" aria-labelledby="trait-title"><div class="section-minihead"><div><p class="eyebrow">Jouw patroon</p><h2 id="trait-title">Zeven lijnen door je landschap</h2></div><p>Geen lijn is beter dan een andere. Vooral de vorm van het geheel bepaalt je beest.</p></div><div class="trait-chart" data-trait-chart></div></section>
       <section class="kindred-section" aria-labelledby="kindred-title"><div class="section-minihead"><div><p class="eyebrow">Ook dicht in de buurt</p><h2 id="kindred-title">Je verwante beesten</h2></div><p>Een mens past nooit volledig in één archetype.</p></div><div class="kindred-grid" data-kindred-grid></div></section>
-      <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn proefprofiel</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>
+      <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn proefprofiel</button><button class="beast-secondary" type="button" data-save-beast-result>Bewaar in Mijn spoor</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>
+      <p class="result-save-status" data-save-beast-status aria-live="polite"></p>
     </section>
 
     <section class="profile-maker" data-profile-maker hidden tabindex="-1" aria-labelledby="profile-maker-title">

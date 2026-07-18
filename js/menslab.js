@@ -324,7 +324,7 @@
     const done = state.checks.filter(Boolean).length;
     const weeks = state.completedWeeks.length;
     const archivedTotal = state.completedWeeks.reduce((sum, week) => sum + week.movements.length, 0);
-    const total = archivedTotal + done + state.labSnapshots.length;
+    const total = archivedTotal + done + state.labSnapshots.length + state.quizSnapshots.length;
     score.textContent = `${done}/${checks.length}`;
     bar.style.width = `${Math.round(done / checks.length * 100)}%`;
     document.querySelector('[data-track-current]').textContent = `${done} van ${checks.length}`;

@@ -96,6 +96,50 @@
     lastSavedProgress = initialFootprint.progress;
     lastSavedChapter = initialFootprint.chapterId;
   }
+
+  const saveButton = page.querySelector('[data-save-dossier]');
+  const bookmarkStorageKey = 'onwijze-atlas-bookmarks-v1';
+
+  if (saveButton && currentRecord) {
+    const readBookmarks = () => {
+      try {
+        const stored = JSON.parse(localStorage.getItem(bookmarkStorageKey) || '[]');
+        return Array.isArray(stored) ? stored : [];
+      } catch (error) {
+        return [];
+      }
+    };
+
+    const showBookmarkState = saved => {
+      saveButton.setAttribute('aria-pressed', String(saved));
+      saveButton.innerHTML = saved
+        ? '<span aria-hidden="true">✓</span> Dossier bewaard'
+        : '<span aria-hidden="true">＋</span> Bewaar dit dossier';
+    };
+
+    showBookmarkState(readBookmarks().some(entry => entry.url === currentRecord.url));
+
+    saveButton.addEventListener('click', () => {
+      const bookmarks = readBookmarks();
+      const isSaved = bookmarks.some(entry => entry.url === currentRecord.url);
+      const next = isSaved
+        ? bookmarks.filter(entry => entry.url !== currentRecord.url)
+        : [{
+            url: currentRecord.url,
+            title: currentRecord.title,
+            category: currentRecord.category,
+            savedAt: Date.now()
+          }, ...bookmarks.filter(entry => entry.url !== currentRecord.url)].slice(0, 24);
+
+      try {
+        localStorage.setItem(bookmarkStorageKey, JSON.stringify(next));
+        showBookmarkState(!isSaved);
+      } catch (error) {
+        saveButton.textContent = 'Bewaren is hier niet beschikbaar';
+      }
+    });
+  }
+
   const areaAdjacency = {
     'Brein & zenuwstelsel': ['Leren & veranderen', 'Emoties & regulatie', 'Bewustzijn & metafysica'],
     'Emoties & regulatie': ['Trauma & herstel', 'Relaties & hechting', 'Persoonlijkheid & identiteit'],

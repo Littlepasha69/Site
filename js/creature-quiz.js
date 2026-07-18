@@ -15,6 +15,8 @@
   const questionCard = document.querySelector('.question-card');
   const answers = new Array(data.questions.length).fill(null);
   const quizStorageKey = 'beestenquiz-progress-v2';
+  const trackStorageKey = 'menslab-progress-v3';
+  const previousTrackStorageKey = 'menslab-progress-v2';
   const answerGlyphs = ['○', '◔', '◑', '◕', '●'];
   let current = 0;
   let ranked = [];
@@ -38,6 +40,39 @@
 
   function clearProgress() {
     try { localStorage.removeItem(quizStorageKey); } catch (_) {}
+  }
+
+  function saveBeastToTrack() {
+    const beast = ranked[0]?.beast;
+    const button = document.querySelector('[data-save-beast-result]');
+    const status = document.querySelector('[data-save-beast-status]');
+    if (!beast || !button || !status) return;
+    try {
+      const raw = localStorage.getItem(trackStorageKey) || localStorage.getItem(previousTrackStorageKey);
+      const parsed = raw ? JSON.parse(raw) : {};
+      const track = parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : {};
+      const snapshots = Array.isArray(track.labSnapshots) ? track.labSnapshots : [];
+      track.labSnapshots = snapshots
+        .filter(item => !(item?.kind === 'beast' && item?.title === beast.name))
+        .slice(0, 29);
+      track.labSnapshots.unshift({
+        kind: 'beast',
+        title: beast.name,
+        prompt: 'Jouw beest als spiegel',
+        expectation: '',
+        observation: beast.essence,
+        savedAt: new Date().toISOString()
+      });
+      localStorage.setItem(trackStorageKey, JSON.stringify(track));
+      localStorage.removeItem(previousTrackStorageKey);
+      button.textContent = 'Bewaard in Mijn spoor';
+      const trackLink = document.createElement('a');
+      trackLink.href = 'menslab.html#mijn-spoor';
+      trackLink.textContent = 'Bekijk Mijn spoor →';
+      status.replaceChildren(document.createTextNode('Alleen op dit apparaat bewaard. '), trackLink);
+    } catch (_) {
+      status.textContent = 'Bewaren lukt niet in deze browser. De quizuitslag blijft wel zichtbaar.';
+    }
   }
 
   function restoreProgress() {
@@ -157,6 +192,11 @@
     ranked = rankBeasts(traits);
     const top = ranked[0];
     const beast = top.beast;
+    const saveBeastButton = document.querySelector('[data-save-beast-result]');
+    const saveBeastStatus = document.querySelector('[data-save-beast-status]');
+    saveBeastButton.hidden = Boolean(previewTraits);
+    saveBeastButton.textContent = 'Bewaar in Mijn spoor';
+    saveBeastStatus.replaceChildren();
     document.querySelector('[data-result-sigil]').textContent = beast.mark;
     document.querySelector('[data-result-world]').textContent = beast.world;
     document.querySelector('[data-result-archetype]').textContent = beast.archetype;
@@ -300,6 +340,7 @@
     else renderResult();
   });
   document.querySelector('[data-restart-quiz]').addEventListener('click', () => { answers.fill(null); current = 0; clearProgress(); showOnly(stage); renderQuestion(); });
+  document.querySelector('[data-save-beast-result]').addEventListener('click', saveBeastToTrack);
   document.querySelector('[data-open-profile]').addEventListener('click', () => showOnly(profileMaker));
   document.querySelector('[data-close-profile]').addEventListener('click', () => showOnly(result));
   document.querySelector('[data-edit-profile]').addEventListener('click', () => showOnly(profileMaker));
