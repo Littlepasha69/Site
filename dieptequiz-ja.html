@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Een verdiepende Menslab-quiz over verlangen, zorg, druk, draagkracht en de werkelijke ruimte achter jouw ja.">
+  <title>Waar komt jouw ja vandaan? — Dieptequiz</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/dieptequiz.css?v=1">
+  <script src="js/site-shell.js?v=12" defer></script>
+  <script src="js/dieptequiz-ja.js?v=2" defer></script>
+</head>
+<body>
+  <site-header active="menslab"></site-header>
+  <main id="inhoud">
+    <section class="depth-hero" data-depth-home>
+      <div class="depth-hero__copy">
+        <p class="eyebrow">Menslab · eerste dieptequiz</p>
+        <h1>Waar komt jouw <em>ja</em> vandaan?</h1>
+        <p class="depth-hero__lead">Niet welk type ja-zegger je bent, maar wat er allemaal aanwezig moest zijn voordat jouw antwoord ontstond.</p>
+        <div class="depth-hero__actions"><a href="#vertrekpunt">Kies een echt moment ↓</a><span>12 vragen · ongeveer 8 minuten</span></div>
+      </div>
+      <aside aria-label="De drie lenzen van deze quiz">
+        <span>Deze quiz kijkt naar</span>
+        <ol><li><b>01</b> wat in jou beweegt</li><li><b>02</b> wat met jou meebeslist</li><li><b>03</b> hoeveel ruimte er werkelijk is</li></ol>
+      </aside>
+    </section>
+
+    <section class="depth-start" id="vertrekpunt" data-depth-start aria-labelledby="depth-start-title">
+      <div class="depth-start__intro"><p class="eyebrow">Een werkelijk vertrekpunt</p><h2 id="depth-start-title">Neem één concrete ja in gedachten.</h2><p>Een antwoord dat je onlangs gaf of binnenkort moet geven. Niet je hele persoonlijkheid — alleen dit ene moment.</p></div>
+      <form data-context-form>
+        <fieldset><legend>In welke omgeving speelt dit vooral?</legend>
+          <div class="context-options">
+            <label><input type="radio" name="context" value="Werk of studie"><span>Werk of studie</span></label>
+            <label><input type="radio" name="context" value="Familie"><span>Familie</span></label>
+            <label><input type="radio" name="context" value="Liefde of vriendschap"><span>Liefde of vriendschap</span></label>
+            <label><input type="radio" name="context" value="Zorg of verantwoordelijkheid"><span>Zorg of verantwoordelijkheid</span></label>
+            <label><input type="radio" name="context" value="Een andere situatie"><span>Een andere situatie</span></label>
+          </div>
+        </fieldset>
+        <label class="context-note" for="depth-situation"><span>Wil je het moment voor jezelf benoemen? <small>optioneel</small></span><input id="depth-situation" data-situation maxlength="90" placeholder="Bijvoorbeeld: een extra taak opnemen"></label>
+        <p>Je woorden blijven op dit apparaat en worden alleen bewaard als jij daar op het einde voor kiest.</p>
+        <button type="submit" disabled data-begin-depth>Begin met deze ja →</button>
+      </form>
+    </section>
+
+    <section class="depth-quiz" data-depth-quiz hidden tabindex="-1" aria-labelledby="depth-question-title">
+      <div class="depth-quiz__top"><button type="button" data-return-start>← Ander moment kiezen</button><span data-depth-context></span></div>
+      <div class="depth-progress" aria-label="Voortgang"><i data-depth-progress></i></div>
+      <div class="depth-progress__copy"><strong data-depth-phase></strong><span data-depth-count></span></div>
+      <article class="depth-question">
+        <p data-depth-eyebrow></p>
+        <h2 id="depth-question-title" data-depth-question></h2>
+        <p class="depth-question__help" data-depth-help></p>
+        <fieldset data-depth-options><legend class="visually-hidden">Kies het antwoord dat voor dit ene moment het dichtst in de buurt komt</legend></fieldset>
+      </article>
+      <div class="depth-navigation"><button type="button" data-depth-previous>← Vorige</button><button type="button" data-depth-next disabled>Volgende →</button></div>
+    </section>
+
+    <section class="depth-result" data-depth-result hidden tabindex="-1" aria-labelledby="depth-result-title">
+      <header><p class="eyebrow">Jouw ja in drie lenzen</p><span data-result-context></span><h1 id="depth-result-title" data-result-title></h1><p data-result-intro></p></header>
+      <div class="result-lenses">
+        <article class="result-lens result-lens--inner"><span>01 · Wat in jou beweegt</span><h2 data-inner-title></h2><p data-inner-copy></p><small data-inner-secondary></small></article>
+        <article class="result-lens result-lens--relation"><span>02 · Wat met jou meebeslist</span><h2 data-relation-title></h2><p data-relation-copy></p><small data-relation-secondary></small></article>
+        <article class="result-lens result-lens--space"><span>03 · Hoeveel ruimte er werkelijk is</span><h2 data-space-title></h2><p data-space-copy></p><small data-space-secondary></small></article>
+      </div>
+
+      <section class="counterfactual" aria-labelledby="counterfactual-title"><span>De onverwachte deur</span><h2 id="counterfactual-title">Wat veranderde toen een nee niets meer kostte?</h2><p data-counterfactual></p></section>
+
+      <section class="answer-trace" aria-labelledby="trace-title"><div><p class="eyebrow">Geen toverformule</p><h2 id="trace-title">Hier groeide deze spiegel uit.</h2><p>Niet uit verborgen kennis over jou, maar uit deze lijnen in je eigen antwoorden.</p></div><ul data-answer-trace></ul></section>
+
+      <section class="depth-experiment" aria-labelledby="experiment-title"><span>Kleine proef, geen opdracht</span><h2 id="experiment-title" data-experiment-title></h2><p data-experiment-copy></p></section>
+
+      <section class="result-dialogue" aria-labelledby="dialogue-title">
+        <div><p class="eyebrow">Jij krijgt het laatste woord</p><h2 id="dialogue-title">Wat doet deze uitslag met je?</h2><p>De quiz kan iets raken, maar ook iets belangrijks missen. Beide zijn informatie.</p></div>
+        <div class="fit-options" role="group" aria-label="Hoe goed past deze spiegel?"><button type="button" data-fit="raakt">Dit raakt iets</button><button type="button" data-fit="deels">Dit klopt gedeeltelijk</button><button type="button" data-fit="mist">Dit mist iets belangrijks</button></div>
+        <label for="depth-reflection">Wat wil jij eraan toevoegen? <small>optioneel · maximaal 280 tekens</small><textarea id="depth-reflection" data-depth-reflection maxlength="280" rows="3" placeholder="Bijvoorbeeld: bij mijn familie klopt dit, op het werk helemaal niet."></textarea></label>
+      </section>
+
+      <p class="depth-boundary">Dit profiel zegt niet wie je bent. Het laat zien welke patronen in jouw antwoorden vandaag het sterkst naar voren kwamen. Gebruik het als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</p>
+      <div class="depth-result__actions"><button type="button" data-save-depth>Bewaar dit drieluik in Mijn spoor</button><button type="button" data-restart-depth>Onderzoek een andere ja</button><a href="quizkast.html">Terug naar de Quizkast</a></div>
+      <p class="save-status" data-save-depth-status aria-live="polite"></p>
+    </section>
+
+    <section class="depth-method" aria-labelledby="depth-method-title">
+      <div class="depth-method__head"><p class="eyebrow">Wetenschappelijk paspoort</p><h2 id="depth-method-title">Waar deze quiz op leunt — en waar niet.</h2><p>Wetenschappelijkheid betekent hier niet dat de quiz meer over jou weet dan jij. Wel dat de ideeën, beperkingen en keuzes controleerbaar zijn.</p></div>
+      <div class="method-grid">
+        <details open><summary>Redelijk stevig ondersteund</summary><p>Motivatie verschilt in kwaliteit: interesse en persoonlijke instemming zijn iets anders dan handelen uit beloning, schuld of druk. Context en herhaalde momenten zijn belangrijk om menselijk gedrag te begrijpen.</p></details>
+        <details><summary>Bruikbare modellen</summary><p>Zelfdeterminatietheorie geeft taal aan autonome en gecontroleerde motivatie. Psychologische flexibiliteit helpt kijken naar waarden en handelen mét ongemak. Relationele autonomie en zorgethiek maken zichtbaar dat keuzes binnen relaties ontstaan.</p></details>
+        <details><summary>Betwist en onzeker</summary><p>Lichaamssignalen kunnen informatie geven, maar zijn geen onfeilbare waarheidsmeter. Culturele verschillen zijn werkelijk relevant, maar eenvoudige tegenstellingen tussen een onafhankelijk “Westen” en een afhankelijk “Oosten” zijn te grof.</p></details>
+        <details><summary>Wat je niet mag besluiten</summary><p>Deze quiz is niet gevalideerd en meet geen persoonlijkheid, autonomie, trauma, hechtingsstijl of mentale gezondheid. Ze ordent zelfrapportage over één gekozen situatie. Een beperkte keuzevrijheid is bovendien niet automatisch een individueel psychologisch probleem.</p></details>
+      </div>
+      <div class="method-sources"><strong>Bronnen en gesprekspartners</strong><ul>
+        <li><a href="https://selfdeterminationtheory.org/SDT/documents/2008_DeciRyan_CanPsy_Eng.pdf">Deci &amp; Ryan — autonome en gecontroleerde motivatie</a></li>
+        <li><a href="https://pubmed.ncbi.nlm.nih.gov/38615492/">Macri &amp; Rogge — meta-analyse psychologische flexibiliteit</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC6815421/">Relationele autonomie — systematische ethische analyse</a></li>
+        <li><a href="https://www.annualreviews.org/content/journals/10.1146/annurev-psych-021723-063333">Kitayama &amp; Salvador — culturele psychologie</a></li>
+        <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10770178/">Bohns en collega’s — woorden geven om nee te zeggen</a></li>
+        <li><a href="https://www.nature.com/articles/s44159-026-00554-1">Consensusverklaring over zelfkennis</a></li>
+      </ul><small>Inhoudelijk gecontroleerd op 18 juli 2026 · Dit is zelfonderzoek, geen behandeling.</small></div>
+    </section>
+  </main>
+  <site-footer></site-footer>
+</body>
+</html>

@@ -6,9 +6,9 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=2">
-  <script src="js/site-shell.js?v=8" defer></script>
-  <script src="js/menslab.js?v=1" defer></script>
+  <link rel="stylesheet" href="css/menslab.css?v=7">
+  <script src="js/site-shell.js?v=12" defer></script>
+  <script src="js/menslab.js?v=6" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -19,7 +19,7 @@
           <p class="eyebrow">Van inzicht naar beweging</p>
           <h1>Welkom in het Menslab.</h1>
           <p>Een plek om niet alleen óver verandering te lezen, maar iets kleins te proberen, te voelen en opnieuw te bekijken.</p>
-          <div class="lab-actions"><a class="lab-button" href="#weeklab">Start deze week</a><a class="lab-link" href="#reflectie">Trek een reflectievraag ↓</a></div>
+          <div class="lab-actions"><a class="lab-button" href="dierenquiz.html">Doe de Beestenquiz</a><a class="lab-link" href="#weeklab">Probeer iets kleins ↓</a></div>
         </div>
         <div class="lab-orbit" aria-hidden="true"><span>denken</span><span>voelen</span><span>doen</span><strong>jij</strong></div>
       </div>
@@ -31,13 +31,32 @@
       <article><span>03</span><h2>Deel</h2><p>Neem je vraag later mee naar de community en vergelijk ervaringen.</p></article>
     </section>
 
+    <section class="quizkast-gateway" aria-labelledby="quizkast-title">
+      <div class="quizkast-gateway__head"><div><p class="eyebrow">Nieuw · snelle spiegels</p><h2 id="quizkast-title">Trek iets open uit de Quizkast.</h2></div><div><p>Korte quizjes van één tot drie minuten. Geen vast type, wel een mogelijke ingang om iets kleins te onderzoeken.</p><a href="quizkast.html">Bekijk de hele Quizkast →</a></div></div>
+      <div class="quizkast-gateway__grid">
+        <a href="quizkast.html?quiz=beweging-vandaag"><span>Vandaag</span><strong>Welke kleine beweging heb jij nodig?</strong><small>± 2 minuten →</small></a>
+        <a href="quizkast.html?quiz=luisteren-of-repareren"><span>Gesprekken</span><strong>Luister jij — of begin je te repareren?</strong><small>± 2 minuten →</small></a>
+        <a href="quizkast.html?quiz=waar-komt-je-ja-vandaan"><span>Keuzes</span><strong>Waar komt jouw ja vandaan?</strong><small>± 3 minuten →</small></a>
+      </div>
+      <a class="quizkast-depth-route" href="dieptequiz-ja.html"><span>Nieuw · dieptequiz</span><strong>Een ja is geen type. Ontdek wat er allemaal met jou meebeslist.</strong><small>12 vragen · ongeveer 8 minuten →</small></a>
+    </section>
+
+    <section class="quiz-gateway quiz-gateway--early" aria-labelledby="quiz-gateway-title">
+      <div class="quiz-gateway__mark" aria-hidden="true">✦</div>
+      <div><p class="eyebrow">Grote ontdekkingstocht</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
+      <a href="dierenquiz.html">Doe de Beestenquiz →</a>
+    </section>
+
+    <a class="progress-resume" href="#weeklab" data-progress-resume hidden><span>Welkom terug</span><strong data-resume-text></strong><small>Ga verder waar je was →</small></a>
+
     <a class="change-gateway" href="veranderroute.html"><span>Nieuwe begeleide route</span><strong>Waarom weten wat goed voor je is nog niet betekent dat je het ook doet.</strong><small>Start De Veranderroute →</small></a>
 
     <section class="week-lab" id="weeklab" aria-labelledby="week-title">
       <div class="week-lab__head">
         <div><p class="eyebrow">Zeven kleine bewegingen</p><h2 id="week-title">Een week mentale rekbaarheid</h2><p>Geen perfect programma. Wel zeven uitnodigingen om je automatische route even te verlaten.</p></div>
-        <div class="week-progress" aria-live="polite"><strong data-week-score>0/7</strong><span>gedaan in dit tabblad</span><div><i data-week-bar></i></div></div>
+        <div class="week-progress" aria-live="polite"><strong data-week-score>0/7</strong><span>bewaard in deze browser</span><div><i data-week-bar></i></div></div>
       </div>
+      <div class="week-bridge" data-week-bridge hidden><span>Meegenomen uit je vorige week</span><blockquote data-week-bridge-text></blockquote><button type="button" data-clear-bridge>Laat dit los</button></div>
       <div class="week-days" data-week-days>
         <label><input type="checkbox"><span><b>Dag 1 · Merk op</b>Noteer één moment waarop je automatisch reageerde.</span></label>
         <label><input type="checkbox"><span><b>Dag 2 · Vertraag</b>Wacht tien seconden voordat je op iets prikkelends antwoordt.</span></label>
@@ -47,7 +66,36 @@
         <label><input type="checkbox"><span><b>Dag 6 · Vraag</b>Vraag iemand wat jij volgens hen soms niet bij jezelf ziet.</span></label>
         <label><input type="checkbox"><span><b>Dag 7 · Kies</b>Kies één kleine reactie die je volgende week anders wilt proberen.</span></label>
       </div>
-      <p class="lab-privacy">Je vinkjes bestaan alleen in dit tabblad en verdwijnen wanneer je de pagina vernieuwt of sluit.</p>
+      <div class="week-note">
+        <div><label for="week-note">Wat wil je van deze week onthouden?</label><p>Eén zin is genoeg. Ook die blijft alleen in deze browser.</p></div>
+        <textarea id="week-note" data-week-note maxlength="280" rows="3" placeholder="Bijvoorbeeld: tien seconden wachten gaf me meer keuze."></textarea>
+        <div><button type="button" data-save-week-note>Bewaar mijn notitie</button><span data-week-note-status aria-live="polite"></span></div>
+      </div>
+      <div class="week-complete" data-week-complete hidden aria-live="polite">
+        <div class="week-complete__message"><span aria-hidden="true">✓</span><div><strong data-week-finish-title></strong><p>Ook een onvolledige week mag een echt spoor achterlaten.</p></div></div>
+        <label for="next-week-intention">Wat wil je meenemen naar je volgende week?<input id="next-week-intention" data-next-intention maxlength="160" placeholder="Een inzicht, vraag of kleine bedoeling"></label>
+        <button type="button" data-archive-week>Rond deze week af</button>
+      </div>
+      <div class="lab-privacy"><p>Je vinkjes en notitie worden alleen in deze browser bewaard. Er wordt niets verstuurd.</p><button type="button" data-reset-week>Wis deze week</button></div>
+    </section>
+
+    <section class="progress-path" id="mijn-spoor" aria-labelledby="progress-title">
+      <div class="progress-path__head"><div><p class="eyebrow">Blijvende vooruitgang</p><h2 id="progress-title">Mijn spoor</h2></div><p>Geen streak en geen rapport. Alleen een rustig overzicht van wat je daadwerkelijk hebt geprobeerd.</p></div>
+      <div class="progress-stats">
+        <article><span>Deze week</span><strong data-track-current>0 van 7</strong><p data-track-current-copy>Je eerste kleine beweging ligt nog voor je.</p><a href="#weeklab">Ga naar deze week →</a></article>
+        <article><span>Door de tijd heen</span><strong data-track-total>0</strong><p>kleine bewegingen geprobeerd</p></article>
+        <article><span>Bewaard</span><strong data-track-weeks>0</strong><p>weken in je spoor</p></article>
+      </div>
+      <div class="progress-history"><div><h3>Eerdere weken</h3><p>Een spoor hoeft niet lang te zijn om echt te zijn.</p></div><ol data-track-history><li class="progress-history__empty">Hier verschijnen de weken die je bewust afrondt.</li></ol></div>
+      <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Quizkast</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>
+      <section class="progress-patterns" data-progress-patterns hidden aria-labelledby="patterns-title"><div><p class="eyebrow">Zonder oordeel</p><h3 id="patterns-title">Wat je vaker oefent</h3><p>Geen ranglijst, alleen terugkerende bewegingen in je bewaarde weken.</p></div><ol data-pattern-list></ol></section>
+      <section class="progress-review" data-progress-review hidden aria-labelledby="review-title"><div><p class="eyebrow">Even achteromkijken</p><h3 id="review-title">Drie weken in beeld</h3><p>Lees een paar eerdere notities opnieuw. Wat lijkt werkelijk iets in beweging te brengen?</p></div><div data-review-notes></div></section>
+      <div class="progress-tools">
+        <div><strong>Neem je spoor mee</strong><p>Bewaar een lokaal bestand of zet een eerder spoor terug. Er wordt niets verstuurd.</p></div>
+        <div><button type="button" data-export-track>Bewaar Mijn spoor als bestand</button><label class="progress-import">Zet een spoor terug<input type="file" data-import-track accept="application/json,.json"></label></div>
+        <p data-track-file-status aria-live="polite"></p>
+      </div>
+      <div class="progress-path__privacy"><p>Mijn spoor staat alleen in deze browser op dit apparaat.</p><button type="button" data-clear-track>Wis mijn hele spoor</button></div>
     </section>
 
     <section class="reflection" id="reflectie" aria-labelledby="reflection-title">
@@ -58,16 +106,10 @@
     <section class="lab-section" aria-labelledby="experiments-title">
       <div class="lab-section__head"><div><p class="eyebrow">Kleine experimenten</p><h2 id="experiments-title">Onderzoek jezelf zonder jezelf te repareren.</h2></div><p>Kies iets dat licht genoeg voelt om nieuwsgierig te blijven. Stop wanneer een oefening je overspoelt.</p></div>
       <div class="experiment-grid">
-        <article><span>5 minuten</span><h3>De trigger terugspoelen</h3><p>Beschrijf wat er vlak vóór een sterke reactie gebeurde: buiten je, in je lichaam en in je gedachten.</p><a href="forum.html">Stel er een vraag over →</a></article>
+        <article><span>5 minuten</span><h3>De emotionele routekaart</h3><p>Beschrijf wat er vlak vóór een sterke reactie gebeurde: buiten je, in je lichaam, in je betekenisgeving en in je impuls.</p><a href="onderwerpen/emotieregulatie.html#proberen">Open de begeleide oefening →</a></article>
         <article><span>1 dag</span><h3>Het automatische ja</h3><p>Merk vandaag op wanneer je “ja” wilt zeggen terwijl je lichaam terugdeinst. Je hoeft nog niets te veranderen.</p><a href="forum.html">Vergelijk ervaringen →</a></article>
         <article><span>1 gesprek</span><h3>Luisteren zonder oplossing</h3><p>Vraag iemand vijf minuten te vertellen. Stel alleen verduidelijkende vragen en geef geen advies.</p><a href="forum.html">Bespreek wat je merkte →</a></article>
       </div>
-    </section>
-
-    <section class="quiz-gateway">
-      <div class="quiz-gateway__mark" aria-hidden="true">✦</div>
-      <div><p class="eyebrow">Grote ontdekkingstocht</p><h2>Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten.</p></div>
-      <a href="dierenquiz.html">Start de Beestenquiz →</a>
     </section>
 
     <section class="lab-safety"><strong>Dit is zelfonderzoek, geen behandeling.</strong><p>De oefeningen zijn uitnodigingen en geen diagnoses of therapie. Bij aanhoudende psychische klachten of onveiligheid hoort passende professionele hulp.</p></section>

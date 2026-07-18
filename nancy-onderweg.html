@@ -1,44 +1,125 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Maak kennis met Nancy Onderweg, schrijver en maker van De Onwijze Wijsheden. Over schrijven, zoeken, mens-zijn en bouwen aan een plek tussen onzin en openbaring.">
   <title>Nancy Onderweg — De Onwijze Wijsheden</title>
-
-  <!-- STIJLEN -->
-  <link rel="stylesheet" href="css/style.css?v=2026-1">
-  <link href="https://fonts.googleapis.com/css2?family=IM+Fell+English+SC&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=Lora&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/site-2026.css?v=13">
+  <link rel="stylesheet" href="css/nancy-2026.css?v=1">
+  <script src="js/site-shell.js?v=12" defer></script>
 </head>
+<body>
+  <site-header active="nancy"></site-header>
 
-<body class="about-page">
-  <header>
-    <div class="header-topbar"></div>
-    <div class="site-logo-container">
-      <img src="images/logo.png" alt="De Onwijze Wijsheden logo" class="site-logo" />
-    </div>
-    <div class="slogan-divider"></div>
-    <nav class="main-navigation">
-      <ul>
-        <li><a href="index.html">Home</a></li>
-        <li><a href="denkstukken.html">Denkstukken</a></li>
-        <li><a href="onderwerpen.html">Onderwerpen</a></li>
-        <li><a href="forum.html">Forum</a></li>
-        <li><a href="manifest.html">Manifest</a></li>
-        <li><a href="jouw-bijdrage.html">Jouw Bijdrage</a></li>
-      </ul>
-    </nav>
-  </header>
+  <main id="inhoud">
+    <section class="nancy-hero">
+      <div class="nancy-hero__inner">
+        <div class="nancy-hero__copy">
+          <p class="eyebrow">Schrijver · maker · mens in beweging</p>
+          <h1>Nancy<br>Onderweg</h1>
+          <p class="nancy-hero__lede">Ik schrijf waar spreken soms stokt. Over wat ons vormt, wat schuurt en wat zichtbaar wordt wanneer je niet langer hoeft te doen alsof je het antwoord al kent.</p>
+          <div class="nancy-hero__actions">
+            <a class="nancy-button" href="denkstukken.html">Lees mijn denkstukken</a>
+            <a class="nancy-text-link" href="#mijn-verhaal">Dit is mijn verhaal ↓</a>
+          </div>
+        </div>
 
-  <!-- PROFIEL INHOUD -->
-  <main class="about-main">
-    <section class="profiel-kaart">
-      <h1>Nancy Onderweg</h1>
-      <img src="images/nancy.png" alt="Beeldmerk van Nancy Onderweg" class="profiel-portret">
+        <figure class="nancy-portrait">
+          <div class="nancy-portrait__frame">
+            <img src="images/nancy-onderweg-v2.png" alt="Schilderachtige illustratie van een vrouw aan het water, onderweg naar het licht">
+          </div>
+          <figcaption>Niet aangekomen. Wel aanwezig.</figcaption>
+        </figure>
+      </div>
+    </section>
 
-      <p><strong>Schrijft vanuit:</strong> Tussen onzin en openbaring</p>
-      <p><strong>Over mij:</strong> Reizend tussen pixels en poëzie bouw ik aan plekken waar waarheid zich soms fluisterend laat zien.</p>
+    <section class="nancy-intro" id="mijn-verhaal">
+      <div class="nancy-intro__aside">
+        <p class="eyebrow">Waarom die naam?</p>
+        <blockquote>“Onderweg” is geen tussenfase die eerst voorbij moet. Het is waar het leven gebeurt.</blockquote>
+      </div>
+      <div class="nancy-intro__story">
+        <p class="nancy-dropcap">Deze plek begon op een kantelpunt. Ik brak oude patronen open, gaf mijn vertrouwde richting op en probeerde te begrijpen waarom tegen de stroom ingaan soms voelt alsof er iets mis met je is.</p>
+        <p>Precies in die verwarring kwam ik dichter bij mijn eigen stem. Praten lukt me niet altijd. Schrijven wel. Op papier kan ik vertragen, twijfelen, terugkeren en woorden geven aan wat vanbinnen nog geen nette vorm heeft.</p>
+        <p>Daarom schrijf ik als <strong>Nancy Onderweg</strong>. Niet omdat ik weet waar de weg eindigt, maar omdat ik eerlijk wil zijn over het zoeken zelf.</p>
+      </div>
+    </section>
+
+    <section class="nancy-method">
+      <div class="nancy-method__heading">
+        <p class="eyebrow">Hoe ik schrijf</p>
+        <h2>Geen absolute waarheden. Wel eerlijke pogingen.</h2>
+      </div>
+      <div class="nancy-values">
+        <article><span>01</span><h3>Van binnen naar buiten</h3><p>Mijn denkstukken beginnen vaak bij iets wat ik voel, meemaak of niet begrijp. Ervaring is geen bewijs, maar wel een plek waar vragen ontstaan.</p></article>
+        <article><span>02</span><h3>Tussen weten en vermoeden</h3><p>Ik wil ruimte laten voor onderzoek, filosofie, intuïtie en verbeelding — zonder te doen alsof ze allemaal hetzelfde bewijzen.</p></article>
+        <article><span>03</span><h3>Raakbaar, niet afgerond</h3><p>Soms chaotisch, soms helder, maar altijd in beweging. Je mag jezelf herkennen en je mag denken dat ik ongelijk heb. Beide zijn welkom.</p></article>
+      </div>
+    </section>
+
+    <section class="nancy-beast" aria-labelledby="nancy-beast-title">
+      <div class="nancy-beast__image">
+        <img src="images/beasts/octopus.jpg" alt="Goudkleurige vintage illustratie van een octopus tegen een donkergroene sterrenhemel">
+        <span class="nancy-beast__score">87%</span>
+      </div>
+      <div class="nancy-beast__content">
+        <p class="eyebrow">Mijn profiel uit de Beestenquiz</p>
+        <h2 id="nancy-beast-title">Octopus</h2>
+        <p class="nancy-beast__archetype">De vloeibare uitvinder</p>
+        <p>Ik denk in meerdere richtingen tegelijk en pas me snel aan nieuwe landschappen aan. De Octopus herkent in mij de neiging om verbanden te zien, onverwachte uitwegen te zoeken en van vorm te veranderen wanneer een oude vorm niet meer past.</p>
+        <div class="nancy-beast__traits">
+          <article><span>Kracht</span><p>Creatief problemen oplossen zonder vast te zitten aan één vorm.</p></article>
+          <article><span>Valkuil</span><p>Te veel armen tegelijk uitstrekken en nergens volledig landen.</p></article>
+        </div>
+        <blockquote>“Als de doorgang te smal is, verander ik van vorm.”</blockquote>
+        <a class="nancy-button nancy-button--gold" href="dierenquiz.html">Ontdek jouw eigen beest →</a>
+        <p class="nancy-beast__disclaimer">Dit profiel zegt niet wie je bent. Het laat zien welke patronen in jouw antwoorden vandaag het sterkst naar voren kwamen. Gebruik het als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</p>
+      </div>
+    </section>
+
+    <section class="nancy-platform">
+      <div class="nancy-platform__copy">
+        <p class="eyebrow">Wat ik aan het bouwen ben</p>
+        <h2>Van persoonlijke zoektocht naar een plek met meerdere stemmen.</h2>
+        <p>De Onwijze Wijsheden begon als een manier om te bewaren wat anders in mijn hoofd bleef rondzwerven. Intussen groeit het uit tot een menselijke ontdekplek: met denkstukken, een Atlas, kleine experimenten, ontmoeting en een Wegwijzer naar wat elders het verkennen waard is.</p>
+        <p>Niet groter om de cijfers. Wel dieper in betekenis. Een plek waar kennis en ervaring elkaar mogen ontmoeten, zonder likes die bepalen wat waardevol is en zonder te hoeven doen alsof iemand ooit helemaal af is.</p>
+        <a class="nancy-text-link" href="manifest.html">Lees hoe dit platform werkt →</a>
+      </div>
+      <div class="nancy-platform__line" aria-hidden="true"><span></span></div>
+    </section>
+
+    <section class="nancy-writing">
+      <div class="nancy-writing__heading">
+        <div><p class="eyebrow">Verder lezen</p><h2>Een paar sporen van onderweg.</h2></div>
+        <a class="nancy-text-link" href="denkstukken.html">Alle denkstukken →</a>
+      </div>
+      <div class="nancy-writing__grid">
+        <a class="nancy-story-card nancy-story-card--large" href="denk-box12.html">
+          <img src="images/aapbrein-spiegelpaleis-da-vinci.png" alt="" loading="lazy">
+          <div><span>Maatschappijkritiek · Essay</span><h3>Ons gezamenlijk spiegelpaleis</h3><p>Over ontzuiling, meritocratie, consumptie en de eenzaamheidsmachine.</p></div>
+        </a>
+        <a class="nancy-story-card" href="denk-box10.html">
+          <img src="images/aapje.png" alt="" loading="lazy">
+          <div><span>Persoonlijke hypothese</span><h3>Het aapje in ons</h3><p>Waarom ons sociale oerbrein nog naar stamleven en verbondenheid verlangt.</p></div>
+        </a>
+        <a class="nancy-story-card" href="denk-box11.html">
+          <img src="images/wekker.png" alt="" loading="lazy">
+          <div><span>Persoonlijke ervaring</span><h3>Zonder wekker</h3><p>Over stress, helderheid en een leven dat niet voortdurend door een klok wordt bestuurd.</p></div>
+        </a>
+      </div>
+    </section>
+
+    <section class="nancy-closing">
+      <div>
+        <p class="eyebrow">Een uitnodiging</p>
+        <h2>Je hoeft hier niets te bewijzen.</h2>
+        <p>Je mag lezen, voelen, tegenspreken en weer verdergaan. Misschien herken je iets in mijn chaos. Misschien vind je alleen een nieuwe vraag. Ook dat is genoeg.</p>
+      </div>
+      <img src="images/nancy.png" alt="Liefs, Nancy">
     </section>
   </main>
+
+  <site-footer></site-footer>
 </body>
 </html>

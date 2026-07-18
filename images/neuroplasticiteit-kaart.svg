@@ -1,0 +1,94 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Leeskaart neuroplasticiteit</title>
+  <desc id="desc">Een gelaagde route van ervaring en oefening via verbindingen en netwerken naar gedrag en functie, omringd door factoren zoals aandacht, herhaling, slaap, context, gezondheid en leeftijd.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#082c2b"/>
+      <stop offset="0.62" stop-color="#174b48"/>
+      <stop offset="1" stop-color="#66513c"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0" stop-color="#f0c66b" stop-opacity=".32"/>
+      <stop offset="1" stop-color="#f0c66b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="soft" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="24"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#f0c66b"/>
+    </marker>
+  </defs>
+
+  <rect width="1200" height="720" rx="44" fill="url(#bg)"/>
+  <circle cx="965" cy="116" r="220" fill="url(#glow)" filter="url(#soft)"/>
+  <path d="M-40 612C170 526 286 691 478 606c163-72 276-33 383 31 117 70 224 47 379-33" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="92"/>
+  <path d="M-40 612C170 526 286 691 478 606c163-72 276-33 383 31 117 70 224 47 379-33" fill="none" stroke="#f0c66b" stroke-opacity=".45" stroke-width="3" stroke-dasharray="10 14"/>
+
+  <text x="68" y="74" fill="#f0c66b" font-family="Arial, sans-serif" font-size="16" font-weight="700" letter-spacing="4">LEESKAART · NEUROPLASTICITEIT</text>
+  <text x="68" y="124" fill="#fffdf9" font-family="Georgia, serif" font-size="38" font-weight="700">Verandering gebeurt op meerdere niveaus.</text>
+  <text x="68" y="158" fill="#fff" fill-opacity=".62" font-family="Arial, sans-serif" font-size="17">Geen rechte productielijn, maar een wisselwerking door de tijd.</text>
+
+  <g transform="translate(68 224)">
+    <rect width="235" height="238" rx="28" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".16"/>
+    <circle cx="62" cy="64" r="32" fill="#f0c66b"/>
+    <path d="M44 68c10-2 17-10 19-23 7 8 9 18 5 29 9-7 17-8 25-5-9 11-20 15-35 12" fill="none" stroke="#143d3d" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="28" y="127" fill="#f0c66b" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">ERVARING</text>
+    <text x="28" y="157" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">Oefenen &amp;</text>
+    <text x="28" y="187" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">meemaken</text>
+    <text x="28" y="216" fill="#fff" fill-opacity=".58" font-family="Arial, sans-serif" font-size="13">specifiek · herhaald · betekenisvol</text>
+  </g>
+
+  <path d="M318 343C345 319 362 319 389 343" fill="none" stroke="#f0c66b" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(398 224)">
+    <rect width="235" height="238" rx="28" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".16"/>
+    <g transform="translate(30 28)" fill="none" stroke="#f0c66b" stroke-width="4" stroke-linecap="round">
+      <path d="M5 35c28 0 31 30 58 30"/>
+      <path d="M117 35c-28 0-31 30-58 30"/>
+      <circle cx="4" cy="35" r="8" fill="#f0c66b" stroke="none"/>
+      <circle cx="118" cy="35" r="8" fill="#f0c66b" stroke="none"/>
+      <circle cx="61" cy="65" r="6" fill="#fffdf9" stroke="none"/>
+    </g>
+    <text x="28" y="127" fill="#f0c66b" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">VERBINDINGEN</text>
+    <text x="28" y="157" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">Sterker, zwakker</text>
+    <text x="28" y="187" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">of anders</text>
+    <text x="28" y="216" fill="#fff" fill-opacity=".58" font-family="Arial, sans-serif" font-size="13">synapsen · cellen · myeline</text>
+  </g>
+
+  <path d="M648 343C675 319 692 319 719 343" fill="none" stroke="#f0c66b" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(728 224)">
+    <rect width="235" height="238" rx="28" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".16"/>
+    <g transform="translate(32 30)" stroke="#f0c66b" stroke-width="3" fill="none">
+      <path d="M6 36L50 9l45 37 44-20 36 42M50 9l12 61 33-24 44 49M62 70l77-44M95 46l80 22"/>
+      <g fill="#f0c66b" stroke="none"><circle cx="6" cy="36" r="7"/><circle cx="50" cy="9" r="8"/><circle cx="62" cy="70" r="7"/><circle cx="95" cy="46" r="9"/><circle cx="139" cy="26" r="7"/><circle cx="139" cy="95" r="8"/><circle cx="175" cy="68" r="7"/></g>
+    </g>
+    <text x="28" y="127" fill="#f0c66b" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">NETWERKEN</text>
+    <text x="28" y="157" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">Samenwerking</text>
+    <text x="28" y="187" fill="#fffdf9" font-family="Georgia, serif" font-size="25" font-weight="700">verschuift</text>
+    <text x="28" y="216" fill="#fff" fill-opacity=".58" font-family="Arial, sans-serif" font-size="13">timing · taakverdeling · efficiëntie</text>
+  </g>
+
+  <path d="M978 343C1005 319 1022 319 1049 343" fill="none" stroke="#f0c66b" stroke-width="3" marker-end="url(#arrow)"/>
+
+  <g transform="translate(1058 224)">
+    <rect width="74" height="238" rx="28" fill="#f0c66b"/>
+    <path d="M18 38v58m0 0-11-14m11 14 11-14" fill="none" stroke="#143d3d" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text transform="translate(47 219) rotate(-90)" fill="#143d3d" font-family="Arial, sans-serif" font-size="13" font-weight="800" letter-spacing="2">FUNCTIE &amp; GEDRAG</text>
+  </g>
+
+  <g transform="translate(68 514)">
+    <text x="0" y="16" fill="#f0c66b" font-family="Arial, sans-serif" font-size="13" font-weight="700" letter-spacing="2">WAT MEE BEPAALT WAT MOGELIJK EN HAALBAAR IS</text>
+    <g transform="translate(0 42)" font-family="Arial, sans-serif" font-size="14" fill="#fffdf9">
+      <rect width="142" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="71" y="28" text-anchor="middle">aandacht</text>
+      <rect x="154" width="142" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="225" y="28" text-anchor="middle">herhaling</text>
+      <rect x="308" width="156" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="386" y="28" text-anchor="middle">rust &amp; slaap</text>
+      <rect x="476" width="142" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="547" y="28" text-anchor="middle">context</text>
+      <rect x="630" width="174" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="717" y="28" text-anchor="middle">gezondheid</text>
+      <rect x="816" width="142" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="887" y="28" text-anchor="middle">leeftijd</text>
+      <rect x="970" width="162" height="44" rx="22" fill="#fff" fill-opacity=".09" stroke="#fff" stroke-opacity=".14"/><text x="1051" y="28" text-anchor="middle">veiligheid</text>
+    </g>
+  </g>
+
+  <text x="68" y="676" fill="#fff" fill-opacity=".48" font-family="Arial, sans-serif" font-size="14">De pijlen helpen lezen; in werkelijkheid beïnvloeden deze niveaus elkaar voortdurend.</text>
+</svg>

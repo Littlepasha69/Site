@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek welk levend, mythisch, prehistorisch of uitgestorven dier bij jouw persoonlijkheidspatroon past.">
   <title>De Grote Beestenquiz — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/creature-quiz.css?v=2">
-  <script src="js/site-shell.js?v=8" defer></script>
-  <script src="js/creature-data.js?v=2" defer></script>
-  <script src="js/creature-quiz.js?v=2" defer></script>
+  <link rel="stylesheet" href="css/creature-quiz.css?v=4">
+  <script src="js/site-shell.js?v=12" defer></script>
+  <script src="js/creature-data.js?v=3" defer></script>
+  <script src="js/creature-quiz.js?v=5" defer></script>
 </head>
 <body>
   <site-header></site-header>
@@ -20,14 +20,16 @@
           <p class="eyebrow">De Grote Beestenquiz</p>
           <h1>Welk beest beweegt er in jou?</h1>
           <p>Geen vijf voorspelbare vragen, maar een tocht langs hoe jij verbindt, verkent, kiest, voelt, ordent, verbeeldt en terugveert.</p>
+          <div class="quiz-start-actions"><button class="beast-primary" type="button" data-start-quiz>Begin de tocht <span aria-hidden="true">→</span></button><button class="quiz-clear" type="button" data-clear-quiz hidden>Wis opgeslagen antwoorden</button></div>
           <div class="quiz-facts"><span><strong>35</strong> vragen</span><span><strong>7</strong> dimensies</span><span><strong>32</strong> mogelijke beesten</span><span><strong>10–12</strong> minuten</span></div>
-          <button class="beast-primary" type="button" data-start-quiz>Begin de tocht <span aria-hidden="true">→</span></button>
           <p class="quiz-disclaimer">Een speelse oefening in zelfreflectie — geen diagnose of wetenschappelijk gevalideerde persoonlijkheidstest.</p>
         </div>
-        <div class="beast-orbit" aria-hidden="true">
-          <div class="orbit-core"><span>?</span><small>jouw beest</small></div>
-          <span class="orbit-mark orbit-mark--1">◉</span><span class="orbit-mark orbit-mark--2">✦</span><span class="orbit-mark orbit-mark--3">△</span><span class="orbit-mark orbit-mark--4">◇</span>
-        </div>
+        <aside class="result-preview" aria-label="Voorbeeld van je quizresultaat">
+          <p>Dit krijg je te zien</p>
+          <div class="result-preview__title"><span aria-hidden="true">?</span><div><small>Jouw beest als spiegel</small><strong>Een profiel met nuance</strong></div></div>
+          <ul><li><span>Kracht</span>Wat in je antwoorden naar voren komt</li><li><span>Valkuil</span>Waar dezelfde neiging kan schuren</li><li><span>Zeven lijnen</span>Hoe je antwoordpatroon is opgebouwd</li></ul>
+          <small>Niet wie je bent, wel een mogelijke route voor verder onderzoek.</small>
+        </aside>
       </div>
       <div class="world-strip" aria-label="Vier dierenwerelden"><span>Levende dieren</span><span>Mythische wezens</span><span>Prehistorische dieren</span><span>Uitgestorven dieren</span></div>
     </section>
@@ -44,16 +46,17 @@
         <p class="answer-hint">Kies wat meestal bij je past, niet wat je het liefst zou willen zijn.</p>
       </article>
       <div class="quiz-navigation"><button class="beast-secondary" type="button" data-previous-question>← Vorige</button><button class="beast-primary" type="button" data-next-question disabled>Volgende →</button></div>
-      <p class="local-note"><span aria-hidden="true">●</span> Antwoorden blijven alleen in dit browsertabblad en verdwijnen bij vernieuwen of sluiten.</p>
+      <p class="local-note"><span aria-hidden="true">●</span> Antwoorden worden alleen in deze browser bewaard, zodat je later kunt verdergaan. Er wordt niets verstuurd.</p>
     </section>
 
     <section class="quiz-result" data-quiz-result hidden tabindex="-1" aria-labelledby="result-title">
       <div class="result-celebration"><p class="eyebrow">Jouw dichtste archetype</p><div class="result-sigil" data-result-sigil></div><p data-result-world></p></div>
-      <div class="result-header"><div><p class="result-archetype" data-result-archetype></p><h1 id="result-title" data-result-name></h1><p class="result-essence" data-result-essence></p></div><div class="result-affinity"><strong data-result-affinity></strong><span>archetypische verwantschap</span><small>Geen wetenschappelijke score</small></div></div>
+      <div class="result-header"><div class="result-header__copy"><p class="result-archetype" data-result-archetype></p><h1 id="result-title" data-result-name></h1><p class="result-essence" data-result-essence></p></div><aside class="result-reveal"><figure class="result-portrait" data-result-portrait hidden><img data-result-image src="" alt=""><figcaption>Jouw beest als spiegel</figcaption></figure><div class="result-affinity"><strong data-result-affinity></strong><span>archetypische verwantschap</span><small>Geen wetenschappelijke score</small></div></aside></div>
       <div class="result-grid">
         <article><span>Kracht</span><h2 data-result-strength></h2></article><article><span>Valkuil</span><h2 data-result-pitfall></h2></article><article><span>Rol in een groep</span><h2 data-result-role></h2></article>
       </div>
       <blockquote data-result-motto></blockquote>
+      <p class="result-boundary">Dit profiel zegt niet wie je bent. Het laat zien welke patronen in jouw antwoorden vandaag het sterkst naar voren kwamen. Gebruik het als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</p>
       <section class="trait-section" aria-labelledby="trait-title"><div class="section-minihead"><div><p class="eyebrow">Jouw patroon</p><h2 id="trait-title">Zeven lijnen door je landschap</h2></div><p>Geen lijn is beter dan een andere. De combinatie maakt het profiel.</p></div><div class="trait-chart" data-trait-chart></div></section>
       <section class="kindred-section" aria-labelledby="kindred-title"><div class="section-minihead"><div><p class="eyebrow">Ook dicht in de buurt</p><h2 id="kindred-title">Je verwante beesten</h2></div><p>Een mens past nooit volledig in één archetype.</p></div><div class="kindred-grid" data-kindred-grid></div></section>
       <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn proefprofiel</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>

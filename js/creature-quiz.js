@@ -7,9 +7,37 @@
   const result = document.querySelector('[data-quiz-result]');
   const profileMaker = document.querySelector('[data-profile-maker]');
   const profilePreview = document.querySelector('[data-profile-preview]');
+  const startButton = document.querySelector('[data-start-quiz]');
+  const clearSavedButton = document.querySelector('[data-clear-quiz]');
   const answers = new Array(data.questions.length).fill(null);
+  const quizStorageKey = 'beestenquiz-progress-v1';
   let current = 0;
   let ranked = [];
+
+  function saveProgress() {
+    try { localStorage.setItem(quizStorageKey, JSON.stringify({ current, answers })); }
+    catch (_) { /* De quiz blijft bruikbaar wanneer lokale opslag niet beschikbaar is. */ }
+  }
+
+  function clearProgress() {
+    try { localStorage.removeItem(quizStorageKey); } catch (_) {}
+  }
+
+  function restoreProgress() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(quizStorageKey));
+      if (!saved || !Array.isArray(saved.answers) || saved.answers.length !== answers.length) return;
+      saved.answers.forEach((value, index) => {
+        if (value === null || (Number.isInteger(value) && value >= 1 && value <= 5)) answers[index] = value;
+      });
+      current = Number.isInteger(saved.current) ? Math.min(Math.max(saved.current, 0), answers.length - 1) : 0;
+      const answered = answers.filter(value => value !== null).length;
+      if (answered > 0) {
+        startButton.firstChild.textContent = `Ga verder met vraag ${current + 1} `;
+        clearSavedButton.hidden = false;
+      }
+    } catch (_) { clearProgress(); }
+  }
 
   function showOnly(target) {
     [intro, stage, result, profileMaker, profilePreview].forEach(section => { section.hidden = section !== target; });
@@ -46,6 +74,7 @@
       answerLabel.append(number, document.createTextNode(label));
       input.addEventListener('change', () => {
         answers[current] = index + 1;
+        saveProgress();
         document.querySelector('[data-next-question]').disabled = false;
       });
       wrapper.append(input, answerLabel);
@@ -77,8 +106,8 @@
     }).sort((a, b) => b.affinity - a.affinity || a.beast.name.localeCompare(b.beast.name, 'nl'));
   }
 
-  function renderResult() {
-    const traits = calculateTraits();
+  function renderResult(previewTraits) {
+    const traits = previewTraits || calculateTraits();
     ranked = rankBeasts(traits);
     const top = ranked[0];
     const beast = top.beast;
@@ -87,6 +116,11 @@
     document.querySelector('[data-result-archetype]').textContent = beast.archetype;
     document.querySelector('[data-result-name]').textContent = beast.name;
     document.querySelector('[data-result-essence]').textContent = beast.essence;
+    const portrait = document.querySelector('[data-result-portrait]');
+    const portraitImage = document.querySelector('[data-result-image]');
+    portrait.hidden = false;
+    portraitImage.src = beast.image || `images/beasts/${beast.id}.jpg`;
+    portraitImage.alt = `Illustratie van ${beast.name}, ${beast.archetype.toLowerCase()}`;
     document.querySelector('[data-result-affinity]').textContent = `${top.affinity}%`;
     document.querySelector('[data-result-strength]').textContent = beast.strength;
     document.querySelector('[data-result-pitfall]').textContent = beast.pitfall;
@@ -134,6 +168,7 @@
       return card;
     }));
     prepareProfile(beast);
+    if (!previewTraits) clearProgress();
     showOnly(result);
   }
 
@@ -199,15 +234,22 @@
     renderProfile();
   });
 
-  document.querySelector('[data-start-quiz]').addEventListener('click', () => { current = 0; showOnly(stage); renderQuestion(); });
+  startButton.addEventListener('click', () => { showOnly(stage); renderQuestion(); });
+  clearSavedButton.addEventListener('click', () => {
+    answers.fill(null);
+    current = 0;
+    clearProgress();
+    startButton.firstChild.textContent = 'Begin de tocht ';
+    clearSavedButton.hidden = true;
+  });
   document.querySelector('[data-exit-quiz]').addEventListener('click', () => showOnly(intro));
-  document.querySelector('[data-previous-question]').addEventListener('click', () => { if (current > 0) { current -= 1; renderQuestion(); } });
+  document.querySelector('[data-previous-question]').addEventListener('click', () => { if (current > 0) { current -= 1; saveProgress(); renderQuestion(); } });
   document.querySelector('[data-next-question]').addEventListener('click', () => {
     if (answers[current] === null) return;
-    if (current < data.questions.length - 1) { current += 1; renderQuestion(); }
+    if (current < data.questions.length - 1) { current += 1; saveProgress(); renderQuestion(); }
     else renderResult();
   });
-  document.querySelector('[data-restart-quiz]').addEventListener('click', () => { answers.fill(null); current = 0; showOnly(stage); renderQuestion(); });
+  document.querySelector('[data-restart-quiz]').addEventListener('click', () => { answers.fill(null); current = 0; clearProgress(); showOnly(stage); renderQuestion(); });
   document.querySelector('[data-open-profile]').addEventListener('click', () => showOnly(profileMaker));
   document.querySelector('[data-close-profile]').addEventListener('click', () => showOnly(result));
   document.querySelector('[data-edit-profile]').addEventListener('click', () => showOnly(profileMaker));
@@ -223,4 +265,10 @@
     link.click();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
   });
+  const previewId = new URLSearchParams(location.search).get('voorbeeld');
+  const previewBeast = previewId && data.beasts.find(beast => beast.id === previewId);
+  if (previewBeast) {
+    const previewTraits = Object.fromEntries(traitKeys.map((key, index) => [key, previewBeast.vector[index]]));
+    renderResult(previewTraits);
+  } else restoreProgress();
 })();
