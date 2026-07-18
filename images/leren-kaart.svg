@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Leren als terugkerende beweging</title>
+  <desc id="desc">Een spiraal waarin opmerken, proberen, feedback, ophalen en spreiden samen leiden tot overdracht naar een nieuwe situatie.</desc>
+  <defs>
+    <linearGradient id="learn-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf4ed"/><stop offset=".53" stop-color="#fff9e9"/><stop offset="1" stop-color="#f4e8ef"/></linearGradient>
+    <linearGradient id="learn-core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#154a43"/><stop offset="1" stop-color="#5b304b"/></linearGradient>
+    <filter id="learn-shadow"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#103632" flood-opacity=".16"/></filter>
+    <marker id="learn-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#b86738"/></marker>
+  </defs>
+  <rect width="1200" height="640" rx="34" fill="url(#learn-bg)"/>
+  <g fill="none" stroke="#b86738" stroke-width="5" stroke-linecap="round" marker-end="url(#learn-arrow)">
+    <path d="M260 126c121-58 230-63 332-29"/><path d="M728 100c120 32 199 111 208 205"/><path d="M931 390c-43 91-126 144-243 159"/><path d="M548 552c-121-3-221-54-272-143"/><path d="M248 313c-10-50 0-98 29-137"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#154441">
+    <g transform="translate(67 68)"><rect width="235" height="126" rx="26" fill="#fff" stroke="#cad9d2" stroke-width="3"/><text x="117.5" y="51" text-anchor="middle" font-size="18" font-weight="700">OPMERKEN</text><text x="117.5" y="80" text-anchor="middle" font-size="14" fill="#61716d">aandacht · voorkennis</text></g>
+    <g transform="translate(483 41)"><rect width="235" height="126" rx="26" fill="#fff" stroke="#cad9d2" stroke-width="3"/><text x="117.5" y="51" text-anchor="middle" font-size="18" font-weight="700">PROBEREN</text><text x="117.5" y="80" text-anchor="middle" font-size="14" fill="#61716d">genereren · uitvoeren</text></g>
+    <g transform="translate(865 225)"><rect width="260" height="126" rx="26" fill="#fff" stroke="#dbcbd4" stroke-width="3"/><text x="130" y="51" text-anchor="middle" font-size="18" font-weight="700">FEEDBACK</text><text x="130" y="80" text-anchor="middle" font-size="14" fill="#6d6170">verschil · bijsturen</text></g>
+    <g transform="translate(679 456)"><rect width="260" height="126" rx="26" fill="#fff" stroke="#dbcbd4" stroke-width="3"/><text x="130" y="51" text-anchor="middle" font-size="18" font-weight="700">OPHALEN</text><text x="130" y="80" text-anchor="middle" font-size="14" fill="#6d6170">zonder antwoord voor je</text></g>
+    <g transform="translate(80 428)"><rect width="260" height="126" rx="26" fill="#fff" stroke="#cad9d2" stroke-width="3"/><text x="130" y="51" text-anchor="middle" font-size="18" font-weight="700">SPREIDEN</text><text x="130" y="80" text-anchor="middle" font-size="14" fill="#61716d">rust · tijd · variatie</text></g>
+  </g>
+  <g filter="url(#learn-shadow)"><circle cx="600" cy="320" r="151" fill="url(#learn-core)"/><path d="M541 268c78-65 175 19 122 91-42 56-128 32-125-30 2-42 50-65 83-39 24 19 15 57-11 66" fill="none" stroke="#f0c66b" stroke-width="10" stroke-linecap="round"/><path d="M598 356l15 30 30-16" fill="none" stroke="#f0c66b" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/><text x="600" y="433" text-anchor="middle" fill="#fff9ea" font-family="Georgia,serif" font-size="28" font-weight="700">overdracht</text></g>
+  <text x="600" y="615" text-anchor="middle" fill="#695e67" font-family="Arial,sans-serif" font-size="16">Leren blijkt pas wanneer iets later, zonder steun en in een andere situatie bruikbaar wordt.</text>
+</svg>

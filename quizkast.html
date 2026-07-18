@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek snelle, speelse reflectiequizzen over luisteren, kiezen, grenzen en mentale beweeglijkheid in de Quizkast van het Menslab.">
   <title>De Quizkast — Menslab</title>
   <link rel="stylesheet" href="css/site-2026.css?v=19">
-  <link rel="stylesheet" href="css/quizkast.css?v=6">
-  <script src="js/site-shell.js?v=16" defer></script>
-  <script src="js/quizkast-data.js?v=2" defer></script>
-  <script src="js/quizkast.js?v=4" defer></script>
+  <link rel="stylesheet" href="css/quizkast.css?v=7">
+  <script src="js/site-shell.js?v=17" defer></script>
+  <script src="js/quizkast-data.js?v=3" defer></script>
+  <script src="js/quizkast.js?v=5" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -25,7 +25,7 @@
     </section>
 
     <section class="quiz-shelf" id="quizzen" data-quiz-shelf aria-labelledby="quiz-shelf-title">
-      <div class="quiz-shelf__head"><div><p class="eyebrow">Vier snelle spiegels</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Je mag je uitslag tegenspreken.</p></div>
+      <div class="quiz-shelf__head"><div><p class="eyebrow">Vier snelle spiegels</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Een vraag mag jou missen — en jij hebt het laatste woord over de uitslag.</p></div>
       <div class="quiz-shelf__grid">
         <article class="quiz-card quiz-card--gold"><span>± 2 minuten</span><h3>Welke kleine beweging heb jij vandaag nodig?</h3><p>Van vertragen tot kiezen: ontdek welke uitnodiging nu misschien wat ruimte geeft.</p><button type="button" data-start-mini-quiz="beweging-vandaag">Open deze spiegel →</button></article>
         <article class="quiz-card quiz-card--green"><span>± 2 minuten</span><h3>Luister jij — of begin je te repareren?</h3><p>Onderzoek wat je spontaan doet wanneer iemand iets moeilijks met je deelt.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Open deze spiegel →</button></article>
@@ -48,6 +48,7 @@
         <p data-mini-eyebrow></p>
         <h2 id="mini-question-title" data-mini-question></h2>
         <fieldset data-mini-options><legend class="visually-hidden">Kies het antwoord dat het dichtst in de buurt komt</legend></fieldset>
+        <div class="mini-question__counterchoice"><button type="button" data-question-misses aria-pressed="false">Deze vraag mist mijn situatie</button><span>Een geldig antwoord. Deze vraag telt dan niet mee.</span></div>
         <p class="mini-answer-hint" data-mini-answer-hint aria-live="polite">Kies wat vandaag het dichtst in de buurt komt.</p>
       </article>
       <div class="mini-navigation"><button type="button" data-mini-previous>← Vorige</button><button type="button" data-mini-next disabled>Volgende →</button></div>
@@ -55,22 +56,28 @@
 
     <section class="mini-result" data-mini-result hidden tabindex="-1" aria-labelledby="mini-result-title">
       <div class="mini-result__mark" aria-hidden="true">✦</div>
-      <p class="eyebrow" data-result-kicker></p>
-      <h1 id="mini-result-title" data-result-title></h1>
-      <p class="mini-result__summary" data-result-summary></p>
-      <div class="mini-result__grid"><article><span>Wat hier helpend aan kan zijn</span><p data-result-strength></p></article><article><span>Waar het kan schuren</span><p data-result-friction></p></article></div>
-      <blockquote><span>Een vraag die mag tegenspreken</span><strong data-result-counter></strong></blockquote>
-      <div class="mini-experiment"><span>Klein experiment</span><p data-result-experiment></p></div>
-      <p class="mini-boundary">Deze uitslag zegt niet wie je bent. Ze weerspiegelt alleen welk antwoordpatroon vandaag het sterkst naar voren kwam. Context, stemming en levensfase kunnen dat patroon veranderen.</p>
-      <p class="mini-theory-link" data-mini-theory-link hidden><a data-mini-theory-anchor></a></p>
-      <div class="mini-result__actions"><button type="button" data-save-mini-result>Bewaar deze spiegel in Mijn spoor</button><button type="button" data-restart-mini>Doe deze quiz opnieuw</button><button type="button" data-choose-another>Kies een andere quiz</button></div>
-      <p data-save-mini-status aria-live="polite"></p>
+      <section class="mini-tie" data-result-tie hidden aria-labelledby="mini-tie-title"><p class="eyebrow">Geen stille winnaar</p><h1 id="mini-tie-title">Meer dan één spiegel past even sterk.</h1><p data-result-tie-copy></p><div data-result-tie-options></div><small>Je kiest geen definitief type. Je kiest alleen welke mogelijke lezing je nu wilt onderzoeken.</small></section>
+      <div data-result-content>
+        <p class="eyebrow" data-result-kicker></p>
+        <h1 id="mini-result-title" data-result-title></h1>
+        <p class="mini-result__summary" data-result-summary></p>
+        <p class="mini-result__basis" data-result-basis></p>
+        <div class="mini-result__grid"><article><span>Wat hier helpend aan kan zijn</span><p data-result-strength></p></article><article><span>Waar het kan schuren</span><p data-result-friction></p></article></div>
+        <blockquote><span>Een vraag die mag tegenspreken</span><strong data-result-counter></strong></blockquote>
+        <section class="mini-response" aria-labelledby="mini-response-title"><p class="eyebrow">Jij hebt het laatste woord</p><h2 id="mini-response-title">Hoe goed past deze spiegel?</h2><div class="mini-response__options" role="group" aria-label="Hoe goed past deze spiegel?"><button type="button" data-mini-fit="raakt" aria-pressed="false">Dit raakt iets</button><button type="button" data-mini-fit="deels" aria-pressed="false">Dit klopt gedeeltelijk</button><button type="button" data-mini-fit="mist" aria-pressed="false">Dit mist iets belangrijks</button></div><label for="mini-reflection">Waar klopt dit juist níét — of welke context ontbreekt? <small>optioneel · maximaal 280 tekens</small><textarea id="mini-reflection" data-mini-reflection maxlength="280" rows="3" placeholder="Bijvoorbeeld: thuis herken ik dit, maar op het werk doe ik net het tegenovergestelde."></textarea></label><p data-mini-reaction-status aria-live="polite">Kies eerst hoe goed de spiegel past. Je eigen aanvulling mag leeg blijven.</p></section>
+        <aside class="mini-reading" data-mini-reading hidden><p class="eyebrow">Een bestaande tekst als tegenstem</p><h2 data-mini-reading-title></h2><p data-mini-reading-reason></p><a data-mini-reading-anchor></a></aside>
+        <div class="mini-experiment"><span>Klein experiment</span><p data-result-experiment></p></div>
+        <p class="mini-boundary">Dit profiel zegt niet wie je bent. Het laat zien welke patronen in jouw antwoorden vandaag het sterkst naar voren kwamen. Gebruik het als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</p>
+        <p class="mini-theory-link" data-mini-theory-link hidden><a data-mini-theory-anchor></a></p>
+        <div class="mini-result__actions"><button type="button" data-save-mini-result disabled>Reageer eerst op de spiegel</button><button type="button" data-restart-mini>Doe deze quiz opnieuw</button><button type="button" data-choose-another>Kies een andere quiz</button></div>
+        <p data-save-mini-status aria-live="polite"></p>
+      </div>
     </section>
 
     <section class="quiz-method" aria-labelledby="quiz-method-title">
       <p class="eyebrow">Hoe we hiermee omgaan</p>
       <h2 id="quiz-method-title">Een spiegel is geen meetinstrument.</h2>
-      <div><p>Deze quizzen zijn niet gevalideerd en berekenen geen objectieve persoonlijkheid. Ze ordenen alleen je eigen antwoorden tot een tijdelijke reflectieroute.</p><p>Iedere uitslag bevat daarom een mogelijke kracht, een grens, een tegenvraag en een klein experiment. Lees meer over onze <a href="bronnenbeleid.html">werkwijze en bronnen</a>.</p></div>
+      <div><p>Deze quizzen zijn niet gevalideerd en berekenen geen objectieve persoonlijkheid. Ze ordenen alleen je eigen antwoorden tot een tijdelijke reflectieroute.</p><p>Je kunt een vraag laten vervallen, een gelijkspel zelf onderzoeken en de uitslag als raak, gedeeltelijk of missend beantwoorden. Jouw tegenspraak wordt samen met de spiegel bewaard. Lees meer over onze <a href="bronnenbeleid.html">werkwijze en bronnen</a>.</p></div>
     </section>
   </main>
   <site-footer></site-footer>

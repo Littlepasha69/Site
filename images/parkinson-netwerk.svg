@@ -1,0 +1,62 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Parkinson als ziekte van meerdere lagen</title>
+  <desc id="desc">Leeskaart die eiwitbiologie, verlies van dopaminecellen, veranderde basale-ganglialussen en motorische en niet-motorische klachten met elkaar verbindt, zonder een rechte oorzaaksketen te suggereren.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#092b32"/><stop offset=".52" stop-color="#164b47"/><stop offset="1" stop-color="#4f304a"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#061719" flood-opacity=".42"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#f1c86b"/></marker>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg)"/>
+  <g opacity=".09" fill="none" stroke="#fff5d5"><circle cx="1060" cy="100" r="190"/><circle cx="1060" cy="100" r="145"/><circle cx="80" cy="720" r="210"/></g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="66" y="70" fill="#f1c86b" font-size="18" font-weight="800" letter-spacing="4">PARKINSON · MEER DAN EEN DOPAMINETEKORT</text>
+    <text x="66" y="120" fill="#fffaf0" font-family="Georgia, serif" font-size="42" font-weight="700">Eén diagnose, meerdere veranderende systemen</text>
+
+    <g filter="url(#shadow)">
+      <rect x="65" y="188" width="245" height="206" rx="26" fill="#f8f1e5"/>
+      <rect x="335" y="188" width="245" height="206" rx="26" fill="#173f3d" stroke="#8ed7bb" stroke-width="2"/>
+      <rect x="605" y="188" width="245" height="206" rx="26" fill="#3d2945" stroke="#d894b0" stroke-width="2"/>
+      <rect x="875" y="188" width="260" height="206" rx="26" fill="#4d3a22" stroke="#f1c86b" stroke-width="2"/>
+    </g>
+    <g>
+      <text x="92" y="226" fill="#774d3f" font-size="14" font-weight="800" letter-spacing="2">BIOLOGISCHE LAAG</text>
+      <text x="92" y="270" fill="#173d3b" font-family="Georgia, serif" font-size="26" font-weight="700">Kwetsbaarheid</text>
+      <text x="92" y="304" fill="#173d3b" font-family="Georgia, serif" font-size="26" font-weight="700">en α-synucleïne</text>
+      <text x="92" y="344" fill="#665d59" font-size="16">Genen, leeftijd en omgeving</text>
+      <text x="92" y="370" fill="#665d59" font-size="16">werken niet volgens één route.</text>
+
+      <text x="362" y="226" fill="#8ed7bb" font-size="14" font-weight="800" letter-spacing="2">CELLULAIRE LAAG</text>
+      <text x="362" y="270" fill="#fffaf0" font-family="Georgia, serif" font-size="26" font-weight="700">Substantia nigra</text>
+      <text x="362" y="304" fill="#fffaf0" font-family="Georgia, serif" font-size="26" font-weight="700">verliest cellen</text>
+      <text x="362" y="344" fill="#cce3dc" font-size="16">Dopaminesignalen naar het</text>
+      <text x="362" y="370" fill="#cce3dc" font-size="16">striatum veranderen sterk.</text>
+
+      <text x="632" y="226" fill="#d894b0" font-size="14" font-weight="800" letter-spacing="2">NETWERKLAAG</text>
+      <text x="632" y="270" fill="#fffaf0" font-family="Georgia, serif" font-size="23" font-weight="700">Acties worden</text>
+      <text x="632" y="302" fill="#fffaf0" font-family="Georgia, serif" font-size="21" font-weight="700">moeilijker schaalbaar</text>
+      <text x="632" y="344" fill="#e4d4e1" font-size="16">Basale ganglia, cortex en</text>
+      <text x="632" y="370" fill="#e4d4e1" font-size="16">hersenstam veranderen mee.</text>
+
+      <text x="902" y="226" fill="#f1c86b" font-size="14" font-weight="800" letter-spacing="2">ERVARING &amp; LICHAAM</text>
+      <text x="902" y="270" fill="#fffaf0" font-family="Georgia, serif" font-size="26" font-weight="700">Bewegen, slapen,</text>
+      <text x="902" y="304" fill="#fffaf0" font-family="Georgia, serif" font-size="26" font-weight="700">denken en voelen</text>
+      <text x="902" y="344" fill="#eee2c8" font-size="16">Geen twee ziekteverlopen</text>
+      <text x="902" y="370" fill="#eee2c8" font-size="16">zien er hetzelfde uit.</text>
+    </g>
+
+    <text x="66" y="470" fill="#f1c86b" font-size="15" font-weight="800" letter-spacing="3">WAAR BEHANDELING KAN AANGRIJPEN</text>
+    <g filter="url(#shadow)">
+      <rect x="65" y="505" width="245" height="142" rx="24" fill="#153b39" stroke="#8ed7bb"/>
+      <rect x="335" y="505" width="245" height="142" rx="24" fill="#332440" stroke="#d894b0"/>
+      <rect x="605" y="505" width="245" height="142" rx="24" fill="#493720" stroke="#f1c86b"/>
+      <rect x="875" y="505" width="260" height="142" rx="24" fill="#f8f1e5"/>
+    </g>
+    <g font-family="Georgia, serif" font-size="24" font-weight="700">
+      <text x="92" y="550" fill="#fffaf0">Levodopa &amp;</text><text x="92" y="580" fill="#fffaf0">andere medicatie</text>
+      <text x="362" y="550" fill="#fffaf0">Beweging &amp;</text><text x="362" y="580" fill="#fffaf0">therapie</text>
+      <text x="632" y="550" fill="#fffaf0">DBS &amp;</text><text x="632" y="580" fill="#fffaf0">apparaatzorg</text>
+      <text x="902" y="544" fill="#153b39" font-size="21">Slaap, stemming,</text><text x="902" y="572" fill="#153b39" font-size="21">spraak &amp;</text><text x="902" y="600" fill="#153b39" font-size="21">dagelijks leven</text>
+    </g>
+    <text x="66" y="704" fill="#d1dfdb" font-size="16">Deze pijlen zijn geen vaste tijdlijn: klachten, biologie en respons op behandeling verschillen sterk per persoon.</text>
+  </g>
+</svg>

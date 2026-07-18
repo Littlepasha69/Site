@@ -135,6 +135,10 @@
 .progress-quiz-snapshots li a { margin-top:.65rem; display:block; color:var(--copper); font-size:.78rem; font-weight:800; text-decoration:none; }
 .progress-quiz-snapshots li button { margin-top:.6rem; padding:0; border:0; border-bottom:1px solid currentColor; background:transparent; color:var(--muted); font-size:.7rem; cursor:pointer; }
 .progress-quiz-snapshots li .snapshot-followup-note { border-top-color:#78927a; color:#315a51; }
+.progress-quiz-snapshots li .snapshot-fit { width:max-content; margin-top:.55rem; padding:.28rem .45rem; border-radius:999px; background:#e3eee7; color:#315a51; font-size:.63rem; letter-spacing:.02em; text-transform:none; }
+.progress-quiz-snapshots li .snapshot-fit--deels { background:#f6ecd5; color:#79551b; }
+.progress-quiz-snapshots li .snapshot-fit--mist { background:#f1e1e1; color:#7a3e45; }
+.progress-quiz-snapshots li .snapshot-basis { margin-top:.5rem; padding-top:.5rem; border-top:1px dashed var(--line); line-height:1.4; }
 .progress-lab-snapshots { margin-top:1rem; padding:1.3rem; display:grid; grid-template-columns:230px 1fr; gap:1.5rem; border:1px solid var(--line); border-radius:1rem; background:#e8f0eb; }
 .progress-lab-snapshots[hidden] { display:none; }
 .progress-lab-snapshots h3 { margin:0; color:var(--ink); font:700 1.4rem var(--serif); }
@@ -252,3 +256,8 @@
 @media(max-width:650px){.week-bridge button,.lab-privacy button,.progress-path__privacy button{min-height:2.5rem;padding:.55rem 0}}
 @media(prefers-reduced-motion:reduce){.lab-clouds>a,.quizkast-gateway__grid>a,.amusement-switch button{transition:none}}
 .quizkast-gateway__grid>a{grid-template-columns:9.5rem 1fr auto}@media(max-width:650px){.quizkast-gateway__grid>a{grid-template-columns:1fr auto}}
+
+/* Een blijvende profielingang zonder van Menslab een dashboardmuur te maken. */
+.personal-profile-entry{width:min(1180px,calc(100% - 2rem));margin:1.3rem auto 0;padding:1rem;display:grid;grid-template-columns:7rem 1fr auto;gap:1.3rem;align-items:center;border:1px solid rgba(20,61,61,.13);border-radius:.3rem 1.8rem .3rem 1.8rem;background:linear-gradient(110deg,#163f3c,#234f4a 66%,#442b43);color:white;box-shadow:0 18px 42px rgba(20,61,61,.12)}
+.personal-profile-entry>img{width:7rem;height:7rem;display:block;object-fit:cover;border-radius:.2rem 1.35rem .2rem 1.35rem}.personal-profile-entry .eyebrow{margin:0;color:#f0c66b}.personal-profile-entry h2{margin:.1rem 0;color:white;font:700 clamp(2rem,4vw,3.2rem)/1 var(--serif)}.personal-profile-entry strong{color:#f0c66b;font-size:.74rem;text-transform:uppercase;letter-spacing:.06em}.personal-profile-entry p:last-child{max-width:650px;margin:.45rem 0 0;color:rgba(255,255,255,.7);font-size:.86rem}.personal-profile-entry>div:last-child{display:flex;flex-direction:column;align-items:flex-end;gap:.45rem}.personal-profile-entry a{color:white;font-weight:820;text-decoration:none}.personal-profile-entry a:first-child{padding:.7rem .9rem;border-radius:999px;background:#f0c66b;color:var(--ink-dark)}.personal-profile-entry a:last-child{font-size:.72rem;color:rgba(255,255,255,.68);text-decoration:underline}
+@media(max-width:700px){.personal-profile-entry{grid-template-columns:5rem 1fr}.personal-profile-entry>img{width:5rem;height:5rem}.personal-profile-entry>div:last-child{grid-column:1/-1;align-items:stretch}.personal-profile-entry a{text-align:center}}

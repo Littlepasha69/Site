@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Vier belangrijke dopamineroutes</title>
+  <desc id="desc">Leeskaart van nigrostriatale, mesolimbische, mesocorticale en tuberoinfundibulaire dopamineroutes, met hun voornaamste oorsprong, doelgebied en functie.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#20182f"/><stop offset=".52" stop-color="#53304e"/><stop offset="1" stop-color="#874b3f"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="12" stdDeviation="13" flood-color="#120d1b" flood-opacity=".4"/></filter>
+    <marker id="gold" markerWidth="10" markerHeight="10" refX="8" refY="5" orient="auto"><path d="M0 0l10 5-10 5z" fill="#f3cb68"/></marker>
+  </defs>
+  <rect width="1200" height="760" rx="36" fill="url(#bg)"/>
+  <g opacity=".09" fill="none" stroke="#fff4cf"><circle cx="1070" cy="90" r="190"/><circle cx="1070" cy="90" r="145"/><circle cx="95" cy="720" r="220"/></g>
+  <g font-family="Arial, Helvetica, sans-serif">
+    <text x="66" y="70" fill="#f3cb68" font-size="18" font-weight="800" letter-spacing="4">ÉÉN BOODSCHAPPER · MEERDERE ROUTES</text>
+    <text x="66" y="112" fill="#fffaf0" font-family="Georgia, serif" font-size="36" font-weight="700">Dopamine betekent iets anders</text>
+    <text x="66" y="151" fill="#fffaf0" font-family="Georgia, serif" font-size="36" font-weight="700">afhankelijk van waar je kijkt.</text>
+
+    <g filter="url(#shadow)">
+      <rect x="65" y="188" width="250" height="112" rx="24" fill="#f8f1e4"/>
+      <text x="190" y="228" text-anchor="middle" fill="#3d2940" font-size="15" font-weight="800" letter-spacing="2">SUBSTANTIA NIGRA</text>
+      <text x="190" y="260" text-anchor="middle" fill="#69556a" font-size="17">pars compacta</text>
+
+      <rect x="65" y="350" width="250" height="112" rx="24" fill="#f8f1e4"/>
+      <text x="190" y="390" text-anchor="middle" fill="#3d2940" font-size="15" font-weight="800" letter-spacing="2">VTA</text>
+      <text x="190" y="422" text-anchor="middle" fill="#69556a" font-size="17">ventraal tegmentum</text>
+
+      <rect x="65" y="512" width="250" height="112" rx="24" fill="#f8f1e4"/>
+      <text x="190" y="552" text-anchor="middle" fill="#3d2940" font-size="15" font-weight="800" letter-spacing="2">HYPOTHALAMUS</text>
+      <text x="190" y="584" text-anchor="middle" fill="#69556a" font-size="17">neuro-endocriene cellen</text>
+
+      <rect x="500" y="176" width="620" height="116" rx="24" fill="#143d3c" stroke="#8ed7bb" stroke-width="2"/>
+      <rect x="500" y="320" width="620" height="116" rx="24" fill="#342342" stroke="#db91b0" stroke-width="2"/>
+      <rect x="500" y="464" width="620" height="116" rx="24" fill="#443245" stroke="#b7a2d9" stroke-width="2"/>
+      <rect x="500" y="608" width="620" height="100" rx="24" fill="#4e3a20" stroke="#f3cb68" stroke-width="2"/>
+    </g>
+
+    <g fill="none" stroke="#f3cb68" stroke-width="7" stroke-linecap="round" marker-end="url(#gold)">
+      <path d="M315 244 C385 244 410 234 484 234"/>
+      <path d="M315 398 C390 398 415 378 484 378"/>
+      <path d="M315 414 C405 450 425 522 484 522"/>
+      <path d="M315 570 C405 580 420 658 484 658"/>
+    </g>
+
+    <g>
+      <text x="535" y="213" fill="#8ed7bb" font-size="15" font-weight="800" letter-spacing="2">NIGROSTRIATAAL → DORSAAL STRIATUM</text>
+      <text x="535" y="247" fill="#fffaf0" font-family="Georgia, serif" font-size="22" font-weight="700">Beweging, actieselectie en motorisch leren</text>
+      <text x="535" y="273" fill="#cce2dc" font-size="16">De route die bij Parkinson sterk onder druk komt.</text>
+
+      <text x="535" y="357" fill="#db91b0" font-size="15" font-weight="800" letter-spacing="2">MESOLIMBISCH → VENTRAAL STRIATUM</text>
+      <text x="535" y="391" fill="#fffaf0" font-family="Georgia, serif" font-size="21" font-weight="700">Motiverende waarde, leren en cue-gestuurd willen</text>
+      <text x="535" y="417" fill="#e5d3e2" font-size="16">Niet hetzelfde als plezier of geluk.</text>
+
+      <text x="535" y="501" fill="#cbb9e9" font-size="15" font-weight="800" letter-spacing="2">MESOCORTICAAL → PREFRONTALE CORTEX</text>
+      <text x="535" y="535" fill="#fffaf0" font-family="Georgia, serif" font-size="20" font-weight="700">Werkgeheugen, flexibiliteit en cognitieve controle</text>
+      <text x="535" y="561" fill="#e1d9ea" font-size="16">Een van meerdere chemische systemen voor aandacht.</text>
+
+      <text x="535" y="645" fill="#f3cb68" font-size="15" font-weight="800" letter-spacing="2">TUBEROINFUNDIBULAIR → HYPOFYSE</text>
+      <text x="535" y="680" fill="#fffaf0" font-family="Georgia, serif" font-size="27" font-weight="700">Remming van prolactine-afgifte</text>
+    </g>
+  </g>
+</svg>

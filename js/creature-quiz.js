@@ -15,12 +15,42 @@
   const questionCard = document.querySelector('.question-card');
   const answers = new Array(data.questions.length).fill(null);
   const quizStorageKey = 'beestenquiz-progress-v2';
+  const profileStorageKey = 'onwijze-profile-v1';
   const trackStorageKey = 'menslab-progress-v3';
   const previousTrackStorageKey = 'menslab-progress-v2';
   const answerGlyphs = ['○', '◔', '◑', '◕', '●'];
   let current = 0;
   let ranked = [];
   let completed = false;
+  let currentTraits = null;
+
+  function readProfile() {
+    try {
+      const parsed = JSON.parse(localStorage.getItem(profileStorageKey) || 'null');
+      return parsed && typeof parsed === 'object' && parsed.version === 1 ? parsed : null;
+    } catch (_) { return null; }
+  }
+
+  function saveProfile(beast, selected) {
+    const previous = readProfile();
+    const now = new Date().toISOString();
+    const payload = {
+      version: 1,
+      name: profileName.value.trim().slice(0, 50),
+      intro: profileIntro.value.trim().slice(0, 180),
+      interests: selected.slice(0, 3),
+      beastId: beast.id,
+      affinity: ranked[0]?.affinity || null,
+      traitScores: currentTraits,
+      kindred: ranked.slice(1, 3).map(match => ({ id:match.beast.id, affinity:match.affinity })),
+      createdAt: previous?.createdAt || now,
+      updatedAt: now
+    };
+    try {
+      localStorage.setItem(profileStorageKey, JSON.stringify(payload));
+      return payload;
+    } catch (_) { return null; }
+  }
 
   chapterMap.replaceChildren(...data.chapters.map((chapter, index) => {
     const step = document.createElement('span');
@@ -192,6 +222,7 @@
 
   function renderResult(previewTraits) {
     const traits = previewTraits || calculateTraits();
+    currentTraits = traits;
     ranked = rankBeasts(traits);
     const top = ranked[0];
     const beast = top.beast;
@@ -265,6 +296,7 @@
   }
 
   function prepareProfile(beast) {
+    const savedProfile = readProfile();
     const miniImage = document.querySelector('[data-mini-image]');
     miniImage.src = beast.image || `images/beasts/${beast.id}.jpg`;
     miniImage.alt = `Profielbeeld van ${beast.name}`;
@@ -278,6 +310,7 @@
       input.name = 'interests';
       input.value = interest;
       input.id = `interest-${index}`;
+      input.checked = savedProfile?.interests?.includes(interest) || false;
       const label = document.createElement('label');
       label.htmlFor = input.id;
       label.textContent = interest;
@@ -291,6 +324,12 @@
       wrapper.append(input, label);
       return wrapper;
     }));
+    if (savedProfile) {
+      profileName.value = savedProfile.name || '';
+      profileIntro.value = savedProfile.intro || '';
+      document.querySelector('[data-mini-name]').textContent = savedProfile.name || 'Jouw naam';
+      document.querySelector('[data-profile-count]').textContent = `${profileIntro.value.length}/180`;
+    }
   }
 
   function profileBeast() { return ranked[0]?.beast; }
@@ -303,6 +342,7 @@
   function renderProfile() {
     const beast = profileBeast();
     const selected = [...profileForm.querySelectorAll('input[name="interests"]:checked')].map(input => input.value);
+    const saved = saveProfile(beast, selected);
     const profileImage = document.querySelector('[data-profile-image]');
     profileImage.src = beast.image || `images/beasts/${beast.id}.jpg`;
     profileImage.alt = `Profielbeeld van ${beast.name}`;
@@ -313,6 +353,9 @@
     document.querySelector('[data-profile-tags]').replaceChildren(...selected.map(interest => { const tag = document.createElement('span'); tag.textContent = interest; return tag; }));
     document.querySelector('[data-profile-strength]').textContent = beast.strength;
     document.querySelector('[data-profile-pitfall]').textContent = beast.pitfall;
+    document.querySelector('[data-profile-status]').textContent = saved
+      ? 'Je profiel is lokaal bewaard en staat klaar op je eigen profielpagina.'
+      : 'Je profiel kan in deze browser niet blijvend worden bewaard.';
     showOnly(profilePreview);
   }
 
@@ -367,9 +410,29 @@
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
   });
   const previewId = new URLSearchParams(location.search).get('voorbeeld');
+  const editProfile = new URLSearchParams(location.search).get('profiel') === 'wijzigen';
   const previewBeast = previewId && data.beasts.find(beast => beast.id === previewId);
   if (previewBeast) {
     const previewTraits = Object.fromEntries(traitKeys.map((key, index) => [key, previewBeast.vector[index]]));
     renderResult(previewTraits);
-  } else restoreProgress();
+  } else {
+    restoreProgress();
+    if (editProfile) {
+      if (completed) {
+        renderResult();
+        showOnly(profileMaker);
+      } else {
+        const savedProfile = readProfile();
+        const savedTraits = savedProfile?.traitScores;
+        const savedBeast = data.beasts.find(beast => beast.id === savedProfile?.beastId);
+        if (savedBeast && savedTraits && traitKeys.every(key => Number.isFinite(savedTraits[key]))) {
+          currentTraits = savedTraits;
+          ranked = rankBeasts(savedTraits);
+          ranked.sort((a, b) => Number(b.beast.id === savedBeast.id) - Number(a.beast.id === savedBeast.id));
+          prepareProfile(savedBeast);
+          showOnly(profileMaker);
+        }
+      }
+    }
+  }
 })();

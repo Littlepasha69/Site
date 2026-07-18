@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Jouw private profiel en persoonlijke ontdekspoor binnen De Onwijze Wijsheden.">
+  <title>Mijn profiel — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=12">
+  <link rel="stylesheet" href="css/profile.css?v=1">
+  <script src="js/site-shell.js?v=17" defer></script>
+  <script src="js/creature-data.js?v=8" defer></script>
+  <script src="js/profile.js?v=2" defer></script>
+</head>
+<body class="profile-page">
+  <site-header active="menslab"></site-header>
+  <main id="inhoud">
+    <section class="profile-empty" data-profile-empty hidden>
+      <div><p class="eyebrow">Hier begint jouw plek</p><h1>Nog geen profiel. Wel al een open deur.</h1><p>De Beestenquiz geeft je een eerste speelse spiegel. Daarna groeit deze pagina mee met wat je leest, bewaart en probeert.</p><a href="dierenquiz.html">Ontdek mijn beest →</a></div>
+      <div class="profile-empty__mark" aria-hidden="true">?</div>
+    </section>
+
+    <div data-profile-content hidden>
+      <section class="profile-hero" aria-labelledby="profile-title">
+        <div class="profile-hero__image"><img data-profile-image src="" alt=""><span data-profile-world></span></div>
+        <div class="profile-hero__copy">
+          <p class="eyebrow">Mijn plek in De Onwijze Wijsheden</p>
+          <h1 id="profile-title" data-profile-name></h1>
+          <p class="profile-hero__beast"><span data-profile-beast></span> · <strong data-profile-archetype></strong></p>
+          <p class="profile-hero__intro" data-profile-intro></p>
+          <div class="profile-hero__tags" data-profile-interests></div>
+          <div class="profile-hero__actions"><a href="dierenquiz.html?profiel=wijzigen">Wijzig mijn profiel</a><a href="menslab.html#mijn-spoor">Open Mijn spoor →</a></div>
+          <small data-profile-updated></small>
+        </div>
+      </section>
+
+      <section class="profile-boundary">
+        <p><strong>Een vertrekpunt, geen paspoort.</strong> Dit beest laat zien welk antwoordpatroon tijdens de quiz het dichtst in de buurt kwam. Op een andere dag of in een andere omgeving kan er iets anders bewegen.</p>
+      </section>
+
+      <section class="profile-landscape" aria-labelledby="profile-landscape-title">
+        <header><p class="eyebrow">Jouw landschap</p><h2 id="profile-landscape-title">Niet alleen wie je lijkt. Ook waar je werkelijk bent geweest.</h2></header>
+        <div class="profile-stats">
+          <article><strong data-stat-atlas>0</strong><span>Atlasdossiers bezocht</span></article>
+          <article><strong data-stat-lab>0</strong><span>proeven en spiegels bewaard</span></article>
+          <article><strong data-stat-reading>0</strong><span>leesroutes geopend</span></article>
+        </div>
+        <div class="profile-timeline" data-profile-activity hidden>
+          <div><p class="eyebrow">Recente sporen</p><h3>Waar iets aan je bleef trekken</h3></div>
+          <ol data-profile-activity-list></ol>
+        </div>
+      </section>
+
+      <section class="profile-compass" aria-labelledby="profile-compass-title">
+        <div class="profile-compass__intro"><p class="eyebrow">Jouw volgende poorten</p><h2 id="profile-compass-title">Kies niet wat je profiel bevestigt. Kies wat je nieuwsgierig maakt.</h2><p>Je interesses bepalen hier alleen de eerste deuren. Ze sluiten niets anders af.</p></div>
+        <div class="profile-compass__routes" data-profile-routes></div>
+      </section>
+
+      <section class="profile-mirror" aria-labelledby="profile-mirror-title">
+        <div><p class="eyebrow">De eerste spiegel</p><h2 id="profile-mirror-title" data-profile-mirror-title></h2><blockquote data-profile-motto></blockquote></div>
+        <dl><div><dt>Kracht</dt><dd data-profile-strength></dd></div><div><dt>Waar het kan schuren</dt><dd data-profile-pitfall></dd></div><div><dt>In een groep</dt><dd data-profile-role></dd></div></dl>
+      </section>
+
+      <section class="profile-kindred" data-profile-kindred-section hidden aria-labelledby="profile-kindred-title">
+        <div><p class="eyebrow">Niet één beest</p><h2 id="profile-kindred-title">Ook deze vormen lagen dichtbij.</h2></div><div data-profile-kindred></div>
+      </section>
+
+      <section class="profile-privacy">
+        <div><strong>Deze pagina is van jou.</strong><p>Je profiel en spoor staan alleen in deze browser. Niets is openbaar en er bestaat geen account.</p></div>
+        <div><a href="menslab.html#mijn-spoor">Exporteer of herstel mijn gegevens →</a><button type="button" data-delete-profile>Verwijder alleen mijn profiel</button></div>
+        <p data-profile-status aria-live="polite"></p>
+      </section>
+    </div>
+  </main>
+  <site-footer></site-footer>
+</body>
+</html>

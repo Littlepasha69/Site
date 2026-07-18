@@ -64,7 +64,7 @@ customElements.define('site-footer', SiteFooter);
 
 (function rememberCurrentTrail() {
   const page = location.pathname.split('/').pop() || '';
-  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html']);
+  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'mijn-profiel.html']);
   if (excluded.has(page)) return;
 
   const heading = document.querySelector('main h1, article h1, h1');
@@ -86,7 +86,7 @@ customElements.define('site-footer', SiteFooter);
   if (document.querySelector('.dossier-page')) return;
   const main = document.querySelector('main');
   const page = location.pathname.split('/').pop() || '';
-  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'onderwerpen.html', 'menslab.html', 'privacy.html', 'forum.html', 'bijdragen.html']);
+  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'onderwerpen.html', 'menslab.html', 'mijn-profiel.html', 'privacy.html', 'forum.html', 'bijdragen.html']);
   if (!main || excluded.has(page)) return;
 
   const heading = main.querySelector('h1');

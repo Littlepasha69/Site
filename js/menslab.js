@@ -16,7 +16,7 @@
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
     'beestenquiz-progress-v2', 'quizkast-progress-v1', 'dieptequiz-ja-progress-v1',
     'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1',
-    'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
+    'onwijze-profile-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];
   const movementLabels = ['Opmerken', 'Vertragen', 'Omdraaien', 'Veranderen', 'Benoemen', 'Vragen', 'Kiezen'];
   const questions = [
@@ -43,6 +43,7 @@
     { title:'De vriendelijkste tegenspraak', prompt:'Kies een lichte mening van jezelf en formuleer de sterkste redelijke tegenstem. Je hoeft daarna niet van mening te veranderen.' }
   ];
   const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz', route:'Veranderroute' };
+  const quizFitLabels = { raakt:'Raakt iets', deels:'Klopt gedeeltelijk', mist:'Mist iets belangrijks' };
   let currentQuestion = 0;
   let state = emptyState();
 
@@ -62,6 +63,13 @@
         amusements: { brain:{ prompt:'', observation:'' }, together:{ prompt:'', observation:'' } }
       }
     };
+  }
+
+  function safeLocalHref(value) {
+    if (typeof value !== 'string') return '';
+    const href = value.trim();
+    if (!href || href.includes('..') || /^(?:[a-z][a-z\d+.-]*:|\/\/|\\)/i.test(href)) return '';
+    return href.slice(0, 220);
   }
 
   function normalizeState(value) {
@@ -98,6 +106,8 @@
         situation: typeof item.situation === 'string' ? item.situation.slice(0, 90) : '',
         fit: ['raakt', 'deels', 'mist'].includes(item.fit) ? item.fit : '',
         reflection: typeof item.reflection === 'string' ? item.reflection.slice(0, 280) : '',
+        readHref: safeLocalHref(item.readHref),
+        readLabel: typeof item.readLabel === 'string' ? item.readLabel.slice(0, 120) : '',
         method: item.method && typeof item.method === 'object' ? {
           answered: Number.isInteger(item.method.answered) ? item.method.answered : 0,
           dual: Number.isInteger(item.method.dual) ? item.method.dual : 0,
@@ -238,10 +248,28 @@
       const context = item.kind === 'depth' && item.context ? `${item.context} · ` : '';
       date.textContent = `${context}${formatDate(item.savedAt)}`;
       row.append(quiz, title, date);
+      if (item.fit) {
+        const fit = document.createElement('span');
+        fit.className = `snapshot-fit snapshot-fit--${item.fit}`;
+        fit.textContent = `Jouw antwoord: ${quizFitLabels[item.fit]}`;
+        row.append(fit);
+      }
+      if (item.observation) {
+        const basis = document.createElement('small');
+        basis.className = 'snapshot-basis';
+        basis.textContent = item.observation;
+        row.append(basis);
+      }
       if (item.reflection) {
         const reflection = document.createElement('em');
-        reflection.textContent = item.reflection;
+        reflection.textContent = `Jij schreef terug: ${item.reflection}`;
         row.append(reflection);
+      }
+      if (item.kind === 'quick' && item.readHref) {
+        const reading = document.createElement('a');
+        reading.href = item.readHref;
+        reading.textContent = item.readLabel ? `Open ${item.readLabel} →` : 'Open de tekst bij deze spiegel →';
+        row.append(reading);
       }
       if (item.kind === 'depth') {
         const followup = document.createElement('a');
@@ -440,6 +468,23 @@
     renderPatterns();
     renderReview();
     renderReadingHistory();
+    renderPersonalProfile();
+  }
+
+  function renderPersonalProfile() {
+    const root = document.querySelector('[data-personal-profile]');
+    if (!root) return;
+    try {
+      const profile = JSON.parse(localStorage.getItem('onwijze-profile-v1') || 'null');
+      const beast = window.BEAST_QUIZ?.beasts?.find(item => item.id === profile?.beastId);
+      if (!profile || !beast) { root.hidden = true; return; }
+      root.querySelector('[data-personal-profile-image]').src = beast.image || `images/beasts/${beast.id}.jpg`;
+      root.querySelector('[data-personal-profile-image]').alt = `Illustratie van ${beast.name}`;
+      root.querySelector('[data-personal-profile-name]').textContent = profile.name;
+      root.querySelector('[data-personal-profile-beast]').textContent = `${beast.name} · ${beast.archetype}`;
+      root.querySelector('[data-personal-profile-intro]').textContent = profile.intro || 'Je eigen plek groeit mee met wat je onderzoekt en probeert.';
+      root.hidden = false;
+    } catch (_) { root.hidden = true; }
   }
 
   function syncControls() {

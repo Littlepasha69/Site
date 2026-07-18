@@ -12,7 +12,10 @@
 .dossier-hero--experience { background:radial-gradient(circle at 78% 16%,rgba(240,198,107,.22),transparent 22rem),radial-gradient(circle at 15% 85%,rgba(101,155,166,.24),transparent 27rem),linear-gradient(135deg,#0b2230,#17474b 49%,#56334f); }
 .dossier-hero--memory { background:radial-gradient(circle at 79% 15%,rgba(240,198,107,.27),transparent 22rem),radial-gradient(circle at 13% 86%,rgba(124,171,153,.22),transparent 27rem),linear-gradient(134deg,#0d2d33,#164c48 51%,#5a304d); }
 .dossier-hero--attention { background:radial-gradient(circle at 78% 13%,rgba(240,198,107,.3),transparent 20rem),radial-gradient(circle at 10% 88%,rgba(98,161,157,.25),transparent 28rem),linear-gradient(133deg,#092a32,#124b49 50%,#633349); }
+.dossier-hero--learning { background:radial-gradient(circle at 79% 14%,rgba(240,198,107,.3),transparent 21rem),radial-gradient(circle at 11% 87%,rgba(101,171,149,.24),transparent 28rem),linear-gradient(134deg,#0d3031,#185346 51%,#5e3548); }
 .dossier-hero--basal { background:radial-gradient(circle at 80% 14%,rgba(240,198,107,.28),transparent 21rem),radial-gradient(circle at 14% 86%,rgba(111,165,151,.23),transparent 27rem),linear-gradient(134deg,#092830,#154943 52%,#4b2d49); }
+.dossier-hero--dopamine { background:radial-gradient(circle at 80% 14%,rgba(243,203,104,.3),transparent 21rem),radial-gradient(circle at 12% 86%,rgba(219,145,176,.23),transparent 27rem),linear-gradient(134deg,#21172f,#53304d 52%,#884c3f); }
+.dossier-hero--parkinson { background:radial-gradient(circle at 80% 14%,rgba(241,200,107,.27),transparent 21rem),radial-gradient(circle at 14% 86%,rgba(111,165,151,.23),transparent 27rem),linear-gradient(134deg,#082831,#164a46 52%,#50304a); }
 .dossier-hero::after { content:'';position:absolute;right:-16rem;bottom:-20rem;width:36rem;height:36rem;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 4rem rgba(255,255,255,.025),0 0 0 8rem rgba(255,255,255,.018); }
 .dossier-hero__inner { position:relative;z-index:1;width:min(1180px,100%);margin:auto; }
 .dossier-breadcrumb { margin-bottom:clamp(2rem,4vw,3.5rem);display:flex;flex-wrap:wrap;gap:.5rem;color:rgba(255,255,255,.62);font-size:.78rem;font-weight:650; }
@@ -64,6 +67,10 @@
 .dossier-graphic--identity figcaption { background:#113633; }
 .dossier-graphic--basal { background:#0b2b32; }
 .dossier-graphic--basal figcaption { background:#0a292e; }
+.dossier-graphic--dopamine { background:#291b36; }
+.dossier-graphic--dopamine figcaption { background:#25172f; }
+.dossier-graphic--parkinson { background:#0b3035; }
+.dossier-graphic--parkinson figcaption { background:#092a2f; }
 .hypothesis-box { margin:2rem 0 1.2rem;overflow:hidden;border:1px solid rgba(240,198,107,.45);border-radius:1.35rem;background:linear-gradient(135deg,#251b35,#3d2744 58%,#704248);color:white;box-shadow:0 24px 60px rgba(47,32,56,.18); }
 .hypothesis-box__lead { padding:clamp(1.4rem,5vw,2.4rem);border-bottom:1px solid rgba(255,255,255,.12);background:radial-gradient(circle at 90% 10%,rgba(240,198,107,.2),transparent 18rem); }
 .hypothesis-box__lead span { color:#f0c66b;font-size:.68rem;font-weight:850;letter-spacing:.14em; }

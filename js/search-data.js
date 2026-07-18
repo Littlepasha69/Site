@@ -130,6 +130,16 @@ window.ONWIJZE_CONTENT = [
     url: 'onderwerpen/basale-ganglia.html', tags: ['hersenen', 'beweging', 'motivatie', 'gewoonte', 'striatum', 'putamen', 'caudatus', 'dopamine', 'parkinson', 'huntington', 'dystonie', 'dbs', 'subthalamische kern', 'directe route', 'indirecte route', 'hyperdirecte route'], areaIcon: 'brain', updated: '2026-07-18T21:15:00+03:00', featureImage: 'images/basale-ganglia-routes.svg'
   },
   {
+    title: 'Dopamine', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
+    summary: 'Geen plezierstofje maar meerdere signalen voor bewegen, leren, motivatie, aandacht en hormoonregulatie.',
+    url: 'onderwerpen/dopamine.html', tags: ['dopamine', 'beloning', 'motivatie', 'willen', 'genieten', 'reward prediction error', 'voorspellingsfout', 'leren', 'striatum', 'nucleus accumbens', 'substantia nigra', 'vta', 'receptoren', 'dopaminedetox', 'verslaving', 'parkinson'], areaIcon: '◆', updated: '2026-07-18T20:54:00+03:00', featureImage: 'images/dopamine-kaart.svg'
+  },
+  {
+    title: 'Parkinson', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
+    summary: 'Waarom Parkinson veel meer is dan trillen: hersencircuits, het hele lichaam, behandeling en nieuwe celtherapie.',
+    url: 'onderwerpen/parkinson.html', tags: ['parkinson', 'bradykinesie', 'tremor', 'stijfheid', 'dopamine', 'substantia nigra', 'basale ganglia', 'levodopa', 'dbs', 'alfa-synucleine', 'slaap', 'darmen', 'celtherapie', 'stamcellen', 'beweging'], areaIcon: 'brain', updated: '2026-07-18T20:55:00+03:00', featureImage: 'images/parkinson-netwerk.svg'
+  },
+  {
     title: 'Beroerte', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
     summary: 'Wat er gebeurt wanneer een deel van de hersenen plots te weinig bloed en zuurstof krijgt.',
     url: 'onderwerpen/beroerte.html', tags: ['cva', 'stroke', 'hersenen', 'bloedvat', 'revalidatie'], areaIcon: 'brain'
@@ -172,9 +182,10 @@ window.ONWIJZE_CONTENT = [
     url: 'onderwerpen/klimaatopwarming.html', tags: ['klimaat', 'co2', 'energie', 'zeespiegel', 'beleid']
   },
   {
-    title: 'Leren', type: 'dossier', category: 'Leren & veranderen', level: 'Onderzocht',
-    summary: 'Hoe kennis, vaardigheden en gedrag ontstaan door veranderende verbindingen in het brein.',
-    url: 'onderwerpen/leren.html', tags: ['onderwijs', 'geheugen', 'neuronen', 'vaardigheid'], areaIcon: '↗'
+    title: 'Leren', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
+    summary: 'Hoe aandacht, voorkennis, poging, feedback, ophalen en spreiden samen leiden tot kennis die later en elders bruikbaar wordt.',
+    url: 'onderwerpen/leren.html', tags: ['leren', 'onderwijs', 'geheugen', 'vaardigheid', 'retrieval practice', 'ophalen', 'spacing', 'spreiden', 'feedback', 'productive failure', 'transfer', 'metacognitie', 'groeimindset', 'leerstijlen', 'deliberate practice', 'Biesta', 'Kapur', 'Carpenter'],
+    updated: '2026-07-18T23:59:45+03:00', featureImage: 'images/leren-kaart.svg', areaIcon: '↗'
   },
   {
     title: 'Gewoontes', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',

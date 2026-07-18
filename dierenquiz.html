@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek welk levend, mythisch, prehistorisch of uitgestorven dier bij jouw persoonlijkheidspatroon past.">
   <title>De Grote Beestenquiz — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/creature-quiz.css?v=9">
-  <script src="js/site-shell.js?v=16" defer></script>
-  <script src="js/creature-data.js?v=7" defer></script>
-  <script src="js/creature-quiz.js?v=13" defer></script>
+  <link rel="stylesheet" href="css/creature-quiz.css?v=10">
+  <script src="js/site-shell.js?v=17" defer></script>
+  <script src="js/creature-data.js?v=8" defer></script>
+  <script src="js/creature-quiz.js?v=15" defer></script>
 </head>
 <body>
   <site-header></site-header>
@@ -62,32 +62,32 @@
       <section class="result-counterweight" aria-labelledby="counterweight-title"><p class="eyebrow">De nuttige tegenspraak</p><h2 id="counterweight-title">Waar schuurt deze spiegel?</h2><p>Een goed profiel geeft niet alleen herkenning, maar ook ruimte voor een stevig “nee”. Neem deze drie vragen mee:</p><ul><li>Waar herken je jezelf onmiddellijk — en waar totaal niet?</li><li>Welke antwoorden zeggen vooral iets over je huidige levensfase of omgeving?</li><li>In welke situatie verschijnt er waarschijnlijk een heel ander beest?</li></ul></section>
       <section class="trait-section" aria-labelledby="trait-title"><div class="section-minihead"><div><p class="eyebrow">Jouw patroon</p><h2 id="trait-title">Zeven lijnen door je landschap</h2></div><p>Geen lijn is beter dan een andere. Vooral de vorm van het geheel bepaalt je beest.</p></div><div class="trait-chart" data-trait-chart></div></section>
       <section class="kindred-section" aria-labelledby="kindred-title"><div class="section-minihead"><div><p class="eyebrow">Ook dicht in de buurt</p><h2 id="kindred-title">Je verwante beesten</h2></div><p>Een mens past nooit volledig in één archetype.</p></div><div class="kindred-grid" data-kindred-grid></div></section>
-      <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn proefprofiel</button><button class="beast-secondary" type="button" data-save-beast-result>Bewaar in Mijn spoor</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>
+      <div class="result-actions"><button class="beast-primary" type="button" data-open-profile>Maak mijn profiel</button><button class="beast-secondary" type="button" data-save-beast-result>Bewaar in Mijn spoor</button><button class="beast-secondary" type="button" data-restart-quiz>Doe de quiz opnieuw</button></div>
       <p class="result-save-status" data-save-beast-status aria-live="polite"></p>
     </section>
 
     <section class="profile-maker" data-profile-maker hidden tabindex="-1" aria-labelledby="profile-maker-title">
-      <div class="profile-maker__intro"><p class="eyebrow">Jouw toekomstige communityprofiel</p><h2 id="profile-maker-title">Geef je beest een naam en een stem.</h2><p>Dit is een lokale voorvertoning. Er wordt nog geen account gemaakt of profiel gepubliceerd.</p></div>
+      <div class="profile-maker__intro"><p class="eyebrow">Jouw eigen plek</p><h2 id="profile-maker-title">Geef je beest een naam en een stem.</h2><p>Maak een profiel dat met je Menslab-spoor meebeweegt. Het blijft privé in deze browser: geen account en geen publicatie.</p></div>
       <div class="profile-layout">
         <form data-profile-form novalidate>
           <div class="profile-field"><label for="profile-name">Naam of pseudoniem *</label><input id="profile-name" name="name" maxlength="50" required placeholder="Hoe mogen anderen je noemen?" aria-describedby="profile-name-error"><p id="profile-name-error"></p></div>
           <div class="profile-field"><label for="profile-intro">Korte introductie <span data-profile-count>0/180</span></label><textarea id="profile-intro" name="intro" maxlength="180" placeholder="Waarover denk, schrijf of praat je graag?"></textarea></div>
           <fieldset class="profile-interests"><legend>Kies maximaal drie interessegebieden</legend><div data-interest-options></div><p data-interest-error></p></fieldset>
-          <div class="profile-consent"><label><input type="checkbox" name="understand"> Ik begrijp dat dit profiel nu alleen lokaal wordt getoond. *</label><p data-understand-error></p></div>
+          <div class="profile-consent"><label><input type="checkbox" name="understand"> Ik begrijp dat dit profiel alleen in deze browser wordt bewaard. *</label><p data-understand-error></p></div>
           <div class="profile-buttons"><button class="beast-primary" type="submit">Bekijk mijn profiel</button><button class="beast-secondary" type="button" data-close-profile>Terug naar uitslag</button></div>
           <p class="profile-status" data-profile-status aria-live="assertive"></p>
         </form>
-        <div class="profile-example"><p>Voorbeeldweergave</p><div class="mini-profile"><div class="mini-profile__sigil"><img data-mini-image src="" alt=""></div><div><span data-mini-animal>Jouw beest</span><strong data-mini-name>Jouw naam</strong><small>Nog niet openbaar</small></div></div><p>Later kunnen mensen via zo’n profiel bijdragen, gesprekken starten en hun favoriete kennisgebieden volgen.</p></div>
+        <div class="profile-example"><p>Zo begint jouw plek</p><div class="mini-profile"><div class="mini-profile__sigil"><img data-mini-image src="" alt=""></div><div><span data-mini-animal>Jouw beest</span><strong data-mini-name>Jouw naam</strong><small>Privé op dit apparaat</small></div></div><p>Je profiel brengt straks je beest, interesses, bewaarde proeven en gevonden dossiers rustig bij elkaar.</p></div>
       </div>
     </section>
 
     <section class="profile-preview" data-profile-preview hidden tabindex="-1" aria-labelledby="profile-preview-title">
-      <div class="profile-banner"><span>LOKAAL PROEFPROFIEL</span><small>Nog niet openbaar</small></div>
+      <div class="profile-banner"><span>MIJN LOKALE PROFIEL</span><small>Privé op dit apparaat</small></div>
       <div class="profile-identity"><div class="profile-avatar"><img data-profile-image src="" alt=""></div><div><p data-profile-animal></p><h1 id="profile-preview-title" data-profile-name></h1><span data-profile-archetype></span></div></div>
       <p class="profile-bio" data-profile-bio></p><div class="profile-tags" data-profile-tags></div>
       <div class="profile-insight"><div><span>Grootste kracht</span><strong data-profile-strength></strong></div><div><span>Let op voor</span><strong data-profile-pitfall></strong></div></div>
-      <p class="profile-privacy"><strong>Privacy:</strong> dit profiel bestaat alleen in dit tabblad. Er is geen account of databaseverbinding.</p>
-      <div class="result-actions"><button class="beast-primary" type="button" data-save-profile>Bewaar als tekstbestand</button><button class="beast-secondary" type="button" data-edit-profile>Wijzig profiel</button><button class="text-action" type="button" data-back-result>Terug naar uitslag</button></div>
+      <p class="profile-privacy"><strong>Privacy:</strong> dit profiel is alleen in deze browser bewaard. Er is geen account of databaseverbinding.</p>
+      <div class="result-actions"><a class="beast-primary" href="mijn-profiel.html">Open mijn profielpagina →</a><button class="beast-secondary" type="button" data-save-profile>Bewaar als tekstbestand</button><button class="beast-secondary" type="button" data-edit-profile>Wijzig profiel</button><button class="text-action" type="button" data-back-result>Terug naar uitslag</button></div>
     </section>
   </main>
   <site-footer></site-footer>
