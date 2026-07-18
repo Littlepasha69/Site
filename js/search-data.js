@@ -15,6 +15,11 @@ window.ONWIJZE_CONTENT = [
     url: 'veranderroute.html', tags: ['veranderen', 'gewoontes', 'neuroplasticiteit', 'stress', 'menslab']
   },
   {
+    title: 'Community', type: 'page', category: 'Samen onderzoeken',
+    summary: 'Vind mensen rond gesprekken, eigen verhalen, profielbeesten en plannen die je misschien niet alleen hoeft te bouwen.',
+    url: 'community.html', tags: ['community', 'gesprekken', 'samen maken', 'bijdragen', 'profielbeesten']
+  },
+  {
     title: 'Zwoele Zomers', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '09/07/2025',
     summary: 'Wat als de zon waar je van houdt straks niemand meer spaart? Een persoonlijke blik op klimaatopwarming en extreme hitte.',
     url: 'denk-box01.html', tags: ['klimaat', 'hitte', 'bosbranden', 'leefwereld'], image: 'images/zon.png'
@@ -22,7 +27,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Een kind is geen dossier', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '11/07/2025',
     summary: 'Over trauma, opvoeding en kinderen die dreigen te verdwijnen in systemen en papieren.',
-    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/een-kind-geen-dossier-redactioneel.jpg'
+    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/een-kind-geen-dossier-dada.png'
   },
   {
     title: 'Zaadolie: van smeermiddel tot smeersel', type: 'denkstuk', kind: 'hypothese', category: 'Gezondheid & dagelijks leven', date: '01/07/2025',
@@ -42,17 +47,17 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Het zenuwstelsel dat niet stilzit', type: 'denkstuk', kind: 'ervaring', category: 'Brein, lichaam & zenuwstelsel', date: '25/07/2025',
     summary: 'Over ADHD, eenzaamheid, overleven en wat het betekent om werkelijk een plek te zijn.',
-    url: 'denk-box06.html', tags: ['adhd', 'zenuwstelsel', 'eenzaamheid', 'overprikkeling'], image: 'images/zenuwstelsel-stad-collage.jpg'
+    url: 'denk-box06.html', tags: ['adhd', 'zenuwstelsel', 'eenzaamheid', 'overprikkeling'], image: 'images/zenuwstelsel-tarot-vi.png'
   },
   {
     title: 'Ik speel niet meer mee', type: 'denkstuk', kind: 'opinie', category: 'Groei, patronen & herstel', date: '04/08/2025',
     summary: 'Over patronen, existentiële crisissen, persoonlijke groei en weigeren om gedachteloos mee te draaien.',
-    url: 'denk-box07.html', tags: ['patronen', 'persoonlijke groei', 'zenuwstelsel', 'maatschappij'], image: 'images/tragedie.png'
+    url: 'denk-box07.html', tags: ['patronen', 'persoonlijke groei', 'zenuwstelsel', 'maatschappij'], image: 'images/ik-speel-niet-meer-mee-spel-tarot-v2.png?v=1'
   },
   {
     title: 'Kompas sterfelijkheid', type: 'denkstuk', kind: 'filosofie', category: 'Zingeving & filosofie', date: '03/08/2025',
     summary: 'Een ode aan sterfelijkheid, verbondenheid en de lijm van het universum.',
-    url: 'denk-box08.html', tags: ['sterfelijkheid', 'zingeving', 'verbondenheid', 'existentieel'], image: 'images/sterfelijkheid.png'
+    url: 'denk-box08.html', tags: ['sterfelijkheid', 'zingeving', 'verbondenheid', 'existentieel'], image: 'images/kompas-sterfelijkheid-venus-tarot-v2.png?v=1'
   },
   {
     title: 'Terugkwispelen', type: 'ervaring', kind: 'ervaring', category: 'Groei, patronen & herstel', date: '17/08/2025',
@@ -88,6 +93,21 @@ window.ONWIJZE_CONTENT = [
     title: 'Wie is de heks?', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '16/09/2025',
     summary: 'Een gedachte-experiment over angst, groepsvorming en de vraag wat er gebeurt wanneer een label een volledig mens vervangt.',
     url: 'denk-box16.html', tags: ['hokjesdenken', 'wij-zijdenken', 'groepsdenken', 'zondebok'], image: 'images/wie-is-de-heks-tarot-xxi.png?v=1'
+  },
+  {
+    title: 'De vriendin die bleef toen ik beter wist', type: 'ervaring', kind: 'ervaring', category: 'Groei, patronen & herstel', date: '11/10/2025',
+    summary: 'Een persoonlijk essay over verslaving als een vriendin die eerst troost bood, maar langzaam een gevangenis werd — en over de sleutel terugnemen.',
+    url: 'denk-box18.html', tags: ['persoonlijk essay', 'verslaving', 'herstel', 'oude patronen', 'innerlijk kompas'], image: 'images/verslaving-vriendin-tarot-v2.png?v=1'
+  },
+  {
+    title: 'Time is Money', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '14/04/2026',
+    summary: 'Over de ongelijke prijs van tijd: waarom loon niet hetzelfde is als waarde en wat een werkdag ons werkelijk kost.',
+    url: 'denk-box17.html', tags: ['werk', 'geld', 'tijdarmoede', 'maatschappijkritiek'], image: 'images/time-is-money-tarot-xxiii.png?v=1'
+  },
+  {
+    title: 'De potloodvent van Gent', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '15/05/2026',
+    summary: 'Een persoonlijke ontmoeting met seksuele grensoverschrijding — over automatische reacties, toestemming en een grens mogen trekken zonder iemand eerst te begrijpen.',
+    url: 'denk-box19.html', tags: ['grenzen', 'toestemming', 'stressreactie', 'veiligheid'], image: 'images/potloodvent-gent-tarot-xxiv.png?v=1'
   },
   {
     title: 'Zonder wekker', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '18/08/2025',
@@ -180,6 +200,18 @@ window.ONWIJZE_CONTENT = [
     summary: 'Hechting zonder levenslang vonnis: geen vast type uit je jeugd, maar een veranderlijk netwerk van verwachtingen, relaties, cultuur en nieuwe ervaringen.',
     url: 'onderwerpen/hechting.html', tags: ['hechting', 'relaties', 'relationele plasticiteit', 'hechtingsstijl', 'angst', 'vermijding', 'nabijheid', 'partnerresponsiviteit', 'veiligheid', 'werkmodellen', 'hechtingsnetwerk', 'cultuur', 'co-regulatie', 'grenzen'],
     updated: '2026-07-18T21:30:00+03:00', featureImage: 'images/hechting-netwerk.svg', areaIcon: '∞'
+  },
+  {
+    title: 'De ander verandert je', type: 'dossier', category: 'Relaties & hechting', level: 'Redelijk stevig',
+    summary: 'Hoe anderen je mogelijkheden en zelfbeeld mee veranderen, waarom juist sommige mensen vertrouwd voelen en wanneer wederzijdse invloed zelfverlies wordt.',
+    url: 'onderwerpen/de-ander-verandert-je.html', tags: ['relaties', 'relationele plasticiteit', 'zelfbeeld', 'zelfexpansie', 'Michelangelo-fenomeen', 'partnersteun', 'doelen', 'responsiviteit', 'co-regulatie', 'dyadische emotieregulatie', 'autonomie', 'zelfverlies', 'invloed', 'macht', 'partnerkeuze', 'aantrekking', 'zelfverificatie', 'herhalingspatronen', 'donkere spiegel'],
+    updated: '2026-07-18T22:40:00+03:00', featureImage: 'images/de-ander-verandert-je.svg', areaIcon: '∞'
+  },
+  {
+    title: 'De groep in je hoofd', type: 'dossier', category: 'Groepsgedrag & beïnvloeding', level: 'Redelijk stevig',
+    summary: 'Hoe groepsidentiteit, normen, stilte en digitale zichtbaarheid je mening vormen — en waarom tegenspraak soms juist een vorm van trouw is.',
+    url: 'onderwerpen/de-groep-in-je-hoofd.html', tags: ['groep', 'groepsgedrag', 'sociale invloed', 'sociale identiteit', 'normen', 'groepsdruk', 'conformiteit', 'pluralistische onwetendheid', 'stille meerderheid', 'polarisatie', 'sociale media', 'algoritmes', 'buitengroep', 'verontwaardiging', 'tegenspraak', 'loyale afwijking', 'macht', 'propaganda'],
+    updated: '2026-07-18T23:15:00+03:00', featureImage: 'images/de-groep-in-je-hoofd.svg', areaIcon: '△'
   },
   {
     title: 'Bewustzijn', type: 'dossier', category: 'Bewustzijn & metafysica', level: 'Onderzocht',

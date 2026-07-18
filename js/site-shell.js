@@ -8,7 +8,7 @@ class SiteHeader extends HTMLElement {
       ['menslab', 'menslab.html', 'Menslab'],
       ['denkstukken', 'denkstukken.html', 'Denkstukken'],
       ['wegwijzer', 'wegwijzer.html', 'Wegwijzer'],
-      ['community', 'forum.html', 'Community']
+      ['community', 'community.html', 'Community']
     ];
 
     this.innerHTML = `
@@ -44,6 +44,7 @@ class SiteFooter extends HTMLElement {
           <a href="${base}denkstukken.html">Denkstukken</a>
           <a href="${base}wegwijzer.html">De Wegwijzer</a>
           <a href="${base}nancy-onderweg.html">Nancy Onderweg</a>
+          <a href="${base}community.html">Community</a>
           <a href="${base}bronnenbeleid.html">Bronnenbeleid</a>
           <a href="${base}correcties.html">Correcties</a>
           <a href="${base}communityregels.html">Communityregels</a>

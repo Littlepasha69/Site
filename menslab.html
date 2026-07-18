@@ -6,8 +6,8 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=11">
-  <script src="js/site-shell.js?v=12" defer></script>
+  <link rel="stylesheet" href="css/menslab.css?v=13">
+  <script src="js/site-shell.js?v=13" defer></script>
   <script src="js/menslab.js?v=9" defer></script>
 </head>
 <body>
@@ -21,7 +21,12 @@
           <p>Een plek om niet alleen óver verandering te lezen, maar iets kleins te proberen, te voelen en opnieuw te bekijken.</p>
           <div class="lab-actions"><a class="lab-button" href="dierenquiz.html">Doe de Beestenquiz</a><a class="lab-link" href="#lab-kiezer">Vind mijn ingang ↓</a></div>
         </div>
-        <div class="lab-orbit" aria-hidden="true"><span>denken</span><span>voelen</span><span>doen</span><strong>jij</strong></div>
+        <nav class="lab-orbit" aria-label="Kies tussen denken, voelen, doen en jij">
+          <a class="lab-orbit__think" href="denkstukken.html">denken</a>
+          <a class="lab-orbit__feel" href="#reflectie">voelen</a>
+          <a class="lab-orbit__do" href="#experimenten">doen</a>
+          <a class="lab-orbit__you" href="#jij">jij</a>
+        </nav>
       </div>
     </section>
 
@@ -44,10 +49,10 @@
       <a class="quizkast-depth-route" href="dieptequiz-ja.html"><span>Nieuw · dieptequiz</span><strong>Een ja is geen type. Ontdek wat er allemaal met jou meebeslist.</strong><small>13 vragen · ongeveer 8–10 minuten →</small></a>
     </section>
 
-    <section class="quiz-gateway quiz-gateway--early" aria-labelledby="quiz-gateway-title">
+    <section class="quiz-gateway quiz-gateway--early" id="jij" aria-labelledby="quiz-gateway-title">
       <div class="quiz-gateway__mark" aria-hidden="true">✦</div>
-      <div><p class="eyebrow">Grote ontdekkingstocht</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
-      <a href="dierenquiz.html">Doe de Beestenquiz →</a>
+      <div><p class="eyebrow">Jouw persoonlijke ingang</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
+      <div class="quiz-gateway__actions"><a href="dierenquiz.html">Doe de Beestenquiz →</a><a href="#mijn-spoor" data-you-track hidden>Ga naar Mijn spoor →</a></div>
     </section>
 
     <section class="amusement-hub" id="speelhallen" aria-labelledby="amusement-hub-title">
@@ -149,7 +154,7 @@
       <div class="question-draw" aria-live="polite"><span data-question-number>Vraag 01</span><blockquote data-reflection-question>Wanneer veranderde je voor het laatst écht van mening — en wat maakte dat mogelijk?</blockquote><button type="button" data-new-question>Geef me een andere vraag</button></div>
     </section>
 
-    <section class="lab-section" aria-labelledby="experiments-title">
+    <section class="lab-section" id="experimenten" aria-labelledby="experiments-title">
       <div class="lab-section__head"><div><p class="eyebrow">Kleine experimenten</p><h2 id="experiments-title">Onderzoek jezelf zonder jezelf te repareren.</h2></div><p>Kies iets dat licht genoeg voelt om nieuwsgierig te blijven. Stop wanneer een oefening je overspoelt.</p></div>
       <div class="experiment-grid">
         <article><span>5 minuten</span><h3>De emotionele routekaart</h3><p>Beschrijf wat er vlak vóór een sterke reactie gebeurde: buiten je, in je lichaam, in je betekenisgeving en in je impuls.</p><a href="onderwerpen/emotieregulatie.html#proberen">Open de begeleide oefening →</a></article>

@@ -12,8 +12,18 @@
   const activeList = document.querySelector('[data-active-filter-list]');
   const resetButton = document.querySelector('[data-reset-filters]');
   const empty = document.querySelector('[data-knowledge-empty]');
+  const visibleCountRoot = document.querySelector('[data-visible-count]');
+  const resultNounRoot = document.querySelector('[data-result-noun]');
+  const heroCountRoot = document.querySelector('[data-hero-result-count]');
+  const morePanel = document.querySelector('[data-results-more]');
+  const progressRoot = document.querySelector('[data-results-progress]');
+  const loadMoreButton = document.querySelector('[data-load-more]');
+  const searchSuggestions = document.querySelectorAll('[data-search-suggestion]');
   const randomButtons = document.querySelectorAll('[data-random-dossier]');
   const focusSearchButtons = document.querySelectorAll('[data-focus-atlas-search]');
+  const atlasModeButtons = document.querySelectorAll('[data-atlas-mode]');
+  const atlasModePanels = document.querySelectorAll('[data-atlas-panel]');
+  const atlasViewTargets = document.querySelectorAll('[data-atlas-view-target]');
   const params = new URLSearchParams(location.search);
   let activeCategory = params.get('gebied') || '';
   const activeTags = new Set(params.getAll('thema'));
@@ -49,6 +59,21 @@
   const featuredTags = preferredTags.filter(tag => tagCounts.has(tag));
   queryInput.value = params.get('q') || '';
   sortSelect.value = params.get('sort') || 'relevant';
+  const pageSize = matchMedia('(max-width: 620px)').matches ? 6 : 8;
+  let visibleLimit = pageSize;
+
+  function showResults() {
+    document.querySelector('.knowledge-results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function setAtlasMode(mode, moveFocus) {
+    atlasModeButtons.forEach(button => {
+      const selected = button.dataset.atlasMode === mode;
+      button.setAttribute('aria-selected', String(selected));
+      if (selected && moveFocus) button.focus();
+    });
+    atlasModePanels.forEach(panel => { panel.hidden = panel.dataset.atlasPanel !== mode; });
+  }
 
   function makeButton(className, text, pressed, onClick) {
     const button = document.createElement('button');
@@ -60,6 +85,19 @@
     return button;
   }
 
+  function discoveryOrder(items) {
+    const buckets = categories.map(category => items
+      .filter(item => item.category === category)
+      .sort((a, b) => a.title.localeCompare(b.title, 'nl')));
+    const mixed = [];
+    let depth = 0;
+    while (mixed.length < items.length) {
+      buckets.forEach(bucket => { if (bucket[depth]) mixed.push(bucket[depth]); });
+      depth += 1;
+    }
+    return mixed;
+  }
+
   function renderCategories() {
     const all = document.createElement('button');
     all.type = 'button';
@@ -67,7 +105,7 @@
     all.setAttribute('aria-pressed', String(!activeCategory));
     all.innerHTML = '<span class="category-route__top"><span class="category-route__icon" aria-hidden="true">✦</span><span class="category-route__count"></span></span><span><strong>De hele atlas</strong><small>Bekijk alle beschikbare gebieden</small></span>';
     all.querySelector('.category-route__count').textContent = `${dossiers.length} dossiers`;
-    all.addEventListener('click', () => { activeCategory = ''; render(); });
+    all.addEventListener('click', () => { activeCategory = ''; render(true); showResults(); });
 
     const buttons = categories.map(category => {
       const info = categoryInfo[category] || { icon: '○', description: 'Verdiepende dossiers' };
@@ -81,7 +119,7 @@
       button.querySelector('.category-route__count').textContent = amount ? `${amount} ${amount === 1 ? 'dossier' : 'dossiers'}` : 'in opbouw';
       button.querySelector('strong').textContent = category;
       button.querySelector('small').textContent = info.description;
-      button.addEventListener('click', () => { activeCategory = activeCategory === category ? '' : category; render(); });
+      button.addEventListener('click', () => { activeCategory = activeCategory === category ? '' : category; render(true); showResults(); });
       return button;
     });
     categoryRoot.replaceChildren(all, ...buttons);
@@ -90,7 +128,8 @@
   function renderTopics() {
     topicRoot.replaceChildren(...featuredTags.map(tag => makeButton('topic-chip', tag, activeTags.has(tag), () => {
       activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
-      render();
+      render(true);
+      showResults();
     })));
   }
 
@@ -112,13 +151,13 @@
     summary.textContent = item.summary;
     const tags = document.createElement('div');
     tags.className = 'knowledge-card__tags';
-    (item.tags || []).slice(0, 4).forEach(tag => {
+    (item.tags || []).slice(0, 2).forEach(tag => {
       const button = document.createElement('button');
       button.type = 'button';
       button.className = 'card-tag';
       button.textContent = tag;
       button.title = `Filter op ${tag}`;
-      button.addEventListener('click', () => { activeTags.add(tag); render(); document.querySelector('.knowledge-explorer').scrollIntoView({ behavior: 'smooth', block: 'start' }); });
+      button.addEventListener('click', () => { activeTags.add(tag); render(true); showResults(); });
       tags.append(button);
     });
     const more = document.createElement('a');
@@ -156,7 +195,7 @@
       button.className = 'active-chip';
       button.textContent = entry.label;
       button.setAttribute('aria-label', `Verwijder filter ${entry.label}`);
-      button.addEventListener('click', () => { entry.clear(); render(); });
+      button.addEventListener('click', () => { entry.clear(); render(true); });
       return button;
     }));
     activePanel.hidden = entries.length === 0;
@@ -168,37 +207,62 @@
     activeCategory = '';
     activeTags.clear();
     sortSelect.value = 'relevant';
-    render();
+    render(true);
     queryInput.focus();
   }
 
-  function render() {
+  function render(resetLimit) {
+    if (resetLimit) visibleLimit = pageSize;
     const query = queryInput.value.trim();
     let results = dossiers.filter(item =>
       (!activeCategory || item.category === activeCategory) &&
       (!activeTags.size || (item.tags || []).some(tag => activeTags.has(tag))) &&
       matchesQuery(item, query)
     );
-    if (sortSelect.value === 'az' || (!query && sortSelect.value === 'relevant')) results.sort((a, b) => a.title.localeCompare(b.title, 'nl'));
+    const isOpenAtlas = !query && !activeCategory && !activeTags.size && sortSelect.value === 'relevant';
+    if (sortSelect.value === 'az' || (!query && !isOpenAtlas && sortSelect.value === 'relevant')) results.sort((a, b) => a.title.localeCompare(b.title, 'nl'));
     if (sortSelect.value === 'category') results.sort((a, b) => a.category.localeCompare(b.category, 'nl') || a.title.localeCompare(b.title, 'nl'));
+    if (isOpenAtlas) results = discoveryOrder(results);
     if (query && sortSelect.value === 'relevant') {
       const order = window.OnwijzeSearch.search(query, 'dossier');
       results.sort((a, b) => order.indexOf(a) - order.indexOf(b));
     }
-    resultsRoot.replaceChildren(...results.map(card));
+    const visibleResults = results.slice(0, visibleLimit);
+    resultsRoot.replaceChildren(...visibleResults.map(card));
     resultsRoot.hidden = results.length === 0;
     empty.hidden = results.length !== 0;
-    countRoot.textContent = `${results.length} ${results.length === 1 ? 'dossier' : 'dossiers'}`;
+    countRoot.textContent = results.length;
+    resultNounRoot.textContent = results.length === 1 ? 'vondst' : 'vondsten';
+    visibleCountRoot.textContent = visibleResults.length;
+    heroCountRoot.textContent = results.length;
+    progressRoot.textContent = `${visibleResults.length} van ${results.length} blootgelegd`;
+    morePanel.hidden = !results.length || visibleResults.length >= results.length;
     renderCategories();
     renderTopics();
     renderActive(query);
     updateUrl(query);
   }
 
-  queryInput.addEventListener('input', render);
-  sortSelect.addEventListener('change', render);
+  queryInput.addEventListener('input', () => render(true));
+  queryInput.addEventListener('keydown', event => { if (event.key === 'Enter') showResults(); });
+  sortSelect.addEventListener('change', () => render(true));
   resetButton.addEventListener('click', reset);
   document.querySelector('[data-empty-reset]').addEventListener('click', reset);
+  loadMoreButton.addEventListener('click', () => { visibleLimit += pageSize; render(false); });
+  searchSuggestions.forEach(button => button.addEventListener('click', () => {
+    queryInput.value = button.dataset.searchSuggestion;
+    activeCategory = '';
+    activeTags.clear();
+    sortSelect.value = 'relevant';
+    render(true);
+    showResults();
+  }));
+  atlasModeButtons.forEach(button => button.addEventListener('click', () => setAtlasMode(button.dataset.atlasMode, false)));
+  atlasViewTargets.forEach(link => link.addEventListener('click', event => {
+    event.preventDefault();
+    setAtlasMode(link.dataset.atlasViewTarget, false);
+    document.querySelector('.knowledge-explorer').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }));
   focusSearchButtons.forEach(button => button.addEventListener('click', () => {
     queryInput.focus({ preventScroll: true });
     document.querySelector('.knowledge-search').scrollIntoView({ behavior: 'smooth', block: 'center' });
@@ -211,5 +275,10 @@
     sessionStorage.setItem('atlas-last-random', item.url);
     location.href = item.url;
   }));
+  setAtlasMode(activeCategory ? 'gebieden' : activeTags.size ? 'sporen' : 'vragen', false);
   render();
+  if (params.has('gebied') || params.has('thema') || params.has('q')) {
+    requestAnimationFrame(showResults);
+    setTimeout(showResults, 180);
+  }
 })();

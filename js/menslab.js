@@ -274,6 +274,8 @@
 
     const hasProgress = done > 0 || weeks > 0 || state.quizSnapshots.length > 0 || Boolean(state.note) || Boolean(state.carryForward);
     resume.hidden = !hasProgress;
+    const youTrack = document.querySelector('[data-you-track]');
+    if (youTrack) youTrack.hidden = !hasProgress;
     if (hasProgress) {
       const resumeText = document.querySelector('[data-resume-text]');
       if (done > 0) resumeText.textContent = `Je hebt ${done} van de ${checks.length} kleine bewegingen geprobeerd.`;

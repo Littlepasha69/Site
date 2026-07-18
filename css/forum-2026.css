@@ -3,6 +3,8 @@
 .forum-hero__inner { position: relative; z-index: 1; width: min(1180px,100%); margin: auto; display: grid; grid-template-columns: 1.4fr .6fr; gap: clamp(2rem,7vw,6rem); align-items: end; }
 .forum-hero h1 { max-width: 850px; margin: 0 0 1.2rem; font: 700 clamp(3rem,7vw,5.8rem)/.96 var(--serif); letter-spacing: -.045em; }
 .forum-hero__inner > div:first-child > p:last-child { max-width: 680px; margin: 0; color: rgba(255,255,255,.76); font-size: clamp(1rem,2vw,1.2rem); }
+.forum-back { display:inline-block; margin-bottom:1.2rem; color:rgba(255,255,255,.72); font-weight:700; text-decoration:none; }
+.forum-back:hover { color:#f0c66b; }
 .forum-promise { padding: 1.4rem; border: 1px solid rgba(255,255,255,.18); border-radius: 1.2rem; background: rgba(255,255,255,.07); backdrop-filter: blur(12px); }
 .forum-promise > span { width: 2.3rem; height: 2.3rem; margin-bottom: .8rem; display: grid; place-items: center; border-radius: .7rem; background: rgba(240,198,107,.15); color: #f0c66b; }
 .forum-promise strong { font: 650 1.25rem var(--serif); }

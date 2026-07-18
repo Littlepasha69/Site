@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">De groep in je hoofd</title>
+  <desc id="desc">Een visuele kaart met drie lagen van groepsinvloed: wat mensen doen, wat zij goedkeuren en wat jij denkt dat zij denken. Eén gouden figuur doorbreekt de schijnbare consensus.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0e3038"/><stop offset=".58" stop-color="#174b49"/><stop offset="1" stop-color="#4e2c4b"/></linearGradient>
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%"><stop stop-color="#f0b63d" stop-opacity=".25"/><stop offset="1" stop-color="#f0b63d" stop-opacity="0"/></radialGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="10" stdDeviation="12" flood-color="#071b1c" flood-opacity=".35"/></filter>
+  </defs>
+  <rect width="1200" height="720" rx="34" fill="url(#bg)"/>
+  <circle cx="890" cy="190" r="250" fill="url(#glow)"/>
+  <g fill="none" stroke="#dce8e1" stroke-opacity=".18"><circle cx="355" cy="365" r="235"/><circle cx="355" cy="365" r="170"/><circle cx="355" cy="365" r="104"/></g>
+  <g fill="#dce8e1" opacity=".72">
+    <circle cx="355" cy="130" r="13"/><circle cx="495" cy="176" r="13"/><circle cx="570" cy="296" r="13"/><circle cx="558" cy="444" r="13"/><circle cx="450" cy="555" r="13"/><circle cx="300" cy="592" r="13"/><circle cx="170" cy="524" r="13"/><circle cx="120" cy="385" r="13"/><circle cx="160" cy="232" r="13"/>
+    <circle cx="355" cy="195" r="12"/><circle cx="485" cy="272" r="12"/><circle cx="510" cy="405" r="12"/><circle cx="407" cy="515" r="12"/><circle cx="250" cy="505" r="12"/><circle cx="190" cy="365" r="12"/><circle cx="237" cy="235" r="12"/>
+    <circle cx="355" cy="260" r="11"/><circle cx="447" cy="330" r="11"/><circle cx="420" cy="430" r="11"/><circle cx="300" cy="455" r="11"/><circle cx="255" cy="345" r="11"/>
+  </g>
+  <g filter="url(#shadow)"><circle cx="355" cy="365" r="55" fill="#f0b63d"/><path d="M331 364c0-18 10-30 24-30s24 12 24 30c0 17-10 29-24 29s-24-12-24-29Zm-19 53c9-17 24-26 43-26s34 9 43 26" fill="none" stroke="#123b3d" stroke-width="10" stroke-linecap="round"/></g>
+  <g transform="translate(635 103)">
+    <text x="0" y="0" fill="#f0c66b" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">DE GROEP IN JE HOOFD</text>
+    <text x="0" y="70" fill="#fff9ea" font-family="Georgia, serif" font-size="47" font-weight="700">Een groep hoeft</text>
+    <text x="0" y="123" fill="#fff9ea" font-family="Georgia, serif" font-size="47" font-weight="700">niets te bevelen.</text>
+    <g transform="translate(0 176)">
+      <rect width="468" height="72" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <circle cx="35" cy="36" r="13" fill="#dce8e1" fill-opacity=".72"/><text x="65" y="31" fill="#f0c66b" font-family="Arial, sans-serif" font-size="14" font-weight="700">ZICHTBAAR</text><text x="65" y="51" fill="#dce8e1" font-family="Arial, sans-serif" font-size="18">wat mensen lijken te doen</text>
+    </g>
+    <g transform="translate(0 260)">
+      <rect width="468" height="72" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <circle cx="35" cy="36" r="13" fill="#dce8e1" fill-opacity=".72"/><text x="65" y="31" fill="#f0c66b" font-family="Arial, sans-serif" font-size="14" font-weight="700">GOEDGEKEURD</text><text x="65" y="51" fill="#dce8e1" font-family="Arial, sans-serif" font-size="18">wat mensen juist vinden</text>
+    </g>
+    <g transform="translate(0 344)">
+      <rect width="468" height="72" rx="18" fill="#ffffff" fill-opacity=".08" stroke="#ffffff" stroke-opacity=".14"/>
+      <circle cx="35" cy="36" r="13" fill="#f0b63d"/><text x="65" y="31" fill="#f0c66b" font-family="Arial, sans-serif" font-size="14" font-weight="700">VERONDERSTELD</text><text x="65" y="51" fill="#dce8e1" font-family="Arial, sans-serif" font-size="18">wat jij denkt dat zij denken</text>
+    </g>
+  </g>
+  <line x1="635" y1="574" x2="1103" y2="574" stroke="#f0c66b" stroke-width="3"/>
+  <text x="635" y="620" fill="#fff9ea" font-family="Georgia, serif" font-size="29" font-style="italic">Zichtbaarheid is geen consensus.</text>
+  <text x="635" y="658" fill="#dce8e1" fill-opacity=".65" font-family="Arial, sans-serif" font-size="16">Soms begint verandering met één zichtbaar afwijkend geluid.</text>
+</svg>

@@ -75,6 +75,12 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Judi Mesman en Heidi Keller — culturele variatie, meerdere verzorgers en kritiek op westerse normen; universele behoefte betekent geen uniforme zorgpraktijk.
 - Ross Thompson, Jeffry Simpson en Lisa Berlin — hedendaagse veldconsensus én blijvende fundamentele vragen rond meting, stabiliteit, cultuur en interventie.
 - James Coan — Social Baseline Theory: gedeelde last en nabijheid als menselijke uitgangssituatie; een aanvullend model, geen totaalverklaring van hechting.
+- Eli Finkel, Madoka Kumashiro, Brent Mattingly, Gary Lewandowski en Kevin McIntyre — relationele zelfverandering, bevestiging van het eigen ideale zelf en het onderscheid tussen verruiming, loslaten, verkleining en vervorming; invloed is geen bewijs van een verborgen ware zelf.
+- Lydia Emery, Erin Hughes, Amy Muise, Brooke Feeney en Nancy Collins — zelfexpansie en responsieve steun bij exploratie en groei; nieuwe ervaring is niet automatisch duurzame integratie.
+- Laura Vowels, Emre Selcuk, Gül Günaydın, Beyzanur Arican-Dinc en Shelly Gable — partnersteun, responsiviteit en dyadische emotieregulatie; processen kunnen emoties en doelen helpen én hinderen en worden nooit los van autonomie, context en macht gelezen.
+- Janina Bühler en collega’s — longitudinale persoonlijkheid-relatietransacties; selectie-effecten zijn vaak sterker dan duurzame socialisatie-effecten en een relatiegebeurtenis herschrijft brede persoonlijkheid niet vanzelf.
+- Paul Eastwick, Samantha Joel, Jennifer Sjaarda en Zoltán Kutalik — hedendaags onderzoek naar aantrekking, partnerkeuze, gelijkenis en gedeelde context; geen enkelvoudige “traumamagneet” die individuele partnerkeuze betrouwbaar verklaart.
+- William Swann, Lorne Campbell, Amy Muise, Ryan Seedall en Brian Baucom — zelfverificatie en wederzijdse zoek-terugtrekpatronen; vertrouwde bevestiging is niet hetzelfde als verlangen naar afwijzing en een dyadische cyclus betekent geen gelijke verantwoordelijkheid voor dwang of geweld.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 
@@ -123,6 +129,16 @@ Boeken, podcasts, video's en sociale media zijn nooit op zichzelf de eindbron vo
 - Geen individuele zelfhulp aanbieden als oplossing voor structurele onveiligheid, armoede, discriminatie, uitbuiting of geweld.
 - Geen oefening voorstellen als vervanging voor professionele zorg.
 - Geen controverse verbergen om een verhaal eenvoudiger of aantrekkelijker te maken.
+
+### Groepsgedrag & beïnvloeding
+
+Gebruik voor dit Atlasgebied hedendaagse sociale psychologie als ruggengraat. Russell Spears, Michele Gelfand, Jay Van Bavel, Dominic Packer, Mina Cikara, Nour Kteily, Molly Crockett, William Brady, Steve Rathje, Sander van der Linden, Robb Willer, Jan Voelkel, Nicole Tausch, Roberto González en Héctor Carvacho zijn relevante gesprekspartners. Klassieke experimenten van Asch en Milgram mogen historische achtergrond bieden, maar dragen nooit alleen een algemene uitspraak over “de mens”.
+
+- Maak onderscheid tussen beschrijvende normen, voorschrijvende normen en veronderstelde consensus.
+- Beschrijf groepsidentiteit niet als dom kuddegedrag: dezelfde processen kunnen solidariteit, uitsluiting, verzet en conformiteit dragen.
+- Maak zichtbaar welke rol macht, afhankelijkheid, cultuur, instituties en digitale platformen spelen.
+- Noem observationele sociale-mediastudies nooit bewijs dat een algoritme op zichzelf polarisatie veroorzaakt.
+- Behandel tegenspraak niet als een individuele moedstest; de prijs van afwijking is ongelijk verdeeld.
 
 ## Dossiermodel
 
