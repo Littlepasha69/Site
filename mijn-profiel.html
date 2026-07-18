@@ -6,10 +6,10 @@
   <meta name="description" content="Jouw private profiel en persoonlijke ontdekspoor binnen De Onwijze Wijsheden.">
   <title>Mijn profiel — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/profile.css?v=1">
+  <link rel="stylesheet" href="css/profile.css?v=2">
   <script src="js/site-shell.js?v=17" defer></script>
   <script src="js/creature-data.js?v=8" defer></script>
-  <script src="js/profile.js?v=2" defer></script>
+  <script src="js/profile.js?v=3" defer></script>
 </head>
 <body class="profile-page">
   <site-header active="menslab"></site-header>
@@ -37,6 +37,24 @@
         <p><strong>Een vertrekpunt, geen paspoort.</strong> Dit beest laat zien welk antwoordpatroon tijdens de quiz het dichtst in de buurt kwam. Op een andere dag of in een andere omgeving kan er iets anders bewegen.</p>
       </section>
 
+      <section class="profile-next-door" id="volgende-deur" aria-labelledby="next-door-title">
+        <div class="profile-next-door__head">
+          <div><p class="eyebrow">Mijn volgende deur</p><h2 id="next-door-title">Waar heb je vandaag zin in?</h2></div>
+          <p>Geen test en geen opdracht. Kies alleen de beweging die nu het meeste trekt.</p>
+        </div>
+        <div class="profile-next-door__modes" role="group" aria-label="Kies je beweging voor vandaag">
+          <button type="button" data-door-mode="understand"><span>01</span> Iets begrijpen</button>
+          <button type="button" data-door-mode="try"><span>02</span> Iets proberen</button>
+          <button type="button" data-door-mode="recognise"><span>03</span> Iets herkennen</button>
+        </div>
+        <a class="profile-next-door__portal" href="onderwerpen.html" data-next-door-link>
+          <span class="profile-next-door__signal" data-next-door-signal></span>
+          <div><small data-next-door-source></small><h3 data-next-door-route-title></h3><p data-next-door-reason></p></div>
+          <strong data-next-door-action>Open deze deur <span aria-hidden="true">→</span></strong>
+        </a>
+        <div class="profile-next-door__foot"><p data-next-door-status aria-live="polite"></p><button type="button" data-another-door>Laat een andere vondst zien</button></div>
+      </section>
+
       <section class="profile-landscape" aria-labelledby="profile-landscape-title">
         <header><p class="eyebrow">Jouw landschap</p><h2 id="profile-landscape-title">Niet alleen wie je lijkt. Ook waar je werkelijk bent geweest.</h2></header>
         <div class="profile-stats">
@@ -48,11 +66,6 @@
           <div><p class="eyebrow">Recente sporen</p><h3>Waar iets aan je bleef trekken</h3></div>
           <ol data-profile-activity-list></ol>
         </div>
-      </section>
-
-      <section class="profile-compass" aria-labelledby="profile-compass-title">
-        <div class="profile-compass__intro"><p class="eyebrow">Jouw volgende poorten</p><h2 id="profile-compass-title">Kies niet wat je profiel bevestigt. Kies wat je nieuwsgierig maakt.</h2><p>Je interesses bepalen hier alleen de eerste deuren. Ze sluiten niets anders af.</p></div>
-        <div class="profile-compass__routes" data-profile-routes></div>
       </section>
 
       <section class="profile-mirror" aria-labelledby="profile-mirror-title">

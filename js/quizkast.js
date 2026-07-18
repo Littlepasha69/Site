@@ -5,6 +5,11 @@
   const home = document.querySelector('[data-quiz-home]');
   const shelf = document.querySelector('[data-quiz-shelf]');
   const stage = document.querySelector('[data-mini-quiz]');
+  const standardGame = document.querySelector('[data-standard-game]');
+  const customGame = document.querySelector('[data-custom-game]');
+  const customBoard = document.querySelector('[data-custom-board]');
+  const customMissButton = document.querySelector('[data-custom-misses]');
+  const customFinishButton = document.querySelector('[data-finish-custom]');
   const resultSection = document.querySelector('[data-mini-result]');
   const resultContent = document.querySelector('[data-result-content]');
   const tieSection = document.querySelector('[data-result-tie]');
@@ -25,23 +30,23 @@
   const visualThemes = {
     'beweging-vandaag': {
       symbol: '↗',
-      note: 'Zes kleine schuifjes. Geen levensverbouwing met een helm op.',
-      confirmations: ['Dat mag vandaag genoeg zijn.', 'Kleine beweging gespot.', 'Genoteerd zonder er een vijfjarenplan van te maken.']
+      note: 'Geen vragenlijst: jij verdeelt zelf waar de meeste beweging nodig is.',
+      confirmations: []
     },
     'luisteren-of-repareren': {
       symbol: '◌',
-      note: 'Even luisteren naar hoe jij luistert. Meta, maar draaglijk.',
-      confirmations: ['We laten dit antwoord even uitspreken.', 'Aha. De gereedschapskist blijft nog heel even dicht.', 'Deze reactie krijgt een stoel in het gesprek.']
+      note: 'Zes kleine gesprekken. Kies niet het perfecte antwoord, maar je spontane reactie.',
+      confirmations: ['Je antwoord is verstuurd.', 'De gereedschapskist blijft nog heel even dicht.', 'Deze reactie krijgt een stoel in het gesprek.']
     },
     'waar-komt-je-ja-vandaan': {
       symbol: 'JA?',
-      note: 'Zes keer onder de motorkap van één klein woordje.',
-      confirmations: ['Dat ja heeft alvast een voetnoot.', 'Interessant. Je antwoord kwam niet alleen.', 'Genoteerd — zonder je meteen ergens voor in te schrijven.']
+      note: 'Kies op ieder kruispunt eerst de sterkste stem en eventueel een tweede die meetrekt.',
+      confirmations: []
     },
     'wie-zit-aan-het-stuur': {
       symbol: 'JIJ?',
-      note: 'Geen typecasting. We kijken alleen wie vandaag de meeste tekst heeft.',
-      confirmations: ['Die hoofdrolspeler krijgt een streepje in het script.', 'Aha. Iemand vooraan in de bus zwaait.', 'Genoteerd. Je andere kanten zijn niet ontslagen.']
+      note: 'Geen vragenlijst: jij maakt de tijdelijke bezetting van deze rit.',
+      confirmations: []
     }
   };
   const trackStorageKey = 'menslab-progress-v3';
@@ -82,6 +87,54 @@
     try { localStorage.removeItem(quizProgressKey); } catch (_) {}
   }
 
+  function isCustomMode(quiz = activeQuiz) {
+    return quiz?.mode === 'allocation' || quiz?.mode === 'ranking';
+  }
+
+  function expectedAnswerCount(quiz = activeQuiz) {
+    if (quiz?.mode === 'allocation') return quiz.tokenBudget;
+    if (quiz?.mode === 'ranking') return quiz.gameOptions.length;
+    return quiz?.questions.length || 0;
+  }
+
+  function isValidResult(value, quiz = activeQuiz) {
+    return typeof value === 'string' && quiz.resultOrder.includes(value);
+  }
+
+  function sanitizeStoredAnswers(values, quiz) {
+    if (!Array.isArray(values) || values.length !== expectedAnswerCount(quiz)) return null;
+    if (quiz.mode === 'path') {
+      return values.map(value => {
+        if (value === missingAnswer) return missingAnswer;
+        if (isValidResult(value, quiz)) return [value];
+        if (!Array.isArray(value)) return null;
+        const clean = [...new Set(value.filter(item => isValidResult(item, quiz)))].slice(0, 2);
+        return clean.length ? clean : null;
+      });
+    }
+    const clean = values.map(value => value === missingAnswer || isValidResult(value, quiz) ? value : null);
+    if (quiz.mode === 'ranking') {
+      const used = new Set();
+      return clean.map(value => {
+        if (value === missingAnswer) return value;
+        if (!value || used.has(value)) return null;
+        used.add(value);
+        return value;
+      });
+    }
+    return clean;
+  }
+
+  function isAnswered(value) {
+    if (value === missingAnswer) return true;
+    if (activeQuiz.mode === 'path') return Array.isArray(value) && value.length > 0;
+    return isValidResult(value);
+  }
+
+  function playIsComplete() {
+    return answers.length === expectedAnswerCount() && answers.every(value => isAnswered(value));
+  }
+
   function scrollTop() {
     window.scrollTo({ top: 0, behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
@@ -103,68 +156,77 @@
     scrollTop();
   }
 
+  function prepareJourney() {
+    journeyNote.textContent = visualThemes[activeQuiz.id].note;
+    journey.style.setProperty('--step-count', activeQuiz.questions.length);
+    journey.replaceChildren(...activeQuiz.questions.map((_, index) => {
+      const step = document.createElement('span');
+      step.className = 'mini-journey__step';
+      step.textContent = index + 1;
+      step.setAttribute('aria-label', `${activeQuiz.mode === 'conversation' ? 'Gesprek' : 'Kruispunt'} ${index + 1}`);
+      return step;
+    }));
+  }
+
   function startQuiz(id, forceFresh = false) {
     activeQuiz = quizzes.find(quiz => quiz.id === id);
     if (!activeQuiz) return;
     const stored = forceFresh ? null : readQuizProgress();
-    const canResume = stored?.quizId === id && Array.isArray(stored.answers) && stored.answers.length === activeQuiz.questions.length;
-    current = canResume && Number.isInteger(stored.current) ? Math.max(0, Math.min(activeQuiz.questions.length - 1, stored.current)) : 0;
-    answers = canResume ? stored.answers.map(value => value === null || typeof value === 'string' ? value : null) : new Array(activeQuiz.questions.length).fill(null);
+    const restoredAnswers = stored?.quizId === id ? sanitizeStoredAnswers(stored.answers, activeQuiz) : null;
+    const canResume = Boolean(restoredAnswers);
+    current = canResume && Number.isInteger(stored.current) && !isCustomMode()
+      ? Math.max(0, Math.min(activeQuiz.questions.length - 1, stored.current))
+      : 0;
+    answers = canResume ? restoredAnswers : new Array(expectedAnswerCount()).fill(null);
     fit = canResume && ['raakt', 'deels', 'mist'].includes(stored.fit) ? stored.fit : '';
     reflection = canResume && typeof stored.reflection === 'string' ? stored.reflection.slice(0, 280) : '';
     selectedResultId = canResume && typeof stored.selectedResultId === 'string' ? stored.selectedResultId : '';
     resultSaved = false;
     const visual = visualThemes[activeQuiz.id];
     stage.dataset.quizTheme = activeQuiz.id;
+    stage.dataset.gameMode = activeQuiz.mode;
     resultSection.dataset.quizTheme = activeQuiz.id;
+    resultSection.dataset.gameMode = activeQuiz.mode;
     stage.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
     resultSection.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
-    journeyNote.textContent = visual.note;
-    journey.style.setProperty('--step-count', activeQuiz.questions.length);
-    journey.replaceChildren(...activeQuiz.questions.map((_, index) => {
-      const step = document.createElement('span');
-      step.className = 'mini-journey__step';
-      step.textContent = index + 1;
-      step.setAttribute('aria-label', `Vraag ${index + 1}`);
-      return step;
-    }));
+    document.querySelector('[data-mini-quiz-name]').textContent = activeQuiz.title;
+    standardGame.hidden = isCustomMode();
+    customGame.hidden = !isCustomMode();
+    stage.setAttribute('aria-labelledby', isCustomMode() ? 'mini-custom-title' : 'mini-question-title');
+    if (!isCustomMode()) prepareJourney();
     saveButton.disabled = true;
     saveButton.textContent = 'Reageer eerst op de spiegel';
     document.querySelector('[data-save-mini-status]').textContent = '';
     fitButtons.forEach(button => { button.disabled = false; });
     reflectionField.disabled = false;
-    if (canResume && stored.screen === 'result' && answers.every(Boolean)) renderResult(selectedResultId);
+    if (canResume && stored.screen === 'result' && playIsComplete()) renderResult(selectedResultId);
     else {
       showOnly(stage);
-      renderQuestion();
+      if (isCustomMode()) renderCustomGame();
+      else renderQuestion();
       saveQuizProgress();
     }
   }
 
-  function renderQuestion() {
-    const question = activeQuiz.questions[current];
-    const percent = Math.round((current + 1) / activeQuiz.questions.length * 100);
-    document.querySelector('[data-mini-quiz-name]').textContent = activeQuiz.title;
-    document.querySelector('[data-mini-eyebrow]').textContent = activeQuiz.eyebrow;
-    document.querySelector('[data-mini-count]').textContent = `Vraag ${current + 1} van ${activeQuiz.questions.length}`;
-    document.querySelector('[data-mini-percent]').textContent = `${percent}%`;
-    document.querySelector('[data-mini-progress]').style.width = `${percent}%`;
-    document.querySelector('[data-mini-question]').textContent = question.text;
-    stage.style.setProperty('--question-number', `"${String(current + 1).padStart(2, '0')}"`);
+  function updateJourney() {
     journey.querySelectorAll('.mini-journey__step').forEach((step, index) => {
       step.classList.toggle('is-complete', index < current);
       step.classList.toggle('is-current', index === current);
       if (index === current) step.setAttribute('aria-current', 'step');
       else step.removeAttribute('aria-current');
     });
-    if (answers[current] === missingAnswer) answerHint.textContent = 'Helder. Deze vraag telt niet mee in de uitslag.';
-    else answerHint.textContent = answers[current] === null ? 'Kies wat vandaag het dichtst in de buurt komt.' : 'Je eerdere antwoord staat nog klaar. Je mag het veranderen.';
-    missingButton.setAttribute('aria-pressed', String(answers[current] === missingAnswer));
+  }
+
+  function animateQuestion() {
     questionCard.classList.remove('mini-question--answered');
-    const options = document.querySelector('[data-mini-options]');
-    options.replaceChildren(options.querySelector('legend'), ...question.options.map((option, index) => {
+    void questionCard.offsetWidth;
+    questionCard.classList.add('mini-question--answered');
+  }
+
+  function renderConversationOptions(question, options) {
+    return question.options.map((option, index) => {
       const wrapper = document.createElement('div');
-      wrapper.className = 'mini-option';
+      wrapper.className = 'mini-option mini-option--conversation';
       const input = document.createElement('input');
       input.type = 'radio';
       input.name = `mini-question-${current}`;
@@ -174,39 +236,266 @@
       const label = document.createElement('label');
       label.htmlFor = input.id;
       const marker = document.createElement('span');
-      marker.textContent = String.fromCharCode(65 + index);
+      marker.textContent = '↩';
       label.append(marker, document.createTextNode(option.text));
       input.addEventListener('change', () => {
         answers[current] = option.result;
         missingButton.setAttribute('aria-pressed', 'false');
         saveQuizProgress();
         document.querySelector('[data-mini-next]').disabled = false;
-        questionCard.classList.remove('mini-question--answered');
-        void questionCard.offsetWidth;
-        questionCard.classList.add('mini-question--answered');
+        animateQuestion();
         const messages = visualThemes[activeQuiz.id].confirmations;
         answerHint.textContent = messages[(current + index) % messages.length];
       });
       wrapper.append(input, label);
       return wrapper;
-    }));
+    });
+  }
+
+  function syncPathOptions() {
+    const selected = Array.isArray(answers[current]) ? answers[current] : [];
+    document.querySelectorAll('[data-path-result]').forEach(button => {
+      const rank = selected.indexOf(button.dataset.pathResult);
+      button.setAttribute('aria-pressed', String(rank >= 0));
+      button.dataset.pathRank = rank >= 0 ? String(rank + 1) : '';
+      button.querySelector('span').textContent = rank >= 0 ? String(rank + 1) : '○';
+    });
+    missingButton.setAttribute('aria-pressed', String(answers[current] === missingAnswer));
+    document.querySelector('[data-mini-next]').disabled = selected.length === 0 && answers[current] !== missingAnswer;
+    if (answers[current] === missingAnswer) answerHint.textContent = 'Dit kruispunt telt niet mee. Ook dat is een geldige route.';
+    else if (!selected.length) answerHint.textContent = 'Kies eerst de sterkste stem. Een tweede stem is optioneel.';
+    else if (selected.length === 1) answerHint.textContent = 'Je nummer 1 staat. Kies eventueel een tweede stem, of ga verder.';
+    else answerHint.textContent = '1 trekt het sterkst; 2 reist mee. Klik opnieuw om een keuze weg te halen.';
+  }
+
+  function renderPathOptions(question) {
+    return question.options.map(option => {
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mini-option mini-option--path';
+      const button = document.createElement('button');
+      button.type = 'button';
+      button.dataset.pathResult = option.result;
+      button.setAttribute('aria-pressed', 'false');
+      const marker = document.createElement('span');
+      marker.textContent = '○';
+      const copy = document.createElement('strong');
+      copy.textContent = option.text;
+      button.append(marker, copy);
+      button.addEventListener('click', () => {
+        const selected = Array.isArray(answers[current]) ? [...answers[current]] : [];
+        const existing = selected.indexOf(option.result);
+        if (existing >= 0) selected.splice(existing, 1);
+        else if (selected.length < 2) selected.push(option.result);
+        else selected[1] = option.result;
+        answers[current] = selected.length ? selected : null;
+        saveQuizProgress();
+        syncPathOptions();
+        animateQuestion();
+      });
+      wrapper.append(button);
+      return wrapper;
+    });
+  }
+
+  function renderQuestion() {
+    const question = activeQuiz.questions[current];
+    const isConversation = activeQuiz.mode === 'conversation';
+    const percent = Math.round((current + 1) / activeQuiz.questions.length * 100);
+    document.querySelector('[data-mini-eyebrow]').textContent = question.scene || activeQuiz.eyebrow;
+    document.querySelector('[data-mini-count]').textContent = `${isConversation ? 'Gesprek' : 'Kruispunt'} ${current + 1} van ${activeQuiz.questions.length}`;
+    document.querySelector('[data-mini-percent]').textContent = `${percent}%`;
+    document.querySelector('[data-mini-progress]').style.width = `${percent}%`;
+    document.querySelector('[data-mini-question]').textContent = question.text;
+    stage.style.setProperty('--question-number', `"${String(current + 1).padStart(2, '0')}"`);
+    updateJourney();
+    questionCard.classList.remove('mini-question--answered');
+    const options = document.querySelector('[data-mini-options]');
+    const legend = options.querySelector('legend');
+    legend.textContent = isConversation ? 'Kies de reactie die het dichtst bij je spontane antwoord komt' : 'Kies eerst de sterkste stem en eventueel een tweede';
+    const optionNodes = isConversation ? renderConversationOptions(question, options) : renderPathOptions(question);
+    options.replaceChildren(legend, ...optionNodes);
+    const counterCopy = document.querySelector('.mini-question__counterchoice span');
+    missingButton.textContent = isConversation ? 'Geen van deze reacties klinkt als mij' : 'Dit kruispunt mist mijn situatie';
+    counterCopy.textContent = isConversation ? 'Dan telt dit gespreksmoment niet mee.' : 'Dan telt dit kruispunt niet mee.';
     document.querySelector('[data-mini-previous]').disabled = current === 0;
     const next = document.querySelector('[data-mini-next]');
-    next.disabled = answers[current] === null;
-    next.textContent = current === activeQuiz.questions.length - 1 ? 'Bekijk mijn spiegel →' : 'Volgende →';
+    next.textContent = current === activeQuiz.questions.length - 1 ? 'Bekijk mijn spiegel →' : isConversation ? 'Stuur en ga verder →' : 'Volgend kruispunt →';
+    if (isConversation) {
+      missingButton.setAttribute('aria-pressed', String(answers[current] === missingAnswer));
+      next.disabled = !isAnswered(answers[current]);
+      if (answers[current] === missingAnswer) answerHint.textContent = 'Dit gespreksmoment telt niet mee in de uitslag.';
+      else answerHint.textContent = answers[current] === null ? 'Wat zou jij waarschijnlijk als eerste terugsturen?' : 'Je eerdere reactie staat nog klaar. Je mag haar veranderen.';
+    } else syncPathOptions();
     questionCard.focus({ preventScroll: true });
     stage.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
+  function customIsMissing() {
+    return answers.length > 0 && answers.every(value => value === missingAnswer);
+  }
+
+  function makeCustomCard(option, extraClass) {
+    const card = document.createElement('article');
+    card.className = `custom-card ${extraClass}`;
+    const symbol = document.createElement('span');
+    symbol.className = 'custom-card__symbol';
+    symbol.textContent = option.symbol;
+    const title = document.createElement('h3');
+    title.textContent = option.label;
+    const copy = document.createElement('p');
+    copy.textContent = option.copy;
+    card.append(symbol, title, copy);
+    return card;
+  }
+
+  function renderAllocationBoard() {
+    const missing = customIsMissing();
+    const assigned = answers.filter(value => isValidResult(value)).length;
+    const remaining = activeQuiz.tokenBudget - assigned;
+    document.querySelector('[data-custom-status]').textContent = missing
+      ? 'Geen vonkjes verdeeld. Deze spiegel blijft bewust open.'
+      : remaining
+        ? `Nog ${remaining} vonkje${remaining === 1 ? '' : 's'} te verdelen.`
+        : 'Alle vonkjes zijn verdeeld. Ongelijk mag.';
+    customBoard.replaceChildren(...activeQuiz.gameOptions.map(option => {
+      const card = makeCustomCard(option, 'custom-card--allocation');
+      const count = answers.filter(value => value === option.result).length;
+      const controls = document.createElement('div');
+      controls.className = 'spark-controls';
+      const minus = document.createElement('button');
+      minus.type = 'button';
+      minus.textContent = '−';
+      minus.setAttribute('aria-label', `Haal een vonkje weg bij ${option.label}`);
+      minus.disabled = missing || count === 0;
+      const score = document.createElement('strong');
+      score.textContent = '✦'.repeat(count) || '0';
+      score.setAttribute('aria-label', `${count} vonkjes`);
+      const plus = document.createElement('button');
+      plus.type = 'button';
+      plus.textContent = '+';
+      plus.setAttribute('aria-label', `Geef een vonkje aan ${option.label}`);
+      plus.disabled = missing || remaining === 0;
+      minus.addEventListener('click', () => {
+        const index = answers.lastIndexOf(option.result);
+        if (index >= 0) answers[index] = null;
+        saveQuizProgress();
+        renderCustomGame();
+      });
+      plus.addEventListener('click', () => {
+        const index = answers.indexOf(null);
+        if (index >= 0) answers[index] = option.result;
+        saveQuizProgress();
+        renderCustomGame();
+      });
+      controls.append(minus, score, plus);
+      card.append(controls);
+      return card;
+    }));
+    customFinishButton.disabled = !missing && remaining > 0;
+  }
+
+  function renderRankingBoard() {
+    const missing = customIsMissing();
+    const nextSeat = answers.findIndex(value => value === null);
+    document.querySelector('[data-custom-status]').textContent = missing
+      ? 'Deze cast krijgt vandaag geen rol. Dat is een geldige uitkomst.'
+      : nextSeat >= 0
+        ? `Kies nu: ${activeQuiz.rankSeats[nextSeat].label}.`
+        : 'De tijdelijke bezetting staat. Je kunt nog een plaats vrijmaken.';
+    const seats = document.createElement('ol');
+    seats.className = 'rank-seats';
+    activeQuiz.rankSeats.forEach((seat, index) => {
+      const row = document.createElement('li');
+      row.className = answers[index] && answers[index] !== missingAnswer ? 'is-filled' : '';
+      const label = document.createElement('span');
+      label.textContent = seat.label;
+      const chosen = activeQuiz.gameOptions.find(option => option.result === answers[index]);
+      const value = document.createElement('strong');
+      value.textContent = chosen?.label || 'Nog leeg';
+      row.append(label, value);
+      if (chosen) {
+        const clear = document.createElement('button');
+        clear.type = 'button';
+        clear.textContent = 'Maak vrij';
+        clear.addEventListener('click', () => {
+          answers[index] = null;
+          saveQuizProgress();
+          renderCustomGame();
+        });
+        row.append(clear);
+      }
+      seats.append(row);
+    });
+    const cast = document.createElement('div');
+    cast.className = 'rank-cast';
+    activeQuiz.gameOptions.forEach(option => {
+      const card = makeCustomCard(option, 'custom-card--ranking');
+      const usedAt = answers.indexOf(option.result);
+      const choose = document.createElement('button');
+      choose.type = 'button';
+      choose.disabled = missing || usedAt >= 0 || nextSeat < 0;
+      choose.textContent = usedAt >= 0 ? activeQuiz.rankSeats[usedAt].label : nextSeat >= 0 ? `Zet bij: ${activeQuiz.rankSeats[nextSeat].label}` : 'Geplaatst';
+      choose.addEventListener('click', () => {
+        const empty = answers.findIndex(value => value === null);
+        if (empty >= 0) answers[empty] = option.result;
+        saveQuizProgress();
+        renderCustomGame();
+      });
+      card.append(choose);
+      cast.append(card);
+    });
+    customBoard.replaceChildren(seats, cast);
+    customFinishButton.disabled = !missing && answers.some(value => value === null);
+  }
+
+  function renderCustomGame() {
+    document.querySelector('[data-custom-eyebrow]').textContent = activeQuiz.customEyebrow;
+    document.querySelector('[data-custom-title]').textContent = activeQuiz.customTitle;
+    document.querySelector('[data-custom-intro]').textContent = activeQuiz.customIntro;
+    customMissButton.textContent = activeQuiz.customMissLabel;
+    document.querySelector('[data-custom-misses-help]').textContent = activeQuiz.customMissHelp;
+    customMissButton.setAttribute('aria-pressed', String(customIsMissing()));
+    customBoard.dataset.customMode = activeQuiz.mode;
+    if (activeQuiz.mode === 'allocation') renderAllocationBoard();
+    else renderRankingBoard();
+    customGame.focus?.({ preventScroll: true });
+  }
+
   function calculateResult() {
     const scores = Object.fromEntries(activeQuiz.resultOrder.map(key => [key, 0]));
-    answers.forEach(key => { if (Object.hasOwn(scores, key)) scores[key] += 1; });
-    const answered = Object.values(scores).reduce((sum, score) => sum + score, 0);
-    const missed = answers.filter(value => value === missingAnswer).length;
-    if (answered < 2) return { scores, answered, missed, leaders: [], maxScore: answered, noMatch: true };
+    let answered = 0;
+    let missed = 0;
+    let unit = 'antwoorden';
+    if (activeQuiz.mode === 'path') {
+      unit = 'routepunten';
+      answers.forEach(value => {
+        if (value === missingAnswer) { missed += 1; return; }
+        if (!Array.isArray(value) || !value.length) return;
+        answered += 1;
+        if (isValidResult(value[0])) scores[value[0]] += 2;
+        if (isValidResult(value[1])) scores[value[1]] += 1;
+      });
+    } else if (activeQuiz.mode === 'ranking') {
+      unit = 'stuurpunten';
+      answers.forEach((value, index) => {
+        if (value === missingAnswer) { missed += 1; return; }
+        if (!isValidResult(value)) return;
+        answered += 1;
+        scores[value] += activeQuiz.rankSeats[index].weight;
+      });
+    } else {
+      unit = activeQuiz.mode === 'allocation' ? 'vonkjes' : 'reacties';
+      answers.forEach(value => {
+        if (value === missingAnswer) { missed += 1; return; }
+        if (!isValidResult(value)) return;
+        answered += 1;
+        scores[value] += 1;
+      });
+    }
+    if (answered < 2) return { scores, answered, missed, leaders: [], maxScore: 0, noMatch: true, unit };
     const maxScore = Math.max(...Object.values(scores));
     const leaders = activeQuiz.resultOrder.filter(key => scores[key] === maxScore);
-    return { scores, answered, missed, leaders, maxScore, noMatch: false };
+    return { scores, answered, missed, leaders, maxScore, noMatch: false, unit };
   }
 
   function openResult() {
@@ -214,16 +503,22 @@
       id: 'open',
       kicker: 'Een geldige uitslag',
       title: 'De spiegel blijft open',
-      summary: 'Geen antwoordcategorie kreeg genoeg grond onder de voeten. Dat is geen fout: deze quiz stelde vandaag blijkbaar niet de juiste vragen voor jouw situatie.',
-      strength: 'Je hebt geen passend verhaal geforceerd alleen omdat de quiz erom vroeg.',
+      summary: 'Geen richting kreeg genoeg grond onder de voeten. Dat is geen fout: dit spel ving jouw situatie vandaag blijkbaar niet goed genoeg.',
+      strength: 'Je hebt geen passend verhaal geforceerd alleen omdat het spel erom vroeg.',
       friction: 'Een open spiegel vertelt nog niet wat er wél speelt. Daarvoor zijn andere woorden, context of vragen nodig.',
-      counter: 'Welke vraag had deze quiz wél moeten stellen om jouw situatie te begrijpen?',
+      counter: 'Welke vraag of speeloptie ontbrak om jouw situatie beter te begrijpen?',
       experiment: 'Schrijf één betere vraag op. Je hoeft haar vandaag nog niet te beantwoorden.',
       readHref: 'atlas-kompas.html',
       readLabel: 'Lees hoe de Atlas ruimte laat voor onzekerheid →',
       readTitle: 'Het Atlas-kompas',
       readReason: 'Deze tekst legt uit waarom een mens nooit volledig in één model, score of verhaal past.'
     };
+  }
+
+  function scoreCopy(score, unit) {
+    if (unit === 'reacties') return `${score} reactie${score === 1 ? '' : 's'}`;
+    if (unit === 'vonkjes') return `${score} vonkje${score === 1 ? '' : 's'}`;
+    return `${score} ${unit}`;
   }
 
   function buildTieChoices(meta, chosenId = '') {
@@ -246,6 +541,7 @@
           fit = '';
           reflection = '';
           resultSaved = false;
+          document.querySelector('[data-save-mini-status]').textContent = '';
         }
         renderResult(id);
       });
@@ -256,21 +552,34 @@
   function renderTie(meta, chosenId = '') {
     tieSection.hidden = false;
     tieSection.classList.toggle('mini-tie--resolved', Boolean(chosenId));
-    tieSection.querySelector('h1').textContent = chosenId ? 'Je antwoorden lieten meer dan één richting open.' : 'Meer dan één spiegel past even sterk.';
+    tieSection.querySelector('h1').textContent = chosenId ? 'Je spel liet meer dan één richting open.' : 'Meer dan één spiegel past even sterk.';
     const names = meta.leaders.map(id => activeQuiz.results[id].title).join(' en ');
+    const score = scoreCopy(meta.maxScore, meta.unit);
     document.querySelector('[data-result-tie-copy]').textContent = chosenId
-      ? `${names} kregen elk ${meta.maxScore} antwoord${meta.maxScore === 1 ? '' : 'en'}. Je bekijkt nu ${activeQuiz.results[chosenId].title}, maar je kunt de andere spiegel ook openen.`
-      : `${names} kregen elk ${meta.maxScore} antwoord${meta.maxScore === 1 ? '' : 'en'}. De quiz kiest niet stiekem voor jou.`;
+      ? `${names} kregen elk ${score}. Je bekijkt nu ${activeQuiz.results[chosenId].title}, maar je kunt de andere spiegel ook openen.`
+      : `${names} kregen elk ${score}. De Quizkast kiest niet stiekem voor jou.`;
     buildTieChoices(meta, chosenId);
   }
 
   function describeBasis(meta, result) {
-    if (meta.noMatch) return `Slechts ${meta.answered} van de ${answers.length} vragen ${meta.answered === 1 ? 'leverde' : 'leverden'} een tellend antwoord op; ${meta.missed} vraag${meta.missed === 1 ? '' : 'en'} markeerde je als niet passend. Daarom maken we geen profiel op zo weinig grond.`;
-    const missedCopy = meta.missed ? ` ${meta.missed} vraag${meta.missed === 1 ? '' : 'en'} telde${meta.missed === 1 ? '' : 'n'} bewust niet mee.` : '';
-    if (meta.leaders.length > 1) return `${meta.leaders.length} spiegels kregen elk ${meta.maxScore} van je ${meta.answered} tellende antwoorden. Jij koos ${result.title} om verder te onderzoeken.${missedCopy}`;
+    if (meta.noMatch) return `Er waren slechts ${meta.answered} tellende keuzes. Daarom maken we geen profiel op zo weinig grond.`;
+    if (activeQuiz.mode === 'allocation') {
+      const spread = activeQuiz.resultOrder.filter(id => id !== result.id && meta.scores[id] > 0).length;
+      return `${scoreCopy(meta.maxScore, meta.unit)} ging${meta.maxScore === 1 ? '' : 'en'} naar ${result.title}. ${spread ? `Je verdeelde ook over ${spread} andere beweging${spread === 1 ? '' : 'en'}.` : 'Je legde alle nadruk op één beweging.'}`;
+    }
+    if (activeQuiz.mode === 'ranking') {
+      const names = answers.filter(value => isValidResult(value)).map((id, index) => `${activeQuiz.rankSeats[index].label}: ${activeQuiz.results[id].title}`);
+      return `Jouw tijdelijke bezetting was ${names.join(' · ')}. De eerste plaats weegt het zwaarst; ze maakt de andere stemmen niet onbelangrijk.`;
+    }
+    const missedCopy = meta.missed ? ` ${meta.missed} moment${meta.missed === 1 ? '' : 'en'} telde${meta.missed === 1 ? '' : 'n'} bewust niet mee.` : '';
+    if (activeQuiz.mode === 'path') {
+      if (meta.leaders.length > 1) return `${meta.leaders.length} richtingen kregen elk ${scoreCopy(meta.maxScore, meta.unit)}. Jij koos ${result.title} om verder te onderzoeken.${missedCopy}`;
+      return `${result.title} kreeg ${scoreCopy(meta.maxScore, meta.unit)}. Een eerste stem kreeg per kruispunt twee punten; een eventuele tweede één.${missedCopy}`;
+    }
+    if (meta.leaders.length > 1) return `${meta.leaders.length} luisterspiegels kregen elk ${scoreCopy(meta.maxScore, meta.unit)}. Jij koos ${result.title} om verder te onderzoeken.${missedCopy}`;
     const otherScores = activeQuiz.resultOrder.filter(id => id !== result.id && meta.scores[id] > 0).length;
-    const spreadCopy = otherScores ? ` Je overige antwoorden wezen ook naar ${otherScores} andere richting${otherScores === 1 ? '' : 'en'}.` : '';
-    return `${meta.maxScore} van je ${meta.answered} tellende antwoorden wezen het sterkst naar deze spiegel.${spreadCopy}${missedCopy}`;
+    const spreadCopy = otherScores ? ` Je andere reacties wezen ook naar ${otherScores} andere luisterbeweging${otherScores === 1 ? '' : 'en'}.` : '';
+    return `${scoreCopy(meta.maxScore, meta.unit)} wees${meta.maxScore === 1 ? '' : 'en'} naar deze spiegel.${spreadCopy}${missedCopy}`;
   }
 
   function renderReading(result) {
@@ -347,11 +656,7 @@
     try {
       const raw = localStorage.getItem(trackStorageKey) || localStorage.getItem(previousTrackStorageKey);
       const progress = raw ? JSON.parse(raw) : {
-        checks: new Array(7).fill(false),
-        note: '',
-        startedAt: new Date().toISOString(),
-        completedWeeks: [],
-        carryForward: ''
+        checks: new Array(7).fill(false), note: '', startedAt: new Date().toISOString(), completedWeeks: [], carryForward: ''
       };
       if (!progress || typeof progress !== 'object') throw new Error('Ongeldig spoor');
       if (!Array.isArray(progress.quizSnapshots)) progress.quizSnapshots = [];
@@ -394,11 +699,14 @@
   missingButton.addEventListener('click', () => {
     const wasMissing = answers[current] === missingAnswer;
     answers[current] = wasMissing ? null : missingAnswer;
-    document.querySelectorAll('[data-mini-options] input').forEach(input => { input.checked = false; });
+    if (activeQuiz.mode === 'conversation') document.querySelectorAll('[data-mini-options] input').forEach(input => { input.checked = false; });
     missingButton.setAttribute('aria-pressed', String(!wasMissing));
-    document.querySelector('[data-mini-next]').disabled = wasMissing;
-    answerHint.textContent = wasMissing ? 'Kies wat vandaag het dichtst in de buurt komt.' : 'Helder. Deze vraag telt niet mee in de uitslag.';
     saveQuizProgress();
+    if (activeQuiz.mode === 'path') syncPathOptions();
+    else {
+      document.querySelector('[data-mini-next]').disabled = wasMissing;
+      answerHint.textContent = wasMissing ? 'Kies de reactie die het dichtst bij je spontane antwoord komt.' : 'Dit gespreksmoment telt niet mee in de uitslag.';
+    }
   });
   document.querySelector('[data-mini-previous]').addEventListener('click', () => {
     if (current > 0) {
@@ -408,13 +716,24 @@
     }
   });
   document.querySelector('[data-mini-next]').addEventListener('click', () => {
-    if (answers[current] === null) return;
+    if (!isAnswered(answers[current])) return;
     if (current < activeQuiz.questions.length - 1) {
       current += 1;
       saveQuizProgress();
       renderQuestion();
     } else renderResult();
   });
+  customMissButton.addEventListener('click', () => {
+    answers = customIsMissing() ? new Array(expectedAnswerCount()).fill(null) : new Array(expectedAnswerCount()).fill(missingAnswer);
+    saveQuizProgress();
+    renderCustomGame();
+  });
+  document.querySelector('[data-reset-custom]').addEventListener('click', () => {
+    answers = new Array(expectedAnswerCount()).fill(null);
+    saveQuizProgress();
+    renderCustomGame();
+  });
+  customFinishButton.addEventListener('click', () => { if (playIsComplete()) renderResult(); });
   fitButtons.forEach(button => button.addEventListener('click', () => {
     fit = button.dataset.miniFit;
     syncReactionControls();

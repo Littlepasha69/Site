@@ -5,6 +5,20 @@
       id: 'beweging-vandaag',
       title: 'Welke kleine beweging heb jij vandaag nodig?',
       eyebrow: 'Vandaag · kleine beweging',
+      mode: 'allocation',
+      tokenBudget: 5,
+      customEyebrow: 'Bouw je kleine verschuiving',
+      customTitle: 'Verdeel vijf vonkjes over wat vandaag ruimte vraagt.',
+      customIntro: 'Geef meerdere vonkjes aan iets dat hard trekt, één aan een kleine bijzaak of helemaal niets aan wat vandaag niet speelt. Je hoeft niet eerlijk te verdelen.',
+      customMissLabel: 'Geen van deze bewegingen past vandaag',
+      customMissHelp: 'Dan forceren we geen richting en blijft de spiegel open.',
+      gameOptions: [
+        { result: 'vertragen', symbol: 'Ⅱ', label: 'Vertragen', copy: 'Ruimte tussen prikkel en reactie.' },
+        { result: 'benoemen', symbol: 'Aa', label: 'Benoemen', copy: 'Woorden zoeken voor wat nog vaag is.' },
+        { result: 'begrenzen', symbol: '│', label: 'Begrenzen', copy: 'Minder dragen of niet meteen antwoorden.' },
+        { result: 'verbinden', symbol: '∞', label: 'Verbinden', copy: 'Iets delen, vragen of samen dragen.' },
+        { result: 'kiezen', symbol: '↗', label: 'Kiezen', copy: 'Een kleine richting als proef nemen.' }
+      ],
       resultOrder: ['vertragen', 'benoemen', 'begrenzen', 'verbinden', 'kiezen'],
       questions: [
         { text: 'Wat schuurt vandaag het meest?', options: o(['Mijn tempo ligt hoger dan goed voelt.', 'vertragen'], ['Ik voel veel, maar krijg er geen woorden voor.', 'benoemen'], ['Er komt meer op mij af dan ik wil dragen.', 'begrenzen'], ['Ik probeer iets te lang alleen vast te houden.', 'verbinden'], ['Ik blijf rond dezelfde beslissing draaien.', 'kiezen']) },
@@ -26,14 +40,15 @@
       id: 'luisteren-of-repareren',
       title: 'Luister jij — of begin je te repareren?',
       eyebrow: 'Gesprekken · nabijheid',
+      mode: 'conversation',
       resultOrder: ['ruimte', 'verhelderen', 'meedragen', 'oplossen'],
       questions: [
-        { text: 'Iemand begint over een moeilijke dag. Wat doe je meestal eerst?', options: o(['Ik laat vertellen en probeer niet te onderbreken.', 'ruimte'], ['Ik stel een vraag om beter te begrijpen wat er gebeurde.', 'verhelderen'], ['Ik benoem dat het zwaar of pijnlijk klinkt.', 'meedragen'], ['Ik zoek meteen naar iets dat praktisch kan helpen.', 'oplossen']) },
-        { text: 'Wanneer een verhaal lang wordt, waar gaat je aandacht naartoe?', options: o(['Naar het tempo en de stiltes van de ander.', 'ruimte'], ['Naar wat nog onduidelijk of tegenstrijdig is.', 'verhelderen'], ['Naar het gevoel onder de woorden.', 'meedragen'], ['Naar de kern en de mogelijke volgende stap.', 'oplossen']) },
-        { text: 'Welke reactie voelt het natuurlijkst?', options: o(['“Neem je tijd.”', 'ruimte'], ['“Wat bedoel je precies met…?”', 'verhelderen'], ['“Ik kan me voorstellen dat dit je raakt.”', 'meedragen'], ['“Zal ik even met je meedenken?”', 'oplossen']) },
-        { text: 'Wat vind je het lastigst in zo’n gesprek?', options: o(['De stilte niet meteen vullen.', 'ruimte'], ['Niet te veel vragen achter elkaar stellen.', 'verhelderen'], ['Niet alle emoties zelf mee naar huis nemen.', 'meedragen'], ['Geen oplossing geven wanneer ik er één zie.', 'oplossen']) },
-        { text: 'Wanneer weet je dat het gesprek geholpen heeft?', options: o(['De ander kreeg ruimte om het eigen verhaal te horen.', 'ruimte'], ['Het probleem of verlangen werd helderder.', 'verhelderen'], ['De ander voelde zich minder alleen in wat er speelt.', 'meedragen'], ['Er ontstond een concrete mogelijkheid om verder te gaan.', 'oplossen']) },
-        { text: 'Wat zou je vaker willen kunnen?', options: o(['Aanwezig blijven zonder iets te hoeven doen.', 'ruimte'], ['Eén goede vraag stellen in plaats van vijf snelle.', 'verhelderen'], ['Meevoelen zonder mezelf kwijt te raken.', 'meedragen'], ['Eerst vragen of advies welkom is.', 'oplossen']) }
+        { scene: 'Een vriend stuurt om 22.14 uur', text: '“Vandaag ging werkelijk alles mis. Ik weet zelfs niet waar ik moet beginnen.”', options: o(['“Begin maar waar je wilt. Ik ben hier.”', 'ruimte'], ['“Wat drukte vandaag het zwaarst?”', 'verhelderen'], ['“Dat klinkt alsof je helemaal op bent.”', 'meedragen'], ['“Zullen we eerst kijken wat morgen echt moet?”', 'oplossen']) },
+        { scene: 'De ander blijft lang vertellen', text: '“En toen zei zij dat weer, en daarna gebeurde hetzelfde met mijn baas…”', options: o(['Ik laat de stilte en het tempo bij de ander.', 'ruimte'], ['“Als ik je goed begrijp, raken die twee dingen elkaar?”', 'verhelderen'], ['“Ik hoor hoeveel dit zich heeft opgestapeld.”', 'meedragen'], ['“Welke van die twee situaties wil je eerst aanpakken?”', 'oplossen']) },
+        { scene: 'Een zin blijft in de lucht hangen', text: '“Misschien stel ik me gewoon aan.”', options: o(['Ik wacht even; misschien komt er nog iets.', 'ruimte'], ['“Wat maakt dat je dat over jezelf zegt?”', 'verhelderen'], ['“Voor mij klinkt dit niet als aanstellen.”', 'meedragen'], ['“Wat zou je nu concreet wat lucht geven?”', 'oplossen']) },
+        { scene: 'Je voelt je eigen onrust stijgen', text: '“Ik blijf maar rondjes draaien. Niets helpt.”', options: o(['Ik adem uit en blijf nog even aanwezig.', 'ruimte'], ['“Wat heb je al geprobeerd — en wat gebeurde er toen?”', 'verhelderen'], ['“Het lijkt me vermoeiend om zo vast te zitten.”', 'meedragen'], ['“Mag ik één mogelijkheid met je delen?”', 'oplossen']) },
+        { scene: 'De ander kijkt je verwachtingsvol aan', text: '“Wat denk jij dat ik moet doen?”', options: o(['“Wil je eerst nog iets kwijt voor ik antwoord?”', 'ruimte'], ['“Waar twijfel je zelf precies tussen?”', 'verhelderen'], ['“Ik wil eerst goed begrijpen wat dit voor jou betekent.”', 'meedragen'], ['“Ik denk graag mee. Zullen we de opties naast elkaar zetten?”', 'oplossen']) },
+        { scene: 'Het gesprek loopt naar zijn einde', text: '“Dank je. Ik weet nog niet wat ik ga doen, maar het voelt anders.”', options: o(['“We hoeven het nu niet verder dicht te maken.”', 'ruimte'], ['“Wat is er voor jou helderder geworden?”', 'verhelderen'], ['“Ik ben blij dat je dit niet alleen hoefde te dragen.”', 'meedragen'], ['“Wil je later samen naar een volgende stap kijken?”', 'oplossen']) }
       ],
       results: {
         ruimte: { kicker: 'Wat in je antwoorden opvalt', title: 'Ruimte laten', summary: 'Je neigt naar aanwezigheid zonder onmiddellijk richting te geven. Dat kan een ander helpen het eigen verhaal te horen.', strength: 'Stilte en onverdeelde aandacht kunnen een gesprek minder gehaast maken.', friction: 'Alleen ruimte laten kan afstandelijk voelen wanneer iemand om duidelijke betrokkenheid of hulp vraagt.', counter: 'Wanneer wacht je zo lang dat je eigen stem uit het gesprek verdwijnt?', experiment: 'Laat in één gesprek na een antwoord bewust drie seconden stilte vallen.', readHref: 'onderwerpen/de-ander-verandert-je.html', readTitle: 'De ander verandert je', readLabel: 'Lees het dossier De ander verandert je →', readReason: 'Deze tekst onderzoekt responsiviteit én de grens tussen ruimte geven, jezelf aanpassen en verdwijnen uit het contact.' },
@@ -46,6 +61,7 @@
       id: 'waar-komt-je-ja-vandaan',
       title: 'Waar komt jouw ja vandaan?',
       eyebrow: 'Keuzes · motivatie',
+      mode: 'path',
       resultOrder: ['volmondig', 'harmonie', 'verantwoordelijkheid', 'automatisch', 'voorlopig'],
       questions: [
         { text: 'Iemand vraagt je iets onverwachts. Wat gebeurt er meestal eerst?', options: o(['Ik voel vrij snel echte zin of geen zin.', 'volmondig'], ['Ik kijk wat mijn antwoord met de ander zal doen.', 'harmonie'], ['Ik denk na over wat van mij verwacht mag worden.', 'verantwoordelijkheid'], ['Ik hoor mezelf al ja zeggen voordat ik heb nagedacht.', 'automatisch'], ['Ik wil eerst wat meer informatie of tijd.', 'voorlopig']) },
@@ -67,6 +83,24 @@
       id: 'wie-zit-aan-het-stuur',
       title: 'Wie zit er vandaag aan jouw stuur?',
       eyebrow: 'Persoonlijkheid · tijdelijke hoofdrol',
+      mode: 'ranking',
+      customEyebrow: 'Stuurtafel · tijdelijke bezetting',
+      customTitle: 'Zet vier stemmen op hun plek in deze rit.',
+      customIntro: 'Kies eerst wie vandaag aan het stuur zit, daarna de navigator, de achterbank en ten slotte de stem op de radio. Morgen mag de bezetting anders zijn.',
+      customMissLabel: 'Deze hele cast mist mij vandaag',
+      customMissHelp: 'Dan maken we van vier leuke titels geen identiteit.',
+      rankSeats: [
+        { label: 'Aan het stuur', weight: 4 },
+        { label: 'Navigator', weight: 3 },
+        { label: 'Op de achterbank', weight: 2 },
+        { label: 'Stem op de radio', weight: 1 }
+      ],
+      gameOptions: [
+        { result: 'motor', symbol: '⚙', label: 'De Vaste Motor', copy: 'Herhaling, voorkeur en vertrouwd ritme.' },
+        { result: 'situatielezer', symbol: '◎', label: 'De Situatielezer', copy: 'De kamer, de mensen en wat hier past.' },
+        { result: 'kompasdrager', symbol: '◇', label: 'De Kompasdrager', copy: 'Waarden, redenen en de gekozen richting.' },
+        { result: 'verhalenmaker', symbol: '✎', label: 'De Verhalenmaker', copy: 'Rollen, hoofdstukken en betekenis.' }
+      ],
       theoryHref: 'onderwerpen/persoonlijkheid.html',
       theoryLabel: 'Waarom je persoonlijkheid rijker is dan één type →',
       resultOrder: ['motor', 'situatielezer', 'kompasdrager', 'verhalenmaker'],

@@ -271,8 +271,9 @@ window.ONWIJZE_CONTENT = [
     updated: '2026-07-18T23:50:00+03:00', featureImage: 'images/ervaring-kaart.svg', areaIcon: '☾'
   },
   {
-    title: 'Trauma', type: 'dossier', category: 'Trauma & herstel', level: 'Onderzocht',
-    summary: 'Hoe ingrijpende ervaringen sporen kunnen nalaten in hersenen, lichaam en zenuwstelsel.',
-    url: 'onderwerpen/trauma.html', tags: ['ptss', 'stress', 'veiligheid', 'hechting', 'herstel'], areaIcon: 'mendedHeart'
+    title: 'Trauma', type: 'dossier', category: 'Trauma & herstel', level: 'Redelijk stevig',
+    summary: 'Waarom bescherming kan blijven doorwerken nadat gevaar voorbij is — en hoe veiligheid, betekenis, relatie en behandeling opnieuw keuzevrijheid kunnen openen.',
+    url: 'onderwerpen/trauma.html', tags: ['trauma', 'ptss', 'complexe ptss', 'cptss', 'stress', 'veiligheid', 'herbeleving', 'vermijding', 'dissociatie', 'geheugen', 'zenuwstelsel', 'emdr', 'prolonged exposure', 'cognitive processing therapy', 'veerkracht', 'posttraumatische groei', 'polyvagaaltheorie', 'herstel', 'Judith Herman', 'Anke Ehlers', 'George Bonanno'],
+    updated: '2026-07-18T23:59:55+03:00', featureImage: 'images/trauma-herstelkaart.svg', areaIcon: 'mendedHeart'
   }
 ];

@@ -212,6 +212,7 @@
 }
 .atlas-featured-dossier__head { display: flex; align-items: center; gap: .65rem; }
 .atlas-featured-dossier__head i { width: 2.35rem; height: 2.35rem; display: grid; place-items: center; flex: 0 0 auto; border: 1px solid rgba(255,255,255,.3); border-radius: 50%; color: white; font: 700 1.2rem var(--sans); font-style: normal; }
+.atlas-featured-dossier__head i svg { width:1.35rem;height:1.35rem;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round; }
 .atlas-featured-dossier strong { margin: .55rem 0; font: 700 clamp(1.65rem, 3vw, 2.25rem)/1 var(--serif); }
 .atlas-featured-dossier p { margin: .4rem 0 1.2rem; color: rgba(255,255,255,.72); }
 .atlas-featured-dossier b { margin-top: auto; color: #f0c66b; font-size: .83rem; }
