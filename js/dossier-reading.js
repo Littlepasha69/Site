@@ -76,14 +76,15 @@
         url: currentRecord.url,
         title: currentRecord.title,
         category: currentRecord.category,
+        saved: Boolean(previous?.saved),
         progress: Math.max(previousProgress, requestedProgress),
         chapterId: movesForward ? chapterId : previous?.chapterId || chapterId,
         chapterLabel: movesForward ? chapterLabel : previous?.chapterLabel || chapterLabel,
         visitedAt: Date.now()
       };
       const nextHistory = [footprint, ...history.filter(entry => entry.url !== currentRecord.url)]
-        .sort((a, b) => b.visitedAt - a.visitedAt)
-        .slice(0, 8);
+        .sort((a, b) => Number(Boolean(b.saved)) - Number(Boolean(a.saved)) || b.visitedAt - a.visitedAt)
+        .slice(0, 12);
       localStorage.setItem(footprintStorageKey, JSON.stringify(nextHistory));
       return footprint;
     } catch (error) {
@@ -98,12 +99,11 @@
   }
 
   const saveButton = page.querySelector('[data-save-dossier]');
-  const bookmarkStorageKey = 'onwijze-atlas-bookmarks-v1';
 
   if (saveButton && currentRecord) {
-    const readBookmarks = () => {
+    const readFootprints = () => {
       try {
-        const stored = JSON.parse(localStorage.getItem(bookmarkStorageKey) || '[]');
+        const stored = JSON.parse(localStorage.getItem(footprintStorageKey) || '[]');
         return Array.isArray(stored) ? stored : [];
       } catch (error) {
         return [];
@@ -117,22 +117,29 @@
         : '<span aria-hidden="true">＋</span> Bewaar dit dossier';
     };
 
-    showBookmarkState(readBookmarks().some(entry => entry.url === currentRecord.url));
+    showBookmarkState(readFootprints().some(entry => entry.url === currentRecord.url && entry.saved));
 
     saveButton.addEventListener('click', () => {
-      const bookmarks = readBookmarks();
-      const isSaved = bookmarks.some(entry => entry.url === currentRecord.url);
-      const next = isSaved
-        ? bookmarks.filter(entry => entry.url !== currentRecord.url)
-        : [{
-            url: currentRecord.url,
-            title: currentRecord.title,
-            category: currentRecord.category,
-            savedAt: Date.now()
-          }, ...bookmarks.filter(entry => entry.url !== currentRecord.url)].slice(0, 24);
+      const footprints = readFootprints();
+      const previous = footprints.find(entry => entry.url === currentRecord.url) || {};
+      const isSaved = Boolean(previous.saved);
+      const updated = {
+        ...previous,
+        url: currentRecord.url,
+        title: currentRecord.title,
+        category: currentRecord.category,
+        saved: !isSaved,
+        progress: Number(previous.progress) || 0,
+        chapterId: previous.chapterId || chapters[0].section.id,
+        chapterLabel: previous.chapterLabel || chapters[0].link.textContent.trim(),
+        visitedAt: Date.now()
+      };
+      const next = [updated, ...footprints.filter(entry => entry.url !== currentRecord.url)]
+        .sort((a, b) => Number(Boolean(b.saved)) - Number(Boolean(a.saved)) || b.visitedAt - a.visitedAt)
+        .slice(0, 12);
 
       try {
-        localStorage.setItem(bookmarkStorageKey, JSON.stringify(next));
+        localStorage.setItem(footprintStorageKey, JSON.stringify(next));
         showBookmarkState(!isSaved);
       } catch (error) {
         saveButton.textContent = 'Bewaren is hier niet beschikbaar';

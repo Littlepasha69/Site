@@ -89,7 +89,7 @@
     const entries = history
       .map(entry => ({ entry, dossier: dossiers.find(item => item.url === entry.url) }))
       .filter(item => item.dossier)
-      .sort((a, b) => (Number(b.entry.visitedAt) || 0) - (Number(a.entry.visitedAt) || 0))
+      .sort((a, b) => Number(Boolean(b.entry.saved)) - Number(Boolean(a.entry.saved)) || (Number(b.entry.visitedAt) || 0) - (Number(a.entry.visitedAt) || 0))
       .slice(0, 3);
 
     const cards = entries.map(({ entry, dossier }) => {
@@ -103,7 +103,7 @@
       const area = document.createElement('span');
       area.textContent = dossier.category;
       const percentage = document.createElement('em');
-      percentage.textContent = progress >= 99 ? 'Uitgelezen' : progress ? `${progress}% gelezen` : 'Net geopend';
+      percentage.textContent = entry.saved ? 'Bewaard' : progress >= 99 ? 'Uitgelezen' : progress ? `${progress}% gelezen` : 'Net geopend';
       meta.append(area, percentage);
 
       const title = document.createElement('strong');

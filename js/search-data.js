@@ -172,8 +172,8 @@ window.ONWIJZE_CONTENT = [
   },
   {
     title: 'Gewoontes', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
-    summary: 'Waarom automatische routes ontstaan, hoe context en herhaling meespelen en waarom inzicht alleen een patroon niet altijd stopt.',
-    url: 'onderwerpen/gewoontes.html', tags: ['gewoontes', 'automatische piloot', 'patronen', 'context', 'herhaling', 'dopamine', 'actievoorspellingsfout', 'hypothese', 'basale ganglia', 'gedragsverandering', 'wilskracht'],
+    summary: 'Hoe breincircuits, lichaamstoestand, leerprocessen, beweging en omgeving samen automatische routes vormen.',
+    url: 'onderwerpen/gewoontes.html', tags: ['gewoontes', 'automatische piloot', 'patronen', 'context', 'herhaling', 'dopamine', 'actievoorspellingsfout', 'hypothese', 'basale ganglia', 'gedragsverandering', 'wilskracht', 'slaap', 'stress', 'fysiologie', 'motorisch leren', 'cerebellum', 'omgeving'],
     updated: '2026-07-18T20:10:00+03:00', featureImage: 'images/gewoontes-route.svg', areaIcon: '↗'
   },
   {
@@ -186,6 +186,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Hoe ervaring het brein verandert, welke grenzen plasticiteit heeft en waarom verandering geen onbeperkte maakbaarheid betekent.',
     url: 'onderwerpen/neuroplasticiteit.html', tags: ['leren', 'hersenen', 'synapsen', 'herstel', 'gewoonten', 'veranderen', 'slaap'],
     updated: '2026-07-18T16:21:49+03:00', featureImage: 'images/neuroplasticiteit-kaart.svg', areaIcon: '↗'
+  },
+  {
+    title: 'Geheugen', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
+    summary: 'Hoe herinneringen worden gevormd, verbonden, opgehaald, veranderd en vergeten — en waarom geheugen ook een werkplaats voor de toekomst is.',
+    url: 'onderwerpen/geheugen.html', tags: ['geheugen', 'herinnering', 'vergeten', 'werkgeheugen', 'episodisch geheugen', 'semantisch geheugen', 'autobiografisch geheugen', 'hippocampus', 'consolidatie', 'slaap', 'reconsolidatie', 'engram', 'toekomstverbeelding', 'valse herinnering', 'misinformatie', 'identiteit', 'Ranganath', 'Schiller'],
+    updated: '2026-07-18T23:58:00+03:00', featureImage: 'images/geheugen-kaart.svg', areaIcon: '↗'
   },
   {
     title: 'Emotieregulatie', type: 'dossier', category: 'Emoties & regulatie', level: 'Redelijk stevig',

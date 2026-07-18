@@ -172,18 +172,19 @@
   }
 
   function rankBeasts(traits) {
-    const maximum = Math.sqrt(traitKeys.length * 10000);
-    const profileShape = traitKeys.map(key => traits[key] - 50);
+    const profileValues = traitKeys.map(key => traits[key]);
+    const profileShape = profileValues.map(value => value - 50);
     const profileMagnitude = Math.sqrt(profileShape.reduce((sum, value) => sum + value * value, 0));
     return data.beasts.map(beast => {
-      if (profileMagnitude > 0) {
-        const beastShape = beast.vector.map(value => value - 50);
-        const beastMagnitude = Math.sqrt(beastShape.reduce((sum, value) => sum + value * value, 0));
-        const similarity = beastShape.reduce((sum, value, index) => sum + value * profileShape[index], 0) / (beastMagnitude * profileMagnitude);
-        return { beast, affinity: Math.round((similarity + 1) / 2 * 100), match: similarity };
-      }
-      const distance = Math.sqrt(traitKeys.reduce((sum, key, index) => sum + Math.pow(traits[key] - beast.vector[index], 2), 0));
-      return { beast, affinity: Math.max(0, Math.round(100 - distance / maximum * 100)), match: -distance };
+      const distance = Math.sqrt(beast.vector.reduce((sum, value, index) => sum + Math.pow(profileValues[index] - value, 2), 0) / traitKeys.length);
+      const closeness = Math.max(0, 100 - distance);
+      const beastShape = beast.vector.map(value => value - 50);
+      const beastMagnitude = Math.sqrt(beastShape.reduce((sum, value) => sum + value * value, 0));
+      const shape = profileMagnitude > 0 && beastMagnitude > 0
+        ? (beastShape.reduce((sum, value, index) => sum + value * profileShape[index], 0) / (beastMagnitude * profileMagnitude) + 1) / 2 * 100
+        : closeness;
+      const match = closeness * .55 + shape * .45;
+      return { beast, affinity: Math.round(match), match };
     }).sort((a, b) => b.match - a.match || a.beast.name.localeCompare(b.beast.name, 'nl'));
   }
 
