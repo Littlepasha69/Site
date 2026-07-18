@@ -9,10 +9,27 @@
   const profilePreview = document.querySelector('[data-profile-preview]');
   const startButton = document.querySelector('[data-start-quiz]');
   const clearSavedButton = document.querySelector('[data-clear-quiz]');
+  const chapterMap = document.querySelector('[data-chapter-map]');
+  const chapterNote = document.querySelector('[data-chapter-note]');
+  const answerHint = document.querySelector('[data-answer-hint]');
+  const questionCard = document.querySelector('.question-card');
   const answers = new Array(data.questions.length).fill(null);
-  const quizStorageKey = 'beestenquiz-progress-v1';
+  const quizStorageKey = 'beestenquiz-progress-v2';
+  const answerGlyphs = ['○', '◔', '◑', '◕', '●'];
   let current = 0;
   let ranked = [];
+
+  chapterMap.replaceChildren(...data.chapters.map((chapter, index) => {
+    const step = document.createElement('span');
+    step.className = 'chapter-step';
+    step.dataset.chapterStep = String(index);
+    const marker = document.createElement('b');
+    marker.textContent = String(index + 1);
+    const label = document.createElement('small');
+    label.textContent = chapter;
+    step.append(marker, label);
+    return step;
+  }));
 
   function saveProgress() {
     try { localStorage.setItem(quizStorageKey, JSON.stringify({ current, answers })); }
@@ -48,17 +65,32 @@
   function renderQuestion() {
     const question = data.questions[current];
     const trait = data.traits[question.trait];
-    const chapterIndex = Math.floor(current / 7);
-    document.querySelector('[data-chapter-label]').textContent = `Hoofdstuk ${chapterIndex + 1} van 5 · ${data.chapters[chapterIndex]}`;
+    const questionsPerChapter = Math.ceil(data.questions.length / data.chapters.length);
+    const chapterIndex = Math.min(data.chapters.length - 1, Math.floor(current / questionsPerChapter));
+    stage.dataset.chapter = String(chapterIndex + 1);
+    document.querySelector('[data-chapter-label]').textContent = `Hoofdstuk ${chapterIndex + 1} van ${data.chapters.length} · ${data.chapters[chapterIndex]}`;
+    chapterNote.textContent = data.chapterNotes?.[chapterIndex] || '';
+    chapterMap.querySelectorAll('[data-chapter-step]').forEach((step, index) => {
+      step.classList.toggle('is-current', index === chapterIndex);
+      step.classList.toggle('is-complete', index < chapterIndex);
+      if (index === chapterIndex) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
     document.querySelector('[data-progress-count]').textContent = `Vraag ${current + 1} van ${data.questions.length}`;
     const percent = Math.round((current + 1) / data.questions.length * 100);
     document.querySelector('[data-progress-percent]').textContent = `${percent}%`;
     document.querySelector('[data-progress-bar]').style.width = `${percent}%`;
     document.querySelector('[data-question-symbol]').textContent = trait.symbol;
-    document.querySelector('[data-question-dimension]').textContent = trait.label;
+    document.querySelector('[data-question-dimension]').textContent = question.kicker || trait.label;
     document.querySelector('[data-question-text]').textContent = question.text;
-    const scale = document.querySelector('[data-answer-scale]');
-    scale.replaceChildren(...data.scale.map((label, index) => {
+    questionCard.style.setProperty('--question-mark', `"${trait.symbol}"`);
+    questionCard.classList.remove('question-card--answered');
+    answerHint.textContent = answers[current] === null
+      ? 'Kies wat meestal bij je past. Je innerlijke pr-afdeling mag even koffie halen.'
+      : 'Dit spoor koos je eerder. Je mag het natuurlijk veranderen.';
+    const answerRoot = document.querySelector('[data-answer-scale]');
+    const choices = question.options || data.scale;
+    answerRoot.replaceChildren(...choices.map((label, index) => {
       const wrapper = document.createElement('div');
       wrapper.className = 'answer-option';
       const input = document.createElement('input');
@@ -69,12 +101,17 @@
       input.checked = answers[current] === index + 1;
       const answerLabel = document.createElement('label');
       answerLabel.htmlFor = input.id;
+      answerLabel.style.setProperty('--answer-order', String(index));
       const number = document.createElement('span');
-      number.textContent = String(index + 1);
+      number.textContent = answerGlyphs[index] || String(index + 1);
+      number.setAttribute('aria-hidden', 'true');
       answerLabel.append(number, document.createTextNode(label));
       input.addEventListener('change', () => {
         answers[current] = index + 1;
         saveProgress();
+        questionCard.classList.add('question-card--answered');
+        const confirmations = data.confirmations || ['Dat spoor nemen we mee.'];
+        answerHint.textContent = confirmations[(current + index) % confirmations.length];
         document.querySelector('[data-next-question]').disabled = false;
       });
       wrapper.append(input, answerLabel);
@@ -85,7 +122,8 @@
     const next = document.querySelector('[data-next-question]');
     next.disabled = answers[current] === null;
     next.textContent = current === data.questions.length - 1 ? 'Ontdek mijn beest →' : 'Volgende →';
-    document.querySelector('.question-card').focus?.();
+    questionCard.focus({ preventScroll:true });
+    stage.scrollIntoView({ block:'start', behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
   function calculateTraits() {
@@ -100,10 +138,18 @@
 
   function rankBeasts(traits) {
     const maximum = Math.sqrt(traitKeys.length * 10000);
+    const profileShape = traitKeys.map(key => traits[key] - 50);
+    const profileMagnitude = Math.sqrt(profileShape.reduce((sum, value) => sum + value * value, 0));
     return data.beasts.map(beast => {
+      if (profileMagnitude > 0) {
+        const beastShape = beast.vector.map(value => value - 50);
+        const beastMagnitude = Math.sqrt(beastShape.reduce((sum, value) => sum + value * value, 0));
+        const similarity = beastShape.reduce((sum, value, index) => sum + value * profileShape[index], 0) / (beastMagnitude * profileMagnitude);
+        return { beast, affinity: Math.round((similarity + 1) / 2 * 100), match: similarity };
+      }
       const distance = Math.sqrt(traitKeys.reduce((sum, key, index) => sum + Math.pow(traits[key] - beast.vector[index], 2), 0));
-      return { beast, affinity: Math.max(0, Math.round(100 - distance / maximum * 100)) };
-    }).sort((a, b) => b.affinity - a.affinity || a.beast.name.localeCompare(b.beast.name, 'nl'));
+      return { beast, affinity: Math.max(0, Math.round(100 - distance / maximum * 100)), match: -distance };
+    }).sort((a, b) => b.match - a.match || a.beast.name.localeCompare(b.beast.name, 'nl'));
   }
 
   function renderResult(previewTraits) {
@@ -173,7 +219,9 @@
   }
 
   function prepareProfile(beast) {
-    document.querySelector('[data-mini-sigil]').textContent = beast.mark;
+    const miniImage = document.querySelector('[data-mini-image]');
+    miniImage.src = beast.image || `images/beasts/${beast.id}.jpg`;
+    miniImage.alt = `Profielbeeld van ${beast.name}`;
     document.querySelector('[data-mini-animal]').textContent = beast.name;
     const interestRoot = document.querySelector('[data-interest-options]');
     interestRoot.replaceChildren(...data.interests.map((interest, index) => {
@@ -209,7 +257,9 @@
   function renderProfile() {
     const beast = profileBeast();
     const selected = [...profileForm.querySelectorAll('input[name="interests"]:checked')].map(input => input.value);
-    document.querySelector('[data-profile-sigil]').textContent = beast.mark;
+    const profileImage = document.querySelector('[data-profile-image]');
+    profileImage.src = beast.image || `images/beasts/${beast.id}.jpg`;
+    profileImage.alt = `Profielbeeld van ${beast.name}`;
     document.querySelector('[data-profile-animal]').textContent = beast.name;
     document.querySelector('[data-profile-name]').textContent = profileName.value.trim();
     document.querySelector('[data-profile-archetype]').textContent = beast.archetype;

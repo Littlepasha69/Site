@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek snelle, speelse reflectiequizzen over luisteren, kiezen, grenzen en mentale beweeglijkheid in de Quizkast van het Menslab.">
   <title>De Quizkast — Menslab</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/quizkast.css?v=2">
+  <link rel="stylesheet" href="css/quizkast.css?v=3">
   <script src="js/site-shell.js?v=12" defer></script>
-  <script src="js/quizkast-data.js?v=1" defer></script>
-  <script src="js/quizkast.js?v=1" defer></script>
+  <script src="js/quizkast-data.js?v=2" defer></script>
+  <script src="js/quizkast.js?v=3" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -25,24 +25,30 @@
     </section>
 
     <section class="quiz-shelf" id="quizzen" data-quiz-shelf aria-labelledby="quiz-shelf-title">
-      <div class="quiz-shelf__head"><div><p class="eyebrow">De eerste drie</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Je mag je uitslag tegenspreken.</p></div>
+      <div class="quiz-shelf__head"><div><p class="eyebrow">Vier snelle spiegels</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Je mag je uitslag tegenspreken.</p></div>
       <div class="quiz-shelf__grid">
         <article class="quiz-card quiz-card--gold"><span>± 2 minuten</span><h3>Welke kleine beweging heb jij vandaag nodig?</h3><p>Van vertragen tot kiezen: ontdek welke uitnodiging nu misschien wat ruimte geeft.</p><button type="button" data-start-mini-quiz="beweging-vandaag">Open deze spiegel →</button></article>
         <article class="quiz-card quiz-card--green"><span>± 2 minuten</span><h3>Luister jij — of begin je te repareren?</h3><p>Onderzoek wat je spontaan doet wanneer iemand iets moeilijks met je deelt.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Open deze spiegel →</button></article>
         <article class="quiz-card quiz-card--plum"><span>± 3 minuten</span><h3>Waar komt jouw ja vandaan?</h3><p>Nieuwsgierigheid, harmonie, verantwoordelijkheid of gewoonte kunnen allemaal meespelen.</p><button type="button" data-start-mini-quiz="waar-komt-je-ja-vandaan">Open deze spiegel →</button></article>
+        <article class="quiz-card quiz-card--blue"><span>Nieuw · ± 3 minuten</span><h3>Wie zit er vandaag aan jouw stuur?</h3><p>Ontdek welke persoonlijkheidslaag nu de hoofdrol pakt — zonder te doen alsof jij één vast type bent.</p><button type="button" data-start-mini-quiz="wie-zit-aan-het-stuur">Ontmoet je tijdelijke type →</button></article>
       </div>
-      <a class="depth-route" href="dieptequiz-ja.html"><span>Nieuw · ongeveer 8 minuten</span><strong>Waar komt jouw ja vandaan?</strong><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><small>Open de eerste dieptequiz →</small></a>
+      <a class="depth-route" href="dieptequiz-ja.html"><span>Nieuw · ongeveer 8–10 minuten</span><strong>Waar komt jouw ja vandaan?</strong><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><small>Open de eerste dieptequiz →</small></a>
       <a class="beast-route" href="dierenquiz.html"><span>Meer tijd?</span><strong>Doe de Grote Beestenquiz</strong><small>35 vragen · 10–12 minuten →</small></a>
     </section>
 
     <section class="mini-quiz" data-mini-quiz hidden tabindex="-1" aria-labelledby="mini-question-title">
       <div class="mini-quiz__top"><button type="button" data-back-to-shelf>← Terug naar de Quizkast</button><span data-mini-quiz-name></span></div>
+      <div class="mini-journey" aria-label="Jouw route door deze spiegel">
+        <div class="mini-journey__track" data-mini-journey></div>
+        <p data-mini-journey-note></p>
+      </div>
       <div class="mini-progress" aria-label="Voortgang"><i data-mini-progress></i></div>
       <div class="mini-progress__text"><strong data-mini-count></strong><span data-mini-percent></span></div>
-      <article class="mini-question">
+      <article class="mini-question" tabindex="-1">
         <p data-mini-eyebrow></p>
         <h2 id="mini-question-title" data-mini-question></h2>
         <fieldset data-mini-options><legend class="visually-hidden">Kies het antwoord dat het dichtst in de buurt komt</legend></fieldset>
+        <p class="mini-answer-hint" data-mini-answer-hint aria-live="polite">Kies wat vandaag het dichtst in de buurt komt.</p>
       </article>
       <div class="mini-navigation"><button type="button" data-mini-previous>← Vorige</button><button type="button" data-mini-next disabled>Volgende →</button></div>
     </section>

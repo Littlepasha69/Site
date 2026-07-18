@@ -5,6 +5,32 @@
   const shelf = document.querySelector('[data-quiz-shelf]');
   const stage = document.querySelector('[data-mini-quiz]');
   const resultSection = document.querySelector('[data-mini-result]');
+  const journey = document.querySelector('[data-mini-journey]');
+  const journeyNote = document.querySelector('[data-mini-journey-note]');
+  const answerHint = document.querySelector('[data-mini-answer-hint]');
+  const questionCard = document.querySelector('.mini-question');
+  const visualThemes = {
+    'beweging-vandaag': {
+      symbol: '↗',
+      note: 'Zes kleine schuifjes. Geen levensverbouwing met een helm op.',
+      confirmations: ['Dat mag vandaag genoeg zijn.', 'Kleine beweging gespot.', 'Genoteerd zonder er een vijfjarenplan van te maken.']
+    },
+    'luisteren-of-repareren': {
+      symbol: '◌',
+      note: 'Even luisteren naar hoe jij luistert. Meta, maar draaglijk.',
+      confirmations: ['We laten dit antwoord even uitspreken.', 'Aha. De gereedschapskist blijft nog heel even dicht.', 'Deze reactie krijgt een stoel in het gesprek.']
+    },
+    'waar-komt-je-ja-vandaan': {
+      symbol: 'JA?',
+      note: 'Zes keer onder de motorkap van één klein woordje.',
+      confirmations: ['Dat ja heeft alvast een voetnoot.', 'Interessant. Je antwoord kwam niet alleen.', 'Genoteerd — zonder je meteen ergens voor in te schrijven.']
+    },
+    'wie-zit-aan-het-stuur': {
+      symbol: 'JIJ?',
+      note: 'Geen typecasting. We kijken alleen wie vandaag de meeste tekst heeft.',
+      confirmations: ['Die hoofdrolspeler krijgt een streepje in het script.', 'Aha. Iemand vooraan in de bus zwaait.', 'Genoteerd. Je andere kanten zijn niet ontslagen.']
+    }
+  };
   const trackStorageKey = 'menslab-progress-v3';
   const previousTrackStorageKey = 'menslab-progress-v2';
   let activeQuiz;
@@ -38,6 +64,20 @@
     if (!activeQuiz) return;
     current = 0;
     answers = new Array(activeQuiz.questions.length).fill(null);
+    const visual = visualThemes[activeQuiz.id];
+    stage.dataset.quizTheme = activeQuiz.id;
+    resultSection.dataset.quizTheme = activeQuiz.id;
+    stage.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
+    resultSection.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
+    journeyNote.textContent = visual.note;
+    journey.style.setProperty('--step-count', activeQuiz.questions.length);
+    journey.replaceChildren(...activeQuiz.questions.map((_, index) => {
+      const step = document.createElement('span');
+      step.className = 'mini-journey__step';
+      step.textContent = index + 1;
+      step.setAttribute('aria-label', `Vraag ${index + 1}`);
+      return step;
+    }));
     document.querySelector('[data-save-mini-result]').disabled = false;
     document.querySelector('[data-save-mini-result]').textContent = 'Bewaar deze spiegel in Mijn spoor';
     document.querySelector('[data-save-mini-status]').textContent = '';
@@ -54,6 +94,15 @@
     document.querySelector('[data-mini-percent]').textContent = `${percent}%`;
     document.querySelector('[data-mini-progress]').style.width = `${percent}%`;
     document.querySelector('[data-mini-question]').textContent = question.text;
+    stage.style.setProperty('--question-number', `"${String(current + 1).padStart(2, '0')}"`);
+    journey.querySelectorAll('.mini-journey__step').forEach((step, index) => {
+      step.classList.toggle('is-complete', index < current);
+      step.classList.toggle('is-current', index === current);
+      if (index === current) step.setAttribute('aria-current', 'step');
+      else step.removeAttribute('aria-current');
+    });
+    answerHint.textContent = answers[current] === null ? 'Kies wat vandaag het dichtst in de buurt komt.' : 'Je eerdere antwoord staat nog klaar. Je mag het veranderen.';
+    questionCard.classList.remove('mini-question--answered');
     const options = document.querySelector('[data-mini-options]');
     options.replaceChildren(options.querySelector('legend'), ...question.options.map((option, index) => {
       const wrapper = document.createElement('div');
@@ -72,6 +121,11 @@
       input.addEventListener('change', () => {
         answers[current] = option.result;
         document.querySelector('[data-mini-next]').disabled = false;
+        questionCard.classList.remove('mini-question--answered');
+        void questionCard.offsetWidth;
+        questionCard.classList.add('mini-question--answered');
+        const messages = visualThemes[activeQuiz.id].confirmations;
+        answerHint.textContent = messages[(current + index) % messages.length];
       });
       wrapper.append(input, label);
       return wrapper;
@@ -80,6 +134,8 @@
     const next = document.querySelector('[data-mini-next]');
     next.disabled = answers[current] === null;
     next.textContent = current === activeQuiz.questions.length - 1 ? 'Bekijk mijn spiegel →' : 'Volgende →';
+    questionCard.focus({ preventScroll: true });
+    stage.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
   }
 
   function calculateResult() {

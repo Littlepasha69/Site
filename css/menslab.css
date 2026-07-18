@@ -114,6 +114,15 @@
 .progress-quiz-snapshots li strong { margin:.25rem 0; color:var(--ink); font:700 1.05rem var(--serif); }
 .progress-quiz-snapshots li small { color:var(--muted); }
 .progress-quiz-snapshots li em { margin-top:.6rem; padding-top:.6rem; border-top:1px solid var(--line); color:var(--ink); font:italic 650 .82rem/1.4 var(--serif); }
+.progress-quiz-snapshots li a { margin-top:.65rem; display:block; color:var(--copper); font-size:.78rem; font-weight:800; text-decoration:none; }
+.progress-quiz-snapshots li button { margin-top:.6rem; padding:0; border:0; border-bottom:1px solid currentColor; background:transparent; color:var(--muted); font-size:.7rem; cursor:pointer; }
+.progress-quiz-snapshots li .snapshot-followup-note { border-top-color:#78927a; color:#315a51; }
+.progress-depth-patterns { margin-top:1rem; padding:1.3rem; display:grid; grid-template-columns:260px 1fr; gap:1.5rem; border:1px solid var(--line); border-radius:1rem; background:#e6f0e8; }
+.progress-depth-patterns[hidden] { display:none; }
+.progress-depth-patterns h3 { margin:0; color:var(--ink); font:700 1.45rem var(--serif); }
+.progress-depth-patterns>div>p:last-child { margin:.3rem 0 0; color:var(--muted); font-size:.84rem; }
+.progress-depth-patterns ul { margin:0; padding:0; display:grid; gap:.5rem; list-style:none; }
+.progress-depth-patterns li { padding:.75rem .85rem; border-radius:.7rem; background:white; color:var(--ink); font:650 .9rem/1.4 var(--serif); }
 .progress-patterns,.progress-review { margin-top:1rem; padding:1.3rem; display:grid; grid-template-columns:260px 1fr; gap:1.5rem; border:1px solid var(--line); border-radius:1rem; background:white; }
 .progress-patterns[hidden],.progress-review[hidden] { display:none; }
 .progress-patterns h3,.progress-review h3 { margin:0; color:var(--ink); font:700 1.45rem var(--serif); }
@@ -163,7 +172,7 @@
 .lab-safety { margin-bottom:clamp(4rem,8vw,7rem); padding:1.2rem 1.4rem; display:grid; grid-template-columns:auto 1fr; gap:1rem; border-left:4px solid var(--gold); background:var(--paper); }
 .lab-safety strong { color:var(--ink); }.lab-safety p{margin:0;color:var(--muted)}
 
-@media(max-width:900px){.lab-hero__inner,.reflection{grid-template-columns:1fr}.lab-orbit{display:none}.quizkast-gateway__head{grid-template-columns:1fr}.quiz-gateway{grid-template-columns:auto 1fr}.quiz-gateway>a{grid-column:2;justify-self:start}.experiment-grid{grid-template-columns:1fr 1fr}.progress-stats{grid-template-columns:1fr 1fr}.progress-stats article:first-child{grid-column:span 2}.progress-history,.progress-quiz-snapshots,.progress-patterns,.progress-review{grid-template-columns:1fr}.week-complete{grid-template-columns:1fr 1fr}.week-complete button{grid-column:2}}
+@media(max-width:900px){.lab-hero__inner,.reflection{grid-template-columns:1fr}.lab-orbit{display:none}.quizkast-gateway__head{grid-template-columns:1fr}.quiz-gateway{grid-template-columns:auto 1fr}.quiz-gateway>a{grid-column:2;justify-self:start}.experiment-grid{grid-template-columns:1fr 1fr}.progress-stats{grid-template-columns:1fr 1fr}.progress-stats article:first-child{grid-column:span 2}.progress-history,.progress-quiz-snapshots,.progress-depth-patterns,.progress-patterns,.progress-review{grid-template-columns:1fr}.week-complete{grid-template-columns:1fr 1fr}.week-complete button{grid-column:2}}
 @media(max-width:650px){.lab-intro,.week-days,.experiment-grid,.quizkast-gateway__grid,.quiz-gateway,.lab-safety,.progress-path__head,.progress-stats,.week-note,.week-bridge,.week-complete,.progress-tools,.quizkast-depth-route{grid-template-columns:1fr}.lab-intro article+article{border-left:0;border-top:1px solid var(--line)}.week-lab__head,.lab-section__head{grid-template-columns:1fr}.week-progress{width:100%}.quiz-gateway>a{grid-column:auto;justify-self:stretch}.quiz-gateway__mark{width:4.5rem}.lab-safety{gap:.4rem}.lab-hero h1{font-size:clamp(3rem,15vw,4.5rem)}.progress-resume{grid-template-columns:1fr}.progress-resume small{justify-self:start}.progress-stats article:first-child{grid-column:auto}.week-note textarea{grid-row:auto}.week-complete button{width:100%;grid-column:auto}.progress-quiz-snapshots ol,.progress-review [data-review-notes]{grid-template-columns:1fr}.progress-tools>div:nth-child(2){align-items:stretch;flex-direction:column}.progress-path__privacy{align-items:flex-start;flex-direction:column}}
 @media(max-width:650px){.change-gateway{grid-template-columns:1fr}.change-gateway small{justify-self:start}}
 @media(prefers-reduced-motion:reduce){.week-progress i{transition:none}}

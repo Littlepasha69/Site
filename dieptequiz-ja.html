@@ -6,9 +6,9 @@
   <meta name="description" content="Een verdiepende Menslab-quiz over verlangen, zorg, druk, draagkracht en de werkelijke ruimte achter jouw ja.">
   <title>Waar komt jouw ja vandaan? — Dieptequiz</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/dieptequiz.css?v=1">
+  <link rel="stylesheet" href="css/dieptequiz.css?v=4">
   <script src="js/site-shell.js?v=12" defer></script>
-  <script src="js/dieptequiz-ja.js?v=2" defer></script>
+  <script src="js/dieptequiz-ja.js?v=5" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -18,7 +18,7 @@
         <p class="eyebrow">Menslab · eerste dieptequiz</p>
         <h1>Waar komt jouw <em>ja</em> vandaan?</h1>
         <p class="depth-hero__lead">Niet welk type ja-zegger je bent, maar wat er allemaal aanwezig moest zijn voordat jouw antwoord ontstond.</p>
-        <div class="depth-hero__actions"><a href="#vertrekpunt">Kies een echt moment ↓</a><span>12 vragen · ongeveer 8 minuten</span></div>
+        <div class="depth-hero__actions"><a href="#vertrekpunt">Kies een echt moment ↓</a><span>13 vragen · ongeveer 8–10 minuten</span></div>
       </div>
       <aside aria-label="De drie lenzen van deze quiz">
         <span>Deze quiz kijkt naar</span>
@@ -46,13 +46,20 @@
 
     <section class="depth-quiz" data-depth-quiz hidden tabindex="-1" aria-labelledby="depth-question-title">
       <div class="depth-quiz__top"><button type="button" data-return-start>← Ander moment kiezen</button><span data-depth-context></span></div>
+      <div class="lens-journey" data-lens-journey aria-label="De drie lenzen van deze quiz">
+        <div class="lens-step"><b>01</b><span>Wat in jou beweegt</span></div>
+        <div class="lens-step"><b>02</b><span>Wat met jou meebeslist</span></div>
+        <div class="lens-step"><b>03</b><span>Werkelijke speelruimte</span></div>
+      </div>
+      <p class="lens-note" data-lens-note></p>
       <div class="depth-progress" aria-label="Voortgang"><i data-depth-progress></i></div>
       <div class="depth-progress__copy"><strong data-depth-phase></strong><span data-depth-count></span></div>
-      <article class="depth-question">
+      <article class="depth-question" tabindex="-1">
         <p data-depth-eyebrow></p>
         <h2 id="depth-question-title" data-depth-question></h2>
         <p class="depth-question__help" data-depth-help></p>
-        <fieldset data-depth-options><legend class="visually-hidden">Kies het antwoord dat voor dit ene moment het dichtst in de buurt komt</legend></fieldset>
+        <fieldset data-depth-options><legend class="visually-hidden">Kies één antwoord, of twee wanneer beide tegelijk waar zijn</legend></fieldset>
+        <div class="answer-freedom"><p data-depth-answer-hint>Je mag één of twee antwoorden kiezen.</p><div><button type="button" data-special-answer="skip">Ik beantwoord dit liever niet</button><button type="button" data-special-answer="miss">Deze vraag mist mijn situatie</button></div></div>
       </article>
       <div class="depth-navigation"><button type="button" data-depth-previous>← Vorige</button><button type="button" data-depth-next disabled>Volgende →</button></div>
     </section>
@@ -67,9 +74,14 @@
 
       <section class="counterfactual" aria-labelledby="counterfactual-title"><span>De onverwachte deur</span><h2 id="counterfactual-title">Wat veranderde toen een nee niets meer kostte?</h2><p data-counterfactual></p></section>
 
+      <section class="other-chair" aria-labelledby="other-chair-title"><span>De stoel aan de overkant</span><h2 id="other-chair-title">Zou jij deze ja van iemand anders willen aannemen?</h2><p data-other-chair></p></section>
+
       <section class="answer-trace" aria-labelledby="trace-title"><div><p class="eyebrow">Geen toverformule</p><h2 id="trace-title">Hier groeide deze spiegel uit.</h2><p>Niet uit verborgen kennis over jou, maar uit deze lijnen in je eigen antwoorden.</p></div><ul data-answer-trace></ul></section>
+      <details class="score-map"><summary>Laat volledig zien hoe deze spiegel ontstond</summary><div><p data-sensitivity></p><ol data-score-map></ol><p>De koppeling tussen antwoorden en lenzen is redactioneel ontworpen vanuit de vermelde modellen. De weging is niet empirisch gevalideerd en is geen psychometrische score.</p></div></details>
 
       <section class="depth-experiment" aria-labelledby="experiment-title"><span>Kleine proef, geen opdracht</span><h2 id="experiment-title" data-experiment-title></h2><p data-experiment-copy></p></section>
+
+      <section class="take-along" aria-labelledby="take-along-title"><div><span>Neem één observatie mee</span><h2 id="take-along-title">Laat de werkelijkheid mee antwoorden.</h2></div><p data-take-along></p><small>Wanneer je dit drieluik bewaart, kun je later vanuit Mijn spoor terugkomen en noteren wat er werkelijk gebeurde.</small></section>
 
       <section class="result-dialogue" aria-labelledby="dialogue-title">
         <div><p class="eyebrow">Jij krijgt het laatste woord</p><h2 id="dialogue-title">Wat doet deze uitslag met je?</h2><p>De quiz kan iets raken, maar ook iets belangrijks missen. Beide zijn informatie.</p></div>
@@ -77,9 +89,23 @@
         <label for="depth-reflection">Wat wil jij eraan toevoegen? <small>optioneel · maximaal 280 tekens</small><textarea id="depth-reflection" data-depth-reflection maxlength="280" rows="3" placeholder="Bijvoorbeeld: bij mijn familie klopt dit, op het werk helemaal niet."></textarea></label>
       </section>
 
+      <section class="save-preview" aria-labelledby="save-preview-title"><div><p class="eyebrow">Jij bepaalt wat blijft</p><h2 id="save-preview-title">Wat wordt in Mijn spoor bewaard?</h2><p>Alleen op dit apparaat. Je kunt deze spiegel later afzonderlijk verwijderen.</p></div><div><ul data-save-preview></ul><label><input type="checkbox" data-store-situation checked> Bewaar mijn eigen omschrijving van de situatie</label><label><input type="checkbox" data-store-reflection checked> Bewaar mijn persoonlijke aanvulling</label></div></section>
+
       <p class="depth-boundary">Dit profiel zegt niet wie je bent. Het laat zien welke patronen in jouw antwoorden vandaag het sterkst naar voren kwamen. Gebruik het als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</p>
       <div class="depth-result__actions"><button type="button" data-save-depth>Bewaar dit drieluik in Mijn spoor</button><button type="button" data-restart-depth>Onderzoek een andere ja</button><a href="quizkast.html">Terug naar de Quizkast</a></div>
       <p class="save-status" data-save-depth-status aria-live="polite"></p>
+    </section>
+
+    <section class="depth-followup" data-depth-followup hidden tabindex="-1" aria-labelledby="followup-title">
+      <header><p class="eyebrow">De tweede ontmoeting</p><span data-followup-date></span><h1 id="followup-title">Wat gebeurde er werkelijk?</h1><p>Je eerdere spiegel was een werkhypothese. Nu krijgt de ervaring zelf een stem.</p></header>
+      <div class="followup-memory"><span data-followup-context></span><strong data-followup-result></strong><p data-followup-summary></p></div>
+      <form data-followup-form>
+        <fieldset><legend>Wat heb je uiteindelijk geantwoord?</legend><div class="followup-options"><label><input type="radio" name="actualAnswer" value="ja" required><span>Ja</span></label><label><input type="radio" name="actualAnswer" value="voorwaardelijk"><span>Ja, onder voorwaarden</span></label><label><input type="radio" name="actualAnswer" value="nee"><span>Nee</span></label><label><input type="radio" name="actualAnswer" value="nog-niet"><span>Nog niet beslist</span></label></div></fieldset>
+        <fieldset><legend>Hoe verhield de werkelijke reactie zich tot wat je verwachtte?</legend><div class="followup-options"><label><input type="radio" name="costReality" value="lichter" required><span>Lichter dan verwacht</span></label><label><input type="radio" name="costReality" value="ongeveer"><span>Ongeveer zoals verwacht</span></label><label><input type="radio" name="costReality" value="zwaarder"><span>Zwaarder dan verwacht</span></label><label><input type="radio" name="costReality" value="niet-getest"><span>Nog niet echt getest</span></label></div></fieldset>
+        <fieldset><legend>Hoe kijk je nu naar de oorspronkelijke spiegel?</legend><div class="followup-options"><label><input type="radio" name="mirrorNow" value="klopt" required><span>Ze klopt nog grotendeels</span></label><label><input type="radio" name="mirrorNow" value="deels"><span>Ze klopt maar gedeeltelijk</span></label><label><input type="radio" name="mirrorNow" value="anders"><span>Ik zie het nu anders</span></label></div></fieldset>
+        <label class="followup-note" for="followup-note">Wat leerde de werkelijkheid je? <small>optioneel</small><textarea id="followup-note" name="note" maxlength="280" rows="4" placeholder="Wat gebeurde er, wat verraste je, wat miste de eerste spiegel?"></textarea></label>
+        <div class="followup-actions"><button type="submit">Bewaar deze terugblik</button><a href="menslab.html#mijn-spoor">Terug naar Mijn spoor</a></div><p data-followup-status aria-live="polite"></p>
+      </form>
     </section>
 
     <section class="depth-method" aria-labelledby="depth-method-title">

@@ -68,11 +68,25 @@
         resultTitle: item.resultTitle.slice(0, 120),
         summary: typeof item.summary === 'string' ? item.summary.slice(0, 500) : '',
         experiment: typeof item.experiment === 'string' ? item.experiment.slice(0, 500) : '',
+        observation: typeof item.observation === 'string' ? item.observation.slice(0, 500) : '',
         kind: item.kind === 'depth' ? 'depth' : 'quick',
         context: typeof item.context === 'string' ? item.context.slice(0, 80) : '',
         situation: typeof item.situation === 'string' ? item.situation.slice(0, 90) : '',
         fit: ['raakt', 'deels', 'mist'].includes(item.fit) ? item.fit : '',
         reflection: typeof item.reflection === 'string' ? item.reflection.slice(0, 280) : '',
+        method: item.method && typeof item.method === 'object' ? {
+          answered: Number.isInteger(item.method.answered) ? item.method.answered : 0,
+          dual: Number.isInteger(item.method.dual) ? item.method.dual : 0,
+          missed: Number.isInteger(item.method.missed) ? item.method.missed : 0,
+          skipped: Number.isInteger(item.method.skipped) ? item.method.skipped : 0
+        } : null,
+        followUp: item.followUp && typeof item.followUp === 'object' && typeof item.followUp.completedAt === 'string' ? {
+          actualAnswer: ['ja', 'voorwaardelijk', 'nee', 'nog-niet'].includes(item.followUp.actualAnswer) ? item.followUp.actualAnswer : '',
+          costReality: ['lichter', 'ongeveer', 'zwaarder', 'niet-getest'].includes(item.followUp.costReality) ? item.followUp.costReality : '',
+          mirrorNow: ['klopt', 'deels', 'anders'].includes(item.followUp.mirrorNow) ? item.followUp.mirrorNow : '',
+          note: typeof item.followUp.note === 'string' ? item.followUp.note.slice(0, 280) : '',
+          completedAt: item.followUp.completedAt
+        } : null,
         savedAt: item.savedAt
       }));
     }
@@ -162,8 +176,47 @@
         reflection.textContent = item.reflection;
         row.append(reflection);
       }
+      if (item.kind === 'depth') {
+        const followup = document.createElement('a');
+        followup.href = `dieptequiz-ja.html?terugblik=${encodeURIComponent(item.savedAt)}`;
+        followup.textContent = item.followUp ? 'Bekijk of wijzig je terugblik →' : 'Kijk later terug: wat gebeurde er? →';
+        row.append(followup);
+        if (item.followUp?.note) {
+          const lived = document.createElement('em');
+          lived.className = 'snapshot-followup-note';
+          lived.textContent = `Terugblik: ${item.followUp.note}`;
+          row.append(lived);
+        }
+      }
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Verwijder deze spiegel';
+      remove.addEventListener('click', () => {
+        state.quizSnapshots = state.quizSnapshots.filter(snapshot => snapshot.savedAt !== item.savedAt);
+        saveProgress();
+        renderProgress();
+      });
+      row.append(remove);
       return row;
     }));
+  }
+
+  function renderDepthPatterns() {
+    const section = document.querySelector('[data-depth-patterns]');
+    const depth = state.quizSnapshots.filter(item => item.kind === 'depth');
+    section.hidden = depth.length < 3;
+    if (section.hidden) return;
+    const contexts = new Set(depth.map(item => item.context).filter(Boolean));
+    const titleCounts = depth.reduce((counts, item) => { counts[item.resultTitle] = (counts[item.resultTitle] || 0) + 1; return counts; }, {});
+    const recurring = Object.entries(titleCounts).sort((a, b) => b[1] - a[1])[0];
+    const followups = depth.filter(item => item.followUp);
+    const changed = followups.filter(item => item.followUp.mirrorNow !== 'klopt').length;
+    const lines = [
+      `${depth.length} bewaarde situaties in ${contexts.size || 1} ${contexts.size === 1 ? 'omgeving' : 'omgevingen'}.`,
+      recurring[1] > 1 ? `De werktitel “${recurring[0]}” keerde ${recurring[1]} keer terug.` : 'Tot nu toe kreeg iedere situatie een andere werktitel.',
+      followups.length ? `${followups.length} ${followups.length === 1 ? 'terugblik' : 'terugblikken'} bewaard; in ${changed} daarvan verschoof of nuanceerde de eerste spiegel.` : 'Er is nog geen tweede ontmoeting bewaard; de eerste spiegels blijven voorlopig hypotheses.'
+    ];
+    document.querySelector('[data-depth-pattern-list]').replaceChildren(...lines.map(line => { const item = document.createElement('li'); item.textContent = line; return item; }));
   }
 
   function renderPatterns() {
@@ -231,6 +284,7 @@
     }
     renderHistory();
     renderQuizSnapshots();
+    renderDepthPatterns();
     renderPatterns();
     renderReview();
   }

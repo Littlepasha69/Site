@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1400 760" role="img" aria-labelledby="title desc">
+  <title id="title">De route van een gewoonte</title>
+  <desc id="desc">Een terugkerende context leidt via paraatheid naar een handeling en een direct gevolg. Herhaling maakt de route vertrouwder. Een kleine afslag kan vooraf in de context worden voorbereid.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b2d2d"/><stop offset=".58" stop-color="#174b48"/><stop offset="1" stop-color="#253f42"/></linearGradient>
+    <linearGradient id="route" x1="0" y1="0" x2="1" y2="0"><stop stop-color="#f0c66b"/><stop offset="1" stop-color="#d98969"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="18" stdDeviation="18" flood-color="#061919" flood-opacity=".38"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#f0c66b"/></marker>
+    <style>.k{font:700 18px system-ui,sans-serif;letter-spacing:2px;text-transform:uppercase;fill:#f0c66b}.h{font:700 30px Georgia,serif;fill:#fff}.p{font:400 18px system-ui,sans-serif;fill:#c5d4d1}.small{font:600 16px system-ui,sans-serif;fill:#dce7e4}.chip{font:650 15px system-ui,sans-serif;fill:#f4ead5}.num{font:800 18px system-ui,sans-serif;fill:#153b39}</style>
+  </defs>
+  <rect width="1400" height="760" rx="28" fill="url(#bg)"/>
+  <circle cx="1240" cy="95" r="235" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="52"/>
+  <circle cx="95" cy="690" r="180" fill="none" stroke="#d98969" stroke-opacity=".08" stroke-width="40"/>
+  <text x="80" y="82" class="k">Gewoontekaart</text>
+  <text x="80" y="126" class="h">Niet één knop, maar een terugkerende route</text>
+
+  <g transform="translate(80 175)" filter="url(#shadow)">
+    <rect width="285" height="230" rx="24" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="40" r="18" fill="#f0c66b"/><text x="32" y="47" class="num">1</text>
+    <text x="30" y="88" class="h">Terugkerende</text><text x="30" y="123" class="h">context</text>
+    <g transform="translate(30 148)"><rect width="64" height="30" rx="15" fill="#fff" fill-opacity=".10"/><text x="14" y="21" class="chip">tijd</text><rect x="72" width="70" height="30" rx="15" fill="#fff" fill-opacity=".10"/><text x="85" y="21" class="chip">plaats</text><rect x="150" width="98" height="30" rx="15" fill="#fff" fill-opacity=".10"/><text x="164" y="21" class="chip">gevoel</text><rect y="39" width="112" height="30" rx="15" fill="#fff" fill-opacity=".10"/><text x="14" y="60" class="chip">mensen</text><rect x="120" y="39" width="128" height="30" rx="15" fill="#fff" fill-opacity=".10"/><text x="134" y="60" class="chip">handeling</text></g>
+  </g>
+  <path d="M380 290H465" fill="none" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(480 175)" filter="url(#shadow)">
+    <rect width="250" height="230" rx="24" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="40" r="18" fill="#f0c66b"/><text x="32" y="47" class="num">2</text>
+    <text x="30" y="100" class="h">Paraatheid</text>
+    <text x="30" y="140" class="p">Impuls, verwachting</text><text x="30" y="169" class="p">of eerste beweging</text>
+    <path d="M31 198c28-30 46 20 74-10s48 20 75-14 38 8 48-2" fill="none" stroke="#d98969" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M745 290H830" fill="none" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(845 175)" filter="url(#shadow)">
+    <rect width="215" height="230" rx="24" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="40" r="18" fill="#f0c66b"/><text x="32" y="47" class="num">3</text>
+    <text x="30" y="100" class="h">Handeling</text>
+    <text x="30" y="141" class="p">De vertrouwde</text><text x="30" y="170" class="p">reactie vertrekt</text>
+    <path d="M31 200h132" stroke="#d98969" stroke-width="7" stroke-linecap="round"/><path d="m147 185 22 15-22 15" fill="none" stroke="#d98969" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M1075 290H1142" fill="none" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(1157 175)" filter="url(#shadow)">
+    <rect width="165" height="230" rx="24" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="40" r="18" fill="#f0c66b"/><text x="32" y="47" class="num">4</text>
+    <text x="28" y="96" class="h">Direct</text><text x="28" y="131" class="h">gevolg</text>
+    <text x="28" y="174" class="p">gemak</text><text x="28" y="201" class="p">opluchting</text>
+  </g>
+
+  <path d="M1240 430c0 178-934 178-934 8" fill="none" stroke="url(#route)" stroke-width="5" stroke-dasharray="10 12" marker-end="url(#arrow)"/>
+  <rect x="530" y="492" width="340" height="62" rx="31" fill="#0a2928" stroke="#f0c66b" stroke-opacity=".55"/>
+  <text x="700" y="518" text-anchor="middle" class="k">Herhaling</text><text x="700" y="542" text-anchor="middle" class="small">maakt de bekende route makkelijker beschikbaar</text>
+
+  <path d="M595 410v83" fill="none" stroke="#d98969" stroke-width="4" stroke-dasharray="8 9"/>
+  <g transform="translate(438 590)">
+    <rect width="524" height="100" rx="22" fill="#f7edda"/>
+    <circle cx="52" cy="50" r="28" fill="#d98969"/><path d="m42 50 8 8 16-18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="96" y="40" style="font:800 16px system-ui,sans-serif;letter-spacing:1.4px;fill:#a44e3d">KLEINE AFSLAG</text>
+    <text x="96" y="68" style="font:650 19px system-ui,sans-serif;fill:#153b39">vooraf zichtbaar, klein en bereikbaar maken</text>
+  </g>
+  <text x="80" y="720" class="small" opacity=".72">De oude route kan blijven bestaan. Een alternatief krijgt kansen door echte uitvoering in een herkenbare context.</text>
+</svg>

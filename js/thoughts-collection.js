@@ -1,7 +1,15 @@
 (function () {
   const root = document.querySelector('[data-thought-results]');
   if (!root || !window.OnwijzeSearch) return;
-  const items = window.OnwijzeSearch.content.filter(item => ['denkstuk', 'ervaring'].includes(item.type));
+  const publicationTime = value => {
+    const match = String(value || '').match(/^(\d{1,2})\/(\d{1,2})\/(\d{4})$/);
+    if (match) return Date.UTC(Number(match[3]), Number(match[2]) - 1, Number(match[1]));
+    const time = Date.parse(value);
+    return Number.isNaN(time) ? 0 : time;
+  };
+  const items = window.OnwijzeSearch.content
+    .filter(item => ['denkstuk', 'ervaring'].includes(item.type))
+    .sort((a, b) => publicationTime(b.date) - publicationTime(a.date));
   const query = document.querySelector('[data-thought-query]');
   const typeButtons = [...document.querySelectorAll('[data-thought-type]')];
   const categorySelect = document.querySelector('[data-thought-category]');

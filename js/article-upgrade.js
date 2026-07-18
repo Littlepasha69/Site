@@ -15,7 +15,7 @@
   if (titleBox) {
     const kicker = document.createElement('p');
     kicker.className = 'article-kicker';
-    kicker.textContent = 'Denkstuk';
+    kicker.textContent = container.dataset.kicker || 'Denkstuk';
     titleBox.prepend(kicker);
 
     const articleText = container?.querySelector('.denktext');

@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 1280" role="img" aria-labelledby="title desc">
+  <title id="title">De route van een gewoonte</title>
+  <desc id="desc">Een terugkerende context leidt via paraatheid naar een handeling en direct gevolg. Herhaling maakt de route vertrouwder. Een kleine afslag kan worden voorbereid.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0b2d2d"/><stop offset=".6" stop-color="#174b48"/><stop offset="1" stop-color="#253f42"/></linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="14" flood-color="#061919" flood-opacity=".35"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10z" fill="#f0c66b"/></marker>
+    <style>.k{font:700 16px system-ui,sans-serif;letter-spacing:2px;fill:#f0c66b}.h{font:700 27px Georgia,serif;fill:#fff}.p{font:400 17px system-ui,sans-serif;fill:#c5d4d1}.num{font:800 16px system-ui,sans-serif;fill:#153b39}</style>
+  </defs>
+  <rect width="720" height="1280" rx="24" fill="url(#bg)"/>
+  <circle cx="650" cy="65" r="170" fill="none" stroke="#fff" stroke-opacity=".06" stroke-width="38"/>
+  <text x="50" y="62" class="k">GEWOONTEKAART</text>
+  <text x="50" y="102" class="h">Een terugkerende route</text>
+
+  <g transform="translate(50 145)" filter="url(#shadow)">
+    <rect width="620" height="178" rx="22" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="38" r="17" fill="#f0c66b"/><text x="33" y="44" class="num">1</text>
+    <text x="75" y="46" class="h">Terugkerende context</text>
+    <text x="30" y="92" class="p">tijd · plaats · mensen · gevoel</text><text x="30" y="121" class="p">of de handeling vlak ervoor</text>
+    <rect x="30" y="140" width="245" height="5" rx="3" fill="#d98969"/>
+  </g>
+  <path d="M360 332v42" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(50 390)" filter="url(#shadow)">
+    <rect width="620" height="145" rx="22" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="38" r="17" fill="#f0c66b"/><text x="33" y="44" class="num">2</text>
+    <text x="75" y="46" class="h">Paraatheid</text>
+    <text x="30" y="92" class="p">Impuls, verwachting of eerste beweging</text>
+    <path d="M31 117c35-27 63 19 97-9s64 19 96-12 56 12 88-2" fill="none" stroke="#d98969" stroke-width="4" stroke-linecap="round"/>
+  </g>
+  <path d="M360 544v42" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(50 602)" filter="url(#shadow)">
+    <rect width="620" height="135" rx="22" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="38" r="17" fill="#f0c66b"/><text x="33" y="44" class="num">3</text>
+    <text x="75" y="46" class="h">Handeling</text>
+    <text x="30" y="94" class="p">De vertrouwde reactie vertrekt</text>
+    <path d="M405 91h120" stroke="#d98969" stroke-width="6" stroke-linecap="round"/><path d="m510 77 20 14-20 14" fill="none" stroke="#d98969" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+  </g>
+  <path d="M360 746v42" stroke="#f0c66b" stroke-width="5" marker-end="url(#arrow)"/>
+  <g transform="translate(50 804)" filter="url(#shadow)">
+    <rect width="620" height="145" rx="22" fill="#fff" fill-opacity=".075" stroke="#fff" stroke-opacity=".18"/>
+    <circle cx="38" cy="38" r="17" fill="#f0c66b"/><text x="33" y="44" class="num">4</text>
+    <text x="75" y="46" class="h">Direct gevolg</text>
+    <text x="30" y="94" class="p">Gemak, opluchting, plezier of afronding</text>
+  </g>
+  <path d="M645 965c0 106-570 106-570 12" fill="none" stroke="#f0c66b" stroke-width="4" stroke-dasharray="9 10" marker-end="url(#arrow)"/>
+  <rect x="152" y="988" width="416" height="70" rx="35" fill="#0a2928" stroke="#f0c66b" stroke-opacity=".55"/>
+  <text x="360" y="1016" text-anchor="middle" class="k">HERHALING</text><text x="360" y="1041" text-anchor="middle" class="p">maakt de route makkelijker beschikbaar</text>
+  <g transform="translate(50 1105)">
+    <rect width="620" height="120" rx="22" fill="#f7edda"/>
+    <circle cx="56" cy="60" r="26" fill="#d98969"/><path d="m46 60 8 8 16-18" fill="none" stroke="#fff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="100" y="48" style="font:800 15px system-ui,sans-serif;letter-spacing:1.3px;fill:#a44e3d">KLEINE AFSLAG</text>
+    <text x="100" y="78" style="font:650 18px system-ui,sans-serif;fill:#153b39">vooraf zichtbaar, klein en bereikbaar</text>
+  </g>
+  <text x="360" y="1260" text-anchor="middle" class="p" opacity=".72">Een leeskaart, geen diagnose of vast breinschema.</text>
+</svg>

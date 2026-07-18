@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Hoe persoonlijkheid zich door herhaling kan vormen</title>
+  <desc id="desc">Een lus van waarnemen, kiezen en handelen, reactie uit de omgeving en herhaling, omringd door aanleg, relaties, cultuur, macht en toeval.</desc>
+  <defs>
+    <linearGradient id="background" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#102f31"/><stop offset=".58" stop-color="#184d49"/><stop offset="1" stop-color="#4a2948"/></linearGradient>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0l10 5-10 5z" fill="#efc467"/></marker>
+  </defs>
+  <rect width="1200" height="720" rx="30" fill="url(#background)"/>
+  <circle cx="600" cy="364" r="274" fill="none" stroke="#fff" stroke-opacity=".07" stroke-width="72"/>
+  <text x="70" y="75" fill="#efc467" font-family="Arial, sans-serif" font-size="18" font-weight="700" letter-spacing="3">GEEN RECEPT · EEN MOGELIJKE ONTWIKKELINGSLUS</text>
+  <text x="70" y="132" fill="#fff9ea" font-family="Georgia, serif" font-size="48" font-weight="700">Een patroon voedt zijn eigen omgeving.</text>
+  <text x="72" y="169" fill="#c9d8d4" font-family="Arial, sans-serif" font-size="20">Aanleg opent mogelijkheden; dagelijkse wisselwerking maakt sommige routes vertrouwder.</text>
+
+  <g font-family="Arial, sans-serif">
+    <g transform="translate(95 276)"><rect width="230" height="142" rx="22" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".18"/><text x="26" y="38" fill="#efc467" font-size="14" font-weight="700" letter-spacing="2">01 · OPMERKEN</text><text x="26" y="76" fill="#fff" font-size="22" font-weight="700">Wat krijgt aandacht?</text><text x="26" y="106" fill="#c9d8d4" font-size="16">Verwachting, gevoel,</text><text x="26" y="129" fill="#c9d8d4" font-size="16">herinnering, dreiging.</text></g>
+    <g transform="translate(365 276)"><rect width="230" height="142" rx="22" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".18"/><text x="26" y="38" fill="#efc467" font-size="14" font-weight="700" letter-spacing="2">02 · HANDELEN</text><text x="26" y="76" fill="#fff" font-size="22" font-weight="700">Wat doe je hier?</text><text x="26" y="106" fill="#c9d8d4" font-size="16">Automatisch patroon,</text><text x="26" y="129" fill="#c9d8d4" font-size="16">keuze of beschikbare skill.</text></g>
+    <g transform="translate(635 276)"><rect width="230" height="142" rx="22" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".18"/><text x="26" y="38" fill="#efc467" font-size="14" font-weight="700" letter-spacing="2">03 · ANTWOORD</text><text x="26" y="76" fill="#fff" font-size="22" font-weight="700">Wat komt terug?</text><text x="26" y="106" fill="#c9d8d4" font-size="16">Reactie van mensen,</text><text x="26" y="129" fill="#c9d8d4" font-size="16">gevolg, kans of grens.</text></g>
+    <g transform="translate(905 276)"><rect width="230" height="142" rx="22" fill="#fff" fill-opacity=".1" stroke="#fff" stroke-opacity=".18"/><text x="26" y="38" fill="#efc467" font-size="14" font-weight="700" letter-spacing="2">04 · HERHALEN</text><text x="26" y="76" fill="#fff" font-size="22" font-weight="700">Wat wordt vertrouwd?</text><text x="26" y="106" fill="#c9d8d4" font-size="16">Gewoonte, verwachting,</text><text x="26" y="129" fill="#c9d8d4" font-size="16">reputatie en zelfverhaal.</text></g>
+  </g>
+  <g fill="none" stroke="#efc467" stroke-width="4" marker-end="url(#arrow)"><path d="M326 347h31"/><path d="M596 347h31"/><path d="M866 347h31"/><path d="M1020 426c0 110-170 165-420 165S180 536 180 426"/></g>
+  <g font-family="Arial, sans-serif" font-size="16" fill="#d7e3df">
+    <text x="98" y="506">AANLEG &amp; TEMPERAMENT</text><text x="375" y="506">LICHAAM &amp; LEVENSFASE</text><text x="655" y="506">RELATIES &amp; CULTUUR</text><text x="916" y="506">MACHT, MIDDELEN &amp; TOEVAL</text>
+  </g>
+  <text x="600" y="662" text-anchor="middle" fill="#fff9ea" font-family="Georgia, serif" font-size="25" font-style="italic">De lus kan stabiliseren, verschuiven of op een andere plek opnieuw beginnen.</text>
+</svg>

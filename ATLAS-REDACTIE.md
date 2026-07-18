@@ -55,6 +55,12 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Urie Bronfenbrenner — de mens binnen relaties, cultuur en systemen.
 - Viktor Frankl en Irvin Yalom — betekenis, vrijheid, sterfelijkheid en verantwoordelijkheid.
 - Donald Winnicott — zelfervaring, relaties en de faciliterende omgeving; klinisch en interpretatief.
+- Wiebke Bleidorn en Brent Roberts — stabiliteit en verandering van persoonlijkheid door de levensloop en tijdens interventies; nooit als belofte van onbeperkte zelfmaakbaarheid.
+- William Fleeson en Eranda Jayawickreme — trekken als verdelingen van wisselende toestanden binnen situaties; brede scores zijn geen gedrag op ieder moment.
+- Dan McAdams — persoonlijkheid als trekken, doelen en waarden, en narratieve identiteit.
+- Simine Vazire — zelfkennis, reputatie en blinde vlekken; zelfrapportage is belangrijk maar niet volledig.
+- René Mõttus en Colin DeYoung — nuances onder brede trekken en theoretische verbindingen tussen trekken, doelen en adaptieve systemen; modellen, geen complete mensverklaring.
+- A. Timothy Church — persoonlijkheid over culturen heen; steun voor brede trekpatronen én aandacht voor westerse meetkaders en lokale begrippen.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 
