@@ -20,6 +20,7 @@
   const answerGlyphs = ['○', '◔', '◑', '◕', '●'];
   let current = 0;
   let ranked = [];
+  let completed = false;
 
   chapterMap.replaceChildren(...data.chapters.map((chapter, index) => {
     const step = document.createElement('span');
@@ -34,7 +35,7 @@
   }));
 
   function saveProgress() {
-    try { localStorage.setItem(quizStorageKey, JSON.stringify({ current, answers })); }
+    try { localStorage.setItem(quizStorageKey, JSON.stringify({ current, answers, completed })); }
     catch (_) { /* De quiz blijft bruikbaar wanneer lokale opslag niet beschikbaar is. */ }
   }
 
@@ -54,7 +55,7 @@
       const snapshots = Array.isArray(track.labSnapshots) ? track.labSnapshots : [];
       track.labSnapshots = snapshots
         .filter(item => !(item?.kind === 'beast' && item?.title === beast.name))
-        .slice(0, 29);
+        .slice(0, 249);
       track.labSnapshots.unshift({
         kind: 'beast',
         title: beast.name,
@@ -83,9 +84,10 @@
         if (value === null || (Number.isInteger(value) && value >= 1 && value <= 5)) answers[index] = value;
       });
       current = Number.isInteger(saved.current) ? Math.min(Math.max(saved.current, 0), answers.length - 1) : 0;
+      completed = saved.completed === true && answers.every(value => value !== null);
       const answered = answers.filter(value => value !== null).length;
       if (answered > 0) {
-        startButton.firstChild.textContent = `Ga verder met vraag ${current + 1} `;
+        startButton.firstChild.textContent = completed ? 'Bekijk mijn uitslag opnieuw ' : `Ga verder met vraag ${current + 1} `;
         clearSavedButton.hidden = false;
       }
     } catch (_) { clearProgress(); }
@@ -255,7 +257,10 @@
       return card;
     }));
     prepareProfile(beast);
-    if (!previewTraits) clearProgress();
+    if (!previewTraits) {
+      completed = true;
+      saveProgress();
+    }
     showOnly(result);
   }
 
@@ -325,22 +330,26 @@
     renderProfile();
   });
 
-  startButton.addEventListener('click', () => { showOnly(stage); renderQuestion(); });
+  startButton.addEventListener('click', () => {
+    if (completed) renderResult();
+    else { showOnly(stage); renderQuestion(); }
+  });
   clearSavedButton.addEventListener('click', () => {
     answers.fill(null);
     current = 0;
+    completed = false;
     clearProgress();
     startButton.firstChild.textContent = 'Begin de tocht ';
     clearSavedButton.hidden = true;
   });
   document.querySelector('[data-exit-quiz]').addEventListener('click', () => showOnly(intro));
-  document.querySelector('[data-previous-question]').addEventListener('click', () => { if (current > 0) { current -= 1; saveProgress(); renderQuestion(); } });
+  document.querySelector('[data-previous-question]').addEventListener('click', () => { if (current > 0) { current -= 1; completed = false; saveProgress(); renderQuestion(); } });
   document.querySelector('[data-next-question]').addEventListener('click', () => {
     if (answers[current] === null) return;
     if (current < data.questions.length - 1) { current += 1; saveProgress(); renderQuestion(); }
     else renderResult();
   });
-  document.querySelector('[data-restart-quiz]').addEventListener('click', () => { answers.fill(null); current = 0; clearProgress(); showOnly(stage); renderQuestion(); });
+  document.querySelector('[data-restart-quiz]').addEventListener('click', () => { answers.fill(null); current = 0; completed = false; clearProgress(); showOnly(stage); renderQuestion(); });
   document.querySelector('[data-save-beast-result]').addEventListener('click', saveBeastToTrack);
   document.querySelector('[data-open-profile]').addEventListener('click', () => showOnly(profileMaker));
   document.querySelector('[data-close-profile]').addEventListener('click', () => showOnly(result));

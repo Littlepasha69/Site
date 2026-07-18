@@ -6,9 +6,9 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=16">
-  <script src="js/site-shell.js?v=15" defer></script>
-  <script src="js/menslab.js?v=10" defer></script>
+  <link rel="stylesheet" href="css/menslab.css?v=17">
+  <script src="js/site-shell.js?v=16" defer></script>
+  <script src="js/menslab.js?v=12" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -151,9 +151,9 @@
         <label><input type="checkbox"><span><b>Dag 7 · Kies</b>Kies één kleine reactie die je volgende week anders wilt proberen.</span></label>
       </div>
       <div class="week-note">
-        <div><label for="week-note">Wat wil je van deze week onthouden?</label><p>Eén zin is genoeg. Ook die blijft alleen in deze browser.</p></div>
+        <div><label for="week-note">Wat wil je van deze week onthouden?</label><p>Eén zin is genoeg. Je concept wordt automatisch alleen in deze browser bewaard.</p></div>
         <textarea id="week-note" data-week-note maxlength="280" rows="3" placeholder="Bijvoorbeeld: tien seconden wachten gaf me meer keuze."></textarea>
-        <div><button type="button" data-save-week-note>Bewaar mijn notitie</button><span data-week-note-status aria-live="polite"></span></div>
+        <div><button type="button" data-save-week-note>Nu bewaren</button><span data-week-note-status aria-live="polite"></span></div>
       </div>
       <div class="week-complete" data-week-complete hidden aria-live="polite">
         <div class="week-complete__message"><span aria-hidden="true">✓</span><div><strong data-week-finish-title></strong><p>Ook een onvolledige week mag een echt spoor achterlaten.</p></div></div>
@@ -170,6 +170,7 @@
         <article><span>Door de tijd heen</span><strong data-track-total>0</strong><p>proeven en bewegingen bewaard</p></article>
         <article><span>Bewaard</span><strong data-track-weeks>0</strong><p>weken in je spoor</p></article>
       </div>
+      <section class="progress-reading" data-reading-history hidden aria-labelledby="reading-history-title"><div><p class="eyebrow">Verder lezen</p><h3 id="reading-history-title">Waar je gebleven was</h3><p>Ook langere artikelen krijgen een lokaal leeslint.</p></div><ol data-reading-history-list></ol></section>
       <div class="progress-history"><div><h3>Eerdere weken</h3><p>Een spoor hoeft niet lang te zijn om echt te zijn.</p></div><ol data-track-history><li class="progress-history__empty">Hier verschijnen de weken die je bewust afrondt.</li></ol></div>
       <section class="progress-lab-snapshots" data-lab-snapshots hidden aria-labelledby="lab-snapshots-title"><div><p class="eyebrow">Uit het Menslab</p><h3 id="lab-snapshots-title">Bewaarde proefnotities</h3><p>Verwachtingen en observaties, geen conclusies over wie je bent.</p></div><ol data-lab-snapshot-list></ol></section>
       <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Quizkast</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>
@@ -177,11 +178,11 @@
       <section class="progress-patterns" data-progress-patterns hidden aria-labelledby="patterns-title"><div><p class="eyebrow">Zonder oordeel</p><h3 id="patterns-title">Wat je vaker oefent</h3><p>Geen ranglijst, alleen terugkerende bewegingen in je bewaarde weken.</p></div><ol data-pattern-list></ol></section>
       <section class="progress-review" data-progress-review hidden aria-labelledby="review-title"><div><p class="eyebrow">Even achteromkijken</p><h3 id="review-title">Drie weken in beeld</h3><p>Lees een paar eerdere notities opnieuw. Wat lijkt werkelijk iets in beweging te brengen?</p></div><div data-review-notes></div></section>
       <div class="progress-tools">
-        <div><strong>Neem je spoor mee</strong><p>Bewaar een lokaal bestand of zet een eerder spoor terug. Er wordt niets verstuurd.</p></div>
-        <div><button type="button" data-export-track>Bewaar Mijn spoor als bestand</button><label class="progress-import">Zet een spoor terug<input type="file" data-import-track accept="application/json,.json"></label></div>
+        <div><strong>Neem je volledige spoor mee</strong><p>Menslab, quizzen, routes en leesvoortgang in één lokaal bestand. Er wordt niets verstuurd.</p></div>
+        <div><button type="button" data-export-track>Bewaar mijn volledige spoor</button><label class="progress-import">Zet een spoor terug<input type="file" data-import-track accept="application/json,.json"></label></div>
         <p data-track-file-status aria-live="polite"></p>
       </div>
-      <div class="progress-path__privacy"><p>Mijn spoor staat alleen in deze browser op dit apparaat.</p><button type="button" data-clear-track>Wis mijn hele spoor</button></div>
+      <div class="progress-path__privacy"><p>Mijn spoor staat alleen in deze browser op dit apparaat.</p><button type="button" data-clear-track>Wis al mijn lokale gegevens</button></div>
     </section>
 
     <section class="reflection" id="reflectie" aria-labelledby="reflection-title">

@@ -81,3 +81,42 @@ customElements.define('site-footer', SiteFooter);
     // De site blijft volledig bruikbaar zonder lokale opslag.
   }
 }());
+
+(function rememberReadingProgress() {
+  if (document.querySelector('.dossier-page')) return;
+  const main = document.querySelector('main');
+  const page = location.pathname.split('/').pop() || '';
+  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'onderwerpen.html', 'menslab.html', 'privacy.html', 'forum.html', 'bijdragen.html']);
+  if (!main || excluded.has(page)) return;
+
+  const heading = main.querySelector('h1');
+  const title = heading?.textContent?.trim() || document.title.split('—')[0].trim();
+  if (!title) return;
+  const key = 'onwijze-reading-history-v1';
+  const url = location.href.split('#')[0];
+  let lastSaved = -1;
+
+  function saveReading(force = false) {
+    const scrollable = Math.max(1, document.documentElement.scrollHeight - innerHeight);
+    const progress = Math.max(0, Math.min(100, Math.round(scrollY / scrollable * 100)));
+    if (!force && lastSaved >= 0 && progress < lastSaved + 10) return;
+    try {
+      const parsed = JSON.parse(localStorage.getItem(key) || '[]');
+      const history = Array.isArray(parsed) ? parsed : [];
+      const previous = history.find(item => item.url === url);
+      const entry = { url, title, progress:Math.max(Number(previous?.progress) || 0, progress), visitedAt:Date.now() };
+      const next = [entry, ...history.filter(item => item.url !== url)].sort((a, b) => b.visitedAt - a.visitedAt).slice(0, 500);
+      localStorage.setItem(key, JSON.stringify(next));
+      lastSaved = entry.progress;
+    } catch (_) {}
+  }
+
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking) return;
+    ticking = true;
+    requestAnimationFrame(() => { ticking = false; saveReading(); });
+  }, { passive:true });
+  addEventListener('pagehide', () => saveReading(true));
+  saveReading(true);
+}());

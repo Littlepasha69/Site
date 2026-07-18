@@ -33,10 +33,26 @@
   };
   const trackStorageKey = 'menslab-progress-v3';
   const previousTrackStorageKey = 'menslab-progress-v2';
+  const quizProgressKey = 'quizkast-progress-v1';
   let activeQuiz;
   let current = 0;
   let answers = [];
   let activeResult;
+
+  function readQuizProgress() {
+    try { return JSON.parse(localStorage.getItem(quizProgressKey) || 'null'); }
+    catch (_) { return null; }
+  }
+
+  function saveQuizProgress(screen = 'questions') {
+    if (!activeQuiz) return;
+    try { localStorage.setItem(quizProgressKey, JSON.stringify({ quizId:activeQuiz.id, current, answers, screen, savedAt:new Date().toISOString() })); }
+    catch (_) {}
+  }
+
+  function clearQuizProgress() {
+    try { localStorage.removeItem(quizProgressKey); } catch (_) {}
+  }
 
   function scrollTop() {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -59,11 +75,13 @@
     scrollTop();
   }
 
-  function startQuiz(id) {
+  function startQuiz(id, forceFresh = false) {
     activeQuiz = quizzes.find(quiz => quiz.id === id);
     if (!activeQuiz) return;
-    current = 0;
-    answers = new Array(activeQuiz.questions.length).fill(null);
+    const stored = forceFresh ? null : readQuizProgress();
+    const canResume = stored?.quizId === id && Array.isArray(stored.answers) && stored.answers.length === activeQuiz.questions.length;
+    current = canResume && Number.isInteger(stored.current) ? Math.max(0, Math.min(activeQuiz.questions.length - 1, stored.current)) : 0;
+    answers = canResume ? stored.answers.map(value => value === null || typeof value === 'string' ? value : null) : new Array(activeQuiz.questions.length).fill(null);
     const visual = visualThemes[activeQuiz.id];
     stage.dataset.quizTheme = activeQuiz.id;
     resultSection.dataset.quizTheme = activeQuiz.id;
@@ -81,8 +99,12 @@
     document.querySelector('[data-save-mini-result]').disabled = false;
     document.querySelector('[data-save-mini-result]').textContent = 'Bewaar deze spiegel in Mijn spoor';
     document.querySelector('[data-save-mini-status]').textContent = '';
-    showOnly(stage);
-    renderQuestion();
+    if (canResume && stored.screen === 'result' && answers.every(Boolean)) renderResult();
+    else {
+      showOnly(stage);
+      renderQuestion();
+      saveQuizProgress();
+    }
   }
 
   function renderQuestion() {
@@ -120,6 +142,7 @@
       label.append(marker, document.createTextNode(option.text));
       input.addEventListener('change', () => {
         answers[current] = option.result;
+        saveQuizProgress();
         document.querySelector('[data-mini-next]').disabled = false;
         questionCard.classList.remove('mini-question--answered');
         void questionCard.offsetWidth;
@@ -161,6 +184,7 @@
       anchor.href = activeQuiz.theoryHref;
       anchor.textContent = activeQuiz.theoryLabel;
     }
+    saveQuizProgress('result');
     showOnly(resultSection);
   }
 
@@ -185,13 +209,14 @@
         experiment: activeResult.experiment,
         savedAt: new Date().toISOString()
       });
-      progress.quizSnapshots = progress.quizSnapshots.slice(0, 24);
+      progress.quizSnapshots = progress.quizSnapshots.slice(0, 250);
       localStorage.setItem(trackStorageKey, JSON.stringify(progress));
       localStorage.removeItem(previousTrackStorageKey);
       const button = document.querySelector('[data-save-mini-result]');
       button.disabled = true;
       button.textContent = 'Bewaard in Mijn spoor';
       document.querySelector('[data-save-mini-status]').textContent = 'Deze momentopname staat alleen in deze browser in Mijn spoor.';
+      clearQuizProgress();
     } catch (_) {
       document.querySelector('[data-save-mini-status]').textContent = 'Bewaren lukt niet in deze browser. De uitslag blijft wel zichtbaar.';
     }
@@ -202,6 +227,7 @@
   document.querySelector('[data-mini-previous]').addEventListener('click', () => {
     if (current > 0) {
       current -= 1;
+      saveQuizProgress();
       renderQuestion();
     }
   });
@@ -209,10 +235,11 @@
     if (answers[current] === null) return;
     if (current < activeQuiz.questions.length - 1) {
       current += 1;
+      saveQuizProgress();
       renderQuestion();
     } else renderResult();
   });
-  document.querySelector('[data-restart-mini]').addEventListener('click', () => startQuiz(activeQuiz.id));
+  document.querySelector('[data-restart-mini]').addEventListener('click', () => { clearQuizProgress(); startQuiz(activeQuiz.id, true); });
   document.querySelector('[data-choose-another]').addEventListener('click', showShelf);
   document.querySelector('[data-save-mini-result]').addEventListener('click', saveResultToTrack);
   const requestedQuiz = new URLSearchParams(window.location.search).get('quiz');

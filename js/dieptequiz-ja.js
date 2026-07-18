@@ -1,6 +1,7 @@
 (function () {
   const trackStorageKey = 'menslab-progress-v3';
   const previousTrackStorageKey = 'menslab-progress-v2';
+  const quizProgressKey = 'dieptequiz-ja-progress-v1';
   const questions = [
     {
       id: 'first-pull', phase: 'Lens 1 · Wat in jou beweegt', eyebrow: 'De eerste beweging',
@@ -195,6 +196,22 @@
   let resultData = null;
   let followupSnapshotKey = '';
 
+  function readQuizProgress() {
+    try { return JSON.parse(localStorage.getItem(quizProgressKey) || 'null'); }
+    catch (_) { return null; }
+  }
+  function saveQuizProgress(screen = 'stage') {
+    try { localStorage.setItem(quizProgressKey, JSON.stringify({
+      context, situation, current, answers, specialAnswers, screen, fit,
+      reflection:document.querySelector('[data-depth-reflection]')?.value.slice(0, 280) || '',
+      keepSituation:document.querySelector('[data-store-situation]')?.checked !== false,
+      keepReflection:document.querySelector('[data-store-reflection]')?.checked !== false,
+      savedAt:new Date().toISOString()
+    })); }
+    catch (_) {}
+  }
+  function clearQuizProgress() { try { localStorage.removeItem(quizProgressKey); } catch (_) {} }
+
   function scrollTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
   function emptyProgress() { return { checks: new Array(7).fill(false), note: '', startedAt: new Date().toISOString(), completedWeeks: [], carryForward: '', quizSnapshots: [] }; }
   function loadProgress() {
@@ -278,6 +295,7 @@
         if (input.checked && answers[current].length >= 2) input.checked = false;
         else if (input.checked) answers[current].push(index);
         else answers[current] = answers[current].filter(item => item !== index);
+        saveQuizProgress();
         fieldset.querySelectorAll('input').forEach(other => { other.disabled = answers[current].length >= 2 && !other.checked; });
         document.querySelectorAll('[data-special-answer]').forEach(button => button.setAttribute('aria-pressed', 'false'));
         document.querySelector('[data-depth-next]').disabled = !hasAnswer(current);
@@ -452,6 +470,7 @@
     document.querySelector('[data-experiment-copy]').textContent = experiment[1];
     document.querySelector('[data-take-along]').textContent = `Let bij het volgende echte moment op één ding: wat gebeurde er nadat je ${experiment[0].toLowerCase()} probeerde — met jou, met de ander en met de gevreesde gevolgen?`;
     renderSavePreview();
+    saveQuizProgress('result');
     showOnly(result);
   }
   function saveResult() {
@@ -471,12 +490,13 @@
         method: { answered: resultData.answered, dual: resultData.dual, missed: resultData.missed, skipped: resultData.skipped },
         followUp: null, savedAt: new Date().toISOString()
       });
-      progress.quizSnapshots = progress.quizSnapshots.slice(0, 24);
+      progress.quizSnapshots = progress.quizSnapshots.slice(0, 250);
       storeProgress(progress);
       const button = document.querySelector('[data-save-depth]');
       button.disabled = true;
       button.textContent = 'Bewaard in Mijn spoor';
       document.querySelector('[data-save-depth-status]').textContent = 'Bewaard. Vanuit Mijn spoor kun je later terugkomen om de werkelijke afloop te onderzoeken.';
+      clearQuizProgress();
     } catch (_) {
       document.querySelector('[data-save-depth-status]').textContent = 'Bewaren lukt niet in deze browser. Je drieluik blijft wel zichtbaar.';
     }
@@ -515,31 +535,34 @@
     current = 0;
     answers = questions.map(() => []);
     specialAnswers = new Array(questions.length).fill('');
+    saveQuizProgress();
     showOnly(stage);
     renderQuestion();
   });
   document.querySelectorAll('[data-special-answer]').forEach(button => button.addEventListener('click', () => {
     specialAnswers[current] = button.dataset.specialAnswer;
     answers[current] = [];
+    saveQuizProgress();
     renderQuestion();
   }));
   document.querySelector('[data-return-start]').addEventListener('click', showStart);
-  document.querySelector('[data-depth-previous]').addEventListener('click', () => { if (current > 0) { current -= 1; renderQuestion(); } });
+  document.querySelector('[data-depth-previous]').addEventListener('click', () => { if (current > 0) { current -= 1; saveQuizProgress(); renderQuestion(); } });
   document.querySelector('[data-depth-next]').addEventListener('click', () => {
     if (!hasAnswer(current)) return;
-    if (current < questions.length - 1) { current += 1; renderQuestion(); }
+    if (current < questions.length - 1) { current += 1; saveQuizProgress(); renderQuestion(); }
     else renderResult();
   });
   document.querySelectorAll('[data-fit]').forEach(button => button.addEventListener('click', () => {
     fit = button.dataset.fit;
     document.querySelectorAll('[data-fit]').forEach(item => item.setAttribute('aria-pressed', String(item === button)));
     renderSavePreview();
+    saveQuizProgress('result');
   }));
-  document.querySelector('[data-depth-reflection]').addEventListener('input', renderSavePreview);
-  document.querySelector('[data-store-situation]').addEventListener('change', renderSavePreview);
-  document.querySelector('[data-store-reflection]').addEventListener('change', renderSavePreview);
+  document.querySelector('[data-depth-reflection]').addEventListener('input', () => { renderSavePreview(); saveQuizProgress('result'); });
+  document.querySelector('[data-store-situation]').addEventListener('change', () => { renderSavePreview(); saveQuizProgress('result'); });
+  document.querySelector('[data-store-reflection]').addEventListener('change', () => { renderSavePreview(); saveQuizProgress('result'); });
   document.querySelector('[data-save-depth]').addEventListener('click', saveResult);
-  document.querySelector('[data-restart-depth]').addEventListener('click', showStart);
+  document.querySelector('[data-restart-depth]').addEventListener('click', () => { clearQuizProgress(); showStart(); });
   document.querySelector('[data-followup-form]').addEventListener('submit', event => {
     event.preventDefault();
     try {
@@ -554,4 +577,27 @@
   });
   const requestedFollowup = new URLSearchParams(window.location.search).get('terugblik');
   if (requestedFollowup) openFollowup(requestedFollowup);
+  else {
+    const storedQuiz = readQuizProgress();
+    const validStored = storedQuiz && Array.isArray(storedQuiz.answers) && storedQuiz.answers.length === questions.length && Array.isArray(storedQuiz.specialAnswers) && storedQuiz.specialAnswers.length === questions.length;
+    if (validStored) {
+      context = typeof storedQuiz.context === 'string' ? storedQuiz.context : '';
+      situation = typeof storedQuiz.situation === 'string' ? storedQuiz.situation.slice(0, 90) : '';
+      current = Number.isInteger(storedQuiz.current) ? Math.max(0, Math.min(questions.length - 1, storedQuiz.current)) : 0;
+      answers = storedQuiz.answers.map((items, index) => Array.isArray(items) ? [...new Set(items.filter(item => Number.isInteger(item) && item >= 0 && item < questions[index].options.length))].slice(0, 2) : []);
+      specialAnswers = storedQuiz.specialAnswers.map(value => ['skip', 'miss'].includes(value) ? value : '');
+      form.elements.context.value = context;
+      document.querySelector('[data-situation]').value = situation;
+      if (storedQuiz.screen === 'result' && questions.every((_, index) => answers[index].length || specialAnswers[index])) {
+        renderResult();
+        fit = ['raakt', 'deels', 'mist'].includes(storedQuiz.fit) ? storedQuiz.fit : '';
+        document.querySelectorAll('[data-fit]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.fit === fit)));
+        document.querySelector('[data-depth-reflection]').value = typeof storedQuiz.reflection === 'string' ? storedQuiz.reflection.slice(0, 280) : '';
+        document.querySelector('[data-store-situation]').checked = storedQuiz.keepSituation !== false;
+        document.querySelector('[data-store-reflection]').checked = storedQuiz.keepReflection !== false;
+        renderSavePreview();
+        saveQuizProgress('result');
+      } else { showOnly(stage); renderQuestion(); }
+    }
+  }
 })();

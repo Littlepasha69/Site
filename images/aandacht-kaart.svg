@@ -1,0 +1,32 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 640" role="img" aria-labelledby="title desc">
+  <title id="title">Aandacht als beweeglijke selectie</title>
+  <desc id="desc">Een veld vol signalen waarin doelen, opvallendheid, ervaring en toestand samen bepalen wat voorgrond wordt, terwijl andere signalen naar de achtergrond verdwijnen.</desc>
+  <defs>
+    <linearGradient id="attention-bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eaf3ef"/><stop offset=".54" stop-color="#fff8e8"/><stop offset="1" stop-color="#f3e7ee"/></linearGradient>
+    <radialGradient id="attention-focus"><stop stop-color="#f7cd68" stop-opacity=".85"/><stop offset=".48" stop-color="#f7cd68" stop-opacity=".2"/><stop offset="1" stop-color="#f7cd68" stop-opacity="0"/></radialGradient>
+    <linearGradient id="attention-core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123f3e"/><stop offset="1" stop-color="#5d304c"/></linearGradient>
+    <filter id="attention-shadow"><feDropShadow dx="0" dy="15" stdDeviation="20" flood-color="#0c3230" flood-opacity=".17"/></filter>
+  </defs>
+  <rect width="1200" height="640" rx="34" fill="url(#attention-bg)"/>
+  <g fill="#174746" opacity=".2">
+    <circle cx="113" cy="124" r="13"/><circle cx="194" cy="239" r="8"/><circle cx="105" cy="417" r="18"/><circle cx="284" cy="520" r="10"/><circle cx="353" cy="115" r="9"/><circle cx="443" cy="542" r="16"/><circle cx="757" cy="103" r="12"/><circle cx="874" cy="519" r="9"/><circle cx="1049" cy="156" r="17"/><circle cx="1081" cy="430" r="11"/><circle cx="959" cy="294" r="7"/>
+  </g>
+  <g fill="none" stroke="#9eb8ae" stroke-width="3" opacity=".75">
+    <path d="M98 330C258 214 353 234 469 304"/><path d="M716 306c128-82 241-65 385 39"/><path d="M324 96c88 63 118 108 142 181"/><path d="M728 339c89 67 130 116 154 200"/>
+  </g>
+  <circle cx="600" cy="320" r="276" fill="url(#attention-focus)"/>
+  <g filter="url(#attention-shadow)">
+    <path d="M600 146c130 0 235 78 293 174-58 96-163 174-293 174s-235-78-293-174c58-96 163-174 293-174Z" fill="#fff" stroke="#c8d8d2" stroke-width="4"/>
+    <circle cx="600" cy="320" r="126" fill="url(#attention-core)"/>
+    <circle cx="600" cy="320" r="56" fill="#f2c45c"/>
+    <circle cx="574" cy="292" r="18" fill="#fff7df" opacity=".8"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#174746">
+    <g transform="translate(74 63)"><rect width="210" height="88" rx="22" fill="#fff" stroke="#cad9d3" stroke-width="3"/><text x="105" y="37" text-anchor="middle" font-size="17" font-weight="700">DOEL</text><text x="105" y="62" text-anchor="middle" font-size="13" fill="#61716e">wat wil je vinden?</text></g>
+    <g transform="translate(916 77)"><rect width="210" height="88" rx="22" fill="#fff" stroke="#dacbd4" stroke-width="3"/><text x="105" y="37" text-anchor="middle" font-size="17" font-weight="700">PRIKKEL</text><text x="105" y="62" text-anchor="middle" font-size="13" fill="#6d6170">wat springt eruit?</text></g>
+    <g transform="translate(70 488)"><rect width="235" height="88" rx="22" fill="#fff" stroke="#cad9d3" stroke-width="3"/><text x="117.5" y="37" text-anchor="middle" font-size="17" font-weight="700">VERLEDEN</text><text x="117.5" y="62" text-anchor="middle" font-size="13" fill="#61716e">wat leerde je volgen?</text></g>
+    <g transform="translate(895 483)"><rect width="235" height="88" rx="22" fill="#fff" stroke="#dacbd4" stroke-width="3"/><text x="117.5" y="37" text-anchor="middle" font-size="17" font-weight="700">TOESTAND</text><text x="117.5" y="62" text-anchor="middle" font-size="13" fill="#6d6170">wat kan je nu dragen?</text></g>
+  </g>
+  <text x="600" y="327" text-anchor="middle" fill="#fff9e9" font-family="Georgia,serif" font-size="25" font-weight="700">voorgrond</text>
+  <text x="600" y="613" text-anchor="middle" fill="#695e67" font-family="Arial,sans-serif" font-size="16">Aandacht vindt niet gewoon wat belangrijk is. Ze helpt mee bepalen wat belangrijk wordt.</text>
+</svg>

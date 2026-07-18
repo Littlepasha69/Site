@@ -60,3 +60,9 @@
 @media(hover:hover){.answer-option label:hover{border-color:color-mix(in srgb,var(--chapter-accent) 55%,var(--line));box-shadow:0 12px 24px var(--chapter-glow);transform:translateY(-3px)}.answer-option input:checked+label:hover{transform:translateY(-4px)}}
 @media(max-width:620px){.chapter-journey{grid-template-columns:1fr;gap:.65rem;padding:.7rem}.chapter-journey>p{text-align:center;font-size:.74rem}.chapter-step small{display:none}.chapter-step:not(:last-child)::after{top:.78rem}.question-card::after{font-size:9rem;top:-.15em}.answer-option label{animation-delay:0ms}.question-card:has(.answer-option input:checked){box-shadow:0 18px 42px var(--chapter-glow)}}
 @media(prefers-reduced-motion:reduce){.quiz-progress span,.question-card,.question-symbol,.answer-option label,.answer-option label span{transition:none}.answer-option label,.result-portrait{animation:none}}
+
+/* Brede antwoordregels: minder lezen in smalle vakjes, sneller vergelijken. */
+.answer-scale{max-width:760px;grid-template-columns:1fr;gap:.45rem}
+.answer-option label{min-height:3.6rem;padding:.72rem .9rem;flex-direction:row;justify-content:flex-start;gap:.8rem;text-align:left;font-size:.92rem}
+.answer-option label span{width:1.75rem;height:1.75rem;flex:0 0 auto}
+@media(max-width:620px){.answer-option label{min-height:3.25rem}}

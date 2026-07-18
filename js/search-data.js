@@ -126,8 +126,8 @@ window.ONWIJZE_CONTENT = [
   },
   {
     title: 'Basale ganglia', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
-    summary: 'Hersenkernen die betrokken zijn bij beweging, motivatie en gewoontevorming.',
-    url: 'onderwerpen/basale-ganglia.html', tags: ['hersenen', 'beweging', 'motivatie', 'gewoonte'], areaIcon: 'brain'
+    summary: 'Hoe striatum, pallidum, subthalamische kern en substantia nigra acties helpen selecteren, leren en bijsturen.',
+    url: 'onderwerpen/basale-ganglia.html', tags: ['hersenen', 'beweging', 'motivatie', 'gewoonte', 'striatum', 'putamen', 'caudatus', 'dopamine', 'parkinson', 'huntington', 'dystonie', 'dbs', 'subthalamische kern', 'directe route', 'indirecte route', 'hyperdirecte route'], areaIcon: 'brain', updated: '2026-07-18T21:15:00+03:00', featureImage: 'images/basale-ganglia-routes.svg'
   },
   {
     title: 'Beroerte', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
@@ -159,6 +159,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Het “kleine brein” als fijnregelaar van beweging, timing, voorspelling, foutleren en cognitief-emotionele lussen.',
     url: 'onderwerpen/cerebellum.html', tags: ['cerebellum', 'kleine hersenen', 'evenwicht', 'coördinatie', 'timing', 'voorspelling', 'voorspellingsfout', 'motorisch leren', 'ataxie', 'taal', 'emotie', 'sociaal leren', 'Schmahmann', 'CCAS'],
     updated: '2026-07-18T23:35:00+03:00', featureImage: 'images/cerebellum-kaart.svg', areaIcon: 'brain'
+  },
+  {
+    title: 'Aandacht', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Redelijk stevig',
+    summary: 'Hoe doelen, opvallende prikkels, ervaring, lichaam en digitale omgevingen bepalen wat voorgrond wordt — met wetenschap én kritiek op de aandachtseconomie.',
+    url: 'onderwerpen/aandacht.html', tags: ['aandacht', 'concentratie', 'focus', 'afleiding', 'selectieve aandacht', 'volgehouden aandacht', 'mind wandering', 'taakwisselen', 'multitasken', 'onoplettendheidsblindheid', 'smartphone', 'aandachtseconomie', 'attentional capture', 'ADHD', 'Theeuwes', 'Rosenberg', 'Egner', 'Citton', 'Williams', 'Odell'],
+    updated: '2026-07-18T23:59:30+03:00', featureImage: 'images/aandacht-kaart.svg', areaIcon: 'brain'
   },
   {
     title: 'Klimaatopwarming', type: 'achtergrond', category: 'Leefwereld',

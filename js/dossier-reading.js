@@ -84,7 +84,7 @@
       };
       const nextHistory = [footprint, ...history.filter(entry => entry.url !== currentRecord.url)]
         .sort((a, b) => Number(Boolean(b.saved)) - Number(Boolean(a.saved)) || b.visitedAt - a.visitedAt)
-        .slice(0, 12);
+        .slice(0, 500);
       localStorage.setItem(footprintStorageKey, JSON.stringify(nextHistory));
       return footprint;
     } catch (error) {
@@ -98,7 +98,24 @@
     lastSavedChapter = initialFootprint.chapterId;
   }
 
-  const saveButton = page.querySelector('[data-save-dossier]');
+  let saveButton = page.querySelector('[data-save-dossier]');
+  if (!saveButton && currentRecord) {
+    saveButton = document.createElement('button');
+    saveButton.className = 'dossier-save';
+    saveButton.type = 'button';
+    saveButton.dataset.saveDossier = '';
+    saveButton.setAttribute('aria-pressed', 'false');
+    saveButton.innerHTML = '<span aria-hidden="true">＋</span> Bewaar dit dossier';
+    page.querySelector('.dossier-status')?.append(saveButton);
+  }
+
+  if (initialFootprint && initialFootprint.progress >= 5 && initialFootprint.progress < 99 && initialFootprint.chapterId !== chapters[0].section.id) {
+    const resumeLink = document.createElement('a');
+    resumeLink.className = 'dossier-resume';
+    resumeLink.href = `#${encodeURIComponent(initialFootprint.chapterId)}`;
+    resumeLink.innerHTML = `<span>Verder waar je was</span><strong>${initialFootprint.chapterLabel || 'Lees verder'} →</strong>`;
+    page.querySelector('.dossier-status')?.append(resumeLink);
+  }
 
   if (saveButton && currentRecord) {
     const readFootprints = () => {
@@ -136,7 +153,7 @@
       };
       const next = [updated, ...footprints.filter(entry => entry.url !== currentRecord.url)]
         .sort((a, b) => Number(Boolean(b.saved)) - Number(Boolean(a.saved)) || b.visitedAt - a.visitedAt)
-        .slice(0, 12);
+        .slice(0, 500);
 
       try {
         localStorage.setItem(footprintStorageKey, JSON.stringify(next));

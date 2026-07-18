@@ -46,7 +46,7 @@
       notes: notes.map((_, index) => text(value.notes?.[index], 600)),
       reviewDiscovery: text(value.reviewDiscovery, 280),
       reviewConditions: text(value.reviewConditions, 280),
-      reviewDecision: Object.hasOwn(decisionLabels, value.reviewDecision) ? value.reviewDecision : ''
+      reviewDecision: Object.prototype.hasOwnProperty.call(decisionLabels, value.reviewDecision) ? value.reviewDecision : ''
     };
     if (![clean.pattern, clean.cue, clean.oldResponse, clean.newResponse].every(item => item.length >= 4)) return null;
     return clean;
@@ -212,9 +212,11 @@
     const trackStatus = document.querySelector('[data-route-track-status]');
     const data = formData();
     const decision = decisionLabels[data.reviewDecision] || 'Nog geen beslissing';
+    const livedNote = data.notes.filter(Boolean).slice(-2).join(' ');
     const observations = [
       data.reviewDiscovery && `Wat hielp of verraste: ${data.reviewDiscovery}`,
       data.reviewConditions && `Wat de oude route waarschijnlijker maakte: ${data.reviewConditions}`,
+      !data.reviewDiscovery && !data.reviewConditions && livedNote && `Uit de dagnotities: ${livedNote}`,
       `Volgende keuze: ${decision}.`
     ].filter(Boolean).join(' ');
     try {
@@ -225,7 +227,7 @@
       const title = `Veranderroute · ${data.pattern}`.slice(0, 140);
       track.labSnapshots = snapshots
         .filter(item => !(item?.kind === 'route' && item?.title === title))
-        .slice(0, 29);
+        .slice(0, 249);
       track.labSnapshots.unshift({
         kind: 'route',
         title,
@@ -236,6 +238,7 @@
       });
       localStorage.setItem(TRACK_KEY, JSON.stringify(track));
       localStorage.removeItem(PREVIOUS_TRACK_KEY);
+      document.querySelector('[data-save-route-track]').textContent = 'Eindspiegel bewaard';
       const link = document.createElement('a');
       link.href = 'menslab.html#mijn-spoor';
       link.textContent = 'Bekijk Mijn spoor →';
@@ -288,6 +291,7 @@
       clearTimer = setTimeout(() => {
         clearArmed = false;
         clearButton.textContent = 'Wis mijn lokale route';
+        if (status.textContent === 'Je eindspiegel in Mijn spoor wordt hiermee niet gewist.') status.textContent = '';
       }, 5000);
       return;
     }
