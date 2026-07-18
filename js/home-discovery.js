@@ -1,4 +1,32 @@
 (function () {
+  const returnPath = document.querySelector('[data-return-path]');
+  if (returnPath) {
+    try {
+      const trail = JSON.parse(localStorage.getItem('onwijze-laatste-spoor') || 'null');
+      const target = trail?.href ? new URL(trail.href, location.href) : null;
+      const safeProtocol = target && ['file:', 'http:', 'https:'].includes(target.protocol);
+      const samePlace = target && target.origin === location.origin;
+
+      if (trail?.title && safeProtocol && samePlace && target.href !== location.href) {
+        const link = returnPath.querySelector('[data-return-link]');
+        link.href = target.href;
+        returnPath.querySelector('[data-return-title]').textContent = trail.title;
+        returnPath.hidden = false;
+      }
+    } catch (error) {
+      // Een oud of onleesbaar spoor wordt eenvoudig genegeerd.
+    }
+
+    returnPath.querySelector('[data-return-dismiss]')?.addEventListener('click', () => {
+      try {
+        localStorage.removeItem('onwijze-laatste-spoor');
+      } catch (error) {
+        // Verbergen blijft ook zonder lokale opslag werken.
+      }
+      returnPath.hidden = true;
+    });
+  }
+
   const surprises = [
     'onderwerpen/gewoontes.html',
     'onderwerpen/de-ander-verandert-je.html',

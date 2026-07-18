@@ -8,11 +8,22 @@
   <meta property="og:title" content="De Onwijze Wijsheden — Tussen onzin en openbaring">
   <meta property="og:description" content="Voor wie zichzelf niet meer alleen kan sussen en nieuwsgierig genoeg is om verder te kijken.">
   <meta property="og:image" content="images/logo-wide.png">
+  <meta name="robots" content="noindex,follow">
+  <link rel="canonical" href="home.html">
   <link rel="icon" href="favicon.ico" sizes="any">
   <title>Welkom — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=22">
-  <link rel="stylesheet" href="css/entrance-2026.css?v=2">
-  <script src="js/entrance.js?v=1" defer></script>
+  <link rel="stylesheet" href="css/entrance-2026.css?v=3">
+  <script>
+    try {
+      const terugkerend = localStorage.getItem('onwijze-ingang-gezien') === '1';
+      const ingangOpnieuw = new URLSearchParams(location.search).has('welkom');
+      if (terugkerend && !ingangOpnieuw) location.replace('home.html');
+    } catch (error) {
+      // De ingang blijft bruikbaar wanneer lokale opslag niet beschikbaar is.
+    }
+  </script>
+  <script src="js/entrance.js?v=3" defer></script>
 </head>
 <body class="entrance-page">
   <main class="entrance" id="inhoud">
@@ -25,7 +36,7 @@
 
       <a class="entrance__door" href="home.html" data-enter aria-label="Klik hier om De Onwijze Wijsheden binnen te gaan">
         <span class="entrance__halo" aria-hidden="true"></span>
-        <img src="images/enter.png" alt="Een gloeiende schelp als toegang tot De Onwijze Wijsheden" width="1024" height="1024">
+        <img src="images/enter-home.png" alt="Een gloeiende schelp als toegang tot De Onwijze Wijsheden" width="640" height="640">
         <span class="entrance__invitation">klik hier om binnen te gaan</span>
       </a>
 

@@ -6,9 +6,9 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=15">
-  <script src="js/site-shell.js?v=14" defer></script>
-  <script src="js/menslab.js?v=9" defer></script>
+  <link rel="stylesheet" href="css/menslab.css?v=16">
+  <script src="js/site-shell.js?v=15" defer></script>
+  <script src="js/menslab.js?v=10" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -19,7 +19,7 @@
           <p class="eyebrow">Van inzicht naar beweging</p>
           <h1>Welkom in het Menslab.</h1>
           <p>Een plek om niet alleen óver verandering te lezen, maar iets kleins te proberen, te voelen en opnieuw te bekijken.</p>
-          <div class="lab-actions"><a class="lab-button" href="dierenquiz.html">Doe de Beestenquiz</a><a class="lab-link" href="#lab-kiezer">Vind mijn ingang ↓</a></div>
+          <div class="lab-actions"><a class="lab-button" href="#dagproef">Doe de proef van vandaag</a><a class="lab-link" href="#lab-kiezer">Kies op tijd ↓</a></div>
         </div>
         <nav class="lab-orbit" aria-label="Kies tussen denken, voelen, doen en jij">
           <a class="lab-orbit__think" href="denkstukken.html">denken</a>
@@ -30,13 +30,38 @@
       </div>
     </section>
 
+    <a class="progress-resume" href="#mijn-spoor" data-progress-resume hidden><span>Welkom terug</span><strong data-resume-text></strong><small data-resume-action>Ga verder →</small></a>
+
     <nav class="lab-clouds" id="lab-kiezer" aria-label="Kies je ingang in het Menslab">
-      <p>Waar heb je vandaag ruimte voor?</p>
-      <a href="#quizkast"><span>Ik wil mezelf</span><strong>even spiegelen</strong><small>1–3 minuten</small></a>
-      <a href="#speelhallen"><span>Ik wil iets</span><strong>vreemds proberen</strong><small>zonder doelstress</small></a>
-      <a href="#weeklab"><span>Ik wil een</span><strong>route volgen</strong><small>zeven kleine haltes</small></a>
-      <a href="#mijn-spoor"><span>Ik wil rustig</span><strong>terugkijken</strong><small>wat bleef hangen?</small></a>
+      <p>Hoeveel ruimte heb je vandaag?</p>
+      <a href="#dagproef"><span>2 minuten</span><strong>Iets kleins proberen</strong><small>zonder prestatiedruk</small></a>
+      <a href="#quizkast"><span>10 minuten</span><strong>Een vraag onderzoeken</strong><small>kort, diep of speels</small></a>
+      <a href="#weeklab"><span>7 dagen</span><strong>Een spoor volgen</strong><small>zeven losse haltes</small></a>
     </nav>
+
+    <section class="daily-lab" id="dagproef" aria-labelledby="daily-lab-title">
+      <header class="daily-lab__head">
+        <div><p class="eyebrow">De proef van vandaag</p><h2 id="daily-lab-title">Eerst proberen. Daarna pas besluiten wat het betekende.</h2></div>
+        <p>Twee minuten, één verwachting en één observatie. Geen score en geen verborgen profiel.</p>
+      </header>
+      <div class="daily-lab__bench">
+        <div class="daily-lab__prompt">
+          <span data-daily-number>Proef 01</span>
+          <h3 data-daily-title>De kleine omweg</h3>
+          <p data-daily-prompt>Doe één gewone handeling bewust in een andere volgorde. Merk op wanneer je automatische piloot het stuur probeert terug te pakken.</p>
+          <small>Overslaan is ook een geldige beweging. Stop wanneer dit niet licht of veilig voelt.</small>
+        </div>
+        <div class="daily-lab__fields">
+          <label for="daily-expectation">Wat verwacht je dat er zal gebeuren?<textarea id="daily-expectation" data-daily-expectation maxlength="280" rows="3" placeholder="Eén voorlopige verwachting is genoeg."></textarea></label>
+          <button type="button" data-daily-tried>Ik heb het geprobeerd</button>
+          <div class="daily-lab__after" data-daily-after hidden>
+            <label for="daily-observation">Wat merkte je werkelijk?<textarea id="daily-observation" data-daily-observation maxlength="280" rows="3" placeholder="Wat verraste, schuurde of bleef precies hetzelfde?"></textarea></label>
+            <div><button type="button" data-save-daily>Bewaar in Mijn spoor</button><span data-daily-status aria-live="polite"></span></div>
+          </div>
+        </div>
+      </div>
+      <p class="daily-lab__method"><strong>Waarom dit een lab is:</strong> een verwachting vooraf en een observatie achteraf helpen verschil zien tussen wat je voorspelde en wat er gebeurde. Eén poging bewijst niets; ze levert alleen nieuwe informatie.</p>
+    </section>
 
     <section class="quizkast-gateway" id="quizkast" aria-labelledby="quizkast-title">
       <div class="quizkast-gateway__head"><div><p class="eyebrow">Snel zoeken op vraag</p><h2 id="quizkast-title">Waar wil je even naar kijken?</h2></div><div><p>Vier korte spiegels. Kies de vraag die nu aan je mouw trekt; de rest mag dicht blijven.</p><a href="quizkast.html">Bekijk de hele Quizkast →</a></div></div>
@@ -59,12 +84,12 @@
       <header class="amusement-hub__head">
         <div><p class="eyebrow">Twee speelruimtes</p><h2 id="amusement-hub-title">Waar wil je even rondneuzen?</h2><p>Niet alles tegelijk. Kies één wereld; je kunt altijd wisselen.</p></div>
         <div class="amusement-switch" role="tablist" aria-label="Kies een speelruimte">
-          <button type="button" role="tab" aria-selected="true" aria-controls="amusement-brain" data-amusement-tab="brain"><span>In mijn hoofd</span><strong>Breinpret</strong></button>
-          <button type="button" role="tab" aria-selected="false" aria-controls="amusement-together" data-amusement-tab="together"><span>Tussen ons</span><strong>Jij &amp; ik</strong></button>
+          <button id="amusement-tab-brain" type="button" role="tab" aria-selected="true" aria-controls="amusement-brain" tabindex="0" data-amusement-tab="brain"><span>In mijn hoofd</span><strong>Breinpret</strong></button>
+          <button id="amusement-tab-together" type="button" role="tab" aria-selected="false" aria-controls="amusement-together" tabindex="-1" data-amusement-tab="together"><span>Tussen ons</span><strong>Jij &amp; ik</strong></button>
         </div>
       </header>
 
-    <article class="amusement-zone amusement-zone--brain" id="amusement-brain" role="tabpanel" aria-labelledby="brain-amusement-title" data-amusement-panel="brain" tabindex="-1">
+    <article class="amusement-zone amusement-zone--brain" id="amusement-brain" role="tabpanel" aria-labelledby="amusement-tab-brain" data-amusement-panel="brain" tabindex="0">
       <figure class="amusement-visual"><img src="images/menslab/amusement-brein.jpg" alt="Een fantasierijk papieren brein vol achtbanen, ladders, knikkers, luikjes en proefopstellingen." loading="lazy"><figcaption>Geen hersenscan. Wel een speelhal.</figcaption></figure>
       <div class="amusement-copy">
         <p class="eyebrow">Speelhal 01 · solo</p>
@@ -74,13 +99,17 @@
         <div class="amusement-draw" aria-live="polite">
           <span>Jouw mini-proef</span>
           <blockquote data-brain-amusement-prompt>Kies een voorwerp in de kamer. Bedenk in dertig seconden drie volstrekt verkeerde toepassingen. De vierde mag bruikbaar zijn.</blockquote>
-          <button type="button" data-new-brain-amusement>Gooi nog een knikker door mijn brein</button>
+          <div class="amusement-draw__actions"><button type="button" data-new-brain-amusement>Geef me een andere proef</button><button type="button" data-open-amusement-note aria-expanded="false">Ik heb dit geprobeerd</button></div>
+          <div class="amusement-observation" data-amusement-observation hidden>
+            <label>Wat merkte je?<textarea maxlength="280" rows="2" placeholder="Eén zin is genoeg."></textarea></label>
+            <div><button type="button" data-save-amusement="brain">Bewaar in Mijn spoor</button><span aria-live="polite"></span></div>
+          </div>
         </div>
         <a class="amusement-link" href="quizkast.html?quiz=wie-zit-aan-het-stuur">Ontdek wie er vandaag aan je stuur zit →</a>
       </div>
     </article>
 
-    <article class="amusement-zone amusement-zone--together" id="amusement-together" role="tabpanel" aria-labelledby="together-amusement-title" data-amusement-panel="together" tabindex="-1" hidden>
+    <article class="amusement-zone amusement-zone--together" id="amusement-together" role="tabpanel" aria-labelledby="amusement-tab-together" data-amusement-panel="together" tabindex="0" hidden>
       <div class="amusement-copy">
         <p class="eyebrow">Speelhal 02 · samen</p>
         <h2 id="together-amusement-title">Amusement in jij &amp; ik.</h2>
@@ -89,15 +118,17 @@
         <div class="amusement-draw" aria-live="polite">
           <span>Jullie mini-missie</span>
           <blockquote data-together-amusement-prompt>Vraag vóór een gesprek: “Wil je dat ik luister, vragen stel of meedenk?” Doe daarna alleen dat.</blockquote>
-          <button type="button" data-new-together-amusement>Laat de gespreksmachine nog eens draaien</button>
+          <div class="amusement-draw__actions"><button type="button" data-new-together-amusement>Geef ons een andere proef</button><button type="button" data-open-amusement-note aria-expanded="false">We hebben dit geprobeerd</button></div>
+          <div class="amusement-observation" data-amusement-observation hidden>
+            <label>Wat merkten jullie?<textarea maxlength="280" rows="2" placeholder="Eén zin is genoeg."></textarea></label>
+            <div><button type="button" data-save-amusement="together">Bewaar in Mijn spoor</button><span aria-live="polite"></span></div>
+          </div>
         </div>
         <a class="amusement-link" href="quizkast.html?quiz=luisteren-of-repareren">Doe de luisteren-of-reparerenquiz →</a>
       </div>
       <figure class="amusement-visual"><img src="images/menslab/amusement-jij-en-ik.jpg" alt="Twee papieren figuren bedienen samen een wonderlijke gespreksmachine met spreekbuizen, spiegels, tandwielen en een wip." loading="lazy"><figcaption>Verbinding: zelden plug-and-play.</figcaption></figure>
     </article>
     </section>
-
-    <a class="progress-resume" href="#weeklab" data-progress-resume hidden><span>Welkom terug</span><strong data-resume-text></strong><small>Ga verder waar je was →</small></a>
 
     <a class="change-gateway" href="veranderroute.html"><span>Nieuwe begeleide route</span><strong>Waarom weten wat goed voor je is nog niet betekent dat je het ook doet.</strong><small>Start De Veranderroute →</small></a>
 
@@ -140,6 +171,7 @@
         <article><span>Bewaard</span><strong data-track-weeks>0</strong><p>weken in je spoor</p></article>
       </div>
       <div class="progress-history"><div><h3>Eerdere weken</h3><p>Een spoor hoeft niet lang te zijn om echt te zijn.</p></div><ol data-track-history><li class="progress-history__empty">Hier verschijnen de weken die je bewust afrondt.</li></ol></div>
+      <section class="progress-lab-snapshots" data-lab-snapshots hidden aria-labelledby="lab-snapshots-title"><div><p class="eyebrow">Uit het Menslab</p><h3 id="lab-snapshots-title">Bewaarde proefnotities</h3><p>Verwachtingen en observaties, geen conclusies over wie je bent.</p></div><ol data-lab-snapshot-list></ol></section>
       <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Quizkast</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>
       <section class="progress-depth-patterns" data-depth-patterns hidden aria-labelledby="depth-patterns-title"><div><p class="eyebrow">Na drie situaties</p><h3 id="depth-patterns-title">Wat terugkeert en wat beweegt</h3><p>Geen score. Alleen een voorzichtig overzicht van contexten, werktitels en latere correcties.</p></div><ul data-depth-pattern-list></ul></section>
       <section class="progress-patterns" data-progress-patterns hidden aria-labelledby="patterns-title"><div><p class="eyebrow">Zonder oordeel</p><h3 id="patterns-title">Wat je vaker oefent</h3><p>Geen ranglijst, alleen terugkerende bewegingen in je bewaarde weken.</p></div><ol data-pattern-list></ol></section>
@@ -153,8 +185,8 @@
     </section>
 
     <section class="reflection" id="reflectie" aria-labelledby="reflection-title">
-      <div class="reflection__intro"><p class="eyebrow">Even naar binnen</p><h2 id="reflection-title">Trek een vraag die niet meteen een antwoord nodig heeft.</h2><p>Schrijf erover, bespreek ze met iemand of laat ze gewoon een dag meelopen.</p></div>
-      <div class="question-draw" aria-live="polite"><span data-question-number>Vraag 01</span><blockquote data-reflection-question>Wanneer veranderde je voor het laatst écht van mening — en wat maakte dat mogelijk?</blockquote><button type="button" data-new-question>Geef me een andere vraag</button></div>
+      <div class="reflection__intro"><p class="eyebrow">Even naar binnen</p><h2 id="reflection-title">Trek een vraag die niet meteen een antwoord nodig heeft.</h2><p>Schrijf erover, bespreek ze met iemand of laat ze gewoon een dag meelopen. Je mag iedere vraag zonder reden overslaan.</p></div>
+      <div class="question-draw" aria-live="polite"><span data-question-number>Vraag 01</span><blockquote data-reflection-question>Wanneer veranderde je voor het laatst écht van mening — en wat maakte dat mogelijk?</blockquote><label for="reflection-note">Wat wil je erbij noteren?<textarea id="reflection-note" data-reflection-note maxlength="280" rows="3" placeholder="Ook niets invullen is een geldig antwoord."></textarea></label><div class="question-draw__actions"><button type="button" data-save-reflection>Bewaar in Mijn spoor</button><button type="button" data-new-question>Geef me een andere vraag</button></div><span data-reflection-status aria-live="polite"></span></div>
     </section>
 
     <section class="lab-section" id="experimenten" aria-labelledby="experiments-title">

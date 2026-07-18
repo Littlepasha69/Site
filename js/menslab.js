@@ -26,6 +26,16 @@
     'Waar verlang je naar dat je moeilijk hardop durft te vragen?',
     'Welke kleine verandering zou jouw dagelijks leven één procent lichter maken?'
   ];
+  const dailyExperiments = [
+    { title:'De kleine omweg', prompt:'Doe één gewone handeling bewust in een andere volgorde. Merk op wanneer je automatische piloot het stuur probeert terug te pakken.' },
+    { title:'Tien seconden ruimte', prompt:'Wacht bij één niet-dringend bericht tien seconden voordat je antwoordt. Merk op wat je in die korte ruimte allemaal al wilde doen.' },
+    { title:'Kijken zonder functie', prompt:'Kies een alledaags voorwerp en beschrijf het één minuut zonder te zeggen waarvoor het dient. Wat wordt zichtbaar wanneer nut even niet meedoet?' },
+    { title:'De voorspelde gedachte', prompt:'Voorspel welke gedachte over vijf seconden zal opkomen. Wacht en vergelijk. Je voorspelling hoeft nergens goed in te zijn.' },
+    { title:'Eerst de vraag', prompt:'Vraag in één veilig gesprek of de ander wil dat je luistert, vragen stelt of meedenkt. Merk op wat die afstemming verandert.' },
+    { title:'Een andere route', prompt:'Neem bij één kleine, vertrouwde verplaatsing een andere route. Wat merk je op zodra gewoonte minder kan overnemen?' },
+    { title:'De vriendelijkste tegenspraak', prompt:'Kies een lichte mening van jezelf en formuleer de sterkste redelijke tegenstem. Je hoeft daarna niet van mening te veranderen.' }
+  ];
+  const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz' };
   let currentQuestion = 0;
   let state = emptyState();
 
@@ -36,7 +46,8 @@
       startedAt: new Date().toISOString(),
       completedWeeks: [],
       carryForward: '',
-      quizSnapshots: []
+      quizSnapshots: [],
+      labSnapshots: []
     };
   }
 
@@ -87,6 +98,16 @@
           note: typeof item.followUp.note === 'string' ? item.followUp.note.slice(0, 280) : '',
           completedAt: item.followUp.completedAt
         } : null,
+        savedAt: item.savedAt
+      }));
+    }
+    if (Array.isArray(value.labSnapshots)) {
+      clean.labSnapshots = value.labSnapshots.slice(0, 30).filter(item => item && typeof item.savedAt === 'string' && typeof item.title === 'string').map(item => ({
+        kind: ['daily', 'brain', 'together', 'reflection', 'beast'].includes(item.kind) ? item.kind : 'daily',
+        title: item.title.slice(0, 140),
+        prompt: typeof item.prompt === 'string' ? item.prompt.slice(0, 500) : '',
+        expectation: typeof item.expectation === 'string' ? item.expectation.slice(0, 280) : '',
+        observation: typeof item.observation === 'string' ? item.observation.slice(0, 500) : '',
         savedAt: item.savedAt
       }));
     }
@@ -201,6 +222,54 @@
     }));
   }
 
+  function renderLabSnapshots() {
+    const section = document.querySelector('[data-lab-snapshots]');
+    section.hidden = !state.labSnapshots.length;
+    if (section.hidden) return;
+    document.querySelector('[data-lab-snapshot-list]').replaceChildren(...state.labSnapshots.slice(0, 8).map(item => {
+      const row = document.createElement('li');
+      const kind = document.createElement('span');
+      kind.textContent = labKindLabels[item.kind] || 'Menslab';
+      const title = document.createElement('strong');
+      title.textContent = item.title;
+      const date = document.createElement('small');
+      date.textContent = formatDate(item.savedAt);
+      row.append(kind, title, date);
+      if (item.prompt && item.kind !== 'daily') {
+        const prompt = document.createElement('p');
+        prompt.textContent = item.prompt;
+        row.append(prompt);
+      }
+      if (item.expectation) {
+        const expectation = document.createElement('em');
+        expectation.textContent = `Verwachting: ${item.expectation}`;
+        row.append(expectation);
+      }
+      if (item.observation) {
+        const observation = document.createElement('em');
+        observation.textContent = `Observatie: ${item.observation}`;
+        row.append(observation);
+      }
+      const remove = document.createElement('button');
+      remove.type = 'button';
+      remove.textContent = 'Verwijder deze proefnotitie';
+      remove.addEventListener('click', () => {
+        state.labSnapshots = state.labSnapshots.filter(snapshot => snapshot.savedAt !== item.savedAt);
+        saveProgress();
+        renderProgress();
+      });
+      row.append(remove);
+      return row;
+    }));
+  }
+
+  function addLabSnapshot(snapshot) {
+    state.labSnapshots.unshift({ ...snapshot, savedAt: new Date().toISOString() });
+    state.labSnapshots = state.labSnapshots.slice(0, 30);
+    saveProgress();
+    renderProgress();
+  }
+
   function renderDepthPatterns() {
     const section = document.querySelector('[data-depth-patterns]');
     const depth = state.quizSnapshots.filter(item => item.kind === 'depth');
@@ -255,7 +324,7 @@
     const done = state.checks.filter(Boolean).length;
     const weeks = state.completedWeeks.length;
     const archivedTotal = state.completedWeeks.reduce((sum, week) => sum + week.movements.length, 0);
-    const total = archivedTotal + done;
+    const total = archivedTotal + done + state.labSnapshots.length;
     score.textContent = `${done}/${checks.length}`;
     bar.style.width = `${Math.round(done / checks.length * 100)}%`;
     document.querySelector('[data-track-current]').textContent = `${done} van ${checks.length}`;
@@ -272,19 +341,25 @@
     bridge.hidden = !state.carryForward;
     document.querySelector('[data-week-bridge-text]').textContent = state.carryForward;
 
-    const hasProgress = done > 0 || weeks > 0 || state.quizSnapshots.length > 0 || Boolean(state.note) || Boolean(state.carryForward);
+    const hasActiveWeek = done > 0 || Boolean(state.note) || Boolean(state.carryForward);
+    const hasProgress = hasActiveWeek || weeks > 0 || state.quizSnapshots.length > 0 || state.labSnapshots.length > 0;
     resume.hidden = !hasProgress;
     const youTrack = document.querySelector('[data-you-track]');
     if (youTrack) youTrack.hidden = !hasProgress;
     if (hasProgress) {
       const resumeText = document.querySelector('[data-resume-text]');
+      const resumeAction = document.querySelector('[data-resume-action]');
       if (done > 0) resumeText.textContent = `Je hebt ${done} van de ${checks.length} kleine bewegingen geprobeerd.`;
       else if (state.carryForward) resumeText.textContent = 'Er ligt iets uit je vorige week voor je klaar.';
       else if (state.note) resumeText.textContent = 'Je notitie voor deze week staat hier nog klaar.';
-      else if (state.quizSnapshots.length) resumeText.textContent = 'Er staat een nieuwe quizspiegel in Mijn spoor.';
+      else if (state.labSnapshots.length) resumeText.textContent = 'Er staat een proefnotitie in Mijn spoor.';
+      else if (state.quizSnapshots.length) resumeText.textContent = 'Er staat een quizspiegel in Mijn spoor.';
       else resumeText.textContent = `Je hebt al ${weeks} bewaarde ${weeks === 1 ? 'week' : 'weken'} in Mijn spoor.`;
+      resume.href = hasActiveWeek ? '#weeklab' : '#mijn-spoor';
+      resumeAction.textContent = hasActiveWeek ? 'Ga verder met je week →' : 'Bekijk Mijn spoor →';
     }
     renderHistory();
+    renderLabSnapshots();
     renderQuizSnapshots();
     renderDepthPatterns();
     renderPatterns();
@@ -403,6 +478,40 @@
     currentQuestion = (currentQuestion + 1) % questions.length;
     document.querySelector('[data-question-number]').textContent = `Vraag ${String(currentQuestion + 1).padStart(2, '0')}`;
     document.querySelector('[data-reflection-question]').textContent = questions[currentQuestion];
+    document.querySelector('[data-reflection-note]').value = '';
+    document.querySelector('[data-reflection-status]').textContent = '';
+  });
+
+  document.querySelector('[data-save-reflection]')?.addEventListener('click', () => {
+    const reflection = document.querySelector('[data-reflection-note]').value.trim();
+    addLabSnapshot({ kind:'reflection', title:'Een vraag die mocht meelopen', prompt:questions[currentQuestion], expectation:'', observation:reflection });
+    document.querySelector('[data-reflection-status]').textContent = 'Bewaard in Mijn spoor op dit apparaat.';
+  });
+
+  const today = new Date();
+  const startOfYear = new Date(today.getFullYear(), 0, 0);
+  const dayOfYear = Math.floor((today - startOfYear) / 86400000);
+  const dailyExperiment = dailyExperiments[dayOfYear % dailyExperiments.length];
+  document.querySelector('[data-daily-number]').textContent = `Proef ${String(dayOfYear).padStart(3, '0')}`;
+  document.querySelector('[data-daily-title]').textContent = dailyExperiment.title;
+  document.querySelector('[data-daily-prompt]').textContent = dailyExperiment.prompt;
+  document.querySelector('[data-daily-tried]')?.addEventListener('click', () => {
+    const after = document.querySelector('[data-daily-after]');
+    after.hidden = false;
+    document.querySelector('[data-daily-tried]').textContent = 'Gedaan — wat merkte je?';
+    document.querySelector('[data-daily-observation]').focus();
+  });
+  document.querySelector('[data-save-daily]')?.addEventListener('click', () => {
+    const expectation = document.querySelector('[data-daily-expectation]').value.trim();
+    const observation = document.querySelector('[data-daily-observation]').value.trim();
+    const status = document.querySelector('[data-daily-status]');
+    if (!observation) {
+      status.textContent = 'Noteer eerst kort wat je werkelijk merkte.';
+      document.querySelector('[data-daily-observation]').focus();
+      return;
+    }
+    addLabSnapshot({ kind:'daily', title:dailyExperiment.title, prompt:dailyExperiment.prompt, expectation, observation });
+    status.textContent = 'Bewaard in Mijn spoor op dit apparaat.';
   });
 
   const brainAmusements = [
@@ -428,24 +537,70 @@
     const current = items.indexOf(target.textContent.trim());
     let next = Math.floor(Math.random() * items.length);
     if (items.length > 1 && next === current) next = (next + 1) % items.length;
-    target.closest('.amusement-draw')?.classList.remove('amusement-draw--changing');
+    const draw = target.closest('.amusement-draw');
+    draw?.classList.remove('amusement-draw--changing');
     void target.offsetWidth;
     target.textContent = items[next];
-    target.closest('.amusement-draw')?.classList.add('amusement-draw--changing');
+    draw?.classList.add('amusement-draw--changing');
+    const observation = draw?.querySelector('[data-amusement-observation]');
+    if (observation) observation.hidden = true;
+    const open = draw?.querySelector('[data-open-amusement-note]');
+    if (open) open.setAttribute('aria-expanded', 'false');
+    const textarea = draw?.querySelector('textarea');
+    if (textarea) textarea.value = '';
+    const status = draw?.querySelector('[data-amusement-observation] span');
+    if (status) status.textContent = '';
     button.setAttribute('aria-label', `Nieuwe mini-proef. Huidige proef: ${items[next]}`);
   }
 
   document.querySelector('[data-new-brain-amusement]')?.addEventListener('click', event => drawAmusement('[data-brain-amusement-prompt]', brainAmusements, event.currentTarget));
   document.querySelector('[data-new-together-amusement]')?.addEventListener('click', event => drawAmusement('[data-together-amusement-prompt]', togetherAmusements, event.currentTarget));
+  document.querySelectorAll('[data-open-amusement-note]').forEach(button => button.addEventListener('click', () => {
+    const observation = button.closest('.amusement-draw').querySelector('[data-amusement-observation]');
+    observation.hidden = false;
+    button.setAttribute('aria-expanded', 'true');
+    observation.querySelector('textarea').focus();
+  }));
+  document.querySelectorAll('[data-save-amusement]').forEach(button => button.addEventListener('click', () => {
+    const draw = button.closest('.amusement-draw');
+    const observation = draw.querySelector('textarea').value.trim();
+    const status = draw.querySelector('[data-amusement-observation] span');
+    if (!observation) {
+      status.textContent = 'Noteer eerst kort wat je merkte.';
+      draw.querySelector('textarea').focus();
+      return;
+    }
+    const kind = button.dataset.saveAmusement;
+    const prompt = draw.querySelector('blockquote').textContent.trim();
+    addLabSnapshot({ kind, title:kind === 'brain' ? 'Een proef in mijn hoofd' : 'Een proef tussen ons', prompt, expectation:'', observation });
+    status.textContent = 'Bewaard in Mijn spoor op dit apparaat.';
+  }));
 
   const amusementTabs = [...document.querySelectorAll('[data-amusement-tab]')];
   const amusementPanels = [...document.querySelectorAll('[data-amusement-panel]')];
-  amusementTabs.forEach(tab => tab.addEventListener('click', () => {
-    const selected = tab.dataset.amusementTab;
-    amusementTabs.forEach(item => item.setAttribute('aria-selected', String(item === tab)));
-    amusementPanels.forEach(panel => { panel.hidden = panel.dataset.amusementPanel !== selected; });
-    document.querySelector(`[data-amusement-panel="${selected}"]`)?.focus({ preventScroll: true });
-  }));
+  function activateAmusementTab(index, moveFocus = false) {
+    const active = amusementTabs[index];
+    amusementTabs.forEach(item => {
+      const selected = item === active;
+      item.setAttribute('aria-selected', String(selected));
+      item.tabIndex = selected ? 0 : -1;
+    });
+    amusementPanels.forEach(panel => { panel.hidden = panel.dataset.amusementPanel !== active.dataset.amusementTab; });
+    if (moveFocus) active.focus();
+  }
+  amusementTabs.forEach((tab, index) => {
+    tab.addEventListener('click', () => activateAmusementTab(index));
+    tab.addEventListener('keydown', event => {
+      let next = index;
+      if (event.key === 'ArrowRight') next = (index + 1) % amusementTabs.length;
+      else if (event.key === 'ArrowLeft') next = (index - 1 + amusementTabs.length) % amusementTabs.length;
+      else if (event.key === 'Home') next = 0;
+      else if (event.key === 'End') next = amusementTabs.length - 1;
+      else return;
+      event.preventDefault();
+      activateAmusementTab(next, true);
+    });
+  });
 
   loadProgress();
   syncControls();

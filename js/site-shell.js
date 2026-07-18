@@ -16,7 +16,7 @@ class SiteHeader extends HTMLElement {
         <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
         <div class="site-header__inner">
           <a class="brand" href="${base}home.html" aria-label="De Onwijze Wijsheden – home">
-            <img src="${base}images/logo-wide.png" alt="" width="2172" height="724">
+            <img src="${base}images/logo-wide-ui.png" alt="" width="1000" height="333">
           </a>
           <nav class="site-nav" aria-label="Hoofdnavigatie">
             ${links.map(([key, href, label]) => `<a href="${base}${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
@@ -52,6 +52,7 @@ class SiteFooter extends HTMLElement {
           <a href="${base}dierenquiz.html">De Beestenquiz</a>
           <a href="${base}jouw-bijdrage.html">Draag iets bij</a>
           <a href="${base}over-mij.html">Over het platform</a>
+          <a href="${base}index.html?welkom=1">Bekijk de ingang opnieuw</a>
         </nav>
         <p class="footer-small">© 2025–2026 · Lees wat we weten. Onderzoek wat er in jou beweegt.</p>
       </footer>`;
@@ -60,3 +61,23 @@ class SiteFooter extends HTMLElement {
 
 customElements.define('site-header', SiteHeader);
 customElements.define('site-footer', SiteFooter);
+
+(function rememberCurrentTrail() {
+  const page = location.pathname.split('/').pop() || '';
+  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html']);
+  if (excluded.has(page)) return;
+
+  const heading = document.querySelector('main h1, article h1, h1');
+  const title = heading?.textContent?.trim() || document.title.split('—')[0].trim();
+  if (!title) return;
+
+  try {
+    localStorage.setItem('onwijze-laatste-spoor', JSON.stringify({
+      href: location.href,
+      title,
+      savedAt: Date.now()
+    }));
+  } catch (error) {
+    // De site blijft volledig bruikbaar zonder lokale opslag.
+  }
+}());
