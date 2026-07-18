@@ -1,39 +1,30 @@
 <!DOCTYPE html>
 <html lang="nl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>De Onwijze Wijsheid</title>
-  <link rel="stylesheet" href="css/style.css?v=2026-1" />
-  <!-- Favicon toevoegen als je die hebt -->
-  <!-- <link rel="icon" href="favicon.ico" /> -->
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Intern paginasjabloon voor De Onwijze Wijsheden.">
+  <title>Paginasjabloon — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=19">
+  <script src="js/site-shell.js?v=13" defer></script>
 </head>
 <body>
-  <header role="banner">
-    <div class="container header-inner">
-      <a href="index.html" aria-label="Ga naar home">
-        <img src="images/logo.png" alt="Logo De Onwijze Wijsheid" class="logo" />
-      </a>
-      <h1 class="site-title">De Onwijze Wijsheid</h1>
+  <site-header></site-header>
+  <main id="inhoud">
+    <section class="prose-hero">
+      <div class="prose-hero__inner">
+        <p class="eyebrow">Intern paginasjabloon</p>
+        <h1>Een nieuwe pagina begint hier.</h1>
+        <p>Vervang deze voorbeeldinhoud en kies in de header welke wereld actief moet zijn.</p>
+      </div>
+    </section>
+    <div class="prose-shell">
+      <article class="prose-card">
+        <h2>Titel van de inhoud</h2>
+        <p>Dit sjabloon gebruikt de actuele huisstijl, navigatie en mobiele indeling van De Onwijze Wijsheden.</p>
+      </article>
     </div>
-  </header>
-
-  <nav role="navigation" aria-label="Hoofdnavigatie">
-    <ul class="nav-list container">
-      <li><a href="index.html" class="nav-link">Home</a></li>
-      <li><a href="over-mij.html" class="nav-link">Over het platform</a></li>
-      <li><a href="denkstukken.html" class="nav-link">Denkstukken</a></li>
-      <li><a href="onderwerpen.html" class="nav-link">Onderwerpen</a></li>
-      <li><a href="jouw-bijdrage.html" class="nav-link">Jouw bijdrage</a></li>
-    </ul>
-  </nav>
-
-  <main role="main" class="container">
-    <!-- Unieke content per pagina komt hier -->
   </main>
-
-  <footer role="contentinfo" class="container">
-    <p>© 2025–2026 De Onwijze Wijsheid – Alle rechten voorbehouden.</p>
-  </footer>
+  <site-footer></site-footer>
 </body>
 </html>

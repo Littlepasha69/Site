@@ -68,10 +68,14 @@
 @media (max-width: 760px) {
   .thoughts-controls { grid-template-columns: 1fr; }
   .thought-filter-row { align-items: stretch; flex-direction: column; }
-  .thought-category { justify-content: space-between; }
+  .thought-category { min-width: 0; justify-content: space-between; flex-wrap: wrap; }
+  .thought-category select { min-width: 0; max-width: 100%; }
   .thoughts-grid { grid-template-columns: 1fr; }
   .thought-card:first-child { grid-column: auto; }
   .thoughts-invite { grid-template-columns: 1fr; }
+}
+@media (max-width: 340px) {
+  .thought-category select { width: 100%; }
 }
 @media (max-width: 620px) {
   .thoughts-hero { padding-top: 4rem; }

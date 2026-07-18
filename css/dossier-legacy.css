@@ -1,8 +1,8 @@
 .dossier-hero--trauma { background:radial-gradient(circle at 82% 16%,rgba(240,198,107,.2),transparent 22rem),radial-gradient(circle at 15% 85%,rgba(166,95,80,.22),transparent 24rem),linear-gradient(135deg,#183432,#315249 58%,#6d4e43); }
 .legacy-dossier-content .dossier-summary a,.legacy-dossier-content .dossier-section a { color:var(--copper);font-weight:700;text-underline-offset:.18rem; }
 .legacy-dossier-content .dossier-summary>p,.legacy-dossier-content .dossier-section>p { max-width:780px;color:#405654;font:400 clamp(1.03rem,1.7vw,1.13rem)/1.8 Georgia,serif; }
-.legacy-dossier-section>ul,.legacy-dossier-section>ol { max-width:790px;margin:1.3rem 0;padding:0;display:grid;gap:.7rem;list-style:none; }
-.legacy-dossier-section>ul>li,.legacy-dossier-section>ol>li { position:relative;padding:1rem 1.1rem 1rem 3rem;border:1px solid var(--line);border-radius:.9rem;background:#fffdf9;color:var(--muted);line-height:1.6; }
+.legacy-dossier-section>ul,.legacy-dossier-section>ol { max-width:790px;margin:1.3rem 0;padding:0;display:grid;grid-template-columns:minmax(0,1fr);gap:.7rem;list-style:none; }
+.legacy-dossier-section>ul>li,.legacy-dossier-section>ol>li { min-width:0;position:relative;padding:1rem 1.1rem 1rem 3rem;border:1px solid var(--line);border-radius:.9rem;background:#fffdf9;color:var(--muted);line-height:1.6;overflow-wrap:anywhere; }
 .legacy-dossier-section>ul>li::before,.legacy-dossier-section>ol>li::before { content:'↗';position:absolute;left:1rem;top:1.05rem;width:1.3rem;height:1.3rem;display:grid;place-items:center;border-radius:.4rem;background:var(--sage);color:var(--ink);font-size:.72rem;font-weight:800; }
 .legacy-dossier-section h3 { margin:1.8rem 0 .6rem;color:var(--ink);font:650 clamp(1.3rem,3vw,1.7rem) var(--serif); }
 .legacy-source-list li { padding-left:3.2rem!important;background:white!important; }

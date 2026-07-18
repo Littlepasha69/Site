@@ -5,8 +5,8 @@
   <meta name="description" content="De Menselijke Atlas: psychologisch onderzoek over brein, gedrag, relaties, verandering en bewustzijn in gewone mensentaal.">
   <title>De Menselijke Atlas — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=13">
-  <link rel="stylesheet" href="css/knowledge-2026.css?v=19">
-  <script src="js/site-shell.js?v=13" defer></script><script src="js/search-data.js?v=30" defer></script><script src="js/search.js" defer></script><script src="js/knowledge-explorer.js?v=11" defer></script>
+  <link rel="stylesheet" href="css/knowledge-2026.css?v=22">
+  <script src="js/site-shell.js?v=13" defer></script><script src="js/search-data.js?v=33" defer></script><script src="js/search.js?v=2" defer></script><script src="js/knowledge-explorer.js?v=13" defer></script>
 </head>
 <body>
   <site-header active="kennisbank"></site-header>
@@ -72,10 +72,11 @@
       </div>
 
       <div class="atlas-mode-panel" id="atlas-panel-sporen" role="tabpanel" aria-labelledby="atlas-tab-sporen" data-atlas-panel="sporen" hidden>
-        <div class="topic-filter">
-          <div class="topic-filter__intro"><h3>Volg een spoor</h3><p>Kies één of combineer.</p></div>
-          <div class="topic-chips" data-topic-filters aria-label="Filter op thema"></div>
+        <div class="atlas-trail-intro">
+          <div><p class="eyebrow">Dwars door de vakjes</p><h3>Volg een menselijke beweging.</h3></div>
+          <p>Een spoor verbindt dossiers uit verschillende gebieden. Niet omdat ze hetzelfde zijn, maar omdat de ene vraag vaak onder de volgende deur doorloopt.</p>
         </div>
+        <div class="atlas-trails" data-topic-filters aria-label="Kies een inhoudelijk spoor door de Atlas"></div>
       </div>
 
       <div class="active-filters" data-active-filters hidden>
@@ -83,6 +84,14 @@
         <div data-active-filter-list></div>
       </div>
 
+    </section>
+
+    <section class="atlas-footprints" data-atlas-footprints aria-labelledby="atlas-footprints-title" hidden>
+      <div class="atlas-footprints__head">
+        <div><p class="eyebrow">Jouw opgraving</p><h2 id="atlas-footprints-title">Ga verder waar je gebleven was.</h2></div>
+        <div><p>Je laatste sporen worden alleen op dit apparaat bewaard.</p><button type="button" data-clear-atlas-footprints>Wis mijn spoor</button></div>
+      </div>
+      <div class="atlas-footprints__list" data-atlas-footprint-list></div>
     </section>
 
     <section class="section knowledge-results" id="vondstenregister" aria-labelledby="results-title">

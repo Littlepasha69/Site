@@ -41,3 +41,4 @@
 .quiz-card--blue::after{content:"JIJ?";right:-.5rem;bottom:-.7rem;color:rgba(82,119,138,.09);font-size:5.5rem}
 .mini-theory-link{margin:1rem 0 0;text-align:center}.mini-theory-link[hidden]{display:none}.mini-theory-link a{color:var(--quiz-accent-dark);font-weight:850;text-decoration:none}.mini-theory-link a:hover{text-decoration:underline}
 @media(max-width:800px){.quiz-card:last-child{grid-column:auto}}@media(max-width:600px){.quiz-shelf__grid{grid-template-columns:1fr}}
+@media(max-width:340px){main{overflow-x:clip}}

@@ -24,9 +24,14 @@
   const atlasModeButtons = document.querySelectorAll('[data-atlas-mode]');
   const atlasModePanels = document.querySelectorAll('[data-atlas-panel]');
   const atlasViewTargets = document.querySelectorAll('[data-atlas-view-target]');
+  const footprintsRoot = document.querySelector('[data-atlas-footprints]');
+  const footprintList = document.querySelector('[data-atlas-footprint-list]');
+  const clearFootprintsButton = document.querySelector('[data-clear-atlas-footprints]');
+  const footprintStorageKey = 'onwijze-atlas-footprints-v1';
   const params = new URLSearchParams(location.search);
   let activeCategory = params.get('gebied') || '';
   const activeTags = new Set(params.getAll('thema'));
+  let activeTrail = params.get('spoor') || '';
 
   const customAreaIcons = {
     brain: '<svg class="atlas-area-svg atlas-brain-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M10.2 4.1A3 3 0 0 0 6.9 7v.3a3.4 3.4 0 0 0-1.3 5.9v1.2a3.2 3.2 0 0 0 4.6 2.9M13.8 4.1A3 3 0 0 1 17.1 7v.3a3.4 3.4 0 0 1 1.3 5.9v1.2a3.2 3.2 0 0 1-4.6 2.9M10.2 4.1c1.1.2 1.8 1.1 1.8 2.2v11.6M13.8 4.1C12.7 4.3 12 5.2 12 6.3M6.9 7.3c1.4-.1 2.5.6 2.9 1.8M17.1 7.3c-1.4-.1-2.5.6-2.9 1.8M5.6 13.2c1.1-.7 2.5-.6 3.5.2M18.4 13.2c-1.1-.7-2.5-.6-3.5.2M10.2 17.3c-.4-1.4-1.3-2.1-2.6-2.2M13.8 17.3c.4-1.4 1.3-2.1 2.6-2.2"/></svg>',
@@ -46,17 +51,79 @@
     'Bewustzijn & metafysica': { icon: '☾', description: 'Geest, werkelijkheid en het onbekende' }
   };
 
+  const atlasTrails = [
+    { id: 'veiligheid', title: 'Van alarm naar veiligheid', question: 'Wat helpt een mens weer ruimte voelen?', terms: ['stress', 'veiligheid', 'regulatie', 'hechting', 'ptss', 'co-regulatie'] },
+    { id: 'veranderen', title: 'Van automatische piloot naar keuze', question: 'Hoe wordt herhaling een nieuw pad?', terms: ['gewoontes', 'gewoonte', 'patronen', 'leren', 'neuroplasticiteit', 'herhaling', 'veranderen', 'basale ganglia'] },
+    { id: 'zelf', title: 'Van karakter naar verhaal', question: 'Wat blijft — en wat beweegt met de context?', terms: ['persoonlijkheid', 'identiteit', 'zelfbeeld', 'zelfkennis', 'levensverhaal', 'schaamte', 'sociale blik'] },
+    { id: 'samen', title: 'Van nabijheid naar invloed', question: 'Waar eindig jij en begint de ander?', terms: ['relaties', 'hechting', 'groep', 'sociale invloed', 'macht', 'grenzen', 'co-regulatie', 'partner'] },
+    { id: 'brein', title: 'Van zenuwcel naar gedrag', question: 'Hoe wordt biologie een geleefd moment?', terms: ['hersenen', 'brein', 'zenuwstelsel', 'neuronen', 'synaps', 'hersenschors', 'hersenstam', 'basale ganglia'] },
+    { id: 'bewustzijn', title: 'Van aandacht naar het onbekende', question: 'Hoe ver reikt wat we kunnen meten?', terms: ['bewustzijn', 'aandacht', 'waarneming', 'zelfbewustzijn', 'metacognitie', 'hersenschors', 'hersenen'] }
+  ];
+  if (!atlasTrails.some(trail => trail.id === activeTrail)) activeTrail = '';
+
+  const normalizeText = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+
+  function trailMatches(item, trailId) {
+    const trail = atlasTrails.find(candidate => candidate.id === trailId);
+    if (!trail) return true;
+    const haystack = normalizeText([item.title, item.category, item.summary, ...(item.tags || [])].join(' '));
+    return trail.terms.some(term => haystack.includes(normalizeText(term)));
+  }
+
   function setAreaIcon(element, category) {
     const icon = categoryInfo[category]?.icon || '○';
     if (customAreaIcons[icon]) element.innerHTML = customAreaIcons[icon];
     else element.textContent = icon;
   }
 
+  function renderFootprints() {
+    if (!footprintsRoot || !footprintList) return;
+    let history = [];
+    try {
+      const stored = JSON.parse(localStorage.getItem(footprintStorageKey) || '[]');
+      if (Array.isArray(stored)) history = stored;
+    } catch (error) {
+      history = [];
+    }
+
+    const entries = history
+      .map(entry => ({ entry, dossier: dossiers.find(item => item.url === entry.url) }))
+      .filter(item => item.dossier)
+      .sort((a, b) => (Number(b.entry.visitedAt) || 0) - (Number(a.entry.visitedAt) || 0))
+      .slice(0, 3);
+
+    const cards = entries.map(({ entry, dossier }) => {
+      const progress = Math.max(0, Math.min(100, Math.round(Number(entry.progress) || 0)));
+      const link = document.createElement('a');
+      link.className = 'atlas-footprint';
+      link.href = `${dossier.url}${entry.chapterId ? `#${encodeURIComponent(entry.chapterId)}` : ''}`;
+
+      const meta = document.createElement('span');
+      meta.className = 'atlas-footprint__meta';
+      const area = document.createElement('span');
+      area.textContent = dossier.category;
+      const percentage = document.createElement('em');
+      percentage.textContent = progress >= 99 ? 'Uitgelezen' : progress ? `${progress}% gelezen` : 'Net geopend';
+      meta.append(area, percentage);
+
+      const title = document.createElement('strong');
+      title.textContent = dossier.title;
+      const chapter = document.createElement('small');
+      chapter.textContent = entry.chapterLabel ? `Verder bij: ${entry.chapterLabel} →` : 'Open het dossier →';
+      const track = document.createElement('i');
+      track.setAttribute('aria-hidden', 'true');
+      const fill = document.createElement('b');
+      fill.style.width = `${progress}%`;
+      track.append(fill);
+      link.append(meta, title, chapter, track);
+      return link;
+    });
+
+    footprintList.replaceChildren(...cards);
+    footprintsRoot.hidden = cards.length === 0;
+  }
+
   const categories = Object.keys(categoryInfo);
-  const tagCounts = new Map();
-  dossiers.forEach(item => (item.tags || []).forEach(tag => tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1)));
-  const preferredTags = ['hersenen', 'zenuwstelsel', 'herstel', 'leren', 'gedrag', 'lichaam', 'stress', 'veiligheid', 'hechting', 'geheugen', 'gewoonten', 'bewustzijn'];
-  const featuredTags = preferredTags.filter(tag => tagCounts.has(tag));
   queryInput.value = params.get('q') || '';
   sortSelect.value = params.get('sort') || 'relevant';
   const pageSize = matchMedia('(max-width: 620px)').matches ? 6 : 8;
@@ -73,16 +140,6 @@
       if (selected && moveFocus) button.focus();
     });
     atlasModePanels.forEach(panel => { panel.hidden = panel.dataset.atlasPanel !== mode; });
-  }
-
-  function makeButton(className, text, pressed, onClick) {
-    const button = document.createElement('button');
-    button.type = 'button';
-    button.className = className;
-    button.textContent = text;
-    button.setAttribute('aria-pressed', String(pressed));
-    button.addEventListener('click', onClick);
-    return button;
   }
 
   function discoveryOrder(items) {
@@ -105,7 +162,7 @@
     all.setAttribute('aria-pressed', String(!activeCategory));
     all.innerHTML = '<span class="category-route__top"><span class="category-route__icon" aria-hidden="true">✦</span><span class="category-route__count"></span></span><span><strong>De hele atlas</strong><small>Bekijk alle beschikbare gebieden</small></span>';
     all.querySelector('.category-route__count').textContent = `${dossiers.length} dossiers`;
-    all.addEventListener('click', () => { activeCategory = ''; render(true); showResults(); });
+    all.addEventListener('click', () => { activeCategory = ''; activeTrail = ''; render(true); showResults(); });
 
     const buttons = categories.map(category => {
       const info = categoryInfo[category] || { icon: '○', description: 'Verdiepende dossiers' };
@@ -119,18 +176,34 @@
       button.querySelector('.category-route__count').textContent = amount ? `${amount} ${amount === 1 ? 'dossier' : 'dossiers'}` : 'in opbouw';
       button.querySelector('strong').textContent = category;
       button.querySelector('small').textContent = info.description;
-      button.addEventListener('click', () => { activeCategory = activeCategory === category ? '' : category; render(true); showResults(); });
+      button.addEventListener('click', () => { activeCategory = activeCategory === category ? '' : category; activeTrail = ''; render(true); showResults(); });
       return button;
     });
     categoryRoot.replaceChildren(all, ...buttons);
   }
 
   function renderTopics() {
-    topicRoot.replaceChildren(...featuredTags.map(tag => makeButton('topic-chip', tag, activeTags.has(tag), () => {
-      activeTags.has(tag) ? activeTags.delete(tag) : activeTags.add(tag);
-      render(true);
-      showResults();
-    })));
+    topicRoot.replaceChildren(...atlasTrails.map((trail, index) => {
+      const button = document.createElement('button');
+      const amount = dossiers.filter(item => trailMatches(item, trail.id)).length;
+      button.type = 'button';
+      button.className = 'atlas-trail';
+      button.setAttribute('aria-pressed', String(activeTrail === trail.id));
+      button.innerHTML = `<span>0${index + 1}</span><strong></strong><small></small><em></em>`;
+      button.querySelector('strong').textContent = trail.title;
+      button.querySelector('small').textContent = trail.question;
+      button.querySelector('em').textContent = `${amount} ${amount === 1 ? 'dossier' : 'dossiers'} →`;
+      button.addEventListener('click', () => {
+        activeTrail = activeTrail === trail.id ? '' : trail.id;
+        activeCategory = '';
+        activeTags.clear();
+        queryInput.value = '';
+        sortSelect.value = 'relevant';
+        render(true);
+        showResults();
+      });
+      return button;
+    }));
   }
 
   function card(item) {
@@ -157,7 +230,7 @@
       button.className = 'card-tag';
       button.textContent = tag;
       button.title = `Filter op ${tag}`;
-      button.addEventListener('click', () => { activeTags.add(tag); render(true); showResults(); });
+      button.addEventListener('click', () => { activeTrail = ''; activeTags.add(tag); render(true); showResults(); });
       tags.append(button);
     });
     const more = document.createElement('a');
@@ -169,9 +242,8 @@
   }
 
   function matchesQuery(item, query) {
-    const normalized = value => String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
-    const words = normalized(query).split(/\s+/).filter(Boolean);
-    const haystack = normalized([item.title, item.category, item.summary, ...(item.tags || [])].join(' '));
+    const words = normalizeText(query).split(/\s+/).filter(Boolean);
+    const haystack = normalizeText([item.title, item.category, item.summary, ...(item.tags || [])].join(' '));
     return words.every(word => haystack.includes(word));
   }
 
@@ -180,6 +252,7 @@
     if (query) next.set('q', query);
     if (activeCategory) next.set('gebied', activeCategory);
     [...activeTags].sort().forEach(tag => next.append('thema', tag));
+    if (activeTrail) next.set('spoor', activeTrail);
     if (sortSelect.value !== 'relevant') next.set('sort', sortSelect.value);
     history.replaceState({}, '', `${location.pathname}${next.toString() ? `?${next}` : ''}`);
   }
@@ -189,6 +262,8 @@
     if (query) entries.push({ label: `Zoekwoord: ${query}`, clear: () => { queryInput.value = ''; } });
     if (activeCategory) entries.push({ label: activeCategory, clear: () => { activeCategory = ''; } });
     activeTags.forEach(tag => entries.push({ label: tag, clear: () => activeTags.delete(tag) }));
+    const trail = atlasTrails.find(candidate => candidate.id === activeTrail);
+    if (trail) entries.push({ label: `Spoor: ${trail.title}`, clear: () => { activeTrail = ''; } });
     activeList.replaceChildren(...entries.map(entry => {
       const button = document.createElement('button');
       button.type = 'button';
@@ -206,6 +281,7 @@
     queryInput.value = '';
     activeCategory = '';
     activeTags.clear();
+    activeTrail = '';
     sortSelect.value = 'relevant';
     render(true);
     queryInput.focus();
@@ -217,9 +293,10 @@
     let results = dossiers.filter(item =>
       (!activeCategory || item.category === activeCategory) &&
       (!activeTags.size || (item.tags || []).some(tag => activeTags.has(tag))) &&
+      (!activeTrail || trailMatches(item, activeTrail)) &&
       matchesQuery(item, query)
     );
-    const isOpenAtlas = !query && !activeCategory && !activeTags.size && sortSelect.value === 'relevant';
+    const isOpenAtlas = !query && !activeCategory && !activeTags.size && !activeTrail && sortSelect.value === 'relevant';
     if (sortSelect.value === 'az' || (!query && !isOpenAtlas && sortSelect.value === 'relevant')) results.sort((a, b) => a.title.localeCompare(b.title, 'nl'));
     if (sortSelect.value === 'category') results.sort((a, b) => a.category.localeCompare(b.category, 'nl') || a.title.localeCompare(b.title, 'nl'));
     if (isOpenAtlas) results = discoveryOrder(results);
@@ -253,6 +330,7 @@
     queryInput.value = button.dataset.searchSuggestion;
     activeCategory = '';
     activeTags.clear();
+    activeTrail = '';
     sortSelect.value = 'relevant';
     render(true);
     showResults();
@@ -275,9 +353,18 @@
     sessionStorage.setItem('atlas-last-random', item.url);
     location.href = item.url;
   }));
-  setAtlasMode(activeCategory ? 'gebieden' : activeTags.size ? 'sporen' : 'vragen', false);
+  clearFootprintsButton?.addEventListener('click', () => {
+    try {
+      localStorage.removeItem(footprintStorageKey);
+    } catch (error) {
+      // De Atlas blijft bruikbaar wanneer lokale opslag niet beschikbaar is.
+    }
+    renderFootprints();
+  });
+  renderFootprints();
+  setAtlasMode(activeCategory ? 'gebieden' : activeTrail || activeTags.size ? 'sporen' : 'vragen', false);
   render();
-  if (params.has('gebied') || params.has('thema') || params.has('q')) {
+  if (params.has('gebied') || params.has('thema') || params.has('spoor') || params.has('q')) {
     requestAnimationFrame(showResults);
     setTimeout(showResults, 180);
   }

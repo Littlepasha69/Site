@@ -110,6 +110,16 @@ window.ONWIJZE_CONTENT = [
     url: 'denk-box19.html', tags: ['grenzen', 'toestemming', 'stressreactie', 'veiligheid'], image: 'images/potloodvent-gent-tarot-xxiv.png?v=1'
   },
   {
+    title: 'Met mijn voeten buiten het bed', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '15/05/2026',
+    summary: 'Een persoonlijk essay over een diagnose, medicatie, schaamte en het recht om zichtbaar te blijven leven en verlangen.',
+    url: 'denk-box20.html', tags: ['hiv', 'schaamte', 'vrijheid', 'stigma'], image: 'images/met-mijn-voeten-buiten-bed-tarot-xxvi.png?v=1'
+  },
+  {
+    title: 'Het pad der verlichting', type: 'denkstuk', kind: 'filosofie', category: 'Zingeving & filosofie', date: '18/07/2026',
+    summary: 'Een filosofische notitie over signalen, grenzen en het verschil tussen ongemak dat ons opent en ongemak waarin we langzaam verdwijnen.',
+    url: 'denk-box21.html', tags: ['spiritualiteit', 'grenzen', 'innerlijk pad', 'zelfzorg'], image: 'images/het-pad-der-verlichting-tarot-xxvii.png?v=1'
+  },
+  {
     title: 'Zonder wekker', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '18/08/2025',
     summary: 'Over stress, helderheid en het verlangen naar een leven dat niet voortdurend door een klok wordt bestuurd.',
     url: 'denk-box11.html', tags: ['tijd', 'stress', 'vrijheid', 'persoonlijk'], image: 'images/wekker.png'

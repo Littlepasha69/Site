@@ -5,8 +5,44 @@
     return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '');
   }
 
+  const stopWords = new Set([
+    'aan', 'als', 'ben', 'bij', 'dat', 'de', 'dit', 'doe', 'een', 'en', 'er', 'het',
+    'hoe', 'ik', 'in', 'is', 'kan', 'me', 'met', 'mij', 'mijn', 'niet', 'of', 'om',
+    'op', 'te', 'veel', 'van', 'wat', 'waarom', 'wanneer', 'wie', 'wil', 'zo', 'zoveel'
+  ]);
+
+  const concepts = [
+    ['pieker', 'piekeren', 'overdenken', 'gedachten', 'onrust', 'angst', 'stress'],
+    ['rust', 'rustig', 'onrust', 'overprikkeling', 'stress', 'zenuwstelsel'],
+    ['verander', 'veranderen', 'verandering', 'neuroplasticiteit', 'gewoonte', 'patroon'],
+    ['terugval', 'terugvallen', 'herhalen', 'gewoonte', 'patroon', 'verslaving'],
+    ['eenzaam', 'eenzaamheid', 'verbondenheid', 'hechting', 'relatie'],
+    ['boos', 'boosheid', 'woede', 'emotie', 'emotieregulatie'],
+    ['bang', 'angst', 'veiligheid', 'stress', 'trauma'],
+    ['afwijzing', 'afwijzingspijn', 'schaamte', 'hechting'],
+    ['aandacht', 'adhd', 'focus', 'overprikkeling', 'zenuwstelsel'],
+    ['identiteit', 'persoonlijkheid', 'zelfbeeld', 'wie ben'],
+    ['liefde', 'relatie', 'hechting', 'verbondenheid'],
+    ['brein', 'hersenen', 'zenuwstelsel', 'neuronen']
+  ];
+
+  function meaningfulWords(query) {
+    const words = normalize(query).replace(/[^a-z0-9\s-]/g, ' ').split(/\s+/).filter(Boolean);
+    const useful = words.filter(word => !stopWords.has(word));
+    return useful.length ? useful : words;
+  }
+
+  function alternatives(word) {
+    const concept = concepts.find(group => group.some(term => term.includes(word) || word.includes(term)));
+    return concept || [word];
+  }
+
+  function fieldScore(field, terms, weight) {
+    return terms.some(term => field.includes(term)) ? weight : 0;
+  }
+
   function score(item, query) {
-    const words = normalize(query).split(/\s+/).filter(Boolean);
+    const words = meaningfulWords(query);
     if (!words.length) return 1;
     const title = normalize(item.title);
     const tags = normalize((item.tags || []).join(' '));
@@ -14,11 +50,11 @@
     const summary = normalize(item.summary);
     let total = 0;
     for (const word of words) {
-      let wordScore = 0;
-      if (title.includes(word)) wordScore += 8;
-      if (tags.includes(word)) wordScore += 5;
-      if (category.includes(word)) wordScore += 3;
-      if (summary.includes(word)) wordScore += 2;
+      const terms = alternatives(word);
+      const wordScore = fieldScore(title, terms, 8)
+        + fieldScore(tags, terms, 5)
+        + fieldScore(category, terms, 3)
+        + fieldScore(summary, terms, 2);
       if (!wordScore) return 0;
       total += wordScore;
     }
