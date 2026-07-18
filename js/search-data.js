@@ -80,6 +80,11 @@ window.ONWIJZE_CONTENT = [
     url: 'denk-box14.html', tags: ['persoonlijk essay', 'innerlijk kompas', 'oude patronen', 'intuïtie', 'afwijzing'], image: 'images/drie-nancys-nachtrit.png?v=2'
   },
   {
+    title: 'De neuro-archeoloog in mij', type: 'ervaring', kind: 'ervaring', category: 'Groei, patronen & herstel', date: '05/09/2025',
+    summary: 'Een persoonlijke afdaling langs oude overtuigingen, beschermende rollen en de kleine, herhaalde stappen waarmee een nieuw pad kan ontstaan.',
+    url: 'denk-box15.html', tags: ['persoonlijk essay', 'innerlijk kompas', 'oude patronen', 'neuroplasticiteit'], image: 'images/neuro-archeoloog-lara-tarot-xx.png?v=1'
+  },
+  {
     title: 'Zonder wekker', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '18/08/2025',
     summary: 'Over stress, helderheid en het verlangen naar een leven dat niet voortdurend door een klok wordt bestuurd.',
     url: 'denk-box11.html', tags: ['tijd', 'stress', 'vrijheid', 'persoonlijk'], image: 'images/wekker.png'
@@ -167,9 +172,9 @@ window.ONWIJZE_CONTENT = [
   },
   {
     title: 'Bewustzijn', type: 'dossier', category: 'Bewustzijn & metafysica', level: 'Onderzocht',
-    summary: 'Wat bewustzijn betekent, hoe onderzoekers ervaring proberen te meten, waar grote hersentheorieën botsen en welke metafysische vragen openblijven.',
-    url: 'onderwerpen/bewustzijn.html', tags: ['bewustzijn', 'ervaring', 'aandacht', 'zelfbewustzijn', 'metacognitie', 'global workspace', 'IIT', 'qualia', 'mind body', 'metafysica', 'panpsychisme', 'idealisme', 'AI'],
-    updated: '2026-07-18T20:00:00+03:00', featureImage: 'images/bewustzijn-kaart.svg?v=2', areaIcon: '☾'
+    summary: 'Wat bewustzijn betekent, waar hersentheorieën botsen en welke radicale hypotheses — van kosmopsychisme tot quantum-bewustzijn — aan de rand van onze kennis wachten.',
+    url: 'onderwerpen/bewustzijn.html', tags: ['bewustzijn', 'ervaring', 'aandacht', 'zelfbewustzijn', 'metacognitie', 'global workspace', 'IIT', 'qualia', 'mind body', 'metafysica', 'panpsychisme', 'kosmopsychisme', 'russelliaans monisme', 'neutraal monisme', 'filtertheorie', 'quantum bewustzijn', 'orch or', 'interface theory', 'idealisme', 'AI'],
+    updated: '2026-07-18T20:45:00+03:00', featureImage: 'images/bewustzijn-kaart.svg?v=2', areaIcon: '☾'
   },
   {
     title: 'Trauma', type: 'dossier', category: 'Trauma & herstel', level: 'Onderzocht',

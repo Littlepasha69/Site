@@ -403,6 +403,48 @@
     document.querySelector('[data-reflection-question]').textContent = questions[currentQuestion];
   });
 
+  const brainAmusements = [
+    'Kies een voorwerp in de kamer. Bedenk in dertig seconden drie volstrekt verkeerde toepassingen. De vierde mag bruikbaar zijn.',
+    'Doe één routinehandeling in een andere volgorde. Waar probeert je automatische piloot het stuur terug te pakken?',
+    'Kijk tien seconden naar de breinillustratie. Sluit je ogen. Hoeveel ladders denk je dat je zag? Controleer — je geheugen hoeft niet te winnen.',
+    'Noem vijf dingen die je vandaag níét hebt opgemerkt. Ja, dit is een onredelijke opdracht. Begin bij wat je nu pas ziet.',
+    'Voorspel welke gedachte over vijf seconden zal opkomen. Wacht. Geef je voorspellingsmachine een uiterst onofficiële score.',
+    'Kies een alledaags probleem en bedenk eerst de slechtst mogelijke oplossing. Welke bruikbare hint zit erin verstopt?'
+  ];
+  const togetherAmusements = [
+    'Vraag vóór een gesprek: “Wil je dat ik luister, vragen stel of meedenk?” Doe daarna alleen dat.',
+    'Vertel dezelfde gebeurtenis elk in twintig seconden. Welke details koos ieder van jullie als “de kern”?',
+    'Maak twee zinnen: “Wat ik bedoelde…” en “Wat jij misschien hoorde…”. Vergelijk zonder rechter.',
+    'Kies een klein meningsverschil en verzin samen een derde optie waar geen van beiden mee begon.',
+    'Raad eerst wat de ander zal antwoorden op: “Waar had jij deze week meer van willen hebben?” Vraag het daarna echt.',
+    'Geef een compliment over iets wat iemand dééd, niet over wie die persoon volgens jou is.'
+  ];
+
+  function drawAmusement(selector, items, button) {
+    const target = document.querySelector(selector);
+    if (!target) return;
+    const current = items.indexOf(target.textContent.trim());
+    let next = Math.floor(Math.random() * items.length);
+    if (items.length > 1 && next === current) next = (next + 1) % items.length;
+    target.closest('.amusement-draw')?.classList.remove('amusement-draw--changing');
+    void target.offsetWidth;
+    target.textContent = items[next];
+    target.closest('.amusement-draw')?.classList.add('amusement-draw--changing');
+    button.setAttribute('aria-label', `Nieuwe mini-proef. Huidige proef: ${items[next]}`);
+  }
+
+  document.querySelector('[data-new-brain-amusement]')?.addEventListener('click', event => drawAmusement('[data-brain-amusement-prompt]', brainAmusements, event.currentTarget));
+  document.querySelector('[data-new-together-amusement]')?.addEventListener('click', event => drawAmusement('[data-together-amusement-prompt]', togetherAmusements, event.currentTarget));
+
+  const amusementTabs = [...document.querySelectorAll('[data-amusement-tab]')];
+  const amusementPanels = [...document.querySelectorAll('[data-amusement-panel]')];
+  amusementTabs.forEach(tab => tab.addEventListener('click', () => {
+    const selected = tab.dataset.amusementTab;
+    amusementTabs.forEach(item => item.setAttribute('aria-selected', String(item === tab)));
+    amusementPanels.forEach(panel => { panel.hidden = panel.dataset.amusementPanel !== selected; });
+    document.querySelector(`[data-amusement-panel="${selected}"]`)?.focus({ preventScroll: true });
+  }));
+
   loadProgress();
   syncControls();
 })();

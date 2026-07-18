@@ -6,9 +6,9 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=9">
+  <link rel="stylesheet" href="css/menslab.css?v=11">
   <script src="js/site-shell.js?v=12" defer></script>
-  <script src="js/menslab.js?v=7" defer></script>
+  <script src="js/menslab.js?v=9" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -19,20 +19,22 @@
           <p class="eyebrow">Van inzicht naar beweging</p>
           <h1>Welkom in het Menslab.</h1>
           <p>Een plek om niet alleen óver verandering te lezen, maar iets kleins te proberen, te voelen en opnieuw te bekijken.</p>
-          <div class="lab-actions"><a class="lab-button" href="dierenquiz.html">Doe de Beestenquiz</a><a class="lab-link" href="#weeklab">Probeer iets kleins ↓</a></div>
+          <div class="lab-actions"><a class="lab-button" href="dierenquiz.html">Doe de Beestenquiz</a><a class="lab-link" href="#lab-kiezer">Vind mijn ingang ↓</a></div>
         </div>
         <div class="lab-orbit" aria-hidden="true"><span>denken</span><span>voelen</span><span>doen</span><strong>jij</strong></div>
       </div>
     </section>
 
-    <section class="lab-intro" aria-label="Drie manieren om het Menslab te gebruiken">
-      <article><span>01</span><h2>Herken</h2><p>Merk een automatisch patroon op zonder jezelf meteen te veroordelen.</p></article>
-      <article><span>02</span><h2>Probeer</h2><p>Verander één klein onderdeel en kijk nieuwsgierig wat er gebeurt.</p></article>
-      <article><span>03</span><h2>Deel</h2><p>Neem je vraag later mee naar de community en vergelijk ervaringen.</p></article>
-    </section>
+    <nav class="lab-clouds" id="lab-kiezer" aria-label="Kies je ingang in het Menslab">
+      <p>Waar heb je vandaag ruimte voor?</p>
+      <a href="#quizkast"><span>Ik wil mezelf</span><strong>even spiegelen</strong><small>1–3 minuten</small></a>
+      <a href="#speelhallen"><span>Ik wil iets</span><strong>vreemds proberen</strong><small>zonder doelstress</small></a>
+      <a href="#weeklab"><span>Ik wil een</span><strong>route volgen</strong><small>zeven kleine haltes</small></a>
+      <a href="#mijn-spoor"><span>Ik wil rustig</span><strong>terugkijken</strong><small>wat bleef hangen?</small></a>
+    </nav>
 
-    <section class="quizkast-gateway" aria-labelledby="quizkast-title">
-      <div class="quizkast-gateway__head"><div><p class="eyebrow">Nieuw · snelle spiegels</p><h2 id="quizkast-title">Trek iets open uit de Quizkast.</h2></div><div><p>Korte quizjes van één tot drie minuten. Geen vast type, wel een mogelijke ingang om iets kleins te onderzoeken.</p><a href="quizkast.html">Bekijk de hele Quizkast →</a></div></div>
+    <section class="quizkast-gateway" id="quizkast" aria-labelledby="quizkast-title">
+      <div class="quizkast-gateway__head"><div><p class="eyebrow">Snel zoeken op vraag</p><h2 id="quizkast-title">Waar wil je even naar kijken?</h2></div><div><p>Vier korte spiegels. Kies de vraag die nu aan je mouw trekt; de rest mag dicht blijven.</p><a href="quizkast.html">Bekijk de hele Quizkast →</a></div></div>
       <div class="quizkast-gateway__grid">
         <a href="quizkast.html?quiz=beweging-vandaag"><span>Vandaag</span><strong>Welke kleine beweging heb jij nodig?</strong><small>± 2 minuten →</small></a>
         <a href="quizkast.html?quiz=luisteren-of-repareren"><span>Gesprekken</span><strong>Luister jij — of begin je te repareren?</strong><small>± 2 minuten →</small></a>
@@ -46,6 +48,48 @@
       <div class="quiz-gateway__mark" aria-hidden="true">✦</div>
       <div><p class="eyebrow">Grote ontdekkingstocht</p><h2 id="quiz-gateway-title">Welk beest beweegt er in jou?</h2><p>35 vragen, zeven persoonlijkheidslijnen en 32 levende, mythische, prehistorische of uitgestorven beesten. Je krijgt een speelse spiegel met krachten, valkuilen en verwante beesten.</p></div>
       <a href="dierenquiz.html">Doe de Beestenquiz →</a>
+    </section>
+
+    <section class="amusement-hub" id="speelhallen" aria-labelledby="amusement-hub-title">
+      <header class="amusement-hub__head">
+        <div><p class="eyebrow">Twee speelruimtes</p><h2 id="amusement-hub-title">Waar wil je even rondneuzen?</h2><p>Niet alles tegelijk. Kies één wereld; je kunt altijd wisselen.</p></div>
+        <div class="amusement-switch" role="tablist" aria-label="Kies een speelruimte">
+          <button type="button" role="tab" aria-selected="true" aria-controls="amusement-brain" data-amusement-tab="brain"><span>In mijn hoofd</span><strong>Breinpret</strong></button>
+          <button type="button" role="tab" aria-selected="false" aria-controls="amusement-together" data-amusement-tab="together"><span>Tussen ons</span><strong>Jij &amp; ik</strong></button>
+        </div>
+      </header>
+
+    <article class="amusement-zone amusement-zone--brain" id="amusement-brain" role="tabpanel" aria-labelledby="brain-amusement-title" data-amusement-panel="brain" tabindex="-1">
+      <figure class="amusement-visual"><img src="images/menslab/amusement-brein.jpg" alt="Een fantasierijk papieren brein vol achtbanen, ladders, knikkers, luikjes en proefopstellingen." loading="lazy"><figcaption>Geen hersenscan. Wel een speelhal.</figcaption></figure>
+      <div class="amusement-copy">
+        <p class="eyebrow">Speelhal 01 · solo</p>
+        <h2 id="brain-amusement-title">Amusement in het brein.</h2>
+        <p>Je hoeft je brein niet altijd te verbeteren of volledig te begrijpen. Soms mag je het gewoon iets vreemds, kleins en nieuwsgierigs laten doen.</p>
+        <div class="amusement-tags" aria-label="Soorten proefjes"><span>Aandacht</span><span>Verwachting</span><span>Automatische piloot</span></div>
+        <div class="amusement-draw" aria-live="polite">
+          <span>Jouw mini-proef</span>
+          <blockquote data-brain-amusement-prompt>Kies een voorwerp in de kamer. Bedenk in dertig seconden drie volstrekt verkeerde toepassingen. De vierde mag bruikbaar zijn.</blockquote>
+          <button type="button" data-new-brain-amusement>Gooi nog een knikker door mijn brein</button>
+        </div>
+        <a class="amusement-link" href="quizkast.html?quiz=wie-zit-aan-het-stuur">Ontdek wie er vandaag aan je stuur zit →</a>
+      </div>
+    </article>
+
+    <article class="amusement-zone amusement-zone--together" id="amusement-together" role="tabpanel" aria-labelledby="together-amusement-title" data-amusement-panel="together" tabindex="-1" hidden>
+      <div class="amusement-copy">
+        <p class="eyebrow">Speelhal 02 · samen</p>
+        <h2 id="together-amusement-title">Amusement in jij &amp; ik.</h2>
+        <p>Twee mensen maken samen een gesprek, een misverstand en soms per ongeluk een kleine doorbraak. Deze proefjes werken met iemand die je vertrouwt — of solo, met een gesprek in gedachten.</p>
+        <div class="amusement-tags" aria-label="Soorten proefjes"><span>Luisteren</span><span>Aannames</span><span>Afstemmen</span></div>
+        <div class="amusement-draw" aria-live="polite">
+          <span>Jullie mini-missie</span>
+          <blockquote data-together-amusement-prompt>Vraag vóór een gesprek: “Wil je dat ik luister, vragen stel of meedenk?” Doe daarna alleen dat.</blockquote>
+          <button type="button" data-new-together-amusement>Laat de gespreksmachine nog eens draaien</button>
+        </div>
+        <a class="amusement-link" href="quizkast.html?quiz=luisteren-of-repareren">Doe de luisteren-of-reparerenquiz →</a>
+      </div>
+      <figure class="amusement-visual"><img src="images/menslab/amusement-jij-en-ik.jpg" alt="Twee papieren figuren bedienen samen een wonderlijke gespreksmachine met spreekbuizen, spiegels, tandwielen en een wip." loading="lazy"><figcaption>Verbinding: zelden plug-and-play.</figcaption></figure>
+    </article>
     </section>
 
     <a class="progress-resume" href="#weeklab" data-progress-resume hidden><span>Welkom terug</span><strong data-resume-text></strong><small>Ga verder waar je was →</small></a>

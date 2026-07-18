@@ -67,6 +67,9 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Ned Block, Thomas Nagel en David Chalmers — toegang tot informatie, eerste-persoonservaring en het zogenoemde moeilijke probleem van bewustzijn.
 - Daniel Dennett en Keith Frankish — functionalistische en illusionistische tegenstemmen bij het idee van onverklaarbare qualia.
 - Stephen Fleming — metacognitie en vertrouwen in het eigen oordeel; zelfzekerheid is niet hetzelfde als juistheid.
+- Bertrand Russell, Philip Goff en Yujin Nagasawa — Russelliaans monisme, panpsychisme en kosmopsychisme; metafysische mogelijkheden, geen empirisch vastgestelde kosmologie.
+- Donald Hoffman — interface theory of perception en conscious realism; evolutionaire modellen en bewustzijn-eerst-ontologie worden als afzonderlijke claims behandeld.
+- Roger Penrose en Stuart Hameroff — Orch OR als radicale, fysische hypothese; quantumtaal wordt nooit gebruikt als vrijbrief voor magie, manifestatie of onbewezen bewustzijn buiten het brein.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 
