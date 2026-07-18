@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Het cerebellum als fijnregelaar</title>
+  <desc id="desc">Een cirkelvormige route van plan naar voorspelling, uitkomst, verschil en bijstelling rond een gestileerd cerebellum.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#eef4ef"/><stop offset="1" stop-color="#f6edf3"/></linearGradient>
+    <linearGradient id="core" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#153f3e"/><stop offset="1" stop-color="#4a2948"/></linearGradient>
+    <filter id="shadow"><feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#0b2d2c" flood-opacity=".13"/></filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 10 5 0 10Z" fill="#b86738"/></marker>
+  </defs>
+  <rect width="1200" height="620" rx="34" fill="url(#bg)"/>
+  <path d="M255 188C349 53 707 27 914 156" fill="none" stroke="#b86738" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M953 198c97 138 1 324-178 365" fill="none" stroke="#b86738" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <path d="M718 571c-200 55-427-36-473-202" fill="none" stroke="#b86738" stroke-width="5" stroke-linecap="round" marker-end="url(#arrow)"/>
+  <g font-family="Arial,sans-serif" fill="#153f3e">
+    <g transform="translate(105 95)"><circle cx="78" cy="78" r="73" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="78" y="70" text-anchor="middle" font-size="19" font-weight="700">PLAN</text><text x="78" y="98" text-anchor="middle" font-size="15" fill="#5a6d6a">wat wil je doen?</text></g>
+    <g transform="translate(865 80)"><circle cx="86" cy="86" r="81" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="86" y="77" text-anchor="middle" font-size="19" font-weight="700">VOORSPEL</text><text x="86" y="105" text-anchor="middle" font-size="15" fill="#5a6d6a">wat zal volgen?</text></g>
+    <g transform="translate(887 382)"><circle cx="90" cy="90" r="85" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="90" y="81" text-anchor="middle" font-size="19" font-weight="700">UITKOMST</text><text x="90" y="109" text-anchor="middle" font-size="15" fill="#5a6d6a">wat gebeurde echt?</text></g>
+    <g transform="translate(117 374)"><circle cx="90" cy="90" r="85" fill="#fff" stroke="#cad8d3" stroke-width="3"/><text x="90" y="81" text-anchor="middle" font-size="19" font-weight="700">VERSCHIL</text><text x="90" y="109" text-anchor="middle" font-size="15" fill="#5a6d6a">wat wijkt af?</text></g>
+  </g>
+  <g filter="url(#shadow)"><circle cx="600" cy="308" r="175" fill="url(#core)"/><circle cx="600" cy="308" r="145" fill="none" stroke="#f0c66b" stroke-opacity=".34" stroke-width="2" stroke-dasharray="7 10"/>
+    <g fill="none" stroke="#f0c66b" stroke-width="9" stroke-linecap="round">
+      <path d="M505 292c7-77 103-116 169-76 48 29 59 93 26 135-39 49-121 45-151-5-24-40-5-90 38-105 35-13 76 5 86 39 9 31-12 63-43 67-27 4-53-16-53-44 0-23 19-41 42-41 17 0 32 11 37 26"/>
+      <path d="M487 327c36 19 65 56 98 71M506 260c-23 25-36 55-38 88M695 241c27 21 44 52 47 87" stroke-opacity=".72"/>
+    </g>
+    <text x="600" y="458" text-anchor="middle" fill="#fff9ea" font-family="Georgia,serif" font-size="31" font-weight="700">fijnregelen</text>
+    <text x="600" y="486" text-anchor="middle" fill="#d8e6df" font-family="Arial,sans-serif" font-size="15">timing · coördinatie · leren</text>
+  </g>
+  <g font-family="Arial,sans-serif" text-anchor="middle"><text x="600" y="63" fill="#153f3e" font-size="22" font-weight="700">beweging · taal · aandacht · sociaal-emotionele reeksen</text><text x="600" y="592" fill="#6b5a68" font-size="16">Geen solist: de lus loopt door hersenschors, hersenstam, lichaam en omgeving.</text></g>
+</svg>

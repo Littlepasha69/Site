@@ -3,7 +3,7 @@ class SiteHeader extends HTMLElement {
     const active = this.getAttribute('active') || '';
     const base = this.getAttribute('base') || '';
     const links = [
-      ['home', 'index.html', 'Ontdekken'],
+      ['home', 'home.html', 'Ontdekken'],
       ['kennisbank', 'onderwerpen.html', 'Atlas'],
       ['menslab', 'menslab.html', 'Menslab'],
       ['denkstukken', 'denkstukken.html', 'Denkstukken'],
@@ -15,7 +15,7 @@ class SiteHeader extends HTMLElement {
       <header class="site-header">
         <a class="skip-link" href="#inhoud">Ga naar de inhoud</a>
         <div class="site-header__inner">
-          <a class="brand" href="${base}index.html" aria-label="De Onwijze Wijsheden – home">
+          <a class="brand" href="${base}home.html" aria-label="De Onwijze Wijsheden – home">
             <img src="${base}images/logo-wide.png" alt="" width="2172" height="724">
           </a>
           <nav class="site-nav" aria-label="Hoofdnavigatie">

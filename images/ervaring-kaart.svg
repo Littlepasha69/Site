@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 620" role="img" aria-labelledby="title desc">
+  <title id="title">Ervaring als ontmoeting</title>
+  <desc id="desc">Wereld, lichaam, verwachting, aandacht en geheugen komen samen in een beleefd moment en beïnvloeden nieuwe waarneming en handeling.</desc>
+  <defs>
+    <linearGradient id="bg2" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#edf4f1"/><stop offset=".52" stop-color="#fdf9ef"/><stop offset="1" stop-color="#f4eaf2"/></linearGradient>
+    <linearGradient id="moment" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#123f3e"/><stop offset="1" stop-color="#4d2d4b"/></linearGradient>
+    <filter id="shadow2"><feDropShadow dx="0" dy="16" stdDeviation="20" flood-color="#0b2d2c" flood-opacity=".15"/></filter>
+    <marker id="arr2" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#b86738"/></marker>
+  </defs>
+  <rect width="1200" height="620" rx="34" fill="url(#bg2)"/>
+  <g fill="none" stroke="#b86738" stroke-width="4" stroke-linecap="round" marker-end="url(#arr2)">
+    <path d="M276 133C390 165 429 208 463 246"/><path d="M276 311C373 311 421 311 461 311"/><path d="M276 491C390 461 427 414 463 374"/>
+    <path d="M924 133C810 165 771 208 737 246"/><path d="M924 311C827 311 779 311 739 311"/>
+  </g>
+  <g font-family="Arial,sans-serif" fill="#153f3e">
+    <g transform="translate(62 63)"><rect width="220" height="132" rx="28" fill="#fff" stroke="#c8d7d1" stroke-width="3"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="700">WERELD</text><text x="110" y="82" text-anchor="middle" font-size="14" fill="#61716e">licht · geluid · ander</text></g>
+    <g transform="translate(62 245)"><rect width="220" height="132" rx="28" fill="#fff" stroke="#c8d7d1" stroke-width="3"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="700">LICHAAM</text><text x="110" y="82" text-anchor="middle" font-size="14" fill="#61716e">adem · pijn · energie</text></g>
+    <g transform="translate(62 427)"><rect width="220" height="132" rx="28" fill="#fff" stroke="#c8d7d1" stroke-width="3"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="700">GEHEUGEN</text><text x="110" y="82" text-anchor="middle" font-size="14" fill="#61716e">verleden · betekenis</text></g>
+    <g transform="translate(918 63)"><rect width="220" height="132" rx="28" fill="#fff" stroke="#d9c9d4" stroke-width="3"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="700">VERWACHTING</text><text x="110" y="82" text-anchor="middle" font-size="14" fill="#6f6270">wat zal gebeuren?</text></g>
+    <g transform="translate(918 245)"><rect width="220" height="132" rx="28" fill="#fff" stroke="#d9c9d4" stroke-width="3"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="700">AANDACHT</text><text x="110" y="82" text-anchor="middle" font-size="14" fill="#6f6270">wat komt voorgrond?</text></g>
+  </g>
+  <g filter="url(#shadow2)"><circle cx="600" cy="310" r="150" fill="url(#moment)"/><circle cx="600" cy="310" r="118" fill="none" stroke="#f0c66b" stroke-width="2" stroke-dasharray="4 9"/><path d="M514 315c44-65 128-65 172 0-44 65-128 65-172 0Z" fill="none" stroke="#f0c66b" stroke-width="7"/><circle cx="600" cy="315" r="31" fill="#f0c66b"/><circle cx="600" cy="315" r="14" fill="#153f3e"/><text x="600" y="486" text-anchor="middle" fill="#fff9ea" font-family="Georgia,serif" font-size="31" font-weight="700">beleefd moment</text></g>
+  <path d="M749 475c47 19 80 50 99 91" fill="none" stroke="#b86738" stroke-width="4" stroke-linecap="round" marker-end="url(#arr2)"/>
+  <text x="892" y="575" fill="#6f526b" font-family="Arial,sans-serif" font-size="16" font-weight="700">handeling &amp; bijstelling</text>
+  <text x="600" y="56" text-anchor="middle" fill="#153f3e" font-family="Georgia,serif" font-size="28" font-weight="700">Geen kopie. Geen privéfantasie. Een ontmoeting.</text>
+</svg>

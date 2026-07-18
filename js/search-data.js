@@ -155,6 +155,12 @@ window.ONWIJZE_CONTENT = [
     url: 'onderwerpen/hersenstam.html', tags: ['ademhaling', 'hartslag', 'overleven', 'zenuwstelsel'], areaIcon: 'brain'
   },
   {
+    title: 'Cerebellum', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Redelijk stevig',
+    summary: 'Het “kleine brein” als fijnregelaar van beweging, timing, voorspelling, foutleren en cognitief-emotionele lussen.',
+    url: 'onderwerpen/cerebellum.html', tags: ['cerebellum', 'kleine hersenen', 'evenwicht', 'coördinatie', 'timing', 'voorspelling', 'voorspellingsfout', 'motorisch leren', 'ataxie', 'taal', 'emotie', 'sociaal leren', 'Schmahmann', 'CCAS'],
+    updated: '2026-07-18T23:35:00+03:00', featureImage: 'images/cerebellum-kaart.svg', areaIcon: 'brain'
+  },
+  {
     title: 'Klimaatopwarming', type: 'achtergrond', category: 'Leefwereld',
     summary: 'Oorzaken, gevolgen en mogelijke antwoorden op de stijgende gemiddelde temperatuur van de aarde.',
     url: 'onderwerpen/klimaatopwarming.html', tags: ['klimaat', 'co2', 'energie', 'zeespiegel', 'beleid']
@@ -186,6 +192,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Waarom reguleren niet hetzelfde is als minder voelen, hoe emoties zich ontvouwen en waarom geen enkele strategie altijd werkt.',
     url: 'onderwerpen/emotieregulatie.html', tags: ['emoties', 'regulatie', 'piekeren', 'vermijden', 'onderdrukken', 'herwaarderen', 'lichaam', 'cultuur'],
     updated: '2026-07-18T16:53:14+03:00', featureImage: 'images/emotieregulatie-route.svg', areaIcon: '≋'
+  },
+  {
+    title: 'Stress', type: 'dossier', category: 'Emoties & regulatie', level: 'Redelijk stevig',
+    summary: 'Wanneer spanning helpt aanpassen, wanneer langdurige belasting systemen uitput en waarom herstel ook over controle, relaties en leefomstandigheden gaat.',
+    url: 'onderwerpen/stress.html', tags: ['stress', 'allostase', 'allostatische belasting', 'cortisol', 'HPA-as', 'autonoom zenuwstelsel', 'herstel', 'controle', 'slaap', 'sociale steun', 'coping', 'veerkracht'],
+    updated: '2026-07-18T21:10:00+03:00', featureImage: 'images/stress-kaart.svg', areaIcon: '≋'
   },
   {
     title: 'Boosheid', type: 'dossier', category: 'Emoties & regulatie', level: 'Redelijk stevig',
@@ -228,6 +240,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Wat bewustzijn betekent, waar hersentheorieën botsen en welke radicale hypotheses — van kosmopsychisme tot quantum-bewustzijn — aan de rand van onze kennis wachten.',
     url: 'onderwerpen/bewustzijn.html', tags: ['bewustzijn', 'ervaring', 'aandacht', 'zelfbewustzijn', 'metacognitie', 'global workspace', 'IIT', 'qualia', 'mind body', 'metafysica', 'panpsychisme', 'kosmopsychisme', 'russelliaans monisme', 'neutraal monisme', 'filtertheorie', 'quantum bewustzijn', 'orch or', 'interface theory', 'idealisme', 'AI'],
     updated: '2026-07-18T20:45:00+03:00', featureImage: 'images/bewustzijn-kaart.svg?v=2', areaIcon: '☾'
+  },
+  {
+    title: 'Ervaring', type: 'dossier', category: 'Bewustzijn & metafysica', level: 'Redelijk stevig',
+    summary: 'Hoe wereld, lichaam, verwachting, aandacht, geheugen en cultuur samen een beleefd moment vormen — zonder werkelijkheid tot illusie te reduceren.',
+    url: 'onderwerpen/ervaring.html', tags: ['ervaring', 'waarneming', 'perceptie', 'predictieve verwerking', 'predictive processing', 'voorspellingsfout', 'interoceptie', 'lichaamsbesef', 'aandacht', 'geheugen', 'autobiografisch geheugen', 'cultuur', 'fenomenologie', 'enactivisme', 'werkelijkheid'],
+    updated: '2026-07-18T23:50:00+03:00', featureImage: 'images/ervaring-kaart.svg', areaIcon: '☾'
   },
   {
     title: 'Trauma', type: 'dossier', category: 'Trauma & herstel', level: 'Onderzocht',

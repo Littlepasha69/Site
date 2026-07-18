@@ -311,16 +311,19 @@ button, input { font: inherit; }
 
 @media (max-width: 620px) {
   .site-header__inner { padding:.3rem 0; }
-  .brand img,.home-page .brand img { width:min(270px,calc(100vw - 95px)); }
+  .brand img,.home-page .brand img { width:min(220px,calc(100vw - 105px)); }
   .header-search { padding:.48rem .65rem;font-size:.78rem; }
   .site-nav {
     width: 100%;
-    display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: .25rem .45rem;
-    overflow: visible;
+    display: flex;
+    justify-content: flex-start;
+    gap:.35rem;
+    overflow-x: auto;
+    padding-bottom:.2rem;
+    scrollbar-width:none;
   }
-  .site-nav a { padding:.3rem .05rem;text-align:center;font-size:.76rem; }
+  .site-nav::-webkit-scrollbar { display:none; }
+  .site-nav a { flex:none;padding:.22rem .45rem;text-align:center;font-size:.74rem;line-height:1.2;white-space:nowrap; }
   .hero { min-height: 650px; }
   .hero h1 { font-size: clamp(2.65rem, 14vw, 4.1rem); }
   .hero-actions { align-items:stretch;flex-direction:column; }

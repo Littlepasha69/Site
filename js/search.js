@@ -37,8 +37,9 @@
     return concept || [word];
   }
 
-  function fieldScore(field, terms, weight) {
-    return terms.some(term => field.includes(term)) ? weight : 0;
+  function fieldScore(field, word, terms, weight) {
+    if (field.includes(word)) return weight * 2;
+    return terms.some(term => term !== word && field.includes(term)) ? weight : 0;
   }
 
   function score(item, query) {
@@ -51,10 +52,10 @@
     let total = 0;
     for (const word of words) {
       const terms = alternatives(word);
-      const wordScore = fieldScore(title, terms, 8)
-        + fieldScore(tags, terms, 5)
-        + fieldScore(category, terms, 3)
-        + fieldScore(summary, terms, 2);
+      const wordScore = fieldScore(title, word, terms, 8)
+        + fieldScore(tags, word, terms, 5)
+        + fieldScore(category, word, terms, 3)
+        + fieldScore(summary, word, terms, 2);
       if (!wordScore) return 0;
       total += wordScore;
     }

@@ -8,6 +8,8 @@
 .dossier-hero--attachment { background:radial-gradient(circle at 80% 17%,rgba(240,198,107,.25),transparent 22rem),radial-gradient(circle at 12% 88%,rgba(129,178,161,.22),transparent 27rem),linear-gradient(135deg,#102f35,#18534f 54%,#4c2e4d); }
 .dossier-hero--relational-change { background:radial-gradient(circle at 72% 19%,rgba(240,198,107,.28),transparent 22rem),radial-gradient(circle at 10% 88%,rgba(129,178,161,.2),transparent 26rem),linear-gradient(132deg,#0d2c33,#18534f 52%,#5a304f); }
 .dossier-hero--group { background:radial-gradient(circle at 78% 14%,rgba(240,198,107,.28),transparent 22rem),radial-gradient(circle at 10% 88%,rgba(112,151,157,.2),transparent 27rem),linear-gradient(132deg,#102b35,#164c4b 50%,#5b304f); }
+.dossier-hero--cerebellum { background:radial-gradient(circle at 80% 15%,rgba(240,198,107,.26),transparent 22rem),radial-gradient(circle at 12% 86%,rgba(111,165,151,.24),transparent 27rem),linear-gradient(134deg,#0a2930,#174b49 53%,#473047); }
+.dossier-hero--experience { background:radial-gradient(circle at 78% 16%,rgba(240,198,107,.22),transparent 22rem),radial-gradient(circle at 15% 85%,rgba(101,155,166,.24),transparent 27rem),linear-gradient(135deg,#0b2230,#17474b 49%,#56334f); }
 .dossier-hero::after { content:'';position:absolute;right:-16rem;bottom:-20rem;width:36rem;height:36rem;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 4rem rgba(255,255,255,.025),0 0 0 8rem rgba(255,255,255,.018); }
 .dossier-hero__inner { position:relative;z-index:1;width:min(1180px,100%);margin:auto; }
 .dossier-breadcrumb { margin-bottom:clamp(2rem,4vw,3.5rem);display:flex;flex-wrap:wrap;gap:.5rem;color:rgba(255,255,255,.62);font-size:.78rem;font-weight:650; }
@@ -75,6 +77,15 @@
 .dossier-graphic--relational-change figcaption { background:#10373a; }
 .dossier-graphic--group { background:#112f37; }
 .dossier-graphic--group figcaption { background:#0d2930; }
+.stress-graphic { margin:2.2rem 0 1.8rem;overflow:hidden;border:1px solid rgba(255,255,255,.12);border-radius:1.35rem;background:linear-gradient(135deg,#24162f,#4a2948 58%,#174b48);box-shadow:0 24px 60px rgba(47,32,56,.16); }
+.stress-graphic svg { width:100%;height:auto;display:block; }
+.stress-graphic__grid path { fill:none;stroke:rgba(255,255,255,.1);stroke-width:2; }
+.stress-graphic__recovery,.stress-graphic__load { fill:none;stroke-linecap:round;stroke-width:10; }
+.stress-graphic__recovery { stroke:#f0c66b; }
+.stress-graphic__load { stroke:#d88da2;stroke-width:8; }
+.stress-graphic__labels { fill:rgba(255,255,255,.62);font:700 15px var(--sans);letter-spacing:.03em; }
+.stress-graphic figcaption { margin:0;padding:1rem 1.2rem 1.1rem;border-top:1px solid rgba(255,255,255,.12);background:rgba(7,27,29,.35);color:rgba(255,255,255,.7);font-size:.82rem;line-height:1.55; }
+.stress-graphic figcaption strong { color:#f0c66b; }
 .plasticity-levels { margin-top:2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem; }.plasticity-levels article { min-height:11rem;padding:1.25rem;border:1px solid var(--line);border-radius:1rem;background:white; }.plasticity-levels article>span { width:2.4rem;height:2.4rem;display:grid;place-items:center;border-radius:.7rem;background:var(--sage);color:var(--ink);font-size:1.2rem; }.plasticity-levels h3 { margin:1rem 0 .45rem;color:var(--ink);font:650 1.3rem var(--serif); }.plasticity-levels p { margin:0;color:var(--muted);font-size:.9rem; }
 .emotion-process article:last-child { grid-column:1/-1;min-height:auto; }
 .dossier-note { max-width:780px;margin-top:1.5rem;padding:1.1rem 0 1.1rem 1.35rem;border-left:3px solid var(--gold);background:transparent; }.dossier-note strong { color:var(--ink); }.dossier-note p { margin:.3rem 0 0;color:var(--muted); }
