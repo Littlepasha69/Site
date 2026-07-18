@@ -154,6 +154,13 @@
     document.querySelector('[data-result-friction]').textContent = activeResult.friction;
     document.querySelector('[data-result-counter]').textContent = activeResult.counter;
     document.querySelector('[data-result-experiment]').textContent = activeResult.experiment;
+    const theoryLink = document.querySelector('[data-mini-theory-link]');
+    theoryLink.hidden = !activeQuiz.theoryHref;
+    if (activeQuiz.theoryHref) {
+      const anchor = document.querySelector('[data-mini-theory-anchor]');
+      anchor.href = activeQuiz.theoryHref;
+      anchor.textContent = activeQuiz.theoryLabel;
+    }
     showOnly(resultSection);
   }
 

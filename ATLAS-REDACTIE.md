@@ -61,6 +61,12 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Simine Vazire — zelfkennis, reputatie en blinde vlekken; zelfrapportage is belangrijk maar niet volledig.
 - René Mõttus en Colin DeYoung — nuances onder brede trekken en theoretische verbindingen tussen trekken, doelen en adaptieve systemen; modellen, geen complete mensverklaring.
 - A. Timothy Church — persoonlijkheid over culturen heen; steun voor brede trekpatronen én aandacht voor westerse meetkaders en lokale begrippen.
+- Anil Seth en Tim Bayne — vergelijking van bewustzijnstheorieën en de vraag welke problemen een theorie werkelijk verklaart.
+- Bernard Baars en Stanislas Dehaene — global-workspacebenaderingen: wanneer informatie breed beschikbaar wordt voor flexibel denken en handelen.
+- Giulio Tononi en Christof Koch — geïntegreerde-informatietheorie; invloedrijk en toetsbaar gemaakt, maar inhoudelijk en empirisch sterk betwist.
+- Ned Block, Thomas Nagel en David Chalmers — toegang tot informatie, eerste-persoonservaring en het zogenoemde moeilijke probleem van bewustzijn.
+- Daniel Dennett en Keith Frankish — functionalistische en illusionistische tegenstemmen bij het idee van onverklaarbare qualia.
+- Stephen Fleming — metacognitie en vertrouwen in het eigen oordeel; zelfzekerheid is niet hetzelfde als juistheid.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 

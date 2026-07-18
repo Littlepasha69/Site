@@ -2,6 +2,7 @@
 .dossier-hero { position:relative;overflow:hidden;padding:clamp(3.5rem,8vw,7rem) 1rem;color:white;background:radial-gradient(circle at 82% 16%,rgba(240,198,107,.25),transparent 22rem),linear-gradient(135deg,#092a29,#174b48 62%,#295f58); }
 .dossier-hero--emotion { background:radial-gradient(circle at 82% 16%,rgba(240,198,107,.22),transparent 22rem),radial-gradient(circle at 16% 82%,rgba(178,105,118,.28),transparent 25rem),linear-gradient(135deg,#24162f,#4a2948 52%,#704248); }
 .dossier-hero--identity { background:radial-gradient(circle at 82% 15%,rgba(240,198,107,.24),transparent 22rem),radial-gradient(circle at 14% 82%,rgba(178,105,118,.2),transparent 25rem),linear-gradient(135deg,#0d3031,#18504b 54%,#4a2948); }
+.dossier-hero--consciousness { background:radial-gradient(circle at 78% 18%,rgba(240,198,107,.22),transparent 21rem),radial-gradient(circle at 18% 85%,rgba(87,139,151,.2),transparent 26rem),linear-gradient(135deg,#0b1d2a,#173f47 52%,#432a50); }
 .dossier-hero::after { content:'';position:absolute;right:-16rem;bottom:-20rem;width:36rem;height:36rem;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 4rem rgba(255,255,255,.025),0 0 0 8rem rgba(255,255,255,.018); }
 .dossier-hero__inner { position:relative;z-index:1;width:min(1180px,100%);margin:auto; }
 .dossier-breadcrumb { margin-bottom:clamp(2.5rem,6vw,5rem);display:flex;flex-wrap:wrap;gap:.5rem;color:rgba(255,255,255,.62);font-size:.82rem;font-weight:650; }
@@ -44,6 +45,22 @@
 .dossier-graphic--emotion figcaption { background:#321c36; }
 .dossier-graphic--identity { background:#153f3d; }
 .dossier-graphic--identity figcaption { background:#113633; }
+.hypothesis-box { margin:2rem 0 1.2rem;overflow:hidden;border:1px solid rgba(240,198,107,.45);border-radius:1.35rem;background:linear-gradient(135deg,#251b35,#3d2744 58%,#704248);color:white;box-shadow:0 24px 60px rgba(47,32,56,.18); }
+.hypothesis-box__lead { padding:clamp(1.4rem,5vw,2.4rem);border-bottom:1px solid rgba(255,255,255,.12);background:radial-gradient(circle at 90% 10%,rgba(240,198,107,.2),transparent 18rem); }
+.hypothesis-box__lead span { color:#f0c66b;font-size:.68rem;font-weight:850;letter-spacing:.14em; }
+.hypothesis-box__lead p { max-width:830px;margin:.7rem 0 0;color:white;font:650 clamp(1.55rem,4vw,2.6rem)/1.12 var(--serif); }
+.hypothesis-flow { padding:clamp(1rem,4vw,1.8rem);display:grid;grid-template-columns:repeat(3,1fr);gap:.7rem; }
+.hypothesis-flow article { min-height:15rem;padding:1.2rem;border:1px solid rgba(255,255,255,.12);border-radius:1rem;background:rgba(255,255,255,.06); }
+.hypothesis-flow small { color:#f0c66b;font-size:.63rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase; }
+.hypothesis-flow h3 { margin:1rem 0 .55rem;font:650 1.35rem/1.16 var(--serif); }
+.hypothesis-flow p { margin:0;color:rgba(255,255,255,.7);font-size:.86rem;line-height:1.6; }
+.hypothesis-box__question { margin:0 clamp(1rem,4vw,1.8rem) clamp(1rem,4vw,1.8rem);padding:1.2rem;border-left:4px solid #f0c66b;background:rgba(7,27,29,.36); }
+.hypothesis-box__question strong { color:#f0c66b;font-size:.72rem;letter-spacing:.08em;text-transform:uppercase; }
+.hypothesis-box__question p { margin:.45rem 0 0;color:#f7eee2;font:500 1.05rem/1.65 var(--serif); }
+.frontier-checklist { grid-template-columns:1fr 1fr; }
+.frontier-checklist article { height:100%; }
+.dossier-graphic--consciousness { background:#122c3a; }
+.dossier-graphic--consciousness figcaption { background:#0e2633; }
 .plasticity-levels { margin-top:2rem;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem; }.plasticity-levels article { min-height:11rem;padding:1.25rem;border:1px solid var(--line);border-radius:1rem;background:white; }.plasticity-levels article>span { width:2.4rem;height:2.4rem;display:grid;place-items:center;border-radius:.7rem;background:var(--sage);color:var(--ink);font-size:1.2rem; }.plasticity-levels h3 { margin:1rem 0 .45rem;color:var(--ink);font:650 1.3rem var(--serif); }.plasticity-levels p { margin:0;color:var(--muted);font-size:.9rem; }
 .emotion-process article:last-child { grid-column:1/-1;min-height:auto; }
 .dossier-note { max-width:780px;margin-top:1.5rem;padding:1.2rem 1.35rem;border-left:4px solid var(--gold);background:#fff8e9; }.dossier-note strong { color:var(--ink); }.dossier-note p { margin:.3rem 0 0;color:var(--muted); }
@@ -78,6 +95,16 @@
 .measurement-checks article { padding:1rem 1.15rem;display:grid;grid-template-columns:2.6rem 1fr;gap:1rem;align-items:start;border:1px solid var(--line);border-radius:1rem;background:#fff; }
 .measurement-checks article>span { width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:var(--sage);color:var(--ink);font-weight:800; }
 .measurement-checks h3 { margin:.05rem 0 .3rem; }
+.consciousness-questions,.theory-grid,.metaphysics-grid { margin-top:1.5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem; }
+.consciousness-questions article,.theory-grid article,.metaphysics-grid article { padding:1.35rem;border:1px solid var(--line);border-radius:1rem;background:#fff; }
+.consciousness-questions span,.metaphysics-grid span { color:var(--copper);font-size:.68rem;font-weight:800;letter-spacing:.08em;text-transform:uppercase; }
+.consciousness-questions h3,.theory-grid h3,.metaphysics-grid h3 { margin:.7rem 0 .45rem;color:var(--ink);font:650 1.35rem/1.15 var(--serif); }
+.consciousness-questions p,.theory-grid p,.metaphysics-grid p { margin:0;color:var(--muted);font-size:.88rem;line-height:1.6; }
+.theory-grid article { min-height:17rem;display:flex;flex-direction:column; }
+.theory-grid h3 { margin:1rem 0 .55rem;font-size:1.55rem; }
+.theory-grid small { margin-top:auto;padding-top:1rem;color:var(--copper);font-size:.72rem;font-weight:750; }
+.metaphysics-grid article:last-child { grid-column:1/-1;background:#fff9ed; }
+.consciousness-measures article>span { background:#e8e5ef;color:#432a50; }
 .experiment-steps { margin:2rem 0;padding:0;display:grid;gap:.65rem;list-style:none; }.experiment-steps li { padding:1rem 0;display:grid;grid-template-columns:2.7rem 1fr;gap:1rem;border-bottom:1px solid var(--line); }.experiment-steps li>span { width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:var(--sage);color:var(--ink);font-weight:800; }.experiment-steps strong { color:var(--ink); }.experiment-steps p { margin:.25rem 0 0;color:var(--muted);font-size:.9rem; }
 .experiment-cta { margin-top:2rem;padding:clamp(1.4rem,4vw,2.2rem);display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;border-radius:1.2rem;background:linear-gradient(125deg,#4a2948,#79484d);color:white; }.experiment-cta span { color:#f0c66b;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase; }.experiment-cta h3 { margin:.45rem 0;font:650 clamp(1.5rem,3vw,2.1rem) var(--serif); }.experiment-cta p { margin:0;color:rgba(255,255,255,.7); }.experiment-cta a { padding:.75rem 1rem;border-radius:999px;background:#f0c66b;color:var(--ink-dark);font-size:.84rem;font-weight:800;text-decoration:none;white-space:nowrap; }
 .help-boundary { padding:clamp(1.5rem,5vw,2.5rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem;border:1px solid #e1c37d;border-radius:1.2rem;background:#fff8e9; }.help-boundary h2 { margin:.5rem 0 0!important;font-size:clamp(1.6rem,3vw,2.2rem)!important; }.help-boundary>p { margin:0;font:400 .95rem/1.65 var(--sans); }
@@ -85,5 +112,7 @@
 .related-dossiers { padding:clamp(3.5rem,8vw,6rem) 0 1rem; }.related-dossiers>div { display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem; }.related-dossiers a { min-height:10rem;padding:1.2rem;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1rem;background:white;color:inherit;text-decoration:none; }.related-dossiers span { color:var(--copper);font-size:.68rem;font-weight:800;text-transform:uppercase; }.related-dossiers strong { margin:.7rem 0;font:650 1.35rem var(--serif); }.related-dossiers small { margin-top:auto;color:var(--muted); }
 
 @media(max-width:900px){.dossier-hero__grid{grid-template-columns:1fr}.dossier-layout{grid-template-columns:1fr}.dossier-toc{position:static;grid-template-columns:repeat(2,1fr)}.dossier-toc p{grid-column:1/-1}.summary-points{grid-template-columns:1fr}.related-dossiers>div{grid-template-columns:1fr 1fr}.help-boundary{grid-template-columns:1fr}}
-@media(max-width:620px){.dossier-hero{padding-top:3rem}.dossier-hero h1{font-size:clamp(2.6rem,11vw,3.8rem);letter-spacing:-.065em}.dossier-status dl div{align-items:flex-start;flex-direction:column;gap:.2rem}.dossier-status dd{text-align:left}.dossier-layout{width:min(100% - 1rem,1180px)}.dossier-toc{grid-template-columns:1fr 1fr}.dossier-summary{border-radius:1.1rem}.dossier-graphic{margin-inline:-.25rem;border-radius:1rem}.plasticity-levels,.claim-grid,.thinker-dialogue,.related-dossiers>div,.origin-grid,.concept-compare,.change-ingredients{grid-template-columns:1fr}.concept-compare article{min-height:12rem}.change-ingredients article:last-child{grid-column:auto}.emotion-process article:last-child{grid-column:auto}.experiment-cta{grid-template-columns:1fr}.experiment-cta a{justify-self:start}.source-list li{padding-left:3.2rem}}
+@media(max-width:620px){.dossier-hero{padding-top:3rem}.dossier-hero h1{font-size:clamp(2.6rem,11vw,3.8rem);letter-spacing:-.065em}.dossier-status dl div{align-items:flex-start;flex-direction:column;gap:.2rem}.dossier-status dd{text-align:left}.dossier-layout{width:min(100% - 1rem,1180px)}.dossier-toc{grid-template-columns:1fr 1fr}.dossier-summary{border-radius:1.1rem}.dossier-graphic{margin-inline:-.25rem;border-radius:1rem}.plasticity-levels,.claim-grid,.thinker-dialogue,.related-dossiers>div,.origin-grid,.concept-compare,.change-ingredients,.consciousness-questions,.theory-grid,.metaphysics-grid{grid-template-columns:1fr}.concept-compare article{min-height:12rem}.change-ingredients article:last-child,.metaphysics-grid article:last-child{grid-column:auto}.emotion-process article:last-child{grid-column:auto}.experiment-cta{grid-template-columns:1fr}.experiment-cta a{justify-self:start}.source-list li{padding-left:3.2rem}}
+@media(max-width:900px){.hypothesis-flow,.frontier-checklist{grid-template-columns:1fr}.hypothesis-flow article{min-height:auto}}
+@media(max-width:620px){.hypothesis-box{margin-inline:-.25rem}.hypothesis-flow{padding:.8rem}.hypothesis-box__question{margin:.8rem}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}

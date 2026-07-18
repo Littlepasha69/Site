@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 720" role="img" aria-labelledby="title desc">
+  <title id="title">Vier vragen over bewustzijn</title>
+  <desc id="desc">Een gelaagde kaart onderscheidt wakker zijn, iets ervaren, toegang en rapportage, en reflecteren op de eigen ervaring.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#0d202c"/><stop offset=".5" stop-color="#183e46"/><stop offset="1" stop-color="#432a50"/></linearGradient>
+    <radialGradient id="glow" cx="0" cy="0" r="1" gradientTransform="translate(790 315) rotate(90) scale(350)"><stop stop-color="#edbd58" stop-opacity=".24"/><stop offset="1" stop-color="#edbd58" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="720" rx="30" fill="url(#bg)"/><rect width="1200" height="720" rx="30" fill="url(#glow)"/>
+  <g fill="none" stroke="#fff" stroke-opacity=".12"><circle cx="320" cy="365" r="210"/><circle cx="320" cy="365" r="158"/><circle cx="320" cy="365" r="106"/><circle cx="320" cy="365" r="54"/></g>
+  <g fill="#efc467"><path d="M320 155a210 210 0 1 0 0 420 170 170 0 1 1 0-420z" opacity=".92"/></g>
+  <circle cx="320" cy="365" r="22" fill="#fff9ea"/>
+  <g font-family="Arial, sans-serif" font-weight="700">
+    <text x="590" y="92" fill="#efc467" font-size="17" letter-spacing="3">ÉÉN WOORD · VIER ONDERZOEKSVRAGEN</text>
+    <text x="590" y="145" fill="#fff9ea" font-family="Georgia, serif" font-size="32">Wat bedoelen we met bewustzijn?</text>
+    <g transform="translate(590 205)"><rect width="510" height="88" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="24" y="32" fill="#efc467" font-size="13" letter-spacing="2">01 · NIVEAU</text><text x="24" y="62" fill="#fff" font-size="21">Ben je wakker en aanspreekbaar?</text></g>
+    <g transform="translate(590 309)"><rect width="510" height="88" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="24" y="32" fill="#efc467" font-size="13" letter-spacing="2">02 · INHOUD</text><text x="24" y="62" fill="#fff" font-size="21">Wat verschijnt er in je ervaring?</text></g>
+    <g transform="translate(590 413)"><rect width="510" height="88" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="24" y="32" fill="#efc467" font-size="13" letter-spacing="2">03 · TOEGANG</text><text x="24" y="62" fill="#fff" font-size="21">Kun je ermee denken, kiezen of rapporteren?</text></g>
+    <g transform="translate(590 517)"><rect width="510" height="88" rx="18" fill="#fff" fill-opacity=".08" stroke="#fff" stroke-opacity=".13"/><text x="24" y="32" fill="#efc467" font-size="13" letter-spacing="2">04 · META-BEWUSTZIJN</text><text x="24" y="62" fill="#fff" font-size="21">Weet je dat je dit nu ervaart?</text></g>
+  </g>
+  <text x="70" y="671" fill="#c9d8d4" font-family="Georgia, serif" font-size="23" font-style="italic">De vragen overlappen, maar een antwoord op de ene lost de andere niet automatisch op.</text>
+</svg>

@@ -22,7 +22,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Een kind is geen dossier', type: 'denkstuk', kind: 'maatschappij', category: 'Mens, maatschappij & leefwereld', date: '11/07/2025',
     summary: 'Over trauma, opvoeding en kinderen die dreigen te verdwijnen in systemen en papieren.',
-    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/verdwaalde-ziel.png'
+    url: 'denk-box02.html', tags: ['trauma', 'kinderen', 'opvoeding', 'jeugdzorg'], image: 'images/een-kind-geen-dossier-dada.png'
   },
   {
     title: 'Zaadolie: van smeermiddel tot smeersel', type: 'denkstuk', kind: 'hypothese', category: 'Gezondheid & dagelijks leven', date: '01/07/2025',
@@ -32,7 +32,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Rooftocht met Delta', type: 'ervaring', kind: 'ervaring', category: 'Mens, maatschappij & leefwereld', date: '09/07/2025',
     summary: 'Een persoonlijk verhaal over bramen, overvloed, aandacht en gemiste kansen.',
-    url: 'denk-box04.html', tags: ['natuur', 'hond', 'overvloed', 'aandacht'], image: 'images/overvloed.png'
+    url: 'denk-box04.html', tags: ['natuur', 'hond', 'overvloed', 'aandacht'], image: 'images/rooftocht-delta-botanische-droom.png'
   },
   {
     title: 'Lieve Mama', type: 'ervaring', kind: 'ervaring', category: 'Relaties & verbondenheid', date: '09/07/2025',
@@ -77,7 +77,7 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Een avond met de drie Nancy’s', type: 'ervaring', kind: 'ervaring', category: 'Groei, patronen & herstel', date: '01/09/2025',
     summary: 'Een nachtelijke rit met de kleine, de tiener en de volwassen Nancy — over afwijzingspijn, oude reflexen en terugkeren naar jezelf.',
-    url: 'denk-box14.html', tags: ['persoonlijk essay', 'innerlijk kompas', 'oude patronen', 'intuïtie', 'afwijzing'], image: 'images/drie-nancys-nachtrit.png'
+    url: 'denk-box14.html', tags: ['persoonlijk essay', 'innerlijk kompas', 'oude patronen', 'intuïtie', 'afwijzing'], image: 'images/drie-nancys-nachtrit.png?v=2'
   },
   {
     title: 'Zonder wekker', type: 'ervaring', kind: 'ervaring', category: 'Gezondheid & dagelijks leven', date: '18/08/2025',
@@ -127,8 +127,8 @@ window.ONWIJZE_CONTENT = [
   {
     title: 'Gewoontes', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
     summary: 'Waarom automatische routes ontstaan, hoe context en herhaling meespelen en waarom inzicht alleen een patroon niet altijd stopt.',
-    url: 'onderwerpen/gewoontes.html', tags: ['gewoontes', 'automatische piloot', 'patronen', 'context', 'herhaling', 'dopamine', 'basale ganglia', 'gedragsverandering', 'wilskracht'],
-    updated: '2026-07-18T19:00:00+03:00', featureImage: 'images/gewoontes-route.svg', areaIcon: '↗'
+    url: 'onderwerpen/gewoontes.html', tags: ['gewoontes', 'automatische piloot', 'patronen', 'context', 'herhaling', 'dopamine', 'actievoorspellingsfout', 'hypothese', 'basale ganglia', 'gedragsverandering', 'wilskracht'],
+    updated: '2026-07-18T20:10:00+03:00', featureImage: 'images/gewoontes-route.svg', areaIcon: '↗'
   },
   {
     title: 'Neuronen', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
@@ -164,6 +164,12 @@ window.ONWIJZE_CONTENT = [
     summary: 'Een diepgaande kaart van persoonlijkheid: aanleg en omgeving, trekken en situaties, vaardigheden, levensverhalen, verandering en de grenzen van tests.',
     url: 'onderwerpen/persoonlijkheid.html', tags: ['persoonlijkheid', 'identiteit', 'big five', 'karakter', 'zelfbeeld', 'zelfkennis', 'levensverhaal', 'trekken', 'context', 'veranderen'],
     updated: '2026-07-18T19:05:00+03:00', featureImage: 'images/persoonlijkheid-kaart.svg', areaIcon: 'fingerprint'
+  },
+  {
+    title: 'Bewustzijn', type: 'dossier', category: 'Bewustzijn & metafysica', level: 'Onderzocht',
+    summary: 'Wat bewustzijn betekent, hoe onderzoekers ervaring proberen te meten, waar grote hersentheorieën botsen en welke metafysische vragen openblijven.',
+    url: 'onderwerpen/bewustzijn.html', tags: ['bewustzijn', 'ervaring', 'aandacht', 'zelfbewustzijn', 'metacognitie', 'global workspace', 'IIT', 'qualia', 'mind body', 'metafysica', 'panpsychisme', 'idealisme', 'AI'],
+    updated: '2026-07-18T20:00:00+03:00', featureImage: 'images/bewustzijn-kaart.svg?v=2', areaIcon: '☾'
   },
   {
     title: 'Trauma', type: 'dossier', category: 'Trauma & herstel', level: 'Onderzocht',

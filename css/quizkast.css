@@ -33,3 +33,11 @@
 @media(max-width:940px){.mini-journey__step:not(:last-child)::after{width:calc((100vw - 14rem)/5)}}
 @media(max-width:600px){.mini-journey{padding:.9rem}.mini-journey__step{width:1.75rem}.mini-journey__step:not(:last-child){margin-right:calc((100% - 10.5rem)/5)}.mini-journey__step:not(:last-child)::after{width:calc((100vw - 12.5rem)/5)}.mini-question::before{font-size:3.2rem}.mini-option input:checked+label{transform:translateX(.2rem)}}
 @media(prefers-reduced-motion:reduce){.mini-journey__step,.mini-option label{transition:none}.mini-option,.mini-question--answered{animation:none;opacity:1}.quiz-card{transition:none}}
+
+/* Vierde spiegel: persoonlijkheid als wisselende hoofdrolspeler. */
+.quiz-shelf__grid{grid-template-columns:repeat(2,1fr)}.quiz-card{min-height:22rem}.quiz-card--blue{border-top-color:#52778a}
+.mini-quiz[data-quiz-theme='wie-zit-aan-het-stuur'],.mini-result[data-quiz-theme='wie-zit-aan-het-stuur']{--quiz-accent:#52778a;--quiz-accent-dark:#294f62;--quiz-glow:rgba(82,119,138,.2);--quiz-wash:#dfe9ed}
+.mini-journey__track{position:relative;display:grid;grid-template-columns:repeat(var(--step-count),1fr);align-items:center}.mini-journey__track::before{content:"";position:absolute;z-index:0;left:calc(50% / var(--step-count));right:calc(50% / var(--step-count));top:50%;height:2px;background:color-mix(in srgb,var(--quiz-accent) 24%,var(--line));transform:translateY(-50%)}.mini-journey__step{z-index:1;justify-self:center;flex:none}.mini-journey__step:not(:last-child){margin-right:0}.mini-journey__step:not(:last-child)::after{display:none}
+.quiz-card--blue::after{content:"JIJ?";right:-.5rem;bottom:-.7rem;color:rgba(82,119,138,.09);font-size:5.5rem}
+.mini-theory-link{margin:1rem 0 0;text-align:center}.mini-theory-link[hidden]{display:none}.mini-theory-link a{color:var(--quiz-accent-dark);font-weight:850;text-decoration:none}.mini-theory-link a:hover{text-decoration:underline}
+@media(max-width:800px){.quiz-card:last-child{grid-column:auto}}@media(max-width:600px){.quiz-shelf__grid{grid-template-columns:1fr}}
