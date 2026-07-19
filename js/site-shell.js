@@ -5,7 +5,6 @@ class SiteHeader extends HTMLElement {
     const links = [
       ['home', 'home.html', 'Ontdekken'],
       ['kennisbank', 'onderwerpen.html', 'Atlas'],
-      ['spoor', 'menslab.html', 'Mijn spoor'],
       ['denkstukken', 'denkstukken.html', 'Denkstukken'],
       ['wegwijzer', 'wegwijzer.html', 'Wegwijzer'],
       ['community', 'community.html', 'Community']
@@ -19,9 +18,12 @@ class SiteHeader extends HTMLElement {
             <img src="${base}images/logo-wide-ui.png" alt="" width="1000" height="333">
           </a>
           <nav class="site-nav" aria-label="Hoofdnavigatie">
-            ${links.map(([key, href, label]) => `<a class="${key === 'spoor' ? 'site-nav__personal' : ''}" href="${base}${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
+            ${links.map(([key, href, label]) => `<a href="${base}${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
           </nav>
-          <a class="header-search" href="${base}zoeken.html" aria-label="Zoeken in de bibliotheek">Zoeken</a>
+          <div class="site-header__actions">
+            <a class="header-track" href="${base}menslab.html"${active === 'spoor' ? ' aria-current="page"' : ''}>Mijn spoor</a>
+            <a class="header-search" href="${base}zoeken.html" aria-label="Zoeken in de bibliotheek">Zoeken</a>
+          </div>
         </div>
       </header>`;
   }

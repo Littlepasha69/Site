@@ -41,7 +41,7 @@
     },
     'luisteren-of-repareren': {
       symbol: '◌',
-      note: 'Tien gesprekken. Geen perfecte luisteraar, wel zichtbare keuzes.',
+      note: 'Zes gesprekken, twee beurten. Geen perfecte luisteraar, wel zichtbare wisselwerking.',
       confirmations: []
     },
     'waar-komt-je-ja-vandaan': {
@@ -67,6 +67,7 @@
   let reflection = '';
   let selectedResultId = '';
   let resultSaved = false;
+  let supportRound = 1;
   let steeringDraft = { problem:'', aim:'', song:'', labels:{}, messages:{} };
 
   const allQuizToggle = document.querySelector('[data-show-all-quizzes]');
@@ -76,12 +77,12 @@
   const allQuizCategory = document.querySelector('[data-all-quiz-category]');
 
   function allQuizItems() {
-    const quick = quizzes.map(quiz => ({
+    const quick = quizzes.filter(quiz => !quiz.archived).map(quiz => ({
       href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
       type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
       category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 7 minuten' : quiz.mode === 'support' ? 'ongeveer 8 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 7 minuten' : quiz.mode === 'support' ? 'ongeveer 12–15 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
@@ -165,6 +166,7 @@
         fit,
         reflection: reflection.slice(0, 280),
         selectedResultId,
+        supportRound: activeQuiz.mode === 'support' ? supportRound : undefined,
         steeringDraft: activeQuiz.id === 'wie-zit-aan-het-stuur' ? steeringDraft : undefined,
         savedAt: new Date().toISOString()
       }));
@@ -295,10 +297,10 @@
       emphasis.textContent = 'Kies op iedere kaart een stoel via het menu.';
       tip.replaceChildren(emphasis, document.createTextNode(' Slepen mag ook, maar hoeft niet.'));
     } else {
-      emphasis.textContent = 'Deze stap staat nog even geparkeerd.';
+      emphasis.textContent = 'Je mag hierboven al een stoel kiezen.';
       const reason = steeringDraft.problem.trim()
-        ? ` Beantwoord eerst nog ${missingMessages} van de vier vragen hierboven.`
-        : ' Vul eerst je concrete situatie en de vier vragen hierboven in.';
+        ? ` De volledige auto verschijnt zodra je de andere ${missingMessages} vraag${missingMessages === 1 ? '' : 'en'} ook hebt beantwoord.`
+        : ' De volledige auto verschijnt zodra je een concrete situatie en de vier vragen hebt ingevuld.';
       tip.replaceChildren(emphasis, document.createTextNode(reason));
     }
   }
@@ -318,7 +320,7 @@
   }
 
   function isValidResult(value, quiz = activeQuiz) {
-    if (quiz?.mode === 'support') return typeof value === 'string' && quiz.questions.some(question => question.options.some(option => option.id === value));
+    if (quiz?.mode === 'support') return false;
     return typeof value === 'string' && quiz.resultOrder.includes(value);
   }
 
@@ -332,6 +334,17 @@
         const clean = [...new Set(value.filter(item => isValidResult(item, quiz)))].slice(0, 2);
         return clean.length ? clean : null;
       });
+    }
+    if (quiz.mode === 'support') {
+      const cleanSupport = values.map((value, index) => {
+        if (value === missingAnswer) return missingAnswer;
+        const question = quiz.questions[index];
+        if (!value || typeof value !== 'object') return null;
+        const first = question.options.some(option => option.id === value.first) ? value.first : '';
+        const second = question.secondOptions.some(option => option.id === value.second) ? value.second : '';
+        return first ? { first, second } : null;
+      });
+      return cleanSupport.every(value => value === null) ? null : cleanSupport;
     }
     const clean = values.map(value => value === missingAnswer || isValidResult(value, quiz) ? value : null);
     if (quiz.mode === 'support' && clean.every(value => value === null)) return null;
@@ -349,6 +362,7 @@
 
   function isAnswered(value) {
     if (value === missingAnswer) return true;
+    if (activeQuiz.mode === 'support') return Boolean(value && typeof value === 'object' && value.first && value.second);
     if (activeQuiz.mode === 'path') return Array.isArray(value) && value.length > 0;
     return isValidResult(value);
   }
@@ -399,6 +413,7 @@
     current = canResume && Number.isInteger(stored.current) && !isCustomMode()
       ? Math.max(0, Math.min(activeQuiz.questions.length - 1, stored.current))
       : 0;
+    supportRound = activeQuiz.mode === 'support' && canResume && stored.supportRound === 2 ? 2 : 1;
     answers = canResume ? restoredAnswers : new Array(expectedAnswerCount()).fill(null);
     fit = canResume && ['raakt', 'deels', 'mist'].includes(stored.fit) ? stored.fit : '';
     reflection = canResume && typeof stored.reflection === 'string' ? stored.reflection.slice(0, 280) : '';
@@ -519,6 +534,54 @@
     });
   }
 
+  function supportChoice(question, round, id) {
+    return (round === 1 ? question.options : question.secondOptions).find(option => option.id === id);
+  }
+
+  function renderSupportExchange(question, round, choice) {
+    const panel = document.querySelector('[data-support-exchange]');
+    if (!choice) { panel.hidden = true; return; }
+    panel.hidden = false;
+    document.querySelector('[data-support-exchange-label]').textContent = round === 1 ? 'De ander reageert' : choice.recovery ? 'Herstel verandert de koers' : 'De ander reageert opnieuw';
+    document.querySelector('[data-support-partner-reply]').textContent = choice.reply;
+    document.querySelector('[data-support-effect]').textContent = choice.effect;
+    document.querySelector('[data-support-missing]').textContent = round === 1 ? choice.missing : 'Dit is één geloofwaardige reactie binnen deze simulatie. Een echte persoon kan anders reageren.';
+  }
+
+  function renderSupportOptions(question) {
+    const answer = answers[current] && answers[current] !== missingAnswer ? answers[current] : { first:'', second:'' };
+    const source = supportRound === 1 ? question.options : question.secondOptions;
+    return source.map((base, index) => {
+      const option = base.id === 'repair' ? { ...base, text:question.options.find(item => item.id === answer.first)?.repair || 'Ik wil mijn eerste reactie corrigeren en opnieuw afstemmen.' } : base;
+      const wrapper = document.createElement('div');
+      wrapper.className = 'mini-option mini-option--conversation';
+      const input = document.createElement('input');
+      input.type = 'radio';
+      input.name = `support-${current}-${supportRound}`;
+      input.id = `support-answer-${current}-${supportRound}-${index}`;
+      input.value = option.id;
+      input.checked = (supportRound === 1 ? answer.first : answer.second) === option.id;
+      const label = document.createElement('label');
+      label.htmlFor = input.id;
+      const marker = document.createElement('span');
+      marker.textContent = supportRound === 1 ? '↩' : '↪';
+      label.append(marker, document.createTextNode(option.text));
+      input.addEventListener('change', () => {
+        const nextAnswer = answers[current] && answers[current] !== missingAnswer ? { ...answers[current] } : { first:'', second:'' };
+        if (supportRound === 1) { nextAnswer.first = option.id; nextAnswer.second = ''; }
+        else nextAnswer.second = option.id;
+        answers[current] = nextAnswer;
+        missingButton.setAttribute('aria-pressed', 'false');
+        renderSupportExchange(question, supportRound, option);
+        answerHint.textContent = supportRound === 1 ? 'Lees wat deze reactie mogelijk opende of vernauwde. Daarna kun je verder afstemmen.' : 'Je tweede reactie staat. Dit gesprek mag nu verder reizen.';
+        document.querySelector('[data-mini-next]').disabled = false;
+        saveQuizProgress();
+      });
+      wrapper.append(input, label);
+      return wrapper;
+    });
+  }
+
   function syncPathOptions() {
     const selected = Array.isArray(answers[current]) ? answers[current] : [];
     document.querySelectorAll('[data-path-result]').forEach(button => {
@@ -586,26 +649,30 @@
     document.querySelector('[data-mini-count]').textContent = `${isConversation ? 'Gesprek' : 'Kruispunt'} ${current + 1} van ${activeQuiz.questions.length}`;
     document.querySelector('[data-mini-percent]').textContent = `${percent}%`;
     document.querySelector('[data-mini-progress]').style.width = `${percent}%`;
-    document.querySelector('[data-mini-question]').textContent = question.text;
+    const supportAnswer = activeQuiz.mode === 'support' && answers[current] && answers[current] !== missingAnswer ? answers[current] : null;
+    const firstChoice = supportAnswer ? question.options.find(option => option.id === supportAnswer.first) : null;
+    document.querySelector('[data-mini-question]').textContent = activeQuiz.mode === 'support' && supportRound === 2 && firstChoice ? firstChoice.reply : question.text;
     stage.style.setProperty('--question-number', `"${String(current + 1).padStart(2, '0')}"`);
     updateJourney();
     questionCard.classList.remove('mini-question--answered');
     const options = document.querySelector('[data-mini-options]');
     const legend = options.querySelector('legend');
     legend.textContent = isConversation ? 'Kies de reactie die het dichtst bij je spontane antwoord komt' : 'Kies eerst de sterkste stem en eventueel een tweede';
-    const optionNodes = isConversation ? renderConversationOptions(question, options) : renderPathOptions(question);
+    legend.textContent = activeQuiz.mode === 'support' ? (supportRound === 1 ? 'Kies je waarschijnlijke eerste reactie' : 'Kies hoe je nu verdergaat') : legend.textContent;
+    const optionNodes = activeQuiz.mode === 'support' ? renderSupportOptions(question) : isConversation ? renderConversationOptions(question, options) : renderPathOptions(question);
     options.replaceChildren(legend, ...optionNodes);
     const counterCopy = document.querySelector('.mini-question__counterchoice span');
     missingButton.textContent = isConversation ? 'Geen van deze reacties klinkt als mij' : 'Dit kruispunt mist mijn situatie';
     counterCopy.textContent = isConversation ? 'Dan telt dit gespreksmoment niet mee.' : 'Dan telt dit kruispunt niet mee.';
-    document.querySelector('[data-mini-previous]').disabled = current === 0;
+    document.querySelector('[data-mini-previous]').disabled = current === 0 && !(activeQuiz.mode === 'support' && supportRound === 2);
     const next = document.querySelector('[data-mini-next]');
-    next.textContent = current === activeQuiz.questions.length - 1 ? 'Bekijk mijn spiegel →' : isConversation ? 'Stuur en ga verder →' : 'Volgend kruispunt →';
+    next.textContent = activeQuiz.mode === 'support' && supportRound === 1 ? 'Bekijk wat dit deed →' : current === activeQuiz.questions.length - 1 ? 'Bekijk mijn terugblik →' : isConversation ? 'Naar het volgende gesprek →' : 'Volgend kruispunt →';
     if (isConversation) {
       missingButton.setAttribute('aria-pressed', String(answers[current] === missingAnswer));
-      next.disabled = !isAnswered(answers[current]);
+      next.disabled = activeQuiz.mode === 'support' ? !(supportRound === 1 ? supportAnswer?.first : supportAnswer?.second) : !isAnswered(answers[current]);
       if (answers[current] === missingAnswer) answerHint.textContent = 'Dit gespreksmoment telt niet mee in de uitslag.';
-      else answerHint.textContent = answers[current] === null ? 'Wat zou jij waarschijnlijk als eerste terugsturen?' : 'Je eerdere reactie staat nog klaar. Je mag haar veranderen.';
+      else answerHint.textContent = activeQuiz.mode === 'support' ? (supportRound === 1 ? 'Kies wat je waarschijnlijk als eerste zou zeggen.' : 'Je hebt nieuwe informatie. Blijf je op koers of stuur je bij?') : answers[current] === null ? 'Wat zou jij waarschijnlijk als eerste terugsturen?' : 'Je eerdere reactie staat nog klaar. Je mag haar veranderen.';
+      if (activeQuiz.mode === 'support') renderSupportExchange(question, supportRound === 2 && !supportAnswer?.second ? 1 : supportRound, supportRound === 1 ? firstChoice : supportAnswer?.second ? supportChoice(question, 2, supportAnswer.second) : firstChoice);
     } else syncPathOptions();
     questionCard.focus({ preventScroll: true });
     stage.scrollIntoView({ block: 'start', behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth' });
@@ -1032,12 +1099,13 @@
       unit = 'reacties';
       answers.forEach((value, questionIndex) => {
         if (value === missingAnswer) { missed += 1; return; }
-        const option = activeQuiz.questions[questionIndex]?.options.find(item => item.id === value);
-        if (!option) return;
+        const question = activeQuiz.questions[questionIndex];
+        const chosen = value && typeof value === 'object' ? [question?.options.find(item => item.id === value.first), question?.secondOptions.find(item => item.id === value.second)].filter(Boolean) : [];
+        if (chosen.length !== 2) return;
         answered += 1;
-        Object.entries(option.signals || {}).forEach(([key, amount]) => { if (key in scores) scores[key] += amount; });
+        chosen.forEach(option => Object.entries(option.signals || {}).forEach(([key, amount]) => { if (key in scores) scores[key] += amount; }));
       });
-      const maxima = Object.fromEntries(scoreKeys.map(key => [key, activeQuiz.questions.reduce((sum, question) => sum + Math.max(0, ...question.options.map(option => Number(option.signals?.[key]) || 0)), 0)]));
+      const maxima = Object.fromEntries(scoreKeys.map(key => [key, activeQuiz.questions.reduce((sum, question) => sum + Math.max(0, ...question.options.map(option => Number(option.signals?.[key]) || 0)) + Math.max(0, ...question.secondOptions.map(option => Number(option.signals?.[key]) || 0)), 0)]));
       return { scores, maxima, answered, missed, leaders:[], maxScore:Math.max(0, ...Object.values(scores)), noMatch:answered < Math.ceil(activeQuiz.questions.length * .6), unit };
     }
     if (activeQuiz.mode === 'path') {
@@ -1283,6 +1351,70 @@
     };
   }
 
+  function supportNarrative() {
+    const traces = [];
+    const counts = {};
+    answers.forEach((answer, index) => {
+      if (!answer || answer === missingAnswer) return;
+      const question = activeQuiz.questions[index];
+      const first = question.options.find(option => option.id === answer.first);
+      const second = question.secondOptions.find(option => option.id === answer.second);
+      if (!first || !second) return;
+      [...(first.movements || []), ...(second.movements || [])].forEach(id => { counts[id] = (counts[id] || 0) + 1; });
+      traces.push({ question, first, second });
+    });
+    const ordered = group => Object.entries(activeQuiz.movements).filter(([, item]) => item.group === group).map(([id, item]) => ({ id, ...item, count:counts[id] || 0 })).filter(item => item.count).sort((a, b) => b.count - a.count).slice(0, 3);
+    return { traces, helpful:ordered('helpful'), pressure:ordered('pressure') };
+  }
+
+  function movementCards(items, fallback) {
+    if (!items.length) {
+      const p = document.createElement('p'); p.textContent = fallback; return [p];
+    }
+    return items.map(item => {
+      const p = document.createElement('p');
+      const strong = document.createElement('strong'); strong.textContent = item.label;
+      p.append(strong, document.createTextNode(item.group === 'helpful' ? ' kwam in meerdere keuzes terug. De passendheid hing telkens af van wat de ander daarna liet zien.' : ' verscheen in minstens één scène. Dat is geen gebrek: dezelfde beweging kan bij urgentie of duidelijke expertise juist bruikbaar zijn.'));
+      return p;
+    });
+  }
+
+  function renderSupportNarrative(narrative) {
+    const dashboard = document.querySelector('[data-support-dashboard]');
+    dashboard.hidden = false;
+    document.querySelector('[data-support-helpful]').replaceChildren(...movementCards(narrative.helpful, 'Er sprong geen enkele vaste steunbeweging uit. Je keuzes wisselden sterk met de context.'));
+    document.querySelector('[data-support-pressure]').replaceChildren(...movementCards(narrative.pressure, 'Geen drukbeweging kwam duidelijk terug. Dat bewijst niet hoe je in een snel, persoonlijk of werkelijk onveilig gesprek zou reageren.'));
+    const limits = [
+      'Je koos na rustig lezen; een spontaan gesprek kan anders verlopen.',
+      'De gesprekspartner reageerde hier duidelijk. In het echt blijft behoefte vaak dubbelzinniger.',
+      'Zes scènes zeggen niets definitiefs over langdurige relationele patronen.',
+      'Een andere persoon kan op precies dezelfde woorden anders reageren.'
+    ];
+    document.querySelector('[data-support-limits]').replaceChildren(...limits.map(text => { const p=document.createElement('p'); p.textContent=text; return p; }));
+    const preferred = narrative.traces.filter(trace => trace.second.recovery || (trace.first.movements || []).some(id => activeQuiz.movements[id]?.group === 'pressure'));
+    const lookbacks = [...preferred, ...narrative.traces.filter(trace => !preferred.includes(trace))].slice(0, 2);
+    document.querySelector('[data-support-lookbacks]').replaceChildren(...lookbacks.map(trace => {
+      const article = document.createElement('article');
+      const span = document.createElement('span'); span.textContent = trace.question.scene;
+      const quote = document.createElement('blockquote'); quote.textContent = trace.first.text;
+      const reaction = document.createElement('p'); reaction.textContent = `De ander reageerde in deze simulatie: ${trace.first.reply}`;
+      const effect = document.createElement('p'); effect.textContent = trace.first.effect;
+      const follow = document.createElement('strong'); follow.textContent = `Daarna koos je: ${trace.second.text || trace.first.repair}`;
+      const caution = document.createElement('small'); caution.textContent = trace.first.missing;
+      article.append(span, quote, reaction, effect, follow, caution);
+      return article;
+    }));
+  }
+
+  function supportNarrativeResult() {
+    return {
+      id:'support-map', kicker:'Jouw terugblik', title:'Zes gesprekken, meerdere manieren van helpen.',
+      summary:'Je keuzes vormden geen vast luistertype. Ze lieten zien hoe erkenning, praktische hulp, verantwoordelijkheid, herstel en grenzen anders uitpakken naargelang de situatie.',
+      strength:'', friction:'', counter:'',
+      experiment:'Vraag in één veilig gesprek vóór je helpt welke vorm van steun nu past.', readHref:'', readTitle:'', readLabel:'', readReason:''
+    };
+  }
+
   function steeringResultCopy() {
     const driverId = answers[0];
     const driver = steeringLabel(driverId);
@@ -1378,13 +1510,13 @@
         saveQuizProgress('result');
         return;
       }
-      const support = supportResultCopy();
-      activeResult = support.result;
+      const support = supportNarrative();
+      activeResult = supportNarrativeResult();
       selectedResultId = activeResult.id;
       document.querySelector('[data-result-kicker]').textContent = activeResult.kicker;
       document.querySelector('[data-result-title]').textContent = activeResult.title;
       document.querySelector('[data-result-summary]').textContent = activeResult.summary;
-      document.querySelector('[data-result-basis]').textContent = `Gebaseerd op ${resultMeta.answered} van de ${activeQuiz.questions.length} gespreksmomenten. Ieder gekozen antwoord kan meer dan één signaal bevatten; de balkjes zijn geen percentages of normscore.`;
+      document.querySelector('[data-result-basis]').textContent = `Gebaseerd op ${resultMeta.answered} van de ${activeQuiz.questions.length} gesprekken, telkens met twee beurten. Dit is geen vaardigheidsscore.`;
       document.querySelector('[data-result-strength]').textContent = activeResult.strength;
       document.querySelector('[data-result-friction]').textContent = activeResult.friction;
       document.querySelector('[data-result-counter]').textContent = activeResult.counter;
@@ -1392,7 +1524,7 @@
       const gridLabels = document.querySelectorAll('.mini-result__grid article>span');
       if (gridLabels[0]) gridLabels[0].textContent = 'Wat je al inzet';
       if (gridLabels[1]) gridLabels[1].textContent = 'Wat onder druk kan schuren';
-      renderSupportDashboard(support.skills, support.reflexes);
+      renderSupportNarrative(support);
       renderReading(activeResult);
       syncReactionControls();
       saveQuizProgress('result');
@@ -1529,16 +1661,35 @@
     }
   });
   document.querySelector('[data-mini-previous]').addEventListener('click', () => {
+    if (activeQuiz.mode === 'support' && supportRound === 2) {
+      supportRound = 1;
+      saveQuizProgress();
+      renderQuestion();
+      return;
+    }
     if (current > 0) {
       current -= 1;
+      if (activeQuiz.mode === 'support') supportRound = 2;
       saveQuizProgress();
       renderQuestion();
     }
   });
   document.querySelector('[data-mini-next]').addEventListener('click', () => {
-    if (!isAnswered(answers[current])) return;
+    if (activeQuiz.mode === 'support') {
+      const answer = answers[current];
+      if (answer === missingAnswer) {
+        supportRound = 2;
+      } else if (supportRound === 1) {
+        if (!answer?.first) return;
+        supportRound = 2;
+        saveQuizProgress();
+        renderQuestion();
+        return;
+      } else if (!answer?.second) return;
+    } else if (!isAnswered(answers[current])) return;
     if (current < activeQuiz.questions.length - 1) {
       current += 1;
+      if (activeQuiz.mode === 'support') supportRound = 1;
       saveQuizProgress();
       renderQuestion();
     } else renderResult();

@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Mijn spoor brengt samen wat je leest, speelt, bewaart en nog wilt hervatten bij De Onwijze Wijsheden.">
   <title>Mijn spoor — De Onwijze Wijsheden</title>
-  <link rel="stylesheet" href="css/site-2026.css?v=27">
-  <link rel="stylesheet" href="css/mijn-spoor.css?v=7">
-  <script src="js/site-shell.js?v=20" defer></script>
+  <link rel="stylesheet" href="css/site-2026.css?v=28">
+  <link rel="stylesheet" href="css/mijn-spoor.css?v=8">
+  <script src="js/site-shell.js?v=21" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
   <script src="js/mijn-spoor.js?v=2" defer></script>
 </head>
@@ -25,7 +25,7 @@
             <a class="track-profile-link" href="#profiel">Ontdek mijn profiel →</a>
           </div>
         </div>
-        <a class="arcade-door" href="speelhal.html" aria-label="Open de verborgen Speelhal">
+        <a class="arcade-door" href="speelhal.html?entree=spoor" aria-label="Open de verborgen Speelhal">
           <span class="arcade-door__marquee" aria-hidden="true"><small>De verborgen</small><b>Speelhal</b></span>
           <span class="arcade-door__screen" aria-hidden="true"><small>1UP&nbsp;&nbsp;000000&nbsp;&nbsp;HI&nbsp;&nbsp;1986</small><b>PLAYER ONE</b><i>◆&nbsp; ✦ &nbsp;◆</i><strong>READY?</strong></span>
           <span class="arcade-door__controls" aria-hidden="true"><i><b>ENTER</b></i><em>PRESS TO PLAY</em></span>
@@ -66,7 +66,7 @@
         </article>
         <article class="track-card track-card--played">
           <span>Gespeeld</span><strong data-count-played>0</strong><h3>Spiegels en proeven</h3>
-          <ol data-list-played></ol><a href="speelhal.html">Naar de Speelhal →</a>
+          <ol data-list-played></ol><a href="speelhal.html?entree=spoor">Naar de Speelhal →</a>
         </article>
         <article class="track-card track-card--saved">
           <span>Bewaard</span><strong data-count-saved>0</strong><h3>Wat je wilde meenemen</h3>
@@ -85,11 +85,11 @@
         <p>Je hoeft niet te weten wat je zoekt. Kies alleen de wereld die vandaag iets meer trekt.</p>
       </header>
       <div class="track-worlds__grid">
-        <a href="speelhal.html?quiz=wie-zit-aan-het-stuur" class="track-world track-world--head">
+        <a href="speelhal.html?quiz=wie-zit-aan-het-stuur&amp;entree=spoor" class="track-world track-world--head">
           <img src="images/menslab/amusement-brein.jpg" alt="Een fantasierijk papieren brein vol kleine attracties." loading="lazy">
           <span><small>In mijn hoofd</small><strong>Breinpret</strong><p>Aandacht, verwachtingen, keuzes en de stemmen die soms met je autosleutels gaan lopen.</p><b>Ga naar binnen →</b></span>
         </a>
-        <a href="speelhal.html?quiz=luisteren-of-repareren" class="track-world track-world--together">
+        <a href="speelhal.html?quiz=luisteren-of-repareren&amp;entree=spoor" class="track-world track-world--together">
           <img src="images/menslab/amusement-jij-en-ik.jpg" alt="Twee figuren bedienen samen een wonderlijke gespreksmachine." loading="lazy">
           <span><small>Tussen ons</small><strong>Jij &amp; ik</strong><p>Luisteren, grenzen, aannames en wat er gebeurt wanneer twee binnenwerelden elkaar ontmoeten.</p><b>Ga samen naar binnen →</b></span>
         </a>
@@ -102,8 +102,23 @@
     </section>
 
     <section class="latest-ride" aria-labelledby="latest-ride-title">
-      <div><p class="eyebrow">Nieuw in de Speelhal</p><h2 id="latest-ride-title">Leg één emotioneel moment op de werkbank.</h2><p>De emotionele routekaart maakt situatie, lichaam, mogelijke emotie, betekenis en impuls zichtbaar — zonder te doen alsof één invulling de waarheid is.</p><a href="speelhal/oefeningen/emotionele-routekaart.html">Open de nieuwste oefenbank →</a></div>
-      <a class="latest-ride__enter" href="speelhal.html"><i aria-hidden="true">ENTER</i><span>Bekijk alle attracties</span></a>
+      <span class="latest-ride__stamp" aria-hidden="true">VERS VAN DE WERKBANK</span>
+      <div class="latest-ride__copy">
+        <p class="eyebrow"><span>Nieuw in de Speelhal</span><b aria-hidden="true">GEEN RECHTE LIJN</b></p>
+        <h2 id="latest-ride-title"><span>Leg één emotioneel moment</span><em>op de werkbank.</em></h2>
+        <p>De emotionele routekaart maakt situatie, lichaam, mogelijke emotie, betekenis en impuls zichtbaar — zonder te doen alsof één invulling de waarheid is.</p>
+        <a class="latest-ride__workbench" href="speelhal/oefeningen/emotionele-routekaart.html"><span>Open de nieuwste oefenbank</span><b aria-hidden="true">↗</b></a>
+      </div>
+      <a class="latest-ride__enter" href="speelhal.html?entree=spoor" aria-label="Stap binnen in de Speelhal en bekijk alle attracties">
+        <span>Verborgen toegang</span>
+        <strong>DE<br>SPEEL<br>HAL</strong>
+        <i aria-hidden="true">↗</i>
+        <small>Bekijk alle attracties</small>
+      </a>
+      <a class="latest-ride__ticker" href="speelhal.html?entree=spoor" aria-label="Bekijk alles in de Speelhal">
+        <span aria-hidden="true">VRAAG HET ANDERS · TREK NIETS TE SNEL RECHT · SPEEL MET JE EERSTE ANTWOORD · STAP BINNEN · </span>
+        <span aria-hidden="true">VRAAG HET ANDERS · TREK NIETS TE SNEL RECHT · SPEEL MET JE EERSTE ANTWOORD · STAP BINNEN · </span>
+      </a>
     </section>
 
     <section class="track-control" data-track-control hidden aria-labelledby="track-control-title">

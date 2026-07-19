@@ -2,6 +2,7 @@
   const o = (...pairs) => pairs.map(([text, result]) => ({ text, result }));
   const s = (id, text, feedback, signals) => ({ id, text, feedback, signals });
   window.MENSLAB_QUIZZES = [
+    window.SUPPORT_SIMULATION_V2,
     {
       id: 'beweging-vandaag',
       title: 'Wat wil je vandaag anders aanpakken?',
@@ -39,6 +40,7 @@
     },
     {
       id: 'luisteren-of-repareren',
+      archived: true,
       title: 'Luister je nog — of heb je het al opgelost?',
       eyebrow: 'Gesprekssimulatie · helpen zonder overnemen',
       mode: 'support',

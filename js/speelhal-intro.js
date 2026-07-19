@@ -243,11 +243,13 @@
 
   const url = new URL(window.location.href);
   const forced = url.searchParams.get('intro') === '1' || window.location.hash === '#vreemde-entree';
+  const enteredFromMyTrack = url.searchParams.get('entree') === 'spoor';
   const opensSpecificGame = url.searchParams.has('quiz');
-  if (forced) {
+  if (forced || enteredFromMyTrack) {
     url.searchParams.delete('intro');
+    url.searchParams.delete('entree');
     if (window.location.hash === '#vreemde-entree') url.hash = '';
     window.history.replaceState({}, '', url);
   }
-  if (forced || (!opensSpecificGame && readDay() !== localDay())) showIntro();
+  if (forced || enteredFromMyTrack || (!opensSpecificGame && readDay() !== localDay())) showIntro();
 }());
