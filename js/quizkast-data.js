@@ -162,25 +162,25 @@
     },
     {
       id: 'wie-zit-aan-het-stuur',
-      title: 'Wie zit er vandaag aan jouw stuur?',
-      eyebrow: 'Persoonlijkheid · tijdelijke hoofdrol',
+      title: 'Wie heeft vandaag de autosleutels?',
+      eyebrow: 'Psychologische afstand · tijdelijke bezetting',
       mode: 'ranking',
-      customEyebrow: 'Stuurtafel · tijdelijke bezetting',
-      customTitle: 'Zet vier stemmen op hun plek in deze rit.',
-      customIntro: 'Kies eerst wie vandaag aan het stuur zit, daarna de navigator, de achterbank en ten slotte de stem op de radio. Morgen mag de bezetting anders zijn.',
-      customMissLabel: 'Deze hele cast mist mij vandaag',
-      customMissHelp: 'Dan maken we van vier leuke titels geen identiteit.',
+      customEyebrow: 'Stuurtafel · jouw wagen voor vandaag',
+      customTitle: 'Benoem de stemmen. Sleep daarna wie waar zit.',
+      customIntro: 'Herschrijf gerust ieder naamkaartje. Sleep de stemmen naar een stoel, of gebruik de knoppen. Niemand krijgt hier een rijbewijs voor het leven.',
+      customMissLabel: 'Mijn innerlijke wagenpark heeft ander personeel',
+      customMissHelp: 'Ook geldig. Een metafoor moet jou helpen; jij hoeft niet in de metafoor te passen.',
       rankSeats: [
         { label: 'Aan het stuur', weight: 4 },
-        { label: 'Navigator', weight: 3 },
-        { label: 'Op de achterbank', weight: 2 },
-        { label: 'Stem op de radio', weight: 1 }
+        { label: 'Copiloot', weight: 3 },
+        { label: 'Achterbank · links', weight: 2 },
+        { label: 'Achterbank · rechts', weight: 1 }
       ],
       gameOptions: [
-        { result: 'motor', symbol: '⚙', label: 'De Vaste Motor', copy: 'Herhaling, voorkeur en vertrouwd ritme.' },
-        { result: 'situatielezer', symbol: '◎', label: 'De Situatielezer', copy: 'De kamer, de mensen en wat hier past.' },
-        { result: 'kompasdrager', symbol: '◇', label: 'De Kompasdrager', copy: 'Waarden, redenen en de gekozen richting.' },
-        { result: 'verhalenmaker', symbol: '✎', label: 'De Verhalenmaker', copy: 'Rollen, hoofdstukken en betekenis.' }
+        { result: 'motor', symbol: '⚙', label: 'De Gewoontemens', copy: 'Neemt de vertrouwde afslag en noemt dat efficiëntie.' },
+        { result: 'situatielezer', symbol: '◎', label: 'De Sfeerscanner', copy: 'Leest de kamer, ook wanneer de kamer niets gevraagd heeft.' },
+        { result: 'kompasdrager', symbol: '◇', label: 'De Kompasdrager', copy: 'Wil weten of deze rit wel ergens voor staat.' },
+        { result: 'verhalenmaker', symbol: '✎', label: 'De Dramaturg', copy: 'Maakt van dinsdag 10.17 uur een seizoensfinale.' }
       ],
       theoryHref: 'onderwerpen/persoonlijkheid.html',
       theoryLabel: 'Waarom je persoonlijkheid rijker is dan één type →',
