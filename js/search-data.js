@@ -1,8 +1,18 @@
 window.ONWIJZE_CONTENT = [
   {
-    title: 'De Speelhal', type: 'page', category: 'Menslab',
+    title: 'Mijn spoor', type: 'page', category: 'Jouw plek',
+    summary: 'Vind terug wat je vandaag of met een profiel blijvend las, speelde, bewaarde en nog niet afmaakte.',
+    url: 'menslab.html', tags: ['mijn spoor', 'profiel', 'voortgang', 'bewaren', 'terugkeren', 'beestenquiz']
+  },
+  {
+    title: 'De Speelhal', type: 'page', category: 'Mijn spoor',
     summary: 'Quizzen, oefenbanken, gesprekssimulaties, speelborden en keuzepaden om iets uit te proberen zonder diagnose of vast profiel.',
     url: 'speelhal.html', tags: ['speelhal', 'menslab', 'quizzen', 'oefeningen', 'gesprekssimulaties', 'keuzes', 'experimenten']
+  },
+  {
+    title: 'Een week mentale rekbaarheid', type: 'route', category: 'Speelhal',
+    summary: 'Zeven lichte haltes rond voorspellen, vertragen, anders kijken en opnieuw proberen — zonder perfecte reeks.',
+    url: 'speelhal-week.html', tags: ['week', 'mentale rekbaarheid', 'experiment', 'speelhal', 'veranderen']
   },
   {
     title: 'Nancy Onderweg', type: 'page', category: 'Over de maker',

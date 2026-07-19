@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Een weekroute met zeven kleine uitnodigingen om automatische patronen op te merken en voorzichtig iets anders te proberen.">
+  <title>Een week mentale rekbaarheid — De Speelhal</title>
+  <link rel="stylesheet" href="css/site-2026.css?v=27">
+  <link rel="stylesheet" href="css/weekroute.css?v=1">
+  <script src="js/site-shell.js?v=19" defer></script>
+  <script src="js/weekroute.js?v=1" defer></script>
+</head>
+<body class="weekroute-page">
+  <site-header active="spoor"></site-header>
+  <main id="inhoud">
+    <header class="weekroute-hero">
+      <div><nav aria-label="Kruimelpad"><a href="menslab.html">Mijn spoor</a><span>/</span><a href="speelhal.html">Speelhal</a></nav><p class="eyebrow">Langere route · zeven dagen</p><h1>Een week mentale rekbaarheid.</h1><p>Zeven lichte uitnodigingen om je automatische route even op te merken. Geen perfecte week, geen bewezen programma en geen verplichting om alle dagen af te werken.</p></div>
+      <aside><strong data-week-score>0/7</strong><span>bewegingen geprobeerd</span><div><i data-week-bar></i></div><small>Alleen op dit apparaat bewaard</small></aside>
+    </header>
+
+    <section class="weekroute" aria-labelledby="weekroute-title">
+      <div class="weekroute__intro"><p class="eyebrow">Eén beweging per dag</p><h2 id="weekroute-title">Klein genoeg om werkelijk te proberen.</h2><p>Vink alleen aan wat je echt hebt uitgevoerd. Een lege dag is informatie, geen mislukking.</p></div>
+      <div class="weekroute__days" data-week-days>
+        <label><input type="checkbox"><span><b>Dag 1 · Merk op</b>Noteer één moment waarop je automatisch reageerde.</span></label>
+        <label><input type="checkbox"><span><b>Dag 2 · Vertraag</b>Wacht tien seconden voordat je op iets niet-dringends antwoordt.</span></label>
+        <label><input type="checkbox"><span><b>Dag 3 · Draai om</b>Bedenk de sterkste reden waarom de andere persoon gelijk kán hebben.</span></label>
+        <label><input type="checkbox"><span><b>Dag 4 · Verander</b>Doe een gewone handeling bewust op een andere manier.</span></label>
+        <label><input type="checkbox"><span><b>Dag 5 · Benoem</b>Geef een gevoel een preciezere naam dan “goed” of “slecht”.</span></label>
+        <label><input type="checkbox"><span><b>Dag 6 · Vraag</b>Vraag iemand die je vertrouwt wat jij soms niet bij jezelf ziet.</span></label>
+        <label><input type="checkbox"><span><b>Dag 7 · Kies</b>Kies één kleine reactie die je volgende week anders wilt proberen.</span></label>
+      </div>
+
+      <div class="weekroute__note">
+        <label for="week-note"><span>Wat wil je van deze week onthouden?</span><textarea id="week-note" data-week-note maxlength="280" rows="3" placeholder="Eén concrete zin is genoeg."></textarea></label>
+        <label for="week-next"><span>Wat wil je meenemen?</span><input id="week-next" data-week-next maxlength="160" placeholder="Een vraag, inzicht of kleine bedoeling"></label>
+        <div><button type="button" data-save-week>Bewaar deze stand</button><button type="button" data-archive-week>Rond deze week af</button><span data-week-status aria-live="polite"></span></div>
+      </div>
+      <div class="weekroute__actions"><a href="output/pdf/een-week-mentale-rekbaarheid.pdf" download>Download het invulbare werkboek →</a><button type="button" data-reset-week>Wis alleen deze actieve week</button></div>
+    </section>
+
+    <aside class="weekroute-boundary"><strong>Zeven dagen zijn een vorm, geen veranderbelofte.</strong><p>Deze route is zelfonderzoek en geen behandeling. Een kleine oefening heft geen uitputting, onveiligheid of structurele druk op. Stop wanneer een uitnodiging niet licht of veilig voelt.</p></aside>
+  </main>
+  <site-footer></site-footer>
+</body>
+</html>

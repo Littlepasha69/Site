@@ -5,7 +5,7 @@ class SiteHeader extends HTMLElement {
     const links = [
       ['home', 'home.html', 'Ontdekken'],
       ['kennisbank', 'onderwerpen.html', 'Atlas'],
-      ['menslab', 'menslab.html', 'Menslab'],
+      ['spoor', 'menslab.html', 'Mijn spoor'],
       ['denkstukken', 'denkstukken.html', 'Denkstukken'],
       ['wegwijzer', 'wegwijzer.html', 'Wegwijzer'],
       ['community', 'community.html', 'Community']
@@ -19,7 +19,7 @@ class SiteHeader extends HTMLElement {
             <img src="${base}images/logo-wide-ui.png" alt="" width="1000" height="333">
           </a>
           <nav class="site-nav" aria-label="Hoofdnavigatie">
-            ${links.map(([key, href, label]) => `<a href="${base}${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
+            ${links.map(([key, href, label]) => `<a class="${key === 'spoor' ? 'site-nav__personal' : ''}" href="${base}${href}"${active === key ? ' aria-current="page"' : ''}>${label}</a>`).join('')}
           </nav>
           <a class="header-search" href="${base}zoeken.html" aria-label="Zoeken in de bibliotheek">Zoeken</a>
         </div>
@@ -40,7 +40,7 @@ class SiteFooter extends HTMLElement {
           <a href="${base}manifest.html">Onze werkwijze</a>
           <a href="${base}onderwerpen.html">De Menselijke Atlas</a>
           <a href="${base}atlas-kompas.html">Het Atlas-kompas</a>
-          <a href="${base}menslab.html">Menslab</a>
+          <a href="${base}menslab.html">Mijn spoor</a>
           <a href="${base}speelhal.html">De Speelhal</a>
           <a href="${base}denkstukken.html">Denkstukken</a>
           <a href="${base}wegwijzer.html">De Wegwijzer</a>
@@ -62,6 +62,51 @@ class SiteFooter extends HTMLElement {
 
 customElements.define('site-header', SiteHeader);
 customElements.define('site-footer', SiteFooter);
+
+(function enforceLocalRetention() {
+  const profileKey = 'onwijze-profile-v1';
+  const guestDayKey = 'onwijze-guest-day-v1';
+  const now = new Date();
+  const today = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  const exactProgressKeys = new Set([
+    'menslab-progress-v3', 'menslab-progress-v2', 'menslab-week-progress-v1',
+    'menslab-exercise-drafts-v1', 'beestenquiz-progress-v2', 'quizkast-progress-v1',
+    'dieptequiz-ja-progress-v1', 'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1',
+    'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1', 'onwijze-laatste-spoor',
+    'onwijze-next-door-v1'
+  ]);
+  const personalPrefixes = ['onwijze-atlas-werkplaats-'];
+
+  function hasProfile() {
+    try {
+      const profile = JSON.parse(localStorage.getItem(profileKey) || 'null');
+      return Boolean(profile && profile.version === 1 && profile.beastId);
+    } catch (_) { return false; }
+  }
+
+  function clearGuestProgress() {
+    try {
+      const keys = [];
+      for (let index = 0; index < localStorage.length; index += 1) keys.push(localStorage.key(index));
+      keys.filter(Boolean).forEach(key => {
+        if (exactProgressKeys.has(key) || personalPrefixes.some(prefix => key.startsWith(prefix))) localStorage.removeItem(key);
+      });
+    } catch (_) {}
+  }
+
+  const profiled = hasProfile();
+  try {
+    if (profiled) {
+      localStorage.removeItem(guestDayKey);
+    } else {
+      const savedDay = localStorage.getItem(guestDayKey);
+      if (savedDay !== today) clearGuestProgress();
+      localStorage.setItem(guestDayKey, today);
+    }
+  } catch (_) {}
+
+  window.ONWIJZE_RETENTION = { hasProfile:profiled, day:today, clearGuestProgress };
+}());
 
 (function rememberCurrentTrail() {
   const page = location.pathname.split('/').pop() || '';
