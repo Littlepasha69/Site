@@ -126,9 +126,9 @@ window.ONWIJZE_CONTENT = [
   },
   {
     title: 'Keuze onder druk', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
-    summary: 'Hoe slaaptekort, pijn, craving, tijdsdruk, schaarste en ontwerp de keuzehorizon kunnen vernauwen — zonder wilskrachtmythe of schuld.',
+    summary: 'Hoe slaaptekort, pijn, craving, tijdsdruk, schaarste en ontwerp de keuzehorizon vernauwen — met een interactief mini-lab om het meteen te leren zien.',
     url: 'onderwerpen/keuze-onder-druk.html', tags: ['keuze', 'beslissen', 'keuzestress', 'tijdsdruk', 'slaaptekort', 'pijn', 'craving', 'schaarste', 'armoede', 'agency', 'handelingsruimte', 'wilskracht', 'ego depletion', 'decision fatigue', 'uitstelkeuze', 'delay discounting', 'risico', 'keuzearchitectuur', 'default', 'frictie', 'herbert simon', 'kahneman', 'tversky', 'mullainathan', 'shafir', 'hanna pickard', 'lee hogarth'],
-    areaIcon: '↗', updated: '2026-07-19T13:20:00+03:00', featureImage: 'images/keuze-onder-druk-horizon.svg'
+    areaIcon: '↗', updated: '2026-07-19T14:40:00+03:00', featureImage: 'images/keuze-onder-druk-horizon.svg'
   },
   {
     title: 'Verslaving & craving', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',

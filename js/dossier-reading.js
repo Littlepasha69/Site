@@ -246,6 +246,33 @@
     link.style.setProperty('--route-index', `'0${index + 1}'`);
   });
 
+  const legacyContribution = content.querySelector('.legacy-dossier-contribution');
+  legacyContribution?.remove();
+
+  if (!page.querySelector('.atlas-edit-banner')) {
+    const filename = location.pathname.split('/').pop() || '';
+    const subject = filename.replace(/\.html$/i, '');
+    const editUrl = `../jouw-bijdrage.html?type=correctie&onderwerp=${encodeURIComponent(subject)}`;
+    const editBanner = document.createElement('section');
+    editBanner.className = 'atlas-edit-banner';
+    editBanner.setAttribute('aria-labelledby', 'atlas-edit-banner-title');
+    editBanner.innerHTML = `
+      <div class="atlas-edit-banner__inner">
+        <span class="atlas-edit-banner__shell" aria-hidden="true"></span>
+        <div class="atlas-edit-banner__copy">
+          <span>Deze site blijft open</span>
+          <h2 id="atlas-edit-banner-title">Iedere pagina mag beter worden.</h2>
+          <p>Zie je een fout, ontbrekende bron of belangrijke nuance? Iedereen mag aanvullen, tegenspreken en verbeteren.</p>
+        </div>
+        <a class="atlas-edit-banner__button" href="${editUrl}">
+          <span><small>Deze pagina</small><strong>Bewerk deze pagina hier</strong></span>
+          <b aria-hidden="true">→</b>
+        </a>
+      </div>
+    `;
+    page.append(editBanner);
+  }
+
   let ticking = false;
   let activeIndex = 0;
 

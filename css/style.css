@@ -1995,6 +1995,163 @@ footer {
   color: #1f5454;
 }
 
+/* Sitebrede uitnodiging om pagina's mee te verbeteren. */
+.site-edit-banner {
+  position: relative;
+  margin-top: clamp(2.5rem, 7vw, 5rem);
+  padding: clamp(1.5rem, 4vw, 2.5rem) 1rem;
+  overflow: hidden;
+  border-top: 1px solid rgba(240, 198, 107, 0.28);
+  border-bottom: 1px solid rgba(240, 198, 107, 0.28);
+  background: radial-gradient(circle at 10% 20%, rgba(240, 198, 107, 0.16), transparent 18rem), radial-gradient(circle at 92% 80%, rgba(168, 91, 83, 0.24), transparent 22rem), linear-gradient(125deg, #092a29, #153f3e 55%, #4a2948);
+  color: #fff;
+  box-shadow: 0 -18px 50px rgba(9, 42, 41, 0.08);
+}
+
+.site-edit-banner::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(120deg, transparent 0 52px, rgba(255, 255, 255, 0.025) 53px 54px);
+}
+
+.site-edit-banner__inner {
+  position: relative;
+  width: min(1180px, 100%);
+  margin: auto;
+  display: grid;
+  grid-template-columns: clamp(5.5rem, 9vw, 7.4rem) minmax(0, 1fr) minmax(250px, 0.34fr);
+  gap: clamp(1.1rem, 3vw, 2.5rem);
+  align-items: center;
+}
+
+.site-edit-banner__shell {
+  width: clamp(5.5rem, 9vw, 7.4rem);
+  aspect-ratio: 1;
+  display: block;
+  border: 1px solid rgba(240, 198, 107, 0.4);
+  border-radius: 50%;
+  background-color: #f6e9c4;
+  background-image: url('../images/bewerkme.png');
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 250% auto;
+  box-shadow: 0 14px 35px rgba(0, 0, 0, 0.25), inset 0 0 0 5px rgba(255, 255, 255, 0.26);
+  transform: rotate(-5deg);
+}
+
+.site-edit-banner__copy > span,
+.site-edit-banner__button small {
+  color: #f0c66b;
+  font-size: 0.67rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.site-edit-banner__copy h2 {
+  max-width: 640px;
+  margin: 0.4rem 0 0.6rem;
+  color: #fff9ea;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1.7rem, 3.2vw, 2.55rem);
+  line-height: 1.04;
+  letter-spacing: -0.03em;
+}
+
+.site-edit-banner__copy p {
+  max-width: 650px;
+  margin: 0;
+  color: rgba(255, 255, 255, 0.7);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.site-edit-banner__button {
+  min-width: 0;
+  padding: 0.9rem 1rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 0.9rem;
+  align-items: center;
+  border: 1px solid rgba(255, 249, 234, 0.48);
+  border-radius: 1rem;
+  background: #f0c66b;
+  color: #092a29;
+  text-decoration: none;
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease, background 0.2s ease, box-shadow 0.2s ease;
+}
+
+.site-edit-banner__button:hover {
+  background: #fff0b2;
+  box-shadow: 0 17px 38px rgba(0, 0, 0, 0.28);
+  transform: translateY(-3px);
+}
+
+.site-edit-banner__button:focus-visible {
+  outline: 3px solid rgba(255, 249, 234, 0.7);
+  outline-offset: 4px;
+}
+
+.site-edit-banner__button > span {
+  min-width: 0;
+  display: grid;
+  gap: 0.2rem;
+}
+
+.site-edit-banner__button small {
+  color: #7b5525;
+  font-size: 0.59rem;
+  letter-spacing: 0.08em;
+}
+
+.site-edit-banner__button strong {
+  color: #092a29;
+  font-family: 'Fraunces', Georgia, serif;
+  font-size: clamp(1rem, 1.8vw, 1.2rem);
+  line-height: 1.12;
+}
+
+.site-edit-banner__button b {
+  font-size: 1.35rem;
+  transition: transform 0.2s ease;
+}
+
+.site-edit-banner__button:hover b {
+  transform: translateX(0.2rem);
+}
+
+@media (max-width: 820px) {
+  .site-edit-banner__inner {
+    grid-template-columns: 5.5rem minmax(0, 1fr);
+  }
+
+  .site-edit-banner__shell {
+    width: 5.5rem;
+  }
+
+  .site-edit-banner__button {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (max-width: 560px) {
+  .site-edit-banner__inner {
+    grid-template-columns: 4.7rem minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .site-edit-banner__shell {
+    width: 4.7rem;
+  }
+
+  .site-edit-banner__copy h2 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+  }
+}
+
 @media (max-width: 900px) {
   .content-container {
     grid-template-columns: 1fr;

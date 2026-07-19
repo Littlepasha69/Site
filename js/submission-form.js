@@ -15,6 +15,25 @@
     summaryCount.textContent = `${summary.value.length}/300`;
     bodyCount.textContent = `${words(body.value)} woorden`;
   }
+
+  const launchParams = new URLSearchParams(location.search);
+  const requestedSubject = launchParams.get('onderwerp');
+  const requestedType = launchParams.get('type');
+  if (requestedType && [...form.elements.type.options].some(option => option.value === requestedType)) {
+    form.elements.type.value = requestedType;
+  }
+  if (requestedSubject) {
+    const readableSubject = requestedSubject
+      .replace(/[-_]+/g, ' ')
+      .replace(/^./, character => character.toLocaleUpperCase('nl'));
+    if (!form.elements.title.value) form.elements.title.value = `Aanvulling bij dossier: ${readableSubject}`;
+    const context = document.createElement('div');
+    context.className = 'submission-edit-context';
+    context.innerHTML = '<span aria-hidden="true">◉</span><div><strong></strong><p>Je wijzigt de publicatie niet rechtstreeks. Maak hier een correctie, bron of nuance klaar voor redactionele beoordeling.</p></div>';
+    context.querySelector('strong').textContent = `Je werkt aan: ${readableSubject}`;
+    form.prepend(context);
+  }
+
   summary.addEventListener('input', updateCounters);
   body.addEventListener('input', updateCounters);
   updateCounters();

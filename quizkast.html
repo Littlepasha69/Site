@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek snelle, speelse reflectiequizzen over luisteren, kiezen, grenzen en mentale beweeglijkheid in de Quizkast van het Menslab.">
   <title>De Quizkast — Menslab</title>
   <link rel="stylesheet" href="css/site-2026.css?v=19">
-  <link rel="stylesheet" href="css/quizkast.css?v=10">
+  <link rel="stylesheet" href="css/quizkast.css?v=12">
   <script src="js/site-shell.js?v=17" defer></script>
-  <script src="js/quizkast-data.js?v=5" defer></script>
-  <script src="js/quizkast.js?v=9" defer></script>
+  <script src="js/quizkast-data.js?v=6" defer></script>
+  <script src="js/quizkast.js?v=10" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -30,13 +30,13 @@
       <div class="quiz-shelf__head"><div><p class="eyebrow">Vier snelle spiegels</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Een vraag mag jou missen — en jij hebt het laatste woord over de uitslag.</p></div>
       <div class="quiz-shelf__grid">
         <article class="quiz-card quiz-card--gold"><div class="quiz-preview quiz-preview--sparks" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><span>Vonkjes verdelen · ± 2 minuten</span><h3>Wat wil je vandaag anders aanpakken?</h3><p>Verdeel vijf vonkjes: wil je vooral je tempo vertragen, iets benoemen, een grens zetten, contact zoeken of een keuze maken?</p><button type="button" data-start-mini-quiz="beweging-vandaag">Kies waar ik iets mee wil doen →</button></article>
-        <article class="quiz-card quiz-card--green"><div class="quiz-preview quiz-preview--chat" aria-hidden="true"><i>“Vandaag was alles te veel.”</i><i>“Ik ben hier.”</i><b></b></div><span>Gesprekssimulatie · ± 3 minuten</span><h3>Luister jij — of begin je te repareren?</h3><p>Stap in zes kleine gesprekken en kies wat jij waarschijnlijk als eerste terugstuurt.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Open het gesprek →</button></article>
+        <article class="quiz-card quiz-card--green"><div class="quiz-preview quiz-preview--chat" aria-hidden="true"><i>“Vandaag was alles te veel.”</i><i>“Ik heb al drie oplossingen.”</i><b></b></div><span>Gesprekssimulatie · ± 5 minuten</span><h3>Luister je nog — of heb je het al opgelost?</h3><p>Zes gesprekken over helpen, pleasen, grenzen en het stuur bij de ander laten.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Start de helpmachine →</button></article>
         <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--path" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i>?</i></div><span>Keuzepad · ± 3 minuten</span><h3>Waar komt jouw ja vandaan?</h3><p>Kies op zes kruispunten welke stem het sterkst trekt — en welke eventueel meereist.</p><button type="button" data-start-mini-quiz="waar-komt-je-ja-vandaan">Loop mijn ja-route →</button></article>
         <article class="quiz-card quiz-card--blue"><div class="quiz-preview quiz-preview--wheel" aria-hidden="true"><i>JIJ?</i><b>⚙</b><b>◎</b><b>◇</b><b>✎</b></div><span>Stuurtafel · ± 2 minuten</span><h3>Wie zit er vandaag aan jouw stuur?</h3><p>Zet vier tijdelijke stemmen aan het stuur, bij de navigator, op de achterbank en op de radio.</p><button type="button" data-start-mini-quiz="wie-zit-aan-het-stuur">Maak de bezetting →</button></article>
       </div>
       <a class="depth-route" href="dieptequiz-ja.html"><span>Nieuw · ongeveer 8–10 minuten</span><strong>Waar komt jouw ja vandaan?</strong><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><small>Open de eerste dieptequiz →</small></a>
       <a class="beast-route" href="dierenquiz.html"><span>Meer tijd?</span><strong>Doe de Grote Beestenquiz</strong><small>35 vragen · 10–12 minuten →</small></a>
-      <button class="all-quiz-toggle" type="button" data-show-all-quizzes aria-expanded="false" aria-controls="alle-quizzen">Bekijk alle quizzen en filter →</button>
+      <button class="all-quiz-toggle" type="button" data-show-all-quizzes aria-expanded="false" aria-controls="alle-quizzen"><span>Arcade select</span><strong data-all-quiz-toggle-label>Alle quizzen &amp; filters</strong><i aria-hidden="true">START</i></button>
       <section class="all-quiz-library" id="alle-quizzen" data-all-quiz-library hidden aria-labelledby="all-quiz-title">
         <div class="all-quiz-library__head"><div><p class="eyebrow">De volledige Quizkast</p><h2 id="all-quiz-title">Vind de quiz die nu past.</h2></div><strong data-all-quiz-count></strong></div>
         <div class="all-quiz-library__tools">
@@ -50,6 +50,10 @@
 
     <section class="mini-quiz" data-mini-quiz hidden tabindex="-1" aria-labelledby="mini-question-title">
       <div class="mini-quiz__top"><button type="button" data-back-to-shelf>← Terug naar de Quizkast</button><span data-mini-quiz-name></span></div>
+      <section class="support-intro" data-support-intro hidden aria-labelledby="support-intro-title">
+        <figure><img src="images/menslab/helpmachine-gesprekssimulatie.png" alt="Twee mensen zitten aan weerszijden van een wonderlijke papieren helpmachine met luisterhoorns, knoppen en een verleidelijk stuur."></figure>
+        <div><p class="eyebrow">Gesprekssimulatie · ongeveer 5 minuten</p><h1 id="support-intro-title" data-support-intro-title></h1><p data-support-intro-copy></p><ul><li>Kies je waarschijnlijke eerste reactie.</li><li>Ook zwijgen of niet antwoorden kan een keuze zijn.</li><li>Bij acuut gevaar gelden andere grenzen dan in een gewoon gesprek.</li></ul><button type="button" data-start-support-simulation>Start de gesprekssimulatie →</button><small>Geen persoonlijkheidstest. Wel een spiegel van je keuzes in zes situaties.</small></div>
+      </section>
       <div data-standard-game>
         <div class="mini-journey" aria-label="Jouw route door deze spiegel">
           <div class="mini-journey__track" data-mini-journey></div>
@@ -77,6 +81,7 @@
         <h1 id="mini-result-title" data-result-title></h1>
         <p class="mini-result__summary" data-result-summary></p>
         <p class="mini-result__basis" data-result-basis></p>
+        <section class="support-dashboard" data-support-dashboard hidden aria-labelledby="support-dashboard-title"><div class="support-dashboard__intro"><span>Jouw keuzes op het paneel</span><h2 id="support-dashboard-title">Wat je inzet — en wat onder druk overneemt</h2><p>Balkjes tonen alleen hoe vaak een beweging in deze zes situaties voorkwam. Ze meten geen persoonlijkheid en vergelijken je niet met anderen.</p></div><div class="support-dashboard__groups"><section><h3>Steunvaardigheden</h3><div data-support-skills></div></section><section><h3>Reflexen onder druk</h3><div data-support-reflexes></div></section></div><section class="support-atlas"><div><span>Verder in de Atlas</span><h3>Onderzoek je opvallendste lijnen</h3></div><div data-support-atlas-links></div></section></section>
         <div class="mini-result__grid"><article><span>Wat hier helpend aan kan zijn</span><p data-result-strength></p></article><article><span>Waar het kan schuren</span><p data-result-friction></p></article></div>
         <blockquote><span>Een vraag die mag tegenspreken</span><strong data-result-counter></strong></blockquote>
         <section class="mini-response" aria-labelledby="mini-response-title"><p class="eyebrow">Jij hebt het laatste woord</p><h2 id="mini-response-title">Hoe goed past deze spiegel?</h2><div class="mini-response__options" role="group" aria-label="Hoe goed past deze spiegel?"><button type="button" data-mini-fit="raakt" aria-pressed="false">Dit raakt iets</button><button type="button" data-mini-fit="deels" aria-pressed="false">Dit klopt gedeeltelijk</button><button type="button" data-mini-fit="mist" aria-pressed="false">Dit mist iets belangrijks</button></div><label for="mini-reflection">Waar klopt dit juist níét — of welke context ontbreekt? <small>optioneel · maximaal 280 tekens</small><textarea id="mini-reflection" data-mini-reflection maxlength="280" rows="3" placeholder="Bijvoorbeeld: thuis herken ik dit, maar op het werk doe ik net het tegenovergestelde."></textarea></label><p data-mini-reaction-status aria-live="polite">Kies eerst hoe goed de spiegel past. Je eigen aanvulling mag leeg blijven.</p></section>

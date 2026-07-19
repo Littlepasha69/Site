@@ -1,5 +1,6 @@
 (function () {
   const o = (...pairs) => pairs.map(([text, result]) => ({ text, result }));
+  const s = (id, text, feedback, signals) => ({ id, text, feedback, signals });
   window.MENSLAB_QUIZZES = [
     {
       id: 'beweging-vandaag',
@@ -38,24 +39,72 @@
     },
     {
       id: 'luisteren-of-repareren',
-      title: 'Luister jij — of begin je te repareren?',
-      eyebrow: 'Gesprekken · nabijheid',
-      mode: 'conversation',
-      resultOrder: ['ruimte', 'verhelderen', 'meedragen', 'oplossen'],
+      title: 'Luister je nog — of heb je het al opgelost?',
+      eyebrow: 'Gesprekssimulatie · helpen zonder overnemen',
+      mode: 'support',
+      introTitle: 'Zes gesprekken. Wat doe jij als eerste?',
+      introCopy: 'Je reageert op een vriend, partner, collega of familielid. Kies niet het mooiste antwoord, maar wat jij waarschijnlijk als eerste doet. Soms helpt luisteren, soms praktisch ingrijpen en soms is niet antwoorden óók een reactie.',
+      resultOrder: [],
+      dimensions: {
+        luisteren: { group:'skill', label:'Actief luisteren', short:'Je vertraagt, erkent en controleert of je goed begrepen hebt.', atlasHref:'onderwerpen/ervaring.html', atlasTitle:'Ervaring', atlasCopy:'Waarom jouw interpretatie en de beleving van de ander nooit volledig samenvallen.' },
+        afstemmen: { group:'skill', label:'Afstemmen', short:'Je onderzoekt welke vorm van steun nu werkelijk gewenst is.', atlasHref:'onderwerpen/hechting.html', atlasTitle:'Hechting & responsiviteit', atlasCopy:'Over begrip, validatie, zorg en verschil tussen relaties.' },
+        eigenaarschap: { group:'skill', label:'Eigenaarschap laten', short:'Je helpt zonder de keuze of het probleem van de ander af te pakken.', atlasHref:'onderwerpen/de-ander-verandert-je.html', atlasTitle:'De ander verandert je', atlasCopy:'Over steun, autonomie, invloed en zelfverlies.' },
+        grenzen: { group:'skill', label:'Grenzen tonen', short:'Je blijft betrokken en maakt tegelijk je eigen draagkracht zichtbaar.', atlasHref:'onderwerpen/boosheid.html', atlasTitle:'Boosheid & grenzen', atlasCopy:'Over grenssignalen, verantwoordelijkheid en handelingsruimte.' },
+        fixen: { group:'reflex', label:'Snel fixen', short:'Je brengt een oplossing voordat duidelijk is wat de ander nodig heeft.', atlasHref:'onderwerpen/de-ander-verandert-je.html', atlasTitle:'Steunen zonder sturen', atlasCopy:'Wanneer hulp verruimt en wanneer ze de richting van de ander kleiner maakt.' },
+        overnemen: { group:'reflex', label:'Overnemen', short:'Je neemt een taak, keuze of verantwoordelijkheid uit handen.', atlasHref:'onderwerpen/de-ander-verandert-je.html', atlasTitle:'Autonomie in relaties', atlasCopy:'Nabijheid zonder dat iemand ophoudt medeauteur te zijn.' },
+        pleasen: { group:'reflex', label:'Pleasen', short:'Je maakt jezelf snel beschikbaar om spanning of teleurstelling te voorkomen.', atlasHref:'onderwerpen/schaamte.html', atlasTitle:'Schaamte', atlasCopy:'Over pleasen, verbergen en de bescherming onder sociaal gedrag.' },
+        terugtrekken: { group:'reflex', label:'Uit contact gaan', short:'Je zwijgt, verkleint of verplaatst het gesprek wanneer het ongemakkelijk wordt.', atlasHref:'onderwerpen/hechting.html', atlasTitle:'Nabijheid en afstand', atlasCopy:'Over zoeken, afsluiten, bevriezen en relatiespecifieke veiligheid.' }
+      },
       questions: [
-        { scene: 'Een vriend stuurt om 22.14 uur', text: '“Vandaag ging werkelijk alles mis. Ik weet zelfs niet waar ik moet beginnen.”', options: o(['“Begin maar waar je wilt. Ik ben hier.”', 'ruimte'], ['“Wat drukte vandaag het zwaarst?”', 'verhelderen'], ['“Dat klinkt alsof je helemaal op bent.”', 'meedragen'], ['“Zullen we eerst kijken wat morgen echt moet?”', 'oplossen']) },
-        { scene: 'De ander blijft lang vertellen', text: '“En toen zei zij dat weer, en daarna gebeurde hetzelfde met mijn baas…”', options: o(['Ik laat de stilte en het tempo bij de ander.', 'ruimte'], ['“Als ik je goed begrijp, raken die twee dingen elkaar?”', 'verhelderen'], ['“Ik hoor hoeveel dit zich heeft opgestapeld.”', 'meedragen'], ['“Welke van die twee situaties wil je eerst aanpakken?”', 'oplossen']) },
-        { scene: 'Een zin blijft in de lucht hangen', text: '“Misschien stel ik me gewoon aan.”', options: o(['Ik wacht even; misschien komt er nog iets.', 'ruimte'], ['“Wat maakt dat je dat over jezelf zegt?”', 'verhelderen'], ['“Voor mij klinkt dit niet als aanstellen.”', 'meedragen'], ['“Wat zou je nu concreet wat lucht geven?”', 'oplossen']) },
-        { scene: 'Je voelt je eigen onrust stijgen', text: '“Ik blijf maar rondjes draaien. Niets helpt.”', options: o(['Ik adem uit en blijf nog even aanwezig.', 'ruimte'], ['“Wat heb je al geprobeerd — en wat gebeurde er toen?”', 'verhelderen'], ['“Het lijkt me vermoeiend om zo vast te zitten.”', 'meedragen'], ['“Mag ik één mogelijkheid met je delen?”', 'oplossen']) },
-        { scene: 'De ander kijkt je verwachtingsvol aan', text: '“Wat denk jij dat ik moet doen?”', options: o(['“Wil je eerst nog iets kwijt voor ik antwoord?”', 'ruimte'], ['“Waar twijfel je zelf precies tussen?”', 'verhelderen'], ['“Ik wil eerst goed begrijpen wat dit voor jou betekent.”', 'meedragen'], ['“Ik denk graag mee. Zullen we de opties naast elkaar zetten?”', 'oplossen']) },
-        { scene: 'Het gesprek loopt naar zijn einde', text: '“Dank je. Ik weet nog niet wat ik ga doen, maar het voelt anders.”', options: o(['“We hoeven het nu niet verder dicht te maken.”', 'ruimte'], ['“Wat is er voor jou helderder geworden?”', 'verhelderen'], ['“Ik ben blij dat je dit niet alleen hoefde te dragen.”', 'meedragen'], ['“Wil je later samen naar een volgende stap kijken?”', 'oplossen']) }
-      ],
-      results: {
-        ruimte: { kicker: 'Wat in je antwoorden opvalt', title: 'Ruimte laten', summary: 'Je neigt naar aanwezigheid zonder onmiddellijk richting te geven. Dat kan een ander helpen het eigen verhaal te horen.', strength: 'Stilte en onverdeelde aandacht kunnen een gesprek minder gehaast maken.', friction: 'Alleen ruimte laten kan afstandelijk voelen wanneer iemand om duidelijke betrokkenheid of hulp vraagt.', counter: 'Wanneer wacht je zo lang dat je eigen stem uit het gesprek verdwijnt?', experiment: 'Laat in één gesprek na een antwoord bewust drie seconden stilte vallen.', readHref: 'onderwerpen/de-ander-verandert-je.html', readTitle: 'De ander verandert je', readLabel: 'Lees het dossier De ander verandert je →', readReason: 'Deze tekst onderzoekt responsiviteit én de grens tussen ruimte geven, jezelf aanpassen en verdwijnen uit het contact.' },
-        verhelderen: { kicker: 'Wat in je antwoorden opvalt', title: 'Verhelderen', summary: 'Je probeert te begrijpen door precies te vragen en verbanden zichtbaar te maken. Je luistert actief met je nieuwsgierigheid.', strength: 'Een goede vraag kan aannames verminderen en een vaag probleem scherper maken.', friction: 'Veel vragen kunnen als een interview voelen wanneer iemand vooral erkenning nodig heeft.', counter: 'Wanneer heeft de ander geen extra vraag maar gewoon gezelschap nodig?', experiment: 'Stel één open vraag en vat daarna samen wat je hoorde, zonder een tweede vraag.', readHref: 'onderwerpen/ervaring.html', readTitle: 'Ervaring', readLabel: 'Lees het dossier Ervaring →', readReason: 'Deze tekst laat zien waarom jouw interpretatie en de beleving van de ander nooit volledig samenvallen.' },
-        meedragen: { kicker: 'Wat in je antwoorden opvalt', title: 'Meevoelen', summary: 'Je aandacht gaat snel naar de emotionele laag en het gevoel van de ander. Je probeert nabijheid te maken.', strength: 'Erkenning kan iemand helpen zich gezien en minder alleen te voelen.', friction: 'Meevoelen kan overgaan in overnemen, invullen of jezelf te lang verantwoordelijk voelen.', counter: 'Welke gevoelens zijn van de ander en hoeven niet door jou te worden opgelost?', experiment: 'Benoem één keer wat je denkt te horen en voeg toe: “Klopt dat voor jou?”', readHref: 'onderwerpen/hechting.html', readTitle: 'Hechting', readLabel: 'Lees het dossier Hechting →', readReason: 'Deze tekst verdiept hoe nabijheid en co-regulatie kunnen helpen, maar ook relatiespecifiek en begrensd blijven.' },
-        oplossen: { kicker: 'Wat in je antwoorden opvalt', title: 'Samen oplossen', summary: 'Je luistert met een oog voor mogelijkheden en beweging. Je wilt dat het gesprek ergens toe leidt.', strength: 'Praktisch denken is waardevol wanneer iemand vastzit en werkelijk om hulp vraagt.', friction: 'Een goede oplossing kan te vroeg komen en daardoor de ervaring van de ander overslaan.', counter: 'Kan het soms gebeuren dat snel oplossen óók jouw ongemak met machteloosheid vermindert?', experiment: 'Vraag vóór je advies geeft: “Wil je dat ik luister, vragen stel of meedenk?”', readHref: 'onderwerpen/de-ander-verandert-je.html', readTitle: 'De ander verandert je', readLabel: 'Lees het dossier De ander verandert je →', readReason: 'Deze tekst onderzoekt wanneer steun werkelijk responsief is en wanneer helpen de autonomie van de ander kleiner kan maken.' }
-      }
+        { scene:'Een vriend stuurt om 22.14 uur', text:'“Vandaag ging werkelijk alles mis. Ik weet zelfs niet waar ik moet beginnen.”', options:[
+          s('q1-erken','“Dat klinkt alsof je helemaal op bent. Begin maar waar jij wilt.”','Je erkent eerst en laat het tempo bij de ander.',{luisteren:2,eigenaarschap:1}),
+          s('q1-vraag','“Wat drukte vandaag het zwaarst?”','Je opent één duidelijke deur zonder al een richting te kiezen.',{luisteren:1,afstemmen:1}),
+          s('q1-afstem','“Wil je vooral vertellen, samen ordenen of iets praktisch bekijken?”','Je vraagt welke vorm van steun gewenst is.',{afstemmen:2,eigenaarschap:1}),
+          s('q1-fix','“Maak eerst een lijst van wat morgen echt moet; dan wordt het overzichtelijk.”','Je brengt structuur, maar nog vóór je weet of advies gewenst is.',{fixen:2}),
+          s('q1-please','“Bel me maar. Ik blijf wakker zolang jij me nodig hebt.”','Je biedt veel beschikbaarheid; je eigen grens blijft buiten beeld.',{pleasen:2,overnemen:1}),
+          s('q1-stil','Ik lees het bericht, maar antwoord voorlopig niets.','Ook stilte is gedrag; de ander weet nog niet wat ze betekent.',{terugtrekken:2})
+        ]},
+        { scene:'Je partner vertelt voor de derde keer over hetzelfde werkconflict', text:'“Mijn baas deed het wéér. Ik blijf hier volledig in vastzitten.”', options:[
+          s('q2-samenvat','“Je lijkt tegelijk kwaad én bang voor wat er gebeurt als je reageert. Klopt dat?”','Je vat samen en laat ruimte om je lezing te corrigeren.',{luisteren:2,afstemmen:1}),
+          s('q2-eigen','“Welke opties zie je zelf, ook de opties die je nog niet durft?”','Je ondersteunt het eigen denken zonder de uitkomst te bepalen.',{eigenaarschap:2,luisteren:1}),
+          s('q2-mail','“Stuur mij je mail. Ik herschrijf hem wel en dan is het opgelost.”','Je neemt een concrete taak én een deel van de positie van de ander over.',{overnemen:2,fixen:1}),
+          s('q2-advies','“Je moet nu echt naar HR stappen. Dit duurt al veel te lang.”','Je advies is helder, maar de keuze ligt al bijna vast.',{fixen:2,overnemen:1}),
+          s('q2-grens','“Ik wil hier morgen twintig minuten rustig bij zijn; vanavond kan ik niet meer goed luisteren.”','Je blijft betrokken en maakt je draagkracht concreet.',{grenzen:2,afstemmen:1}),
+          s('q2-meegaan','“Je hebt volledig gelijk. Je baas is gewoon verschrikkelijk.”','Instemmen kan nabij voelen, maar onderzoekt niet wat werkelijk helpt.',{pleasen:1,terugtrekken:1})
+        ]},
+        { scene:'Je zus vraagt rechtstreeks advies', text:'“Wat denk jij dat ik moet doen met mijn relatie?”', options:[
+          s('q3-beslis','“Eerlijk? Ik vind dat je ermee moet stoppen.”','Je geeft een duidelijk oordeel over een keuze die grote gevolgen heeft.',{fixen:2,overnemen:1}),
+          s('q3-twijfel','“Waar twijfel je zelf precies tussen?”','Je maakt haar eigen afweging het beginpunt.',{luisteren:1,eigenaarschap:2}),
+          s('q3-toestemming','“Ik heb gedachten, maar wil je eerst dat ik luister of echt mijn mening geef?”','Je vraagt toestemming voor je van luisteraar naar adviseur wisselt.',{afstemmen:2,grenzen:1}),
+          s('q3-opties','“Zullen we jouw opties en hun mogelijke gevolgen naast elkaar leggen?”','Je helpt structureren zonder één uitkomst voor te schrijven.',{eigenaarschap:2,afstemmen:1}),
+          s('q3-gerust','“Wat je ook kiest, ik sta altijd achter je.”','De warmte is echt; mogelijke zorgen of grenzen blijven onbesproken.',{pleasen:2}),
+          s('q3-weg','“Ik wil me daar liever niet mee bemoeien.” Daarna verander ik van onderwerp.','Je voorkomt overnemen, maar sluit ook het contact snel af.',{terugtrekken:2,grenzen:1})
+        ]},
+        { scene:'Een collega vraagt vlak voor het einde van je werkdag', text:'“Kun jij mijn presentatie voor morgenochtend nog afwerken? Ik trek het echt niet.”', options:[
+          s('q4-ja','“Natuurlijk.” Ik schrap mijn eigen avond en neem het werk over.','Je ontlast de ander onmiddellijk; de kost voor jou blijft onuitgesproken.',{pleasen:2,overnemen:2}),
+          s('q4-nee','“Nee, dat lukt me niet.”','Je grens is duidelijk, maar je onderzoekt niet wat er verder nodig of mogelijk is.',{grenzen:2}),
+          s('q4-samen','“Ik kan twintig minuten helpen kiezen wat echt af moet; daarna ga ik naar huis.”','Je biedt begrensde samenwerking en laat de taak bij de eigenaar.',{grenzen:2,eigenaarschap:2,afstemmen:1}),
+          s('q4-doen','“Stuur maar door. Ik maak het sneller zelf.”','Efficiëntie wint; verantwoordelijkheid en leerproces verschuiven naar jou.',{overnemen:2,fixen:1}),
+          s('q4-vragen','“Wat is al klaar en welk onderdeel blokkeert je precies?”','Je zoekt eerst waar gerichte steun verschil kan maken.',{luisteren:1,afstemmen:2,eigenaarschap:1}),
+          s('q4-negeren','Ik zie het bericht en besluit pas morgen te antwoorden.','Je beschermt je avond zonder je grens of beschikbaarheid mee te delen.',{terugtrekken:2})
+        ]},
+        { scene:'Een vriend zegt tijdens een gesprek', text:'“Misschien stel ik me gewoon aan.”', options:[
+          s('q5-check','“Ik hoor dat je aan jezelf twijfelt. Wat maakt dat je het aanstellen noemt?”','Je erkent de twijfel en onderzoekt haar betekenis.',{luisteren:2,eigenaarschap:1}),
+          s('q5-nee','“Nee joh, natuurlijk stel je je niet aan.”','Je wilt geruststellen, maar vult snel in wat de ervaring betekent.',{fixen:1,pleasen:1}),
+          s('q5-klopt','“Misschien maak je het inderdaad wat groter dan het is.”','Je verkleint de ervaring voordat je haar hebt onderzocht.',{terugtrekken:2}),
+          s('q5-mij','“Dat heb ik ook gehad. Bij mij was het zelfs nog erger…”','Je zoekt herkenning, maar verplaatst het middelpunt van het gesprek.',{terugtrekken:1}),
+          s('q5-nodig','“Wat zou nu het meest helpen: erkenning, een eerlijke tegenstem of samen uitzoeken?”','Je maakt verschillende vormen van steun bespreekbaar.',{afstemmen:2,luisteren:1}),
+          s('q5-dragen','“Laat mij dit maar voor je oplossen; jij hebt genoeg gehad.”','Je zorg is tastbaar, maar het probleem en de regie verhuizen naar jou.',{overnemen:2,pleasen:1})
+        ]},
+        { scene:'Veiligheid verandert de situatie', text:'Een vriend heeft gedronken en zegt: “Ik rijd zelf wel naar huis. Bemoei je er niet mee.”', options:[
+          s('q6-meerijden','“Ik laat je niet rijden. Ik regel een taxi of breng je thuis; jij kiest welke van de twee.”','Bij acuut risico mag steun directer zijn; je laat nog keuze binnen veilige opties.',{afstemmen:1,eigenaarschap:1,grenzen:2}),
+          s('q6-sleutels','Ik pak zonder iets te zeggen de autosleutels af en beslis wat er gebeurt.','Je grijpt in voor veiligheid, maar zonder uitleg of resterende keuze.',{overnemen:1,grenzen:1}),
+          s('q6-advies','“Dat lijkt me geen goed idee, maar je moet het zelf weten.”','Je benoemt het risico maar laat de onveilige handeling ongemoeid.',{terugtrekken:2}),
+          s('q6-rustig','“Waarom wil je per se zelf rijden? Vertel eerst eens wat er speelt.”','Luisteren kan informatie geven, maar het onmiddellijke risico vraagt óók begrenzing.',{luisteren:1,terugtrekken:1}),
+          s('q6-pleasen','“Oké, als jij echt denkt dat het kan.”','Harmonie bewaren krijgt voorrang op een concreet veiligheidsrisico.',{pleasen:2,terugtrekken:1}),
+          s('q6-hulp','Ik schakel er iemand bij in en blijf tot er veilig vervoer is.','Je deelt de verantwoordelijkheid en blijft bij een concreet veiligheidsdoel.',{grenzen:2,afstemmen:1})
+        ]}
+      ]
     },
     {
       id: 'waar-komt-je-ja-vandaan',

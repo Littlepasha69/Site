@@ -7,6 +7,7 @@
   const stage = document.querySelector('[data-mini-quiz]');
   const standardGame = document.querySelector('[data-standard-game]');
   const customGame = document.querySelector('[data-custom-game]');
+  const supportIntro = document.querySelector('[data-support-intro]');
   const customBoard = document.querySelector('[data-custom-board]');
   const customMissButton = document.querySelector('[data-custom-misses]');
   const customFinishButton = document.querySelector('[data-finish-custom]');
@@ -35,8 +36,8 @@
     },
     'luisteren-of-repareren': {
       symbol: '◌',
-      note: 'Zes kleine gesprekken. Kies niet het perfecte antwoord, maar je spontane reactie.',
-      confirmations: ['Je antwoord is verstuurd.', 'De gereedschapskist blijft nog heel even dicht.', 'Deze reactie krijgt een stoel in het gesprek.']
+      note: 'Zes gesprekken. Geen perfecte luisteraar, wel zichtbare keuzes.',
+      confirmations: []
     },
     'waar-komt-je-ja-vandaan': {
       symbol: 'JA?',
@@ -118,7 +119,9 @@
     const willOpen = allQuizLibrary.hidden;
     allQuizLibrary.hidden = !willOpen;
     allQuizToggle.setAttribute('aria-expanded', String(willOpen));
-    allQuizToggle.textContent = willOpen ? 'Verberg alle quizzen ↑' : 'Bekijk alle quizzen en filter →';
+    allQuizToggle.querySelector('span').textContent = willOpen ? 'Selectiescherm open' : 'Arcade select';
+    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg alle quizzen' : 'Alle quizzen & filters';
+    allQuizToggle.querySelector('i').textContent = willOpen ? 'CLOSE' : 'START';
     if (willOpen) {
       renderAllQuizzes();
       allQuizSearch.focus();
@@ -156,6 +159,10 @@
     return quiz?.mode === 'allocation' || quiz?.mode === 'ranking';
   }
 
+  function isConversationMode(quiz = activeQuiz) {
+    return quiz?.mode === 'conversation' || quiz?.mode === 'support';
+  }
+
   function expectedAnswerCount(quiz = activeQuiz) {
     if (quiz?.mode === 'allocation') return quiz.tokenBudget;
     if (quiz?.mode === 'ranking') return quiz.gameOptions.length;
@@ -163,6 +170,7 @@
   }
 
   function isValidResult(value, quiz = activeQuiz) {
+    if (quiz?.mode === 'support') return typeof value === 'string' && quiz.questions.some(question => question.options.some(option => option.id === value));
     return typeof value === 'string' && quiz.resultOrder.includes(value);
   }
 
@@ -178,6 +186,7 @@
       });
     }
     const clean = values.map(value => value === missingAnswer || isValidResult(value, quiz) ? value : null);
+    if (quiz.mode === 'support' && clean.every(value => value === null)) return null;
     if (quiz.mode === 'ranking') {
       const used = new Set();
       return clean.map(value => {
@@ -228,7 +237,7 @@
       const step = document.createElement('span');
       step.className = 'mini-journey__step';
       step.textContent = index + 1;
-      step.setAttribute('aria-label', `${activeQuiz.mode === 'conversation' ? 'Gesprek' : 'Kruispunt'} ${index + 1}`);
+      step.setAttribute('aria-label', `${isConversationMode() ? 'Gesprek' : 'Kruispunt'} ${index + 1}`);
       return step;
     }));
   }
@@ -248,6 +257,7 @@
     selectedResultId = canResume && typeof stored.selectedResultId === 'string' ? stored.selectedResultId : '';
     resultSaved = false;
     const visual = visualThemes[activeQuiz.id];
+    const showSupportIntro = activeQuiz.mode === 'support' && !canResume;
     stage.dataset.quizTheme = activeQuiz.id;
     stage.dataset.gameMode = activeQuiz.mode;
     resultSection.dataset.quizTheme = activeQuiz.id;
@@ -255,16 +265,22 @@
     stage.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
     resultSection.style.setProperty('--quiz-symbol', `"${visual.symbol}"`);
     document.querySelector('[data-mini-quiz-name]').textContent = activeQuiz.title;
-    standardGame.hidden = isCustomMode();
+    standardGame.hidden = isCustomMode() || showSupportIntro;
     customGame.hidden = !isCustomMode();
-    stage.setAttribute('aria-labelledby', isCustomMode() ? 'mini-custom-title' : 'mini-question-title');
-    if (!isCustomMode()) prepareJourney();
+    supportIntro.hidden = !showSupportIntro;
+    stage.setAttribute('aria-labelledby', isCustomMode() ? 'mini-custom-title' : showSupportIntro ? 'support-intro-title' : 'mini-question-title');
+    if (!isCustomMode() && !showSupportIntro) prepareJourney();
     saveButton.disabled = true;
     saveButton.textContent = 'Reageer eerst op de spiegel';
     document.querySelector('[data-save-mini-status]').textContent = '';
     fitButtons.forEach(button => { button.disabled = false; });
     reflectionField.disabled = false;
     if (canResume && stored.screen === 'result' && playIsComplete()) renderResult(selectedResultId);
+    else if (showSupportIntro) {
+      document.querySelector('[data-support-intro-title]').textContent = activeQuiz.introTitle;
+      document.querySelector('[data-support-intro-copy]').textContent = activeQuiz.introCopy;
+      showOnly(stage);
+    }
     else {
       showOnly(stage);
       if (isCustomMode()) renderCustomGame();
@@ -318,28 +334,29 @@
 
   function renderConversationOptions(question, options) {
     return question.options.map((option, index) => {
+      const optionValue = activeQuiz.mode === 'support' ? option.id : option.result;
       const wrapper = document.createElement('div');
       wrapper.className = 'mini-option mini-option--conversation';
       const input = document.createElement('input');
       input.type = 'radio';
       input.name = `mini-question-${current}`;
       input.id = `mini-answer-${current}-${index}`;
-      input.value = option.result;
-      input.checked = answers[current] === option.result;
+      input.value = optionValue;
+      input.checked = answers[current] === optionValue;
       const label = document.createElement('label');
       label.htmlFor = input.id;
       const marker = document.createElement('span');
       marker.textContent = '↩';
       label.append(marker, document.createTextNode(option.text));
       input.addEventListener('change', () => {
-        answers[current] = option.result;
+        answers[current] = optionValue;
         missingButton.setAttribute('aria-pressed', 'false');
         burstFromElement(label, '◌', 5);
         saveQuizProgress();
         document.querySelector('[data-mini-next]').disabled = false;
         animateQuestion();
         const messages = visualThemes[activeQuiz.id].confirmations;
-        answerHint.textContent = messages[(current + index) % messages.length];
+        answerHint.textContent = option.feedback || messages[(current + index) % messages.length];
       });
       wrapper.append(input, label);
       return wrapper;
@@ -395,7 +412,7 @@
 
   function renderQuestion() {
     const question = activeQuiz.questions[current];
-    const isConversation = activeQuiz.mode === 'conversation';
+    const isConversation = isConversationMode();
     const percent = Math.round((current + 1) / activeQuiz.questions.length * 100);
     document.querySelector('[data-mini-eyebrow]').textContent = question.scene || activeQuiz.eyebrow;
     document.querySelector('[data-mini-count]').textContent = `${isConversation ? 'Gesprek' : 'Kruispunt'} ${current + 1} van ${activeQuiz.questions.length}`;
@@ -564,10 +581,23 @@
   }
 
   function calculateResult() {
-    const scores = Object.fromEntries(activeQuiz.resultOrder.map(key => [key, 0]));
+    const scoreKeys = activeQuiz.mode === 'support' ? Object.keys(activeQuiz.dimensions) : activeQuiz.resultOrder;
+    const scores = Object.fromEntries(scoreKeys.map(key => [key, 0]));
     let answered = 0;
     let missed = 0;
     let unit = 'antwoorden';
+    if (activeQuiz.mode === 'support') {
+      unit = 'reacties';
+      answers.forEach((value, questionIndex) => {
+        if (value === missingAnswer) { missed += 1; return; }
+        const option = activeQuiz.questions[questionIndex]?.options.find(item => item.id === value);
+        if (!option) return;
+        answered += 1;
+        Object.entries(option.signals || {}).forEach(([key, amount]) => { if (key in scores) scores[key] += amount; });
+      });
+      const maxima = Object.fromEntries(scoreKeys.map(key => [key, activeQuiz.questions.reduce((sum, question) => sum + Math.max(0, ...question.options.map(option => Number(option.signals?.[key]) || 0)), 0)]));
+      return { scores, maxima, answered, missed, leaders:[], maxScore:Math.max(0, ...Object.values(scores)), noMatch:answered < 2, unit };
+    }
     if (activeQuiz.mode === 'path') {
       unit = 'routepunten';
       answers.forEach(value => {
@@ -665,6 +695,7 @@
 
   function describeBasis(meta, result) {
     if (meta.noMatch) return `Er waren slechts ${meta.answered} tellende keuzes. Daarom maken we geen profiel op zo weinig grond.`;
+    if (activeQuiz.mode === 'support') return `Gebaseerd op ${meta.answered} van de ${activeQuiz.questions.length} gespreksmomenten. De balkjes beschrijven alleen je keuzes in deze simulatie.`;
     if (activeQuiz.mode === 'allocation') {
       const spread = activeQuiz.resultOrder.filter(id => id !== result.id && meta.scores[id] > 0).length;
       return `${scoreCopy(meta.maxScore, meta.unit)} ging${meta.maxScore === 1 ? '' : 'en'} naar ${result.title}. ${spread ? `Je verdeelde ook over ${spread} andere beweging${spread === 1 ? '' : 'en'}.` : 'Je legde alle nadruk op één beweging.'}`;
@@ -718,12 +749,129 @@
     saveButton.textContent = resultSaved ? 'Bewaard in Mijn spoor' : fit ? 'Bewaar mijn uitslag én antwoord' : 'Reageer eerst op de spiegel';
   }
 
+  function supportDimensionOrder(group) {
+    return Object.entries(activeQuiz.dimensions).filter(([, item]) => item.group === group).map(([id, item]) => ({
+      id,
+      ...item,
+      score:resultMeta.scores[id] || 0,
+      maximum:resultMeta.maxima[id] || 1,
+      ratio:(resultMeta.scores[id] || 0) / (resultMeta.maxima[id] || 1)
+    })).sort((a, b) => b.ratio - a.ratio || b.score - a.score);
+  }
+
+  function makeSupportMeter(item) {
+    const row = document.createElement('article');
+    const head = document.createElement('div');
+    const label = document.createElement('strong');
+    label.textContent = item.label;
+    const count = document.createElement('span');
+    count.textContent = `${item.score} signaal${item.score === 1 ? '' : 'punten'}`;
+    head.append(label, count);
+    const track = document.createElement('div');
+    track.className = 'support-meter';
+    const fill = document.createElement('i');
+    fill.style.width = `${Math.round(item.ratio * 100)}%`;
+    track.append(fill);
+    const copy = document.createElement('p');
+    copy.textContent = item.short;
+    row.append(head, track, copy);
+    return row;
+  }
+
+  function renderSupportDashboard(skills, reflexes) {
+    const dashboard = document.querySelector('[data-support-dashboard]');
+    dashboard.hidden = false;
+    document.querySelector('[data-support-skills]').replaceChildren(...skills.map(makeSupportMeter));
+    document.querySelector('[data-support-reflexes]').replaceChildren(...reflexes.map(makeSupportMeter));
+    const atlasItems = [];
+    [skills[0], reflexes[0], skills[1]].forEach(item => {
+      if (!item?.atlasHref || atlasItems.some(existing => existing.atlasHref === item.atlasHref)) return;
+      atlasItems.push(item);
+    });
+    document.querySelector('[data-support-atlas-links]').replaceChildren(...atlasItems.map(item => {
+      const link = document.createElement('a');
+      link.href = item.atlasHref;
+      const label = document.createElement('span');
+      label.textContent = item.group === 'skill' ? `Bij ${item.label}` : `Onderzoek ${item.label}`;
+      const title = document.createElement('strong');
+      title.textContent = item.atlasTitle;
+      const copy = document.createElement('p');
+      copy.textContent = item.atlasCopy;
+      const arrow = document.createElement('small');
+      arrow.textContent = 'Open het Atlasdossier →';
+      link.append(label, title, copy, arrow);
+      return link;
+    }));
+  }
+
+  function supportResultCopy() {
+    const skills = supportDimensionOrder('skill');
+    const reflexes = supportDimensionOrder('reflex');
+    const leadSkill = skills[0];
+    const leadReflex = reflexes[0];
+    const reflexAppeared = leadReflex.score > 0;
+    const reflexExperiments = {
+      fixen:'Vraag vóór je advies: “Wil je dat ik luister, vragen stel of echt meedenk?”',
+      overnemen:'Vraag bij één hulpimpuls: “Wat wil je zelf blijven doen, en waar wil je steun bij?”',
+      pleasen:'Noem vóór je hulp aanbiedt één eerlijke grens in tijd, energie of verantwoordelijkheid.',
+      terugtrekken:'Vervang één stille verdwijning door: “Ik wil reageren, maar heb even tijd nodig. Ik kom erop terug.”'
+    };
+    return {
+      skills,
+      reflexes,
+      result:{
+        id:'support-map',
+        kicker:'Jouw gesprekspaneel',
+        title:`Je steunde vooral via ${leadSkill.label.toLowerCase()}.`,
+        summary:reflexAppeared
+          ? `In deze gesprekken was ${leadSkill.label.toLowerCase()} je duidelijkste steunvaardigheid. Wanneer de spanning opliep, verscheen ook ${leadReflex.label.toLowerCase()}. Dat is geen type, maar een combinatie van keuzes die je verder kunt onderzoeken.`
+          : `In deze gesprekken was ${leadSkill.label.toLowerCase()} je duidelijkste steunvaardigheid. Geen drukreflex sprong sterk naar voren; andere situaties kunnen uiteraard iets anders oproepen.`,
+        strength:`Je sterkste lijn was ${leadSkill.label.toLowerCase()}: ${leadSkill.short}`,
+        friction:reflexAppeared ? `${leadReflex.label} kreeg de meeste punten bij je drukreflexen. ${leadReflex.short}` : 'Een lage reflexscore bewijst niet dat je nooit overneemt, pleast, fixt of uit contact gaat.',
+        counter:reflexAppeared ? `Wanneer helpt ${leadReflex.label.toLowerCase()} werkelijk — en wanneer maakt die reactie jou of de ander kleiner?` : 'In welke relatie zou dezelfde situatie waarschijnlijk een andere reactie bij je oproepen?',
+        experiment:reflexAppeared ? reflexExperiments[leadReflex.id] : 'Vraag in één veilig gesprek expliciet welke vorm van steun nu gewenst is.',
+        readHref:'',
+        readTitle:'',
+        readLabel:'',
+        readReason:''
+      }
+    };
+  }
+
   function renderResult(requestedId = '') {
     resultMeta = calculateResult();
     showOnly(resultSection);
     resultSection.classList.remove('is-revealed');
     void resultSection.offsetWidth;
     resultSection.classList.add('is-revealed');
+    if (activeQuiz.mode === 'support') {
+      tieSection.hidden = true;
+      resultContent.hidden = false;
+      resultSection.setAttribute('aria-labelledby', 'mini-result-title');
+      const support = supportResultCopy();
+      activeResult = support.result;
+      selectedResultId = activeResult.id;
+      document.querySelector('[data-result-kicker]').textContent = activeResult.kicker;
+      document.querySelector('[data-result-title]').textContent = activeResult.title;
+      document.querySelector('[data-result-summary]').textContent = activeResult.summary;
+      document.querySelector('[data-result-basis]').textContent = `Gebaseerd op ${resultMeta.answered} van de ${activeQuiz.questions.length} gespreksmomenten. Ieder gekozen antwoord kan meer dan één signaal bevatten; de balkjes zijn geen percentages of normscore.`;
+      document.querySelector('[data-result-strength]').textContent = activeResult.strength;
+      document.querySelector('[data-result-friction]').textContent = activeResult.friction;
+      document.querySelector('[data-result-counter]').textContent = activeResult.counter;
+      document.querySelector('[data-result-experiment]').textContent = activeResult.experiment;
+      const gridLabels = document.querySelectorAll('.mini-result__grid article>span');
+      if (gridLabels[0]) gridLabels[0].textContent = 'Wat je al inzet';
+      if (gridLabels[1]) gridLabels[1].textContent = 'Wat onder druk kan schuren';
+      renderSupportDashboard(support.skills, support.reflexes);
+      renderReading(activeResult);
+      syncReactionControls();
+      saveQuizProgress('result');
+      return;
+    }
+    document.querySelector('[data-support-dashboard]').hidden = true;
+    const gridLabels = document.querySelectorAll('.mini-result__grid article>span');
+    if (gridLabels[0]) gridLabels[0].textContent = 'Wat hier helpend aan kan zijn';
+    if (gridLabels[1]) gridLabels[1].textContent = 'Waar het kan schuren';
     if (resultMeta.leaders.length > 1 && !resultMeta.leaders.includes(requestedId)) {
       activeResult = null;
       selectedResultId = '';
@@ -800,11 +948,19 @@
   }
 
   document.querySelectorAll('[data-start-mini-quiz]').forEach(button => button.addEventListener('click', () => startQuiz(button.dataset.startMiniQuiz)));
+  document.querySelector('[data-start-support-simulation]')?.addEventListener('click', () => {
+    supportIntro.hidden = true;
+    standardGame.hidden = false;
+    stage.setAttribute('aria-labelledby', 'mini-question-title');
+    prepareJourney();
+    renderQuestion();
+    saveQuizProgress();
+  });
   document.querySelector('[data-back-to-shelf]').addEventListener('click', showShelf);
   missingButton.addEventListener('click', () => {
     const wasMissing = answers[current] === missingAnswer;
     answers[current] = wasMissing ? null : missingAnswer;
-    if (activeQuiz.mode === 'conversation') document.querySelectorAll('[data-mini-options] input').forEach(input => { input.checked = false; });
+    if (isConversationMode()) document.querySelectorAll('[data-mini-options] input').forEach(input => { input.checked = false; });
     missingButton.setAttribute('aria-pressed', String(!wasMissing));
     saveQuizProgress();
     if (activeQuiz.mode === 'path') syncPathOptions();
