@@ -343,7 +343,7 @@ button, input { font: inherit; }
 .dossier-loop-panel__intro .eyebrow { color:var(--copper); }
 .dossier-loop-panel__intro h3 { margin:.35rem 0 .65rem;font:700 clamp(2rem,4vw,3.2rem)/1.03 var(--serif);letter-spacing:-.035em; }
 .dossier-loop-panel__intro>p:last-child { margin:0;color:var(--muted);line-height:1.6; }
-.dossier-loops { margin-top:1.8rem;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:.7rem; }
+.dossier-loops { margin-top:1.8rem;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:.7rem; }
 .dossier-loop { min-height:17rem;padding:1.15rem;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1rem;background:white; }
 .dossier-loop>span { color:var(--copper);font-size:.65rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase; }
 .dossier-loop h4 { margin:.75rem 0 1.25rem;font:650 1.25rem/1.12 var(--serif); }

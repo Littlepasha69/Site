@@ -125,6 +125,12 @@ window.ONWIJZE_CONTENT = [
     url: 'denk-box11.html', tags: ['tijd', 'stress', 'vrijheid', 'persoonlijk'], image: 'images/wekker.png'
   },
   {
+    title: 'Verslaving & craving', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
+    summary: 'Waarom verlangen kan blijven roepen: cue-leren, lichamelijke afhankelijkheid, stress, omgeving, behandeling en nieuw onderzoek zonder dopaminehype of schuld.',
+    url: 'onderwerpen/verslaving-craving.html', tags: ['verslaving', 'craving', 'verlangen', 'middelengebruik', 'alcohol', 'nicotine', 'opioiden', 'gokken', 'gamen', 'dopamine', 'wanting', 'liking', 'tolerantie', 'ontwenning', 'afhankelijkheid', 'gewoonte', 'stress', 'schadebeperking', 'naloxon', 'methadon', 'buprenorfine', 'semaglutide', 'herstel'],
+    areaIcon: '↗', updated: '2026-07-19T12:00:00+03:00', featureImage: 'images/verslaving-craving-lus.svg'
+  },
+  {
     title: 'Basale ganglia', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',
     summary: 'Hoe striatum, pallidum, subthalamische kern en substantia nigra acties helpen selecteren, leren en bijsturen.',
     url: 'onderwerpen/basale-ganglia.html', tags: ['hersenen', 'beweging', 'motivatie', 'gewoonte', 'striatum', 'putamen', 'caudatus', 'dopamine', 'parkinson', 'huntington', 'dystonie', 'dbs', 'subthalamische kern', 'directe route', 'indirecte route', 'hyperdirecte route'], areaIcon: 'brain', updated: '2026-07-18T21:15:00+03:00', featureImage: 'images/basale-ganglia-routes.svg'

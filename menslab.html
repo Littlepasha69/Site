@@ -6,10 +6,10 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=22">
+  <link rel="stylesheet" href="css/menslab.css?v=23">
   <script src="js/site-shell.js?v=17" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
-  <script src="js/menslab.js?v=19" defer></script>
+  <script src="js/menslab.js?v=20" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -71,7 +71,8 @@
         </div>
         <div class="daily-lab__fields">
           <label for="daily-expectation"><span data-daily-expectation-question>Wat verwacht je dat er zal gebeuren?</span><textarea id="daily-expectation" data-daily-expectation maxlength="280" rows="3" placeholder="Eén voorlopige verwachting is genoeg."></textarea></label>
-          <button type="button" data-daily-tried>Ik heb het geprobeerd</button>
+          <button type="button" data-daily-plan>Bewaar mijn verwachting →</button>
+          <div class="daily-lab__pause" data-daily-pause hidden><strong>Eerst proberen, dan terugkijken.</strong><p>Voer de kleine proef uit in een echt en veilig moment. Je verwachting blijft lokaal bewaard; kom daarna hier terug.</p><button type="button" data-daily-tried>Ik heb het echt geprobeerd — toon de terugblik</button></div>
           <div class="daily-lab__after" data-daily-after hidden>
             <label for="daily-observation"><span data-daily-observation-question>Wat merkte je werkelijk?</span><textarea id="daily-observation" data-daily-observation maxlength="280" rows="3" placeholder="Wat verraste, schuurde of bleef precies hetzelfde?"></textarea></label>
             <div><button type="button" data-save-daily>Bewaar in Mijn spoor</button><span data-daily-status aria-live="polite"></span></div>

@@ -38,7 +38,7 @@
     { title:'Tien seconden ruimte', prompt:'Wacht bij één niet-dringend bericht tien seconden voordat je antwoordt. Merk op wat je in die korte ruimte allemaal al wilde doen.', expectationQuestion:'Wat denk je dat die tien seconden in jou zullen oproepen?', expectationPlaceholder:'Verwacht je onrust, opluchting, schuldgevoel, haast of iets anders?', observationQuestion:'Wat gebeurde er werkelijk in de ruimte vóór je antwoord?', observationPlaceholder:'Welke impuls kwam eerst, wat veranderde en wat bleef even sterk?' },
     { title:'Kijken zonder functie', prompt:'Kies een alledaags voorwerp en beschrijf het één minuut zonder te zeggen waarvoor het dient. Wat wordt zichtbaar wanneer nut even niet meedoet?', expectationQuestion:'Wat verwacht je moeilijk te vinden wanneer je even niet over nut mag spreken?', expectationPlaceholder:'Waar denk je dat je aandacht automatisch naartoe zal gaan?', observationQuestion:'Wat werd zichtbaar toen het voorwerp even niets hoefde te betekenen?', observationPlaceholder:'Noem een detail, associatie of ongemak dat je vooraf niet verwachtte.' },
     { title:'De voorspelde gedachte', prompt:'Voorspel welke gedachte over vijf seconden zal opkomen. Wacht en vergelijk. Je voorspelling hoeft nergens goed in te zijn.', expectationQuestion:'Hoe voorspelbaar denk je dat je volgende gedachte werkelijk is?', expectationPlaceholder:'Wat verwacht je dat opkomt — en waarom juist dat?', observationQuestion:'Wat zegt het verschil tussen je voorspelling en je gedachte?', observationPlaceholder:'Was de gedachte verwacht, verwant, verrassend of moeilijk vast te pakken?' },
-    { title:'Eerst de vraag', prompt:'Vraag in één veilig gesprek of de ander wil dat je luistert, vragen stelt of meedenkt. Merk op wat die afstemming verandert.', expectationQuestion:'Wat hoop of vrees je dat er tussen jullie verandert wanneer je niet meteen invult wat de ander nodig heeft?', expectationPlaceholder:'Denk aan nabijheid, ongemak, duidelijkheid, afwijzing of jouw behoefte om nuttig te zijn.', observationQuestion:'Wat veranderde er in de sfeer, bij de ander en in jouw eigen neiging om te luisteren, op te lossen of jezelf terug te trekken?', observationPlaceholder:'Beschrijf één concreet verschil in tempo, woorden, lichaamstaal of jouw eigen reactie.' },
+    { title:'Eerst de vraag', prompt:'Vraag in één veilig gesprek of de ander wil dat je luistert, vragen stelt of meedenkt. Merk op wat die afstemming verandert.', expectationQuestion:'Wat hoop of vrees je dat er tussen jullie verandert wanneer je niet meteen invult wat de ander nodig heeft?', expectationPlaceholder:'Denk aan nabijheid, ongemak, duidelijkheid, afwijzing of jouw behoefte om nuttig te zijn.', observationQuestion:'Nadat je het werkelijk vroeg: wat merkte je bij de ander, in de sfeer en in jezelf?', observationPlaceholder:'Beschrijf wat je waarnam. Ook geen merkbaar verschil is informatie.' },
     { title:'Een andere route', prompt:'Neem bij één kleine, vertrouwde verplaatsing een andere route. Wat merk je op zodra gewoonte minder kan overnemen?', expectationQuestion:'Wat verwacht je dat een onbekendere route met je aandacht of tempo doet?', expectationPlaceholder:'Denk je dat je alerter, onrustiger, trager of juist nieuwsgieriger wordt?', observationQuestion:'Wat merkte je op toen de bekende route je niet meer droeg?', observationPlaceholder:'Wat veranderde in je aandacht, lichaam, tijdsgevoel of omgeving?' },
     { title:'De vriendelijkste tegenspraak', prompt:'Kies een lichte mening van jezelf en formuleer de sterkste redelijke tegenstem. Je hoeft daarna niet van mening te veranderen.', expectationQuestion:'Wat verwacht je dat er in jou gebeurt wanneer je jouw eigen gelijk serieus tegenspreekt?', expectationPlaceholder:'Verwacht je weerstand, nieuwsgierigheid, twijfel of de neiging jezelf te verdedigen?', observationQuestion:'Waar werd je standpunt ruimer — en waar bleef het zich verdedigen?', observationPlaceholder:'Welke tegenstem raakte iets, en welke voelde nog steeds onredelijk?' }
   ];
@@ -763,7 +763,13 @@
   if (state.drafts.daily.key === dailyKey) {
     document.querySelector('[data-daily-expectation]').value = state.drafts.daily.expectation;
     document.querySelector('[data-daily-observation]').value = state.drafts.daily.observation;
-    if (state.drafts.daily.observation) document.querySelector('[data-daily-after]').hidden = false;
+    if (state.drafts.daily.observation) {
+      document.querySelector('[data-daily-after]').hidden = false;
+      document.querySelector('[data-daily-plan]').hidden = true;
+    } else if (state.drafts.daily.expectation) {
+      document.querySelector('[data-daily-plan]').hidden = true;
+      document.querySelector('[data-daily-pause]').hidden = false;
+    }
   } else state.drafts.daily = { key:dailyKey, expectation:'', observation:'' };
   ['[data-daily-expectation]', '[data-daily-observation]'].forEach(selector => document.querySelector(selector)?.addEventListener('input', () => {
     state.drafts.daily = {
@@ -773,10 +779,24 @@
     };
     autosave(document.querySelector('[data-daily-status]'));
   }));
+  document.querySelector('[data-daily-plan]')?.addEventListener('click', () => {
+    const expectation = document.querySelector('[data-daily-expectation]').value.trim();
+    const status = document.querySelector('[data-daily-status]');
+    if (!expectation) {
+      status.textContent = 'Noteer eerst kort wat je verwacht of vreest.';
+      document.querySelector('[data-daily-expectation]').focus();
+      return;
+    }
+    state.drafts.daily = { key:dailyKey, expectation:expectation.slice(0, 280), observation:'' };
+    saveProgress();
+    document.querySelector('[data-daily-plan]').hidden = true;
+    document.querySelector('[data-daily-pause]').hidden = false;
+    status.textContent = 'Je verwachting staat lokaal klaar voor wanneer je terugkomt.';
+  });
   document.querySelector('[data-daily-tried]')?.addEventListener('click', () => {
     const after = document.querySelector('[data-daily-after]');
     after.hidden = false;
-    document.querySelector('[data-daily-tried]').textContent = 'Gedaan — wat merkte je?';
+    document.querySelector('[data-daily-pause]').hidden = true;
     document.querySelector('[data-daily-observation]').focus();
   });
   document.querySelector('[data-save-daily]')?.addEventListener('click', () => {
@@ -792,6 +812,9 @@
     state.drafts.daily = { key:dailyKey, expectation:'', observation:'' };
     document.querySelector('[data-daily-expectation]').value = '';
     document.querySelector('[data-daily-observation]').value = '';
+    document.querySelector('[data-daily-after]').hidden = true;
+    document.querySelector('[data-daily-pause]').hidden = true;
+    document.querySelector('[data-daily-plan]').hidden = false;
     saveProgress();
     status.textContent = 'Bewaard in Mijn spoor op dit apparaat.';
   });
