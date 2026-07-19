@@ -56,7 +56,7 @@
         terugtrekken: { group:'reflex', label:'Uit contact gaan', short:'Je zwijgt, verkleint of verplaatst het gesprek wanneer het ongemakkelijk wordt.', atlasHref:'onderwerpen/hechting.html', atlasTitle:'Nabijheid en afstand', atlasCopy:'Over zoeken, afsluiten, bevriezen en relatiespecifieke veiligheid.' }
       },
       questions: [
-        { scene:'Een vriend stuurt om 22.14 uur', text:'“Vandaag ging werkelijk alles mis. Ik weet zelfs niet waar ik moet beginnen.”', options:[
+        { scene:'Een vriend stuurt om 22.14 uur', contextLabel:'Geen acuut gevaar · je eigen grens telt mee', contextTone:'ordinary', context:'Dit is ongewoon voor hem. Hij noemt geen gevaar en vraagt niet expliciet om advies. Jij moet morgen vroeg op.', text:'“Vandaag ging werkelijk alles mis. Ik weet zelfs niet waar ik moet beginnen.”', options:[
           s('q1-erken','“Dat klinkt alsof je helemaal op bent. Begin maar waar jij wilt.”','Je erkent eerst en laat het tempo bij de ander.',{luisteren:2,eigenaarschap:1}),
           s('q1-vraag','“Wat drukte vandaag het zwaarst?”','Je opent één duidelijke deur zonder al een richting te kiezen.',{luisteren:1,afstemmen:1}),
           s('q1-afstem','“Wil je vooral vertellen, samen ordenen of iets praktisch bekijken?”','Je vraagt welke vorm van steun gewenst is.',{afstemmen:2,eigenaarschap:1}),
@@ -64,7 +64,7 @@
           s('q1-please','“Bel me maar. Ik blijf wakker zolang jij me nodig hebt.”','Je biedt veel beschikbaarheid; je eigen grens blijft buiten beeld.',{pleasen:2,overnemen:1}),
           s('q1-stil','Ik lees het bericht, maar antwoord voorlopig niets.','Ook stilte is gedrag; de ander weet nog niet wat ze betekent.',{terugtrekken:2})
         ]},
-        { scene:'Je partner vertelt voor de derde keer over hetzelfde werkconflict', text:'“Mijn baas deed het wéér. Ik blijf hier volledig in vastzitten.”', options:[
+        { scene:'Je partner vertelt voor de derde keer over hetzelfde werkconflict', contextLabel:'Herhaling · machtsverschil op het werk', contextTone:'power', context:'De baas kleineert je partner geregeld in vergaderingen. Je partner is financieel afhankelijk van deze baan, heeft nog geen concrete hulpvraag gesteld en jij bent vanavond uitgeput.', text:'“Mijn baas deed het wéér. Ik blijf hier volledig in vastzitten.”', options:[
           s('q2-samenvat','“Je lijkt tegelijk kwaad én bang voor wat er gebeurt als je reageert. Klopt dat?”','Je vat samen en laat ruimte om je lezing te corrigeren.',{luisteren:2,afstemmen:1}),
           s('q2-eigen','“Welke opties zie je zelf, ook de opties die je nog niet durft?”','Je ondersteunt het eigen denken zonder de uitkomst te bepalen.',{eigenaarschap:2,luisteren:1}),
           s('q2-mail','“Stuur mij je mail. Ik herschrijf hem wel en dan is het opgelost.”','Je neemt een concrete taak én een deel van de positie van de ander over.',{overnemen:2,fixen:1}),
@@ -72,15 +72,15 @@
           s('q2-grens','“Ik wil hier morgen twintig minuten rustig bij zijn; vanavond kan ik niet meer goed luisteren.”','Je blijft betrokken en maakt je draagkracht concreet.',{grenzen:2,afstemmen:1}),
           s('q2-meegaan','“Je hebt volledig gelijk. Je baas is gewoon verschrikkelijk.”','Instemmen kan nabij voelen, maar onderzoekt niet wat werkelijk helpt.',{pleasen:1,terugtrekken:1})
         ]},
-        { scene:'Je zus vraagt rechtstreeks advies', text:'“Wat denk jij dat ik moet doen met mijn relatie?”', options:[
-          s('q3-beslis','“Eerlijk? Ik vind dat je ermee moet stoppen.”','Je geeft een duidelijk oordeel over een keuze die grote gevolgen heeft.',{fixen:2,overnemen:1}),
-          s('q3-twijfel','“Waar twijfel je zelf precies tussen?”','Je maakt haar eigen afweging het beginpunt.',{luisteren:1,eigenaarschap:2}),
-          s('q3-toestemming','“Ik heb gedachten, maar wil je eerst dat ik luister of echt mijn mening geef?”','Je vraagt toestemming voor je van luisteraar naar adviseur wisselt.',{afstemmen:2,grenzen:1}),
-          s('q3-opties','“Zullen we jouw opties en hun mogelijke gevolgen naast elkaar leggen?”','Je helpt structureren zonder één uitkomst voor te schrijven.',{eigenaarschap:2,afstemmen:1}),
-          s('q3-gerust','“Wat je ook kiest, ik sta altijd achter je.”','De warmte is echt; mogelijke zorgen of grenzen blijven onbesproken.',{pleasen:2}),
-          s('q3-weg','“Ik wil me daar liever niet mee bemoeien.” Daarna verander ik van onderwerp.','Je voorkomt overnemen, maar sluit ook het contact snel af.',{terugtrekken:2,grenzen:1})
+        { scene:'Je zus vraagt rechtstreeks advies', contextLabel:'Waarschuwingssignalen · mogelijk controlerend gedrag', contextTone:'warning', context:'Haar partner leest haar berichten, kleineert haar en wordt kwaad als ze zonder hem afspreekt. Ze zegt dat ze nu niet fysiek in gevaar is, maar vreest zijn reactie als ze een grens stelt of vertrekt.', text:'“Wat denk jij dat ik moet doen met mijn relatie?”', options:[
+          s('q3-veilig','“Ik maak me zorgen om de controle en je angst. Voel je je vandaag veilig? We kunnen samen opties en hulp bekijken, op jouw tempo.”','Je benoemt concreet gedrag, controleert de veiligheid en laat de regie zo veel mogelijk bij haar.',{luisteren:1,afstemmen:2,eigenaarschap:2,grenzen:2}),
+          s('q3-beslis','“Eerlijk? Ik vind dat je er vandaag nog een einde aan moet maken.”','Je neemt de signalen ernstig, maar bepaalt tempo en uitkomst van een mogelijk riskante keuze.',{fixen:2,overnemen:2}),
+          s('q3-twijfel','“Wat maakt dat je bang bent voor zijn reactie, en wat heb jij nodig om veilig te kunnen nadenken?”','Je onderzoekt haar ervaring en brengt veiligheid in beeld zonder meteen te beslissen.',{luisteren:2,eigenaarschap:2,afstemmen:1}),
+          s('q3-plan','“Zullen we op een veilige plek opschrijven wie je kunt bellen, waar je heen kunt en welke stap jij zelf wilt zetten?”','Je biedt concrete veiligheidssteun binnen een plan dat zij mee bestuurt.',{afstemmen:2,eigenaarschap:2,grenzen:1}),
+          s('q3-gerust','“Iedere relatie heeft moeilijke periodes. Misschien waait dit wel over.”','Geruststelling verkleint hier concrete signalen van controle en angst.',{pleasen:1,terugtrekken:2}),
+          s('q3-confronteer','“Geef mij zijn nummer. Ik zal hem wel zeggen dat dit moet stoppen.”','Je neemt het conflict over en kunt het risico vergroten zonder haar situatie of veiligheid te kennen.',{overnemen:2,fixen:2})
         ]},
-        { scene:'Een collega vraagt vlak voor het einde van je werkdag', text:'“Kun jij mijn presentatie voor morgenochtend nog afwerken? Ik trek het echt niet.”', options:[
+        { scene:'Een collega vraagt vlak voor het einde van je werkdag', contextLabel:'Donderdag 17.20 uur · goede werkrelatie · jij hebt haast', contextTone:'power', context:'Jullie werken graag samen en hij hielp jou eerder al twee keer uit de nood. Tegelijk is dit zijn derde late verzoek deze maand. Jij bent moe, moet over tien minuten weg voor een privéafspraak en hebt morgenochtend zelf een deadline. Het team is onderbezet, maar er is geen noodgeval.', text:'“Kun jij mijn presentatie voor morgenochtend nog afwerken? Ik trek het echt niet.”', options:[
           s('q4-ja','“Natuurlijk.” Ik schrap mijn eigen avond en neem het werk over.','Je ontlast de ander onmiddellijk; de kost voor jou blijft onuitgesproken.',{pleasen:2,overnemen:2}),
           s('q4-nee','“Nee, dat lukt me niet.”','Je grens is duidelijk, maar je onderzoekt niet wat er verder nodig of mogelijk is.',{grenzen:2}),
           s('q4-samen','“Ik kan twintig minuten helpen kiezen wat echt af moet; daarna ga ik naar huis.”','Je biedt begrensde samenwerking en laat de taak bij de eigenaar.',{grenzen:2,eigenaarschap:2,afstemmen:1}),
@@ -88,15 +88,15 @@
           s('q4-vragen','“Wat is al klaar en welk onderdeel blokkeert je precies?”','Je zoekt eerst waar gerichte steun verschil kan maken.',{luisteren:1,afstemmen:2,eigenaarschap:1}),
           s('q4-negeren','Ik zie het bericht en besluit pas morgen te antwoorden.','Je beschermt je avond zonder je grens of beschikbaarheid mee te delen.',{terugtrekken:2})
         ]},
-        { scene:'Een vriend zegt tijdens een gesprek', text:'“Misschien stel ik me gewoon aan.”', options:[
+        { scene:'Een vriend zegt tijdens een gesprek', contextLabel:'Zelftwijfel na een vernederend moment', contextTone:'ordinary', context:'Hij vertelde net dat vrienden hem uitlachten toen hij een grens aangaf. Dit is de eerste keer dat hij erover praat en hij heeft nog niet gezegd welke reactie hij van jou hoopt.', text:'“Misschien stel ik me gewoon aan.”', options:[
           s('q5-check','“Ik hoor dat je aan jezelf twijfelt. Wat maakt dat je het aanstellen noemt?”','Je erkent de twijfel en onderzoekt haar betekenis.',{luisteren:2,eigenaarschap:1}),
           s('q5-nee','“Nee joh, natuurlijk stel je je niet aan.”','Je wilt geruststellen, maar vult snel in wat de ervaring betekent.',{fixen:1,pleasen:1}),
           s('q5-klopt','“Misschien maak je het inderdaad wat groter dan het is.”','Je verkleint de ervaring voordat je haar hebt onderzocht.',{terugtrekken:2}),
           s('q5-mij','“Dat heb ik ook gehad. Bij mij was het zelfs nog erger…”','Je zoekt herkenning, maar verplaatst het middelpunt van het gesprek.',{terugtrekken:1}),
           s('q5-nodig','“Wat zou nu het meest helpen: erkenning, een eerlijke tegenstem of samen uitzoeken?”','Je maakt verschillende vormen van steun bespreekbaar.',{afstemmen:2,luisteren:1}),
-          s('q5-dragen','“Laat mij dit maar voor je oplossen; jij hebt genoeg gehad.”','Je zorg is tastbaar, maar het probleem en de regie verhuizen naar jou.',{overnemen:2,pleasen:1})
+          s('q5-diep','“Kom, we gaan zitten. Vertel me vanaf het begin wat er precies gebeurde en waarom dit je zo raakt.”','Je biedt veel aandacht en trekt het gesprek meteen de diepte in. Dat kan betrokken voelen, maar de ander koos nog niet of dit het juiste moment of tempo is.',{luisteren:1,overnemen:1,pleasen:1})
         ]},
-        { scene:'Veiligheid verandert de situatie', text:'Een vriend heeft gedronken en zegt: “Ik rijd zelf wel naar huis. Bemoei je er niet mee.”', options:[
+        { scene:'Na een avond samen uit wil een vriend zelf rijden', contextLabel:'Acuut gevaar · ongeveer zes drankjes · jij bent nuchter', contextTone:'urgent', context:'Jullie gingen samen naar een verjaardag, maar kwamen elk met een eigen auto. In vier uur zag je hem ongeveer zes alcoholische drankjes drinken. Hij praat onduidelijk, wankelt, heeft zijn autosleutels vast en wil nu vertrekken. Jij dronk alcoholvrij en er zijn andere mensen in de buurt die kunnen helpen.', text:'“Ik rijd zelf wel naar huis. Bemoei je er niet mee.”', options:[
           s('q6-meerijden','“Ik laat je niet rijden. Ik regel een taxi of breng je thuis; jij kiest welke van de twee.”','Bij acuut risico mag steun directer zijn; je laat nog keuze binnen veilige opties.',{afstemmen:1,eigenaarschap:1,grenzen:2}),
           s('q6-sleutels','Ik pak zonder iets te zeggen de autosleutels af en beslis wat er gebeurt.','Je grijpt in voor veiligheid, maar zonder uitleg of resterende keuze.',{overnemen:1,grenzen:1}),
           s('q6-advies','“Dat lijkt me geen goed idee, maar je moet het zelf weten.”','Je benoemt het risico maar laat de onveilige handeling ongemoeid.',{terugtrekken:2}),

@@ -2123,6 +2123,10 @@ footer {
   transform: translateX(0.2rem);
 }
 
+.site-edit-banner + .site-footer {
+  margin-top: 0;
+}
+
 @media (max-width: 820px) {
   .site-edit-banner__inner {
     grid-template-columns: 5.5rem minmax(0, 1fr);

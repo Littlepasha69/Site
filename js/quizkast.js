@@ -73,7 +73,7 @@
       href:`quizkast.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
       category:String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      duration:quiz.mode === 'support' ? 'ongeveer 5 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
@@ -415,6 +415,18 @@
     const isConversation = isConversationMode();
     const percent = Math.round((current + 1) / activeQuiz.questions.length * 100);
     document.querySelector('[data-mini-eyebrow]').textContent = question.scene || activeQuiz.eyebrow;
+    const contextBox = document.querySelector('[data-mini-context-wrap]');
+    const hasContext = activeQuiz.mode === 'support' && Boolean(question.context);
+    contextBox.hidden = !hasContext;
+    if (hasContext) {
+      contextBox.dataset.contextTone = question.contextTone || 'ordinary';
+      document.querySelector('[data-mini-context-label]').textContent = question.contextLabel || 'Wat je weet';
+      document.querySelector('[data-mini-context]').textContent = question.context;
+    } else {
+      delete contextBox.dataset.contextTone;
+      document.querySelector('[data-mini-context-label]').textContent = '';
+      document.querySelector('[data-mini-context]').textContent = '';
+    }
     document.querySelector('[data-mini-count]').textContent = `${isConversation ? 'Gesprek' : 'Kruispunt'} ${current + 1} van ${activeQuiz.questions.length}`;
     document.querySelector('[data-mini-percent]').textContent = `${percent}%`;
     document.querySelector('[data-mini-progress]').style.width = `${percent}%`;
@@ -848,6 +860,23 @@
       tieSection.hidden = true;
       resultContent.hidden = false;
       resultSection.setAttribute('aria-labelledby', 'mini-result-title');
+      if (resultMeta.noMatch) {
+        activeResult = openResult();
+        selectedResultId = activeResult.id;
+        document.querySelector('[data-support-dashboard]').hidden = true;
+        document.querySelector('[data-result-kicker]').textContent = activeResult.kicker;
+        document.querySelector('[data-result-title]').textContent = activeResult.title;
+        document.querySelector('[data-result-summary]').textContent = activeResult.summary;
+        document.querySelector('[data-result-basis]').textContent = `Slechts ${resultMeta.answered} gespreksmoment${resultMeta.answered === 1 ? '' : 'en'} telde${resultMeta.answered === 1 ? '' : 'n'} mee. Dat is te weinig voor een bruikbaar dashboard.`;
+        document.querySelector('[data-result-strength]').textContent = activeResult.strength;
+        document.querySelector('[data-result-friction]').textContent = activeResult.friction;
+        document.querySelector('[data-result-counter]').textContent = activeResult.counter;
+        document.querySelector('[data-result-experiment]').textContent = activeResult.experiment;
+        renderReading(activeResult);
+        syncReactionControls();
+        saveQuizProgress('result');
+        return;
+      }
       const support = supportResultCopy();
       activeResult = support.result;
       selectedResultId = activeResult.id;

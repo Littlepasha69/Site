@@ -189,9 +189,10 @@ window.ONWIJZE_CONTENT = [
     updated: '2026-07-18T23:59:30+03:00', featureImage: 'images/aandacht-kaart.svg', areaIcon: 'brain'
   },
   {
-    title: 'Klimaatopwarming', type: 'achtergrond', category: 'Leefwereld',
-    summary: 'Oorzaken, gevolgen en mogelijke antwoorden op de stijgende gemiddelde temperatuur van de aarde.',
-    url: 'onderwerpen/klimaatopwarming.html', tags: ['klimaat', 'co2', 'energie', 'zeespiegel', 'beleid']
+    title: 'Klimaatopwarming', type: 'dossier', category: 'Mens, maatschappij & leefwereld', level: 'Sterk onderbouwd',
+    summary: 'Hoe broeikasgassen de aarde opwarmen, welke gevolgen al zichtbaar zijn en waar mitigatie en adaptatie het verschil maken.',
+    url: 'onderwerpen/klimaatopwarming.html', tags: ['klimaat', 'co2', 'energie', 'zeespiegel', 'beleid'],
+    updated: '2026-07-19T00:00:00+03:00', areaIcon: '○'
   },
   {
     title: 'Leren', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
@@ -263,6 +264,24 @@ window.ONWIJZE_CONTENT = [
     summary: 'Hoe anderen je mogelijkheden en zelfbeeld mee veranderen, waarom juist sommige mensen vertrouwd voelen en wanneer wederzijdse invloed zelfverlies wordt.',
     url: 'onderwerpen/de-ander-verandert-je.html', tags: ['relaties', 'relationele plasticiteit', 'zelfbeeld', 'zelfexpansie', 'Michelangelo-fenomeen', 'partnersteun', 'doelen', 'responsiviteit', 'co-regulatie', 'dyadische emotieregulatie', 'autonomie', 'zelfverlies', 'invloed', 'macht', 'partnerkeuze', 'aantrekking', 'zelfverificatie', 'herhalingspatronen', 'donkere spiegel'],
     updated: '2026-07-18T22:40:00+03:00', featureImage: 'images/de-ander-verandert-je.svg', areaIcon: '∞'
+  },
+  {
+    title: 'Pleasen en harmonie bewaren', type: 'dossier', category: 'Relaties & hechting', level: 'Redelijk stevig',
+    summary: 'Waarom aanpassen sociale wijsheid kan zijn én zelfverlies kan worden — via zelfstilte, afwijzingsgevoeligheid, context, macht en één eerlijk verschil.',
+    url: 'onderwerpen/pleasen-harmonie.html', tags: ['pleasen', 'people pleasing', 'harmonie bewaren', 'zelfstilte', 'self-silencing', 'afwijzingsgevoeligheid', 'rejection sensitivity', 'conflictvermijding', 'accommodatie', 'eigen stem', 'wrok', 'overfunctioneren', 'macht', 'cultuur', 'grenzen', 'quiz', 'pleasen en harmonie bewaren'],
+    updated: '2026-07-02T10:30:00+03:00', featureImage: 'images/pleasen-harmonie.svg', areaIcon: '∞'
+  },
+  {
+    title: 'Luisteren zonder over te nemen', type: 'dossier', category: 'Relaties & hechting', level: 'Redelijk stevig',
+    summary: 'Actief luisteren, ervaren responsiviteit en helpen zonder de autonomie of competentie van de ander af te pakken.',
+    url: 'onderwerpen/luisteren-zonder-overnemen.html', tags: ['actief luisteren', 'responsiviteit', 'partner responsiveness', 'helpen', 'hulp', 'autonomie', 'autonomie ondersteunen', 'competentie', 'advies', 'redden', 'overnemen', 'interpersoonlijke emotieregulatie', 'doelen', 'quiz', 'actief luisteren en responsiviteit', 'helpen zonder autonomie af te pakken'],
+    updated: '2026-05-14T09:15:00+03:00', featureImage: 'images/luisteren-zonder-overnemen.svg', areaIcon: '∞'
+  },
+  {
+    title: 'Grenzen en moeilijke gesprekken', type: 'dossier', category: 'Relaties & hechting', level: 'Redelijk stevig',
+    summary: 'Grenzen als eigen handelen, zorg zonder almacht en moeilijke gesprekken die rekening houden met draagkracht, veiligheid en wederkerigheid.',
+    url: 'onderwerpen/grenzen-moeilijke-gesprekken.html', tags: ['grenzen', 'zorg', 'verantwoordelijkheid', 'moeilijke gesprekken', 'conflict', 'conflictvermijding', 'stilvallen', 'draagkracht', 'assertiviteit', 'verzoek', 'afspraak', 'consequentie', 'conversationele ontvankelijkheid', 'veiligheid', 'quiz', 'grenzen zorg en verantwoordelijkheid', 'vermijding draagkracht en moeilijke gesprekken'],
+    updated: '2026-06-23T16:45:00+03:00', featureImage: 'images/grenzen-gesprekken.svg', areaIcon: '∞'
   },
   {
     title: 'De groep in je hoofd', type: 'dossier', category: 'Groepsgedrag & beïnvloeding', level: 'Redelijk stevig',

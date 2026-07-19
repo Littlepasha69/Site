@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek snelle, speelse reflectiequizzen over luisteren, kiezen, grenzen en mentale beweeglijkheid in de Quizkast van het Menslab.">
   <title>De Quizkast — Menslab</title>
   <link rel="stylesheet" href="css/site-2026.css?v=19">
-  <link rel="stylesheet" href="css/quizkast.css?v=12">
+  <link rel="stylesheet" href="css/quizkast.css?v=16">
   <script src="js/site-shell.js?v=17" defer></script>
-  <script src="js/quizkast-data.js?v=6" defer></script>
-  <script src="js/quizkast.js?v=10" defer></script>
+  <script src="js/quizkast-data.js?v=9" defer></script>
+  <script src="js/quizkast.js?v=11" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -52,7 +52,10 @@
       <div class="mini-quiz__top"><button type="button" data-back-to-shelf>← Terug naar de Quizkast</button><span data-mini-quiz-name></span></div>
       <section class="support-intro" data-support-intro hidden aria-labelledby="support-intro-title">
         <figure><img src="images/menslab/helpmachine-gesprekssimulatie.png" alt="Twee mensen zitten aan weerszijden van een wonderlijke papieren helpmachine met luisterhoorns, knoppen en een verleidelijk stuur."></figure>
-        <div><p class="eyebrow">Gesprekssimulatie · ongeveer 5 minuten</p><h1 id="support-intro-title" data-support-intro-title></h1><p data-support-intro-copy></p><ul><li>Kies je waarschijnlijke eerste reactie.</li><li>Ook zwijgen of niet antwoorden kan een keuze zijn.</li><li>Bij acuut gevaar gelden andere grenzen dan in een gewoon gesprek.</li></ul><button type="button" data-start-support-simulation>Start de gesprekssimulatie →</button><small>Geen persoonlijkheidstest. Wel een spiegel van je keuzes in zes situaties.</small></div>
+        <div class="support-intro__body">
+          <div class="support-intro__lead"><p class="eyebrow">Gesprekssimulatie · ongeveer 5 minuten</p><h1 id="support-intro-title" data-support-intro-title></h1><p data-support-intro-copy></p><aside class="support-no-types support-no-types--intro"><strong>Waarom geen types?</strong><p>Dezelfde reactie kan iets anders betekenen naargelang de relatie, veiligheid, macht, bedoeling en wederkerigheid. Daarom noemen we je hier geen pleaser, redder of conflictvermijder.</p></aside></div>
+          <div class="support-intro__play"><ul><li>Kies je waarschijnlijke eerste reactie.</li><li>Ook zwijgen of niet antwoorden kan een keuze zijn.</li><li>Bij acuut gevaar gelden andere grenzen dan in een gewoon gesprek.</li></ul><div class="support-intro__action"><button type="button" data-start-support-simulation aria-label="Start de gesprekssimulatie"><span>START</span><i aria-hidden="true">▶</i></button><div><strong>Druk om te beginnen</strong><small>Geen persoonlijkheidstest. Wel een spiegel van je keuzes in zes situaties.</small></div></div></div>
+        </div>
       </section>
       <div data-standard-game>
         <div class="mini-journey" aria-label="Jouw route door deze spiegel">
@@ -63,6 +66,7 @@
         <div class="mini-progress__text"><strong data-mini-count></strong><span data-mini-percent></span></div>
         <article class="mini-question" tabindex="-1">
           <p data-mini-eyebrow></p>
+          <div class="mini-question__context" data-mini-context-wrap hidden><span data-mini-context-label></span><p data-mini-context></p></div>
           <h2 id="mini-question-title" data-mini-question></h2>
           <fieldset data-mini-options><legend class="visually-hidden">Kies het antwoord dat het dichtst in de buurt komt</legend></fieldset>
           <div class="mini-question__counterchoice"><button type="button" data-question-misses aria-pressed="false">Deze vraag mist mijn situatie</button><span>Een geldig antwoord. Deze vraag telt dan niet mee.</span></div>
@@ -81,7 +85,7 @@
         <h1 id="mini-result-title" data-result-title></h1>
         <p class="mini-result__summary" data-result-summary></p>
         <p class="mini-result__basis" data-result-basis></p>
-        <section class="support-dashboard" data-support-dashboard hidden aria-labelledby="support-dashboard-title"><div class="support-dashboard__intro"><span>Jouw keuzes op het paneel</span><h2 id="support-dashboard-title">Wat je inzet — en wat onder druk overneemt</h2><p>Balkjes tonen alleen hoe vaak een beweging in deze zes situaties voorkwam. Ze meten geen persoonlijkheid en vergelijken je niet met anderen.</p></div><div class="support-dashboard__groups"><section><h3>Steunvaardigheden</h3><div data-support-skills></div></section><section><h3>Reflexen onder druk</h3><div data-support-reflexes></div></section></div><section class="support-atlas"><div><span>Verder in de Atlas</span><h3>Onderzoek je opvallendste lijnen</h3></div><div data-support-atlas-links></div></section></section>
+        <section class="support-dashboard" data-support-dashboard hidden aria-labelledby="support-dashboard-title"><div class="support-dashboard__intro"><span>Jouw keuzes op het paneel</span><h2 id="support-dashboard-title">Wat je inzet — en wat onder druk overneemt</h2><p>Balkjes tonen alleen hoe vaak een beweging in deze zes situaties voorkwam. Ze meten geen persoonlijkheid en vergelijken je niet met anderen.</p></div><aside class="support-no-types"><strong>Waarom we niet in types werken</strong><p>Patronen als pleasen, redden of conflict vermijden zijn geen vaste mensensoorten. Hedendaags relatie-, motivatie- en steunonderzoek vraagt aandacht voor <b>context, macht, motief en wederkerigheid</b>. Dezelfde stilte kan rust of zelfverlies zijn; dezelfde hulp kan steun of besturing zijn; dezelfde harmonie kan vrije keuze of angst zijn.</p><p>Daarom beschrijft dit dashboard wat je <em>in deze zes situaties</em> koos. Het zegt niet wie je bent, en een andere relatie of machtsverhouding kan een ander patroon oproepen.</p><div><a href="https://pubmed.ncbi.nlm.nih.gov/38635183/" target="_blank" rel="noopener">Steun voor autonomie, competentie en verbondenheid ↗</a><a href="https://pubmed.ncbi.nlm.nih.gov/18444741/" target="_blank" rel="noopener">Waarom ontvangen steun verschillend kan uitpakken ↗</a></div></aside><div class="support-dashboard__groups"><section><h3>Steunvaardigheden</h3><div data-support-skills></div></section><section><h3>Reflexen onder druk</h3><div data-support-reflexes></div></section></div><section class="support-atlas"><div><span>Verder in de Atlas</span><h3>Onderzoek je opvallendste lijnen</h3></div><div data-support-atlas-links></div></section></section>
         <div class="mini-result__grid"><article><span>Wat hier helpend aan kan zijn</span><p data-result-strength></p></article><article><span>Waar het kan schuren</span><p data-result-friction></p></article></div>
         <blockquote><span>Een vraag die mag tegenspreken</span><strong data-result-counter></strong></blockquote>
         <section class="mini-response" aria-labelledby="mini-response-title"><p class="eyebrow">Jij hebt het laatste woord</p><h2 id="mini-response-title">Hoe goed past deze spiegel?</h2><div class="mini-response__options" role="group" aria-label="Hoe goed past deze spiegel?"><button type="button" data-mini-fit="raakt" aria-pressed="false">Dit raakt iets</button><button type="button" data-mini-fit="deels" aria-pressed="false">Dit klopt gedeeltelijk</button><button type="button" data-mini-fit="mist" aria-pressed="false">Dit mist iets belangrijks</button></div><label for="mini-reflection">Waar klopt dit juist níét — of welke context ontbreekt? <small>optioneel · maximaal 280 tekens</small><textarea id="mini-reflection" data-mini-reflection maxlength="280" rows="3" placeholder="Bijvoorbeeld: thuis herken ik dit, maar op het werk doe ik net het tegenovergestelde."></textarea></label><p data-mini-reaction-status aria-live="polite">Kies eerst hoe goed de spiegel past. Je eigen aanvulling mag leeg blijven.</p></section>
