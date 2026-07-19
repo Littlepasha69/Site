@@ -1,5 +1,10 @@
 window.ONWIJZE_CONTENT = [
   {
+    title: 'De Speelhal', type: 'page', category: 'Menslab',
+    summary: 'Quizzen, oefenbanken, gesprekssimulaties, speelborden en keuzepaden om iets uit te proberen zonder diagnose of vast profiel.',
+    url: 'speelhal.html', tags: ['speelhal', 'menslab', 'quizzen', 'oefeningen', 'gesprekssimulaties', 'keuzes', 'experimenten']
+  },
+  {
     title: 'Nancy Onderweg', type: 'page', category: 'Over de maker',
     summary: 'Maak kennis met de schrijver en maker achter De Onwijze Wijsheden: over zoeken, schrijven, mens-zijn en haar Octopusprofiel.',
     url: 'nancy-onderweg.html', tags: ['nancy', 'schrijver', 'maker', 'octopus', 'over mij']
@@ -227,7 +232,7 @@ window.ONWIJZE_CONTENT = [
     title: 'Emotieregulatie', type: 'dossier', category: 'Emoties & regulatie', level: 'Redelijk stevig',
     summary: 'Waarom reguleren niet hetzelfde is als minder voelen, hoe emoties zich ontvouwen en waarom geen enkele strategie altijd werkt.',
     url: 'onderwerpen/emotieregulatie.html', tags: ['emoties', 'regulatie', 'piekeren', 'vermijden', 'onderdrukken', 'herwaarderen', 'lichaam', 'cultuur'],
-    updated: '2026-07-18T16:53:14+03:00', featureImage: 'images/emotieregulatie-route.svg', areaIcon: '≋'
+    updated: '2026-07-19T16:05:00+03:00', featureImage: 'images/emotieregulatie-route.svg', areaIcon: '≋'
   },
   {
     title: 'Stress', type: 'dossier', category: 'Emoties & regulatie', level: 'Redelijk stevig',

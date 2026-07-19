@@ -36,7 +36,7 @@
     },
     'luisteren-of-repareren': {
       symbol: '◌',
-      note: 'Zes gesprekken. Geen perfecte luisteraar, wel zichtbare keuzes.',
+      note: 'Tien gesprekken. Geen perfecte luisteraar, wel zichtbare keuzes.',
       confirmations: []
     },
     'waar-komt-je-ja-vandaan': {
@@ -66,19 +66,22 @@
   const allQuizToggle = document.querySelector('[data-show-all-quizzes]');
   const allQuizLibrary = document.querySelector('[data-all-quiz-library]');
   const allQuizSearch = document.querySelector('[data-all-quiz-search]');
+  const allQuizType = document.querySelector('[data-all-quiz-type]');
   const allQuizCategory = document.querySelector('[data-all-quiz-category]');
 
   function allQuizItems() {
     const quick = quizzes.map(quiz => ({
-      href:`quizkast.html?quiz=${encodeURIComponent(quiz.id)}`,
+      href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
-      category:String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.mode === 'support' ? 'ongeveer 5 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'Speelbord' : 'Quizspiegel',
+      category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
+      duration:quiz.mode === 'support' ? 'ongeveer 8 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
-      { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', category:'Dieptequiz', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
-      { href:'dierenquiz.html', title:'De Grote Beestenquiz', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype' }
+      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'De emotionele routekaart', type:'Oefenbank', category:'Emoties & regulatie', duration:'ongeveer 5–10 minuten', search:'emotie lichaam betekenis impuls ruimte routekaart oefening' },
+      { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', type:'Dieptequiz', category:'Keuzes', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
+      { href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Grote quiz', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype' }
     ]);
   }
 
@@ -87,8 +90,16 @@
   }
 
   function renderAllQuizzes() {
-    if (!allQuizLibrary || !allQuizSearch || !allQuizCategory) return;
+    if (!allQuizLibrary || !allQuizSearch || !allQuizType || !allQuizCategory) return;
     const items = allQuizItems();
+    if (allQuizType.options.length === 1) {
+      [...new Set(items.map(item => item.type))].sort((a, b) => a.localeCompare(b, 'nl')).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        allQuizType.append(option);
+      });
+    }
     if (allQuizCategory.options.length === 1) {
       [...new Set(items.map(item => item.category))].sort((a, b) => a.localeCompare(b, 'nl')).forEach(name => {
         const option = document.createElement('option');
@@ -98,14 +109,14 @@
       });
     }
     const query = normalizeQuizText(allQuizSearch.value.trim());
-    const filtered = items.filter(item => (!allQuizCategory.value || item.category === allQuizCategory.value) && (!query || normalizeQuizText(`${item.title} ${item.category} ${item.search}`).includes(query)));
-    document.querySelector('[data-all-quiz-count]').textContent = `${filtered.length} ${filtered.length === 1 ? 'quiz' : 'quizzen'}`;
+    const filtered = items.filter(item => (!allQuizType.value || item.type === allQuizType.value) && (!allQuizCategory.value || item.category === allQuizCategory.value) && (!query || normalizeQuizText(`${item.title} ${item.type} ${item.category} ${item.search}`).includes(query)));
+    document.querySelector('[data-all-quiz-count]').textContent = `${filtered.length} ${filtered.length === 1 ? 'attractie' : 'attracties'}`;
     document.querySelector('[data-all-quiz-empty]').hidden = filtered.length > 0;
     document.querySelector('[data-all-quiz-results]').replaceChildren(...filtered.map(item => {
       const link = document.createElement('a');
       link.href = item.href;
       const category = document.createElement('span');
-      category.textContent = item.category;
+      category.textContent = `${item.type} · ${item.category}`;
       const title = document.createElement('strong');
       title.textContent = item.title;
       const duration = document.createElement('small');
@@ -120,7 +131,7 @@
     allQuizLibrary.hidden = !willOpen;
     allQuizToggle.setAttribute('aria-expanded', String(willOpen));
     allQuizToggle.querySelector('span').textContent = willOpen ? 'Selectiescherm open' : 'Arcade select';
-    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg alle quizzen' : 'Alle quizzen & filters';
+    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg de speelvloer' : 'Alle attracties & filters';
     allQuizToggle.querySelector('i').textContent = willOpen ? 'CLOSE' : 'START';
     if (willOpen) {
       renderAllQuizzes();
@@ -128,6 +139,7 @@
     }
   });
   allQuizSearch?.addEventListener('input', renderAllQuizzes);
+  allQuizType?.addEventListener('change', renderAllQuizzes);
   allQuizCategory?.addEventListener('change', renderAllQuizzes);
 
   function readQuizProgress() {
@@ -608,7 +620,7 @@
         Object.entries(option.signals || {}).forEach(([key, amount]) => { if (key in scores) scores[key] += amount; });
       });
       const maxima = Object.fromEntries(scoreKeys.map(key => [key, activeQuiz.questions.reduce((sum, question) => sum + Math.max(0, ...question.options.map(option => Number(option.signals?.[key]) || 0)), 0)]));
-      return { scores, maxima, answered, missed, leaders:[], maxScore:Math.max(0, ...Object.values(scores)), noMatch:answered < 2, unit };
+      return { scores, maxima, answered, missed, leaders:[], maxScore:Math.max(0, ...Object.values(scores)), noMatch:answered < Math.ceil(activeQuiz.questions.length * .6), unit };
     }
     if (activeQuiz.mode === 'path') {
       unit = 'routepunten';
@@ -701,7 +713,7 @@
     const score = scoreCopy(meta.maxScore, meta.unit);
     document.querySelector('[data-result-tie-copy]').textContent = chosenId
       ? `${names} kregen elk ${score}. Je bekijkt nu ${activeQuiz.results[chosenId].title}, maar je kunt de andere spiegel ook openen.`
-      : `${names} kregen elk ${score}. De Quizkast kiest niet stiekem voor jou.`;
+      : `${names} kregen elk ${score}. De Speelhal kiest niet stiekem voor jou.`;
     buildTieChoices(meta, chosenId);
   }
 

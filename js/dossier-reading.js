@@ -110,10 +110,12 @@
   }
 
   if (initialFootprint && initialFootprint.progress >= 5 && initialFootprint.progress < 99 && initialFootprint.chapterId !== chapters[0].section.id) {
+    const currentResumeChapter = chapters.find(chapter => chapter.section.id === initialFootprint.chapterId);
+    const currentResumeLabel = currentResumeChapter?.link.textContent.trim() || initialFootprint.chapterLabel || 'Lees verder';
     const resumeLink = document.createElement('a');
     resumeLink.className = 'dossier-resume';
     resumeLink.href = `#${encodeURIComponent(initialFootprint.chapterId)}`;
-    resumeLink.innerHTML = `<span>Verder waar je was</span><strong>${initialFootprint.chapterLabel || 'Lees verder'} →</strong>`;
+    resumeLink.innerHTML = `<span>Verder waar je was</span><strong>${currentResumeLabel} →</strong>`;
     page.querySelector('.dossier-status')?.append(resumeLink);
   }
 

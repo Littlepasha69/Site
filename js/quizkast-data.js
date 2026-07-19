@@ -42,8 +42,8 @@
       title: 'Luister je nog — of heb je het al opgelost?',
       eyebrow: 'Gesprekssimulatie · helpen zonder overnemen',
       mode: 'support',
-      introTitle: 'Zes gesprekken. Wat doe jij als eerste?',
-      introCopy: 'Je reageert op een vriend, partner, collega of familielid. Kies niet het mooiste antwoord, maar wat jij waarschijnlijk als eerste doet. Soms helpt luisteren, soms praktisch ingrijpen en soms is niet antwoorden óók een reactie.',
+      introTitle: 'Tien gesprekken. Wat doe jij als eerste?',
+      introCopy: 'Je reageert op vrienden, een partner, collega’s en familie. Iedere scène vertelt iets over timing, relatie, macht, draagkracht en veiligheid. Kies niet het mooiste antwoord, maar wat jij waarschijnlijk als eerste doet.',
       resultOrder: [],
       dimensions: {
         luisteren: { group:'skill', label:'Actief luisteren', short:'Je vertraagt, erkent en controleert of je goed begrepen hebt.', atlasHref:'onderwerpen/ervaring.html', atlasTitle:'Ervaring', atlasCopy:'Waarom jouw interpretatie en de beleving van de ander nooit volledig samenvallen.' },
@@ -103,6 +103,38 @@
           s('q6-rustig','“Waarom wil je per se zelf rijden? Vertel eerst eens wat er speelt.”','Luisteren kan informatie geven, maar het onmiddellijke risico vraagt óók begrenzing.',{luisteren:1,terugtrekken:1}),
           s('q6-pleasen','“Oké, als jij echt denkt dat het kan.”','Harmonie bewaren krijgt voorrang op een concreet veiligheidsrisico.',{pleasen:2,terugtrekken:1}),
           s('q6-hulp','Ik schakel er iemand bij in en blijf tot er veilig vervoer is.','Je deelt de verantwoordelijkheid en blijft bij een concreet veiligheidsdoel.',{grenzen:2,afstemmen:1})
+        ]},
+        { scene:'Een medewerker spreekt je na het teamoverleg aan', contextLabel:'Jij bent leidinggevende · structurele werkdruk · weinig tijd', contextTone:'power', context:'Jij verdeelt het werk en beoordeelt deze medewerker. Door een open vacature werkt die al zes weken bijna elke avond langer. Jullie contact is goed. Over vijftien minuten begint jouw volgende vergadering; er is geen acuut medisch gevaar.', text:'“Ik kan dit tempo echt niet blijven volhouden.”', options:[
+          s('q7-verantwoord','“Dank dat je dit zegt. Deze werkdruk is ook mijn verantwoordelijkheid. Wat moet vandaag stoppen, en wanneer plannen we hier rustig tijd voor?”','Je erkent het machtsverschil, neemt je structurele verantwoordelijkheid en betrekt de medewerker bij de eerstvolgende stap.',{luisteren:1,afstemmen:2,grenzen:2,eigenaarschap:1}),
+          s('q7-luister','“Waar loopt de druk voor jou het meest op? Ik wil eerst begrijpen wat er precies gebeurt.”','Je onderzoekt de ervaring, maar een luisterend gesprek moet hier nog gevolgd worden door handelen binnen jouw rol.',{luisteren:2,afstemmen:1}),
+          s('q7-time','“Misschien moeten we eens naar je planning en timemanagement kijken.”','Je maakt een structureel capaciteitsprobleem snel tot een vaardigheidsprobleem van de medewerker.',{fixen:2,terugtrekken:1}),
+          s('q7-overneem','“Geef mij je zwaarste dossier. Ik werk het vanavond zelf af.”','Je biedt directe verlichting, maar maakt overwerk afhankelijk van jouw persoonlijke reddingsactie.',{overnemen:2,pleasen:1}),
+          s('q7-motiveer','“Nog even doorbijten; zodra de vacature ingevuld is, wordt het beter.”','Je probeert moed te geven, maar laat de huidige grens en jouw invloed op het systeem onbesproken.',{pleasen:1,terugtrekken:2}),
+          s('q7-later','“Stuur me volgende week een mail, dan zoeken we een moment.”','Je verplaatst een terugkerend signaal terwijl jij juist meer macht hebt om nu ruimte te maken.',{terugtrekken:2})
+        ]},
+        { scene:'Een goede vriend vraagt je om een bericht te schrijven', contextLabel:'Twee weken na een breuk · expliciete hulpvraag · geen onveiligheid', contextTone:'ordinary', context:'Na een relatie van vier jaar zijn ze rustig uit elkaar gegaan. Er waren geen signalen van dwang of geweld. De ex vroeg een week geen contact. Jij kent hen allebei, maar bent vooral bevriend met je vriend. Je hebt vanavond tijd en bent kalm.', text:'“Schrijf jij wat ik moet sturen? Ik maak het alleen maar erger.”', options:[
+          s('q8-vraag','“Wat wil je dat je bericht eerlijk zegt, en wat wil je zelf absoluut niet beloven?”','Je helpt zijn eigen bedoeling en grens scherper te krijgen voordat er woorden komen.',{luisteren:1,eigenaarschap:2}),
+          s('q8-samen','“Jij maakt een eerste versie; daarna kijk ik mee of ze duidelijk en respectvol is.”','Je biedt concrete steun terwijl de eerste stem en verantwoordelijkheid bij hem blijven.',{afstemmen:2,eigenaarschap:2}),
+          s('q8-schrijven','“Geef je telefoon maar. Ik weet precies wat je moet zeggen.”','De hulp is gevraagd, maar jij neemt inhoud, toon en mogelijk ook de gevolgen volledig over.',{overnemen:2,fixen:1}),
+          s('q8-wacht','“Ik denk dat geen bericht sturen tijdens die afgesproken week nu het meest respectvol is. Wil je horen waarom?”','Je geeft duidelijk advies én vraagt ruimte om je reden te bespreken, maar stuurt wel naar één uitkomst.',{grenzen:1,afstemmen:1,fixen:1}),
+          s('q8-gerust','“Wat je ook stuurt, als de liefde echt is komt het wel goed.”','Je stelt gerust zonder rekening te houden met de afgesproken ruimte of de werkelijke gevolgen.',{pleasen:2}),
+          s('q8-weg','“Relatieberichten zijn niet mijn ding.” Ik laat het gesprek daar eindigen.','Je bewaakt een mogelijke grens, maar maakt niet duidelijk of je op een andere manier aanwezig kunt zijn.',{terugtrekken:2,grenzen:1})
+        ]},
+        { scene:'Je partner wil na een conflict niet verder praten', contextLabel:'Zondagmiddag · veilige relatie · jullie hebben allebei tijd', contextTone:'ordinary', context:'Jullie verhieven net allebei je stem over de verdeling van het huishouden, zonder dreiging, schelden of geweld. Je partner heeft meestal een halfuur nodig om te kalmeren; stilte maakt jou juist onrustig. Er zijn vandaag geen andere afspraken.', text:'“Ik wil hier nu niet verder over praten.”', options:[
+          s('q9-pauze','“Oké. Zullen we een halfuur pauze nemen en om vier uur opnieuw proberen?”','Je respecteert de gevraagde ruimte en maakt tegelijk duidelijk wanneer het contact wordt hervat.',{afstemmen:2,grenzen:1,eigenaarschap:1}),
+          s('q9-check','“Wil je alleen even rust, of wil je dit onderwerp vandaag helemaal niet meer openen?”','Je vraagt wat de grens precies betekent zonder haar meteen te bestrijden.',{luisteren:1,afstemmen:2}),
+          s('q9-duwen','“Nee, we praten dit nu uit. Weglopen maakt het alleen erger.”','Je onrust bepaalt het tempo en overschrijft de expliciete vraag om een pauze.',{overnemen:2,fixen:1}),
+          s('q9-cadeau','Ik bestel iets lekkers en doe extra lief, zodat de sfeer weer goed wordt zonder het onderwerp terug te nemen.','Je probeert de verbinding te herstellen, maar harmonie vervangt het onopgeloste gesprek.',{pleasen:2,terugtrekken:1}),
+          s('q9-stil','Ik zeg niets meer en wacht af tot mijn partner ooit zelf opnieuw begint.','Je geeft ruimte, maar maakt de duur en gedeelde verantwoordelijkheid volledig onduidelijk.',{terugtrekken:2}),
+          s('q9-analyse','“Laten we eerst precies uitzoeken waarom jij bij conflict altijd dichtklapt.”','Je maakt van een concrete pauze meteen een diep patroononderzoek waar niet om gevraagd is.',{overnemen:1,fixen:1})
+        ]},
+        { scene:'Je moeder reageert gekwetst op je agenda', contextLabel:'Warme band · terugkerende schuld · jouw draagkracht is laag', contextTone:'power', context:'Je belt haar wekelijks en bezocht haar twee weken geleden. Ze mist gezelschap, maar heeft ook vrienden, vervoer en een kaartclub. Jij combineert een drukke baan met twee jonge kinderen en bent deze maand erg moe. In jullie familie weegt voor elkaar zorgen zwaar.', text:'“Blijkbaar is je werk belangrijker dan je eigen moeder.”', options:[
+          s('q10-beide','“Ik hoor dat je me mist. Ik wil je zien én ik kan deze week niet langskomen. Zullen we nu iets haalbaars plannen?”','Je erkent haar gemis zonder de beschuldiging als volledige opdracht over te nemen.',{luisteren:1,grenzen:2,afstemmen:2}),
+          s('q10-vraag','“Vraag je me om vaker te komen, of wil je vooral vertellen hoe alleen je je de laatste tijd voelt?”','Je maakt de behoefte achter de pijnlijke formulering bespreekbaar.',{luisteren:2,afstemmen:2}),
+          s('q10-beloven','“Het spijt me. Ik kom vanaf nu iedere zondag, beloofd.”','Je probeert de schuld en spanning onmiddellijk te stoppen met een grote belofte.',{pleasen:2,overnemen:1}),
+          s('q10-oplossen','“Ik zoek wel nieuwe activiteiten voor je en zet ze meteen in je agenda.”','Je reageert op een relationeel verlangen met een plan dat haar sociale leven bestuurt.',{fixen:2,overnemen:1}),
+          s('q10-verwijt','“Je hebt genoeg mensen om je heen. Het is niet mijn taak om je bezig te houden.”','Je benoemt verantwoordelijkheid, maar doet dat op een manier die haar emotie en jullie band afsnijdt.',{terugtrekken:2,grenzen:1}),
+          s('q10-negeren','Ik reageer niet op die zin en stuur de volgende dag een foto van de kinderen.','Je houdt contact, maar ontwijkt zowel het gemis als de druk die haar woorden op jou zetten.',{terugtrekken:2,pleasen:1})
         ]}
       ]
     },

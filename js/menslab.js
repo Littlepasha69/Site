@@ -14,7 +14,7 @@
     progressStorageKey, previousStorageKey, legacyStorageKey,
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
     'beestenquiz-progress-v2', 'quizkast-progress-v1', 'dieptequiz-ja-progress-v1',
-    'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1',
+    'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1', 'menslab-exercise-drafts-v1',
     'onwijze-profile-v1', 'onwijze-next-door-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];
   const movementLabels = ['Opmerken', 'Vertragen', 'Omdraaien', 'Veranderen', 'Benoemen', 'Vragen', 'Kiezen'];
@@ -41,7 +41,7 @@
     { title:'Leg de weg vrij', prompt:'Verander één ding in je omgeving zodat gewenst gedrag makkelijker begint of ongewenst automatisch gedrag één extra stap vraagt.', aim:'de omgeving laten meewerken in plaats van alles aan wilskracht over te laten.', steps:['Kies één klein gedrag dat je al wilt uitvoeren.','Leg één voorwerp, herinnering of hulpmiddel klaar — of maak de oude route één stap minder direct.','Test vandaag of die verandering je eerste handeling werkelijk beïnvloedt.'], mechanism:'Gedragswetenschap beschrijft prikkels en herinrichting van de fysieke omgeving als afzonderlijke gedragstechnieken. Contextonderzoek laat bovendien zien dat stabiele prikkels gewoonten mee oproepen.', boundary:'De techniekencatalogus benoemt onderdelen, maar bewijst niet dat elke omgevingsaanpassing voor elk doel effectief is. Daarom test je gedrag, niet alleen een goed gevoel over je plan.', sources:[['Michie et al. (2008) — taxonomie gedragstechnieken','https://pubmed.ncbi.nlm.nih.gov/18624603/'],['Wood et al. (2005) — contextprikkels en gewoonte','https://pubmed.ncbi.nlm.nih.gov/15982113/']], expectationQuestion:'Welke omgevingsverandering verwacht je dat één gedrag makkelijker of minder automatisch maakt?', expectationPlaceholder:'Noem het voorwerp of de prikkel én het gedrag dat erop moet volgen.', observationQuestion:'Veranderde de omgeving je feitelijke eerste handeling?', observationPlaceholder:'Wat lag of stond anders, en wat deed je vervolgens werkelijk?', nextQuestion:'Wat laat je liggen, verplaats je of verwijder je voor de volgende test?', nextPlaceholder:'Kies één concrete aanpassing, geen volledige make-over.' },
     { title:'Kijk, leer, stel bij', prompt:'Doe één concrete actie die belangrijk voor je is, leg de uitvoering vast en pas daarna pas je volgende poging aan.', aim:'voortgang zichtbaar maken zonder van één resultaat een oordeel over jezelf te maken.', steps:['Kies één uitvoerbaar gedrag en voorspel of je het vandaag doet.','Voer het uit of merk eerlijk op dat het niet gebeurde.','Noteer één feit over de uitvoering en verander daarmee je volgende poging.'], mechanism:'Een meta-analyse van 138 experimentele studies vond dat interventies die voortgangsmonitoring verhogen gemiddeld ook doelrealisatie verbeteren; effecten waren groter wanneer uitkomsten fysiek werden vastgelegd.', boundary:'Meten helpt niet elk doel en kan bij sommige mensen druk of fixatie vergroten. Kies geen oefening rond eten, gewicht of dwang als registreren je klachten versterkt.', sources:[['Harkin et al. (2016) — meta-analyse voortgangsmonitoring','https://pubmed.ncbi.nlm.nih.gov/26479070/']], expectationQuestion:'Welk zichtbaar gedrag ga je vandaag wel of niet uitvoeren, en wanneer?', expectationPlaceholder:'Formuleer iets dat achteraf waarneembaar is.', observationQuestion:'Wat gebeurde er feitelijk — zonder verklaring of zelfoordeel?', observationPlaceholder:'Bijvoorbeeld: om 16.00 uur opende ik het bestand; ik werkte vier minuten.', nextQuestion:'Welke ene aanpassing test je de volgende keer?', nextPlaceholder:'Behoud wat hielp; wijzig één obstakel.' }
   ];
-  const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz', route:'Veranderroute' };
+  const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz', route:'Veranderroute', exercise:'Menslab-oefening' };
   const quizFitLabels = { raakt:'Raakt iets', deels:'Klopt gedeeltelijk', mist:'Mist iets belangrijks' };
   let currentQuestion = 0;
   let libraryMode = 'all';
@@ -98,7 +98,7 @@
     if (Array.isArray(value.quizSnapshots)) {
       clean.quizSnapshots = value.quizSnapshots.slice(0, 250).filter(item => item && typeof item.savedAt === 'string' && typeof item.resultTitle === 'string').map(item => ({
         quizId: typeof item.quizId === 'string' ? item.quizId : '',
-        quizTitle: typeof item.quizTitle === 'string' ? item.quizTitle.slice(0, 120) : 'Quizkast',
+        quizTitle: typeof item.quizTitle === 'string' ? item.quizTitle.slice(0, 120) : 'Speelhal',
         resultId: typeof item.resultId === 'string' ? item.resultId : '',
         resultTitle: item.resultTitle.slice(0, 120),
         summary: typeof item.summary === 'string' ? item.summary.slice(0, 500) : '',
@@ -129,7 +129,7 @@
     }
     if (Array.isArray(value.labSnapshots)) {
       clean.labSnapshots = value.labSnapshots.slice(0, 250).filter(item => item && typeof item.savedAt === 'string' && typeof item.title === 'string').map(item => ({
-        kind: ['daily', 'brain', 'together', 'reflection', 'beast', 'route'].includes(item.kind) ? item.kind : 'daily',
+        kind: ['daily', 'brain', 'together', 'reflection', 'beast', 'route', 'exercise'].includes(item.kind) ? item.kind : 'daily',
         title: (item.kind === 'beast' && item.title === 'Kraken' ? 'Leviathan' : item.title).slice(0, 140),
         prompt: typeof item.prompt === 'string' ? item.prompt.slice(0, 500) : '',
         expectation: typeof item.expectation === 'string' ? item.expectation.slice(0, 280) : '',
@@ -539,7 +539,7 @@
     if (!results || !search || !category) return;
     const items = (Array.isArray(window.MENSLAB_QUIZZES) ? window.MENSLAB_QUIZZES : []).map(quiz => ({
       id:quiz.id,
-      href:`quizkast.html?quiz=${encodeURIComponent(quiz.id)}`,
+      href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
       category:String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
       duration:typeof quiz.duration === 'string' ? quiz.duration : (quiz.questions?.length > 8 ? 'ongeveer 6 minuten' : 'ongeveer 3 minuten'),
@@ -616,7 +616,7 @@
       },
       question: {
         href:'#quizkast', kicker:'2–10 minuten', label:'Eén vraag, geen volledig programma', title:'Welke vraag trekt vandaag?',
-        copy:'Zoek in de quizbibliotheek en open alleen de vraag die nu nieuwsgierig maakt. Een uitslag is geen oordeel.', action:'Snuffel tussen de quizzen'
+        copy:'Zoek in de quizcabine en open alleen de vraag die nu nieuwsgierig maakt. Een uitslag is geen oordeel.', action:'Snuffel in de quizcabine'
       },
       week: {
         href:'#weeklab', kicker:'7 losse haltes', label:hasActiveWeek ? 'Je week loopt al' : 'Een spoor door de week',

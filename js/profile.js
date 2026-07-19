@@ -224,7 +224,7 @@
     ...(Array.isArray(footprints) ? footprints.map(item => ({ title:item.title, meta:item.saved ? 'Atlas · bewaard' : `Atlas · ${item.progress || 0}% gelezen`, href:item.url, time:Number(item.visitedAt) || 0 })) : []),
     ...(Array.isArray(reading) ? reading.map(item => ({ title:item.title, meta:`Verder lezen · ${item.progress || 0}%`, href:item.url, time:Number(item.visitedAt) || 0 })) : []),
     ...lab.map(item => ({ title:item.title, meta:'Menslab · bewaard', href:'menslab.html#mijn-spoor', time:Date.parse(item.savedAt) || 0 })),
-    ...quizzes.map(item => ({ title:item.resultTitle, meta:'Quizkast · spiegel', href:'menslab.html#mijn-spoor', time:Date.parse(item.savedAt) || 0 }))
+    ...quizzes.map(item => ({ title:item.resultTitle, meta:'Speelhal · spiegel', href:'menslab.html#mijn-spoor', time:Date.parse(item.savedAt) || 0 }))
   ].filter(item => item.title).sort((a, b) => b.time - a.time).slice(0, 5);
   if (activity.length) {
     document.querySelector('[data-profile-activity]').hidden = false;

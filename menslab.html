@@ -7,7 +7,7 @@
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
   <link rel="stylesheet" href="css/menslab.css?v=26">
-  <script src="js/site-shell.js?v=17" defer></script>
+  <script src="js/site-shell.js?v=18" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
   <script src="js/quizkast-data.js?v=8" defer></script>
   <script src="js/menslab.js?v=22" defer></script>
@@ -93,14 +93,14 @@
     </section>
 
     <section class="quizkast-gateway" id="quizkast" aria-labelledby="quizkast-title">
-      <div class="quizkast-gateway__head"><div><p class="eyebrow">De quizbibliotheek</p><h2 id="quizkast-title">Snuffel op de vraag die trekt.</h2></div><div><p>Geen eindeloze kaartenmuur. Zoek op een woord, kies een plank en open alleen wat nu nieuwsgierig maakt.</p><a href="quizkast.html">Open de volledige Quizkast →</a></div></div>
+      <div class="quizkast-gateway__head"><div><p class="eyebrow">Speelhal · de quizcabine</p><h2 id="quizkast-title">Snuffel op de vraag die trekt.</h2></div><div><p>Hier zoek je tussen de snelle spiegels. In de volledige Speelhal vind je ook oefenbanken, keuzepaden en gesprekssimulaties.</p><a href="speelhal.html">Open de hele Speelhal →</a></div></div>
       <div class="quiz-library-tools">
         <label><span>Zoek een vraag</span><input type="search" data-quiz-library-search placeholder="Bijvoorbeeld: grenzen, gesprek of veranderen" autocomplete="off"></label>
         <label><span>Kies een plank</span><select data-quiz-library-category><option value="">Alle onderwerpen</option></select></label>
         <strong data-quiz-library-count></strong>
       </div>
       <div class="quizkast-gateway__grid" data-quiz-library-results></div>
-      <div class="quiz-library-foot"><button type="button" data-quiz-library-more hidden>Toon meer quizzen</button><a href="quizkast.html">Bekijk de hele bibliotheek →</a></div>
+      <div class="quiz-library-foot"><button type="button" data-quiz-library-more hidden>Toon meer quizzen</button><a href="speelhal.html">Ga naar de Speelhal →</a></div>
       <p class="quiz-library-empty" data-quiz-library-empty hidden>Op deze plank ligt nog niets. Probeer een ander woord of bekijk alle onderwerpen.</p>
     </section>
 
@@ -135,7 +135,7 @@
             <div><button type="button" data-save-amusement="brain">Bewaar in Mijn spoor</button><span aria-live="polite"></span></div>
           </div>
         </div>
-        <a class="amusement-link" href="quizkast.html?quiz=wie-zit-aan-het-stuur">Ontdek wie er vandaag aan je stuur zit →</a>
+        <a class="amusement-link" href="speelhal.html?quiz=wie-zit-aan-het-stuur">Ontdek wie er vandaag aan je stuur zit →</a>
       </div>
     </article>
 
@@ -154,7 +154,7 @@
             <div><button type="button" data-save-amusement="together">Bewaar in Mijn spoor</button><span aria-live="polite"></span></div>
           </div>
         </div>
-        <a class="amusement-link" href="quizkast.html?quiz=luisteren-of-repareren">Doe de luisteren-of-reparerenquiz →</a>
+        <a class="amusement-link" href="speelhal.html?quiz=luisteren-of-repareren">Stap in de gespreksmachine →</a>
       </div>
       <figure class="amusement-visual"><img src="images/menslab/amusement-jij-en-ik.jpg" alt="Twee papieren figuren bedienen samen een wonderlijke gespreksmachine met spreekbuizen, spiegels, tandwielen en een wip." loading="lazy"><figcaption>Verbinding: zelden plug-and-play.</figcaption></figure>
     </article>
@@ -222,7 +222,7 @@
       </section>
       <div class="progress-history"><div><h3>Eerdere weken</h3><p>Een spoor hoeft niet lang te zijn om echt te zijn.</p></div><ol data-track-history><li class="progress-history__empty">Hier verschijnen de weken die je bewust afrondt.</li></ol></div>
       <section class="progress-lab-snapshots" data-lab-snapshots hidden aria-labelledby="lab-snapshots-title"><div><p class="eyebrow">Uit het Menslab</p><h3 id="lab-snapshots-title">Bewaarde proefnotities</h3><p>Verwachtingen en observaties, geen conclusies over wie je bent.</p></div><ol data-lab-snapshot-list></ol></section>
-      <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Quizkast</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>
+      <section class="progress-quiz-snapshots" data-quiz-snapshots hidden aria-labelledby="quiz-snapshots-title"><div><p class="eyebrow">Uit de Speelhal</p><h3 id="quiz-snapshots-title">Bewaarde spiegels</h3><p>Momentopnames, geen vaste profielen.</p></div><ol data-quiz-snapshot-list></ol></section>
       <section class="progress-depth-patterns" data-depth-patterns hidden aria-labelledby="depth-patterns-title"><div><p class="eyebrow">Na drie situaties</p><h3 id="depth-patterns-title">Wat terugkeert en wat beweegt</h3><p>Geen score. Alleen een voorzichtig overzicht van contexten, werktitels en latere correcties.</p></div><ul data-depth-pattern-list></ul></section>
       <section class="progress-patterns" data-progress-patterns hidden aria-labelledby="patterns-title"><div><p class="eyebrow">Zonder oordeel</p><h3 id="patterns-title">Wat je vaker oefent</h3><p>Geen ranglijst, alleen terugkerende bewegingen in je bewaarde weken.</p></div><ol data-pattern-list></ol></section>
       <section class="progress-review" data-progress-review hidden aria-labelledby="review-title"><div><p class="eyebrow">Even achteromkijken</p><h3 id="review-title">Drie weken in beeld</h3><p>Lees een paar eerdere notities opnieuw. Wat lijkt werkelijk iets in beweging te brengen?</p></div><div data-review-notes></div></section>
@@ -240,11 +240,11 @@
     </section>
 
     <section class="lab-section" id="experimenten" aria-labelledby="experiments-title">
-      <div class="lab-section__head"><div><p class="eyebrow">Kleine experimenten</p><h2 id="experiments-title">Onderzoek jezelf zonder jezelf te repareren.</h2></div><p>Kies iets dat licht genoeg voelt om nieuwsgierig te blijven. Stop wanneer een oefening je overspoelt.</p></div>
+      <div class="lab-section__head"><div><p class="eyebrow">Drie deuren uit de Speelhal</p><h2 id="experiments-title">Kies wat je wilt uitproberen.</h2></div><p>Een oefenbank, keuzepad of gesprekssimulatie. Kies iets dat licht genoeg voelt om nieuwsgierig te blijven.</p></div>
       <div class="experiment-grid">
-        <article><span>5 minuten</span><h3>De emotionele routekaart</h3><p>Beschrijf wat er vlak vóór een sterke reactie gebeurde: buiten je, in je lichaam, in je betekenisgeving en in je impuls.</p><a href="onderwerpen/emotieregulatie.html#proberen">Open de begeleide oefening →</a></article>
-        <article><span>1 dag</span><h3>Het automatische ja</h3><p>Merk vandaag op wanneer je “ja” wilt zeggen terwijl je lichaam terugdeinst. Je hoeft nog niets te veranderen.</p><a href="forum.html">Vergelijk ervaringen →</a></article>
-        <article><span>1 gesprek</span><h3>Luisteren zonder oplossing</h3><p>Vraag iemand vijf minuten te vertellen. Stel alleen verduidelijkende vragen en geef geen advies.</p><a href="forum.html">Bespreek wat je merkte →</a></article>
+        <article><span>Oefenbank · 5–10 minuten</span><h3>De emotionele routekaart</h3><p>Leg één hanteerbaar moment uiteen: situatie, lichaam, mogelijke emotie, betekenis, impuls en bewegingsruimte.</p><a href="speelhal/oefeningen/emotionele-routekaart.html">Open de oefenbank →</a></article>
+        <article><span>Keuzepad · 3 minuten</span><h3>Waar komt jouw ja vandaan?</h3><p>Loop zes kruispunten langs en merk welke stem trekt — zonder van één keuze een persoonlijkheidstype te maken.</p><a href="speelhal.html?quiz=waar-komt-je-ja-vandaan">Loop het keuzepad →</a></article>
+        <article><span>Gesprekssimulatie · 8 minuten</span><h3>Luister je nog — of heb je het al opgelost?</h3><p>Probeer tien gesprekken uit over helpen, pleasen, grenzen en het stuur bij de ander laten.</p><a href="speelhal.html?quiz=luisteren-of-repareren">Start de gespreksmachine →</a></article>
       </div>
     </section>
 

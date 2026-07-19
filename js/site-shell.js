@@ -41,6 +41,7 @@ class SiteFooter extends HTMLElement {
           <a href="${base}onderwerpen.html">De Menselijke Atlas</a>
           <a href="${base}atlas-kompas.html">Het Atlas-kompas</a>
           <a href="${base}menslab.html">Menslab</a>
+          <a href="${base}speelhal.html">De Speelhal</a>
           <a href="${base}denkstukken.html">Denkstukken</a>
           <a href="${base}wegwijzer.html">De Wegwijzer</a>
           <a href="${base}nancy-onderweg.html">Nancy Onderweg</a>
@@ -86,7 +87,7 @@ customElements.define('site-footer', SiteFooter);
   if (document.querySelector('.dossier-page')) return;
   const main = document.querySelector('main');
   const page = location.pathname.split('/').pop() || '';
-  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'onderwerpen.html', 'menslab.html', 'mijn-profiel.html', 'privacy.html', 'forum.html', 'bijdragen.html']);
+  const excluded = new Set(['', 'index.html', 'home.html', 'zoeken.html', 'onderwerpen.html', 'menslab.html', 'speelhal.html', 'emotionele-routekaart.html', 'mijn-profiel.html', 'privacy.html', 'forum.html', 'bijdragen.html']);
   if (!main || excluded.has(page)) return;
 
   const heading = main.querySelector('h1');
