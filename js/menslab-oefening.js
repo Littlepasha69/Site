@@ -170,8 +170,9 @@
     const root = document.querySelector('[data-frame-recap]'); root.replaceChildren();
     [['frameBefore', 'Vlak ervoor'], ['frameTurn', 'Het kantelpunt'], ['frameAfter', 'Vlak erna']].forEach(([name, label]) => {
       const value = String(form.elements[name]?.value || '').trim();
+      if (!value) return;
       const card = document.createElement('article'); const strong = document.createElement('strong'); strong.textContent = `Wat zichtbaar was · ${label}`;
-      const p = document.createElement('p'); p.textContent = value || 'Nog geen camerabeeld ingevuld.'; card.append(strong, p); root.append(card);
+      const p = document.createElement('p'); p.textContent = value; card.append(strong, p); root.append(card);
     });
   }
 
