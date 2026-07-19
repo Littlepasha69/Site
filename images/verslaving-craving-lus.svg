@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 760" role="img" aria-labelledby="title desc">
+  <title id="title">Een mogelijke verlangenslus</title>
+  <desc id="desc">Zes verbonden stappen: cue en context, voorspelling in brein en lichaam, craving, actie, beloning of opluchting, en leren. Op meerdere plaatsen lopen uitwegen uit de lus naar tijd, afstand, steun, behandeling en een alternatief.</desc>
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#111d2b"/>
+      <stop offset=".48" stop-color="#33233e"/>
+      <stop offset="1" stop-color="#77463f"/>
+    </linearGradient>
+    <radialGradient id="glow" cx="50%" cy="48%" r="55%">
+      <stop offset="0" stop-color="#f0c66b" stop-opacity=".16"/>
+      <stop offset="1" stop-color="#f0c66b" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="12" stdDeviation="14" flood-color="#050c12" flood-opacity=".35"/>
+    </filter>
+    <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#f0c66b"/>
+    </marker>
+    <marker id="exit-arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0 0 10 5 0 10Z" fill="#9fd0bd"/>
+    </marker>
+    <style>
+      .orbit{fill:none;stroke:#f0c66b;stroke-opacity:.48;stroke-width:4;stroke-linecap:round;marker-end:url(#arrow)}
+      .exit{fill:none;stroke:#9fd0bd;stroke-width:3;stroke-dasharray:8 9;marker-end:url(#exit-arrow)}
+      .node{fill:#132f35;stroke:#fff;stroke-opacity:.16;stroke-width:2}
+      .node-warm{fill:#542e48}
+      .num{fill:#f0c66b;font:800 16px Arial,sans-serif;letter-spacing:.08em}
+      .label{fill:#fffaf0;font:700 25px Georgia,serif}
+      .sub{fill:#fff;fill-opacity:.63;font:500 15px Arial,sans-serif}
+      .center-kicker{fill:#f0c66b;font:800 13px Arial,sans-serif;letter-spacing:.14em}
+      .center-title{fill:#fffaf0;font:700 35px Georgia,serif}
+      .center-sub{fill:#fff;fill-opacity:.65;font:500 17px Arial,sans-serif}
+      .exit-label{fill:#bfe5d7;font:700 15px Arial,sans-serif}
+    </style>
+  </defs>
+  <rect width="1200" height="760" rx="28" fill="url(#bg)"/>
+  <rect width="1200" height="760" rx="28" fill="url(#glow)"/>
+  <g opacity=".12" fill="none" stroke="#fff">
+    <circle cx="600" cy="385" r="325"/>
+    <circle cx="600" cy="385" r="268"/>
+    <circle cx="600" cy="385" r="180"/>
+  </g>
+
+  <path class="orbit" d="M394 164 C470 105 568 93 654 118"/>
+  <path class="orbit" d="M808 158 C888 207 929 276 932 341"/>
+  <path class="orbit" d="M934 463 C912 533 854 589 786 614"/>
+  <path class="orbit" d="M636 653 C547 675 460 648 397 603"/>
+  <path class="orbit" d="M274 517 C225 448 217 372 240 304"/>
+  <path class="orbit" d="M282 224 C304 195 328 174 360 157"/>
+
+  <g filter="url(#shadow)">
+    <g transform="translate(205 105)">
+      <rect class="node" width="220" height="128" rx="22"/>
+      <text class="num" x="22" y="29">01</text>
+      <text class="label" x="22" y="62">Cue &amp; context</text>
+      <text class="sub" x="22" y="91">plek · tijd · persoon</text>
+      <text class="sub" x="22" y="112">gevoel · toestel</text>
+    </g>
+    <g transform="translate(650 92)">
+      <rect class="node" width="256" height="140" rx="22"/>
+      <text class="num" x="22" y="29">02</text>
+      <text class="label" x="22" y="62">Voorspelling</text>
+      <text class="sub" x="22" y="91">brein en lichaam</text>
+      <text class="sub" x="22" y="114">maken zich al klaar</text>
+    </g>
+    <g transform="translate(859 333)">
+      <rect class="node node-warm" width="250" height="132" rx="22"/>
+      <text class="num" x="22" y="29">03</text>
+      <text class="label" x="22" y="63">Craving</text>
+      <text class="sub" x="22" y="93">trekken · spanning</text>
+      <text class="sub" x="22" y="114">aandacht vernauwt</text>
+    </g>
+    <g transform="translate(632 590)">
+      <rect class="node node-warm" width="246" height="126" rx="22"/>
+      <text class="num" x="22" y="29">04</text>
+      <text class="label" x="22" y="62">Actie</text>
+      <text class="sub" x="22" y="91">gebruiken · zoeken</text>
+      <text class="sub" x="22" y="112">doorgaan · terugkeren</text>
+    </g>
+    <g transform="translate(210 550)">
+      <rect class="node" width="278" height="142" rx="22"/>
+      <text class="num" x="22" y="29">05</text>
+      <text class="label" x="22" y="62">Effect nu</text>
+      <text class="sub" x="22" y="91">beloning óf opluchting</text>
+      <text class="sub" x="22" y="114">verdoving · erbij horen</text>
+    </g>
+    <g transform="translate(86 252)">
+      <rect class="node" width="244" height="145" rx="22"/>
+      <text class="num" x="22" y="29">06</text>
+      <text class="label" x="22" y="62">Leren</text>
+      <text class="sub" x="22" y="91">de cue krijgt meer</text>
+      <text class="sub" x="22" y="114">voorspellende kracht</text>
+    </g>
+  </g>
+
+  <g text-anchor="middle">
+    <text class="center-kicker" x="600" y="338">GEEN UNIVERSEEL CIRCUIT</text>
+    <text class="center-title" x="600" y="387">Een mogelijke lus,</text>
+    <text class="center-title" x="600" y="427">geen noodlot.</text>
+    <text class="center-sub" x="600" y="464">Iedere stap kan anders wegen.</text>
+  </g>
+
+  <path class="exit" d="M890 389 C782 360 751 326 726 284"/>
+  <text class="exit-label" x="759" y="328">tijd winnen</text>
+  <path class="exit" d="M713 606 C694 543 672 517 646 501"/>
+  <text class="exit-label" x="690" y="550">steun of zorg</text>
+  <path class="exit" d="M304 552 C367 520 406 502 454 482"/>
+  <text class="exit-label" x="367" y="511">alternatieve actie</text>
+  <path class="exit" d="M241 272 C322 296 363 310 415 333"/>
+  <text class="exit-label" x="338" y="290">cue of toegang veranderen</text>
+
+  <g transform="translate(944 76)">
+    <rect width="188" height="72" rx="18" fill="#10292d" stroke="#9fd0bd" stroke-opacity=".45"/>
+    <text class="exit-label" x="18" y="30">Uitwegen zijn óók</text>
+    <text class="sub" x="18" y="53">medicatie · veiligheid · mensen</text>
+  </g>
+</svg>

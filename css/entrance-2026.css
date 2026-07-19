@@ -133,9 +133,9 @@ body.entrance-page {
 }
 
 .entrance__door:hover img {
-  transform:rotate(12deg) scale(1.065);
-  filter:saturate(1.25) brightness(1.1) drop-shadow(0 0 2rem rgba(244,159,61,.65));
-  box-shadow:0 0 0 .7rem rgba(240,198,107,.08),0 0 5rem rgba(233,120,31,.48);
+  transform:rotate(10deg) scale(1.18);
+  filter:saturate(1.3) brightness(1.12) drop-shadow(0 0 2.4rem rgba(244,159,61,.72));
+  box-shadow:0 0 0 .8rem rgba(240,198,107,.1),0 0 5.5rem rgba(233,120,31,.55);
 }
 
 .entrance__door:hover .entrance__invitation { color:#f0c66b;border-color:#f0c66b; }
