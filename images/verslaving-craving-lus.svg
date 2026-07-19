@@ -110,8 +110,8 @@
   <path class="exit" d="M241 272 C322 296 363 310 415 333"/>
   <text class="exit-label" x="338" y="290">cue of toegang veranderen</text>
 
-  <g transform="translate(944 76)">
-    <rect width="188" height="72" rx="18" fill="#10292d" stroke="#9fd0bd" stroke-opacity=".45"/>
+  <g transform="translate(916 76)">
+    <rect width="216" height="72" rx="18" fill="#10292d" stroke="#9fd0bd" stroke-opacity=".45"/>
     <text class="exit-label" x="18" y="30">Uitwegen zijn óók</text>
     <text class="sub" x="18" y="53">medicatie · veiligheid · mensen</text>
   </g>

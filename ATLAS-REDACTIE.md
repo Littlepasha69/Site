@@ -81,6 +81,7 @@ Geen enkele denker is de leermeester van het platform. Hun werk wordt gebruikt o
 - Janina Bühler en collega’s — longitudinale persoonlijkheid-relatietransacties; selectie-effecten zijn vaak sterker dan duurzame socialisatie-effecten en een relatiegebeurtenis herschrijft brede persoonlijkheid niet vanzelf.
 - Paul Eastwick, Samantha Joel, Jennifer Sjaarda en Zoltán Kutalik — hedendaags onderzoek naar aantrekking, partnerkeuze, gelijkenis en gedeelde context; geen enkelvoudige “traumamagneet” die individuele partnerkeuze betrouwbaar verklaart.
 - William Swann, Lorne Campbell, Amy Muise, Ryan Seedall en Brian Baucom — zelfverificatie en wederzijdse zoek-terugtrekpatronen; vertrouwde bevestiging is niet hetzelfde als verlangen naar afwijzing en een dyadische cyclus betekent geen gelijke verantwoordelijkheid voor dwang of geweld.
+- Kent Berridge, Nora Volkow, Marc Lewis, Hanna Pickard, Katie Witkiewitz en Carl Erik Fisher — hedendaagse gesprekspartners over incentive salience, het breinziektemodel, verslaving als diep leren, verantwoordelijkheid zonder schuld, whole-person recovery en de historische veranderlijkheid van verslavingsbegrippen. Hun modellen worden naast elkaar gezet: geen van hen levert alleen een volledige verklaring of universeel herstelpad.
 
 Populaire auteurs zoals Gabor Mate, Bessel van der Kolk en Stephen Porges zijn mogelijke ingangspoorten, maar nooit de enige wetenschappelijke onderbouwing. Hun claims worden gecontroleerd aan richtlijnen, overzichtsonderzoek en relevante kritiek.
 

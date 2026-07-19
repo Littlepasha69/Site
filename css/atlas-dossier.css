@@ -133,6 +133,11 @@
 .science-lenses a:hover { text-decoration:underline;text-underline-offset:.2rem; }
 .thinker-dialogue--four article:nth-child(even) { background:#4a2948; }
 .thinker-dialogue--alternating article:nth-child(even) { background:#4a2948; }
+.thinker-dialogue--addiction article:nth-child(even) { background:#4a2948; }
+.thinker-dialogue--addiction article>p:last-child strong { color:#fff3cf; }
+.thinker-dialogue--addiction em { color:#fff3cf; }
+.thinker-collision>div { grid-template-columns:repeat(2,minmax(0,1fr));gap:.55rem; }
+.thinker-collision>div span { padding:.7rem .8rem;border:1px solid rgba(255,255,255,.12);border-radius:.75rem;background:rgba(255,255,255,.05);color:rgba(255,255,255,.76);font-size:.82rem;line-height:1.45; }
 .personality-layers article { min-height:12rem; }
 .origin-grid { margin-top:1.5rem;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem; }
 .origin-grid article { padding:1.25rem;border:1px solid var(--line);border-radius:1rem;background:#fff; }
@@ -293,6 +298,7 @@
 @media(max-width:900px){.relational-levels,.expansion-path{grid-template-columns:1fr}.relational-levels article,.expansion-path article{min-height:0}}
 @media(max-width:620px){.self-change-map,.influence-compare,.regulation-grid,.support-compass,.warning-signals{grid-template-columns:1fr}.self-change-map article,.influence-compare article,.regulation-grid article,.support-compass article{min-height:0}}
 @media(max-width:620px){.selection-lenses,.mutual-mirror{grid-template-columns:1fr}.selection-lenses article{min-height:0}}
+@media(max-width:620px){.thinker-collision>div{grid-template-columns:1fr}.thinker-dialogue--addiction article{min-height:0}}
 @media(max-width:900px){.identity-shift__steps,.silence-loop{grid-template-columns:1fr 1fr}.silence-loop article{min-height:10rem}}
 @media(max-width:620px){.norm-layers,.group-functions,.platform-signals,.dissent-conditions,.identity-shift__steps,.silence-loop,.classic-limit{grid-template-columns:1fr}.norm-layers article,.group-functions article,.platform-signals article,.dissent-conditions article,.identity-shift__steps article,.silence-loop article{min-height:0}}
 @media(max-width:620px){.summary-points p,.identity-shift__steps p,.norm-layers p,.group-functions p,.platform-signals p,.dissent-conditions p,.relational-levels p,.self-change-map p,.regulation-grid p,.support-compass p{font-size:.9rem;line-height:1.6}}

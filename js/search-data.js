@@ -126,9 +126,9 @@ window.ONWIJZE_CONTENT = [
   },
   {
     title: 'Verslaving & craving', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
-    summary: 'Waarom verlangen kan blijven roepen: cue-leren, lichamelijke afhankelijkheid, stress, omgeving, behandeling en nieuw onderzoek zonder dopaminehype of schuld.',
-    url: 'onderwerpen/verslaving-craving.html', tags: ['verslaving', 'craving', 'verlangen', 'middelengebruik', 'alcohol', 'nicotine', 'opioiden', 'gokken', 'gamen', 'dopamine', 'wanting', 'liking', 'tolerantie', 'ontwenning', 'afhankelijkheid', 'gewoonte', 'stress', 'schadebeperking', 'naloxon', 'methadon', 'buprenorfine', 'semaglutide', 'herstel'],
-    areaIcon: '↗', updated: '2026-07-19T12:00:00+03:00', featureImage: 'images/verslaving-craving-lus.svg'
+    summary: 'Waarom verlangen kan blijven roepen: cue-leren, lichaam, stress, zorg en zes botsende hedendaagse denkers zonder dopaminehype of schuld.',
+    url: 'onderwerpen/verslaving-craving.html', tags: ['verslaving', 'craving', 'verlangen', 'middelengebruik', 'alcohol', 'nicotine', 'opioiden', 'gokken', 'gamen', 'dopamine', 'wanting', 'liking', 'tolerantie', 'ontwenning', 'afhankelijkheid', 'gewoonte', 'stress', 'schadebeperking', 'naloxon', 'methadon', 'buprenorfine', 'semaglutide', 'herstel', 'kent berridge', 'nora volkow', 'marc lewis', 'hanna pickard', 'katie witkiewitz', 'carl erik fisher'],
+    areaIcon: '↗', updated: '2026-07-19T12:40:00+03:00', featureImage: 'images/verslaving-craving-lus.svg'
   },
   {
     title: 'Basale ganglia', type: 'dossier', category: 'Brein & zenuwstelsel', level: 'Onderzocht',

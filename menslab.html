@@ -6,10 +6,11 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=23">
+  <link rel="stylesheet" href="css/menslab.css?v=25">
   <script src="js/site-shell.js?v=17" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
-  <script src="js/menslab.js?v=20" defer></script>
+  <script src="js/quizkast-data.js?v=8" defer></script>
+  <script src="js/menslab.js?v=21" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -83,14 +84,15 @@
     </section>
 
     <section class="quizkast-gateway" id="quizkast" aria-labelledby="quizkast-title">
-      <div class="quizkast-gateway__head"><div><p class="eyebrow">Snel zoeken op vraag</p><h2 id="quizkast-title">Waar wil je even naar kijken?</h2></div><div><p>Vier korte spiegels. Kies de vraag die nu aan je mouw trekt; de rest mag dicht blijven.</p><a href="quizkast.html">Bekijk de hele Quizkast →</a></div></div>
-      <div class="quizkast-gateway__grid">
-        <a href="quizkast.html?quiz=beweging-vandaag"><span>Vandaag</span><strong>Welke kleine beweging heb jij nodig?</strong><small>± 2 minuten →</small></a>
-        <a href="quizkast.html?quiz=luisteren-of-repareren"><span>Gesprekken</span><strong>Luister jij — of begin je te repareren?</strong><small>± 2 minuten →</small></a>
-        <a href="quizkast.html?quiz=waar-komt-je-ja-vandaan"><span>Keuzes</span><strong>Waar komt jouw ja vandaan?</strong><small>± 3 minuten →</small></a>
-        <a href="quizkast.html?quiz=wie-zit-aan-het-stuur"><span>Persoonlijkheid</span><strong>Wie zit er vandaag aan jouw stuur?</strong><small>± 3 minuten →</small></a>
+      <div class="quizkast-gateway__head"><div><p class="eyebrow">De quizbibliotheek</p><h2 id="quizkast-title">Snuffel op de vraag die trekt.</h2></div><div><p>Geen eindeloze kaartenmuur. Zoek op een woord, kies een plank en open alleen wat nu nieuwsgierig maakt.</p><a href="quizkast.html">Open de volledige Quizkast →</a></div></div>
+      <div class="quiz-library-tools">
+        <label><span>Zoek een vraag</span><input type="search" data-quiz-library-search placeholder="Bijvoorbeeld: grenzen, gesprek of veranderen" autocomplete="off"></label>
+        <label><span>Kies een plank</span><select data-quiz-library-category><option value="">Alle onderwerpen</option></select></label>
+        <strong data-quiz-library-count></strong>
       </div>
-      <a class="quizkast-depth-route" href="dieptequiz-ja.html"><span>Nieuw · dieptequiz</span><strong>Een ja is geen type. Ontdek wat er allemaal met jou meebeslist.</strong><small>13 vragen · ongeveer 8–10 minuten →</small></a>
+      <div class="quizkast-gateway__grid" data-quiz-library-results></div>
+      <div class="quiz-library-foot"><button type="button" data-quiz-library-more hidden>Toon meer quizzen</button><a href="quizkast.html">Bekijk de hele bibliotheek →</a></div>
+      <p class="quiz-library-empty" data-quiz-library-empty hidden>Op deze plank ligt nog niets. Probeer een ander woord of bekijk alle onderwerpen.</p>
     </section>
 
     <section class="quiz-gateway quiz-gateway--early" id="jij" aria-labelledby="quiz-gateway-title">

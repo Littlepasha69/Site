@@ -6,7 +6,6 @@
   const noteStatus = document.querySelector('[data-week-note-status]');
   const completion = document.querySelector('[data-week-complete]');
   const nextIntention = document.querySelector('[data-next-intention]');
-  const resume = document.querySelector('[data-progress-resume]');
   const fileStatus = document.querySelector('[data-track-file-status]');
   const progressStorageKey = 'menslab-progress-v3';
   const previousStorageKey = 'menslab-progress-v2';
@@ -47,6 +46,8 @@
   let currentQuestion = 0;
   let libraryMode = 'all';
   let libraryExpanded = false;
+  let todayMode = '';
+  let quizLibraryExpanded = false;
   let state = emptyState();
 
   function emptyState() {
@@ -523,6 +524,126 @@
     renderReadingHistory();
   });
 
+  function renderQuizLibrary() {
+    const results = document.querySelector('[data-quiz-library-results]');
+    const search = document.querySelector('[data-quiz-library-search]');
+    const category = document.querySelector('[data-quiz-library-category]');
+    if (!results || !search || !category) return;
+    const items = (Array.isArray(window.MENSLAB_QUIZZES) ? window.MENSLAB_QUIZZES : []).map(quiz => ({
+      id:quiz.id,
+      href:`quizkast.html?quiz=${encodeURIComponent(quiz.id)}`,
+      title:quiz.title,
+      category:String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
+      duration:typeof quiz.duration === 'string' ? quiz.duration : (quiz.questions?.length > 8 ? 'ongeveer 6 minuten' : 'ongeveer 3 minuten'),
+      search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
+    }));
+    items.push({
+      id:'diepte-ja', href:'dieptequiz-ja.html', category:'Dieptequiz', duration:'ongeveer 8–10 minuten',
+      title:'Een ja is geen type. Wat beslist er allemaal mee?',
+      search:'ja keuze context motivatie grenzen verantwoordelijkheid dieptequiz'
+    });
+    if (category.options.length === 1) {
+      [...new Set(items.map(item => item.category))].sort((a, b) => a.localeCompare(b, 'nl')).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        category.append(option);
+      });
+    }
+    const normalize = value => String(value || '').toLocaleLowerCase('nl').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+    const query = normalize(search.value.trim());
+    const filtered = items.filter(item => (!category.value || item.category === category.value) && (!query || normalize(item.search).includes(query)));
+    const visible = quizLibraryExpanded ? filtered : filtered.slice(0, 6);
+    const count = document.querySelector('[data-quiz-library-count]');
+    const more = document.querySelector('[data-quiz-library-more]');
+    const empty = document.querySelector('[data-quiz-library-empty]');
+    if (count) count.textContent = `${filtered.length} ${filtered.length === 1 ? 'quiz' : 'quizzen'} gevonden`;
+    if (more) {
+      more.hidden = filtered.length <= 6;
+      more.textContent = quizLibraryExpanded ? 'Toon minder' : `Toon alle ${filtered.length}`;
+    }
+    if (empty) empty.hidden = filtered.length > 0;
+    results.replaceChildren(...visible.map(item => {
+      const link = document.createElement('a');
+      link.href = item.href;
+      const shelf = document.createElement('span');
+      shelf.textContent = item.category;
+      const title = document.createElement('strong');
+      title.textContent = item.title;
+      const time = document.createElement('small');
+      time.textContent = `${item.duration} →`;
+      link.append(shelf, title, time);
+      return link;
+    }));
+  }
+
+  document.querySelector('[data-quiz-library-search]')?.addEventListener('input', () => {
+    quizLibraryExpanded = false;
+    renderQuizLibrary();
+  });
+  document.querySelector('[data-quiz-library-category]')?.addEventListener('change', () => {
+    quizLibraryExpanded = false;
+    renderQuizLibrary();
+  });
+  document.querySelector('[data-quiz-library-more]')?.addEventListener('click', () => {
+    quizLibraryExpanded = !quizLibraryExpanded;
+    renderQuizLibrary();
+  });
+
+  function renderToday() {
+    const portal = document.querySelector('[data-today-link]');
+    if (!portal) return;
+    const done = state.checks.filter(Boolean).length;
+    const hasActiveWeek = done > 0 || Boolean(state.note) || Boolean(state.carryForward);
+    const dailyDraft = state.drafts.daily?.key === dailyKey ? state.drafts.daily : null;
+    const hasDailyDraft = Boolean(dailyDraft?.expectation || dailyDraft?.observation);
+    if (!['quick', 'question', 'week'].includes(todayMode)) todayMode = hasActiveWeek ? 'week' : 'quick';
+    const choices = {
+      quick: {
+        href:'#dagproef', kicker:'2 minuten', label:hasDailyDraft ? 'Je dagproef staat nog open' : 'Proef van vandaag', title:dailyExperiment.title,
+        copy:hasDailyDraft
+          ? dailyDraft.observation ? 'Je observatie staat klaar. Bewaar ze wanneer dat goed voelt.' : 'Je verwachting staat klaar. Probeer alleen wanneer er genoeg ruimte is.'
+          : dailyExperiment.prompt,
+        action:hasDailyDraft ? 'Ga verder met je proef' : 'Begin met deze proef'
+      },
+      question: {
+        href:'#quizkast', kicker:'2–10 minuten', label:'Eén vraag, geen volledig programma', title:'Welke vraag trekt vandaag?',
+        copy:'Zoek in de quizbibliotheek en open alleen de vraag die nu nieuwsgierig maakt. Een uitslag is geen oordeel.', action:'Snuffel tussen de quizzen'
+      },
+      week: {
+        href:'#weeklab', kicker:'7 losse haltes', label:hasActiveWeek ? 'Je week loopt al' : 'Een spoor door de week',
+        title:hasActiveWeek ? `${done} van 7 bewegingen onderweg` : 'Een week mentale rekbaarheid',
+        copy:hasActiveWeek ? 'Ga verder bij de eerstvolgende beweging die haalbaar voelt. De week hoeft niet volledig te zijn.' : 'Zeven uitnodigingen verspreid over de tijd. Geen streak, geen achterstand en geen perfecte dagen.',
+        action:hasActiveWeek ? 'Ga verder met je week' : 'Bekijk de zeven haltes'
+      }
+    };
+    const choice = choices[todayMode];
+    portal.href = choice.href;
+    document.querySelector('[data-today-kicker]').textContent = choice.kicker;
+    document.querySelector('[data-today-label]').textContent = choice.label;
+    document.querySelector('[data-today-title]').textContent = choice.title;
+    document.querySelector('[data-today-copy]').textContent = choice.copy;
+    document.querySelector('[data-today-action]').firstChild.textContent = `${choice.action} `;
+    document.querySelector('[data-today-date]').textContent = new Intl.DateTimeFormat('nl-BE', { weekday:'long', day:'numeric', month:'long' }).format(today);
+    const latest = state.labSnapshots[0];
+    const savedToday = latest?.savedAt && new Date(latest.savedAt).toDateString() === today.toDateString();
+    document.querySelector('[data-today-status]').textContent = savedToday
+      ? 'Vandaag bewaarde je al iets. Je mag hier ook gewoon stoppen.'
+      : hasActiveWeek && todayMode !== 'week'
+        ? `Er loopt ook een weekspoor: ${done} van 7 bewegingen.`
+        : hasDailyDraft && todayMode !== 'quick'
+          ? 'Je dagproef staat nog open en blijft lokaal voor je klaarstaan.'
+          : 'Niets moet af. Eén kleine beweging is genoeg.';
+    document.querySelectorAll('[data-today-mode]').forEach(button => button.setAttribute('aria-pressed', String(button.dataset.todayMode === todayMode)));
+  }
+
+  document.querySelectorAll('[data-today-mode]').forEach(button => {
+    button.addEventListener('click', () => {
+      todayMode = button.dataset.todayMode;
+      renderToday();
+    });
+  });
+
   function renderProgress() {
     const done = state.checks.filter(Boolean).length;
     const weeks = state.completedWeeks.length;
@@ -546,21 +667,9 @@
 
     const hasActiveWeek = done > 0 || Boolean(state.note) || Boolean(state.carryForward);
     const hasProgress = hasActiveWeek || weeks > 0 || state.quizSnapshots.length > 0 || state.labSnapshots.length > 0;
-    resume.hidden = !hasProgress;
     const youTrack = document.querySelector('[data-you-track]');
     if (youTrack) youTrack.hidden = !hasProgress;
-    if (hasProgress) {
-      const resumeText = document.querySelector('[data-resume-text]');
-      const resumeAction = document.querySelector('[data-resume-action]');
-      if (done > 0) resumeText.textContent = `Je hebt ${done} van de ${checks.length} kleine bewegingen geprobeerd.`;
-      else if (state.carryForward) resumeText.textContent = 'Er ligt iets uit je vorige week voor je klaar.';
-      else if (state.note) resumeText.textContent = 'Je notitie voor deze week staat hier nog klaar.';
-      else if (state.labSnapshots.length) resumeText.textContent = 'Er staat een proefnotitie in Mijn spoor.';
-      else if (state.quizSnapshots.length) resumeText.textContent = 'Er staat een quizspiegel in Mijn spoor.';
-      else resumeText.textContent = `Je hebt al ${weeks} bewaarde ${weeks === 1 ? 'week' : 'weken'} in Mijn spoor.`;
-      resume.href = hasActiveWeek ? '#weeklab' : '#mijn-spoor';
-      resumeAction.textContent = hasActiveWeek ? 'Ga verder met je week →' : 'Bekijk Mijn spoor →';
-    }
+    renderToday();
     renderHistory();
     renderLabSnapshots();
     renderQuizSnapshots();
@@ -753,7 +862,7 @@
   const dayOfYear = Math.floor((today - startOfYear) / 86400000);
   const dailyExperiment = dailyExperiments[dayOfYear % dailyExperiments.length];
   const dailyKey = `${today.toISOString().slice(0, 10)}:${dailyExperiment.title}`;
-  document.querySelector('[data-daily-number]').textContent = `Proef ${String(dayOfYear).padStart(3, '0')}`;
+  document.querySelector('[data-daily-number]').textContent = `Vandaag · ${new Intl.DateTimeFormat('nl-BE', { day:'numeric', month:'long' }).format(today)}`;
   document.querySelector('[data-daily-title]').textContent = dailyExperiment.title;
   document.querySelector('[data-daily-prompt]').textContent = dailyExperiment.prompt;
   document.querySelector('[data-daily-expectation-question]').textContent = dailyExperiment.expectationQuestion;
@@ -789,6 +898,7 @@
     }
     state.drafts.daily = { key:dailyKey, expectation:expectation.slice(0, 280), observation:'' };
     saveProgress();
+    renderToday();
     document.querySelector('[data-daily-plan]').hidden = true;
     document.querySelector('[data-daily-pause]').hidden = false;
     status.textContent = 'Je verwachting staat lokaal klaar voor wanneer je terugkomt.';
@@ -816,6 +926,7 @@
     document.querySelector('[data-daily-pause]').hidden = true;
     document.querySelector('[data-daily-plan]').hidden = false;
     saveProgress();
+    renderToday();
     status.textContent = 'Bewaard in Mijn spoor op dit apparaat.';
   });
 
@@ -933,5 +1044,6 @@
     });
   });
 
+  renderQuizLibrary();
   syncControls();
 })();
