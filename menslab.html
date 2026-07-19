@@ -6,10 +6,10 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=21">
+  <link rel="stylesheet" href="css/menslab.css?v=22">
   <script src="js/site-shell.js?v=17" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
-  <script src="js/menslab.js?v=17" defer></script>
+  <script src="js/menslab.js?v=18" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -20,31 +20,42 @@
           <p class="eyebrow">Van inzicht naar beweging</p>
           <h1>Welkom in het Menslab.</h1>
           <p>Een plek om niet alleen óver verandering te lezen, maar iets kleins te proberen, te voelen en opnieuw te bekijken.</p>
-          <div class="lab-actions"><a class="lab-button" href="#dagproef">Doe de proef van vandaag</a><a class="lab-link" href="#lab-kiezer">Kies op tijd ↓</a></div>
+          <div class="lab-actions"><a class="lab-button" href="#vandaag">Vandaag in het lab</a><a class="lab-link" href="#mijn-spoor">Mijn spoor ↓</a></div>
         </div>
-        <nav class="lab-orbit" aria-label="Kies tussen denken, voelen, doen en jij">
-          <a class="lab-orbit__think" href="denkstukken.html">denken</a>
-          <a class="lab-orbit__feel" href="#reflectie">voelen</a>
-          <a class="lab-orbit__do" href="#experimenten">doen</a>
-          <a class="lab-orbit__you" href="#jij">jij</a>
-        </nav>
+        <div class="lab-orbit" aria-hidden="true">
+          <span class="lab-orbit__think">denken</span>
+          <span class="lab-orbit__feel">voelen</span>
+          <span class="lab-orbit__do">doen</span>
+          <span class="lab-orbit__you">jij</span>
+        </div>
       </div>
     </section>
 
-    <a class="progress-resume" href="#mijn-spoor" data-progress-resume hidden><span>Welkom terug</span><strong data-resume-text></strong><small data-resume-action>Ga verder →</small></a>
-
-    <section class="personal-profile-entry" data-personal-profile hidden aria-labelledby="personal-profile-entry-title">
-      <img data-personal-profile-image src="" alt="">
-      <div><p class="eyebrow">Jouw plek in de ontdekwereld</p><h2 id="personal-profile-entry-title" data-personal-profile-name></h2><strong data-personal-profile-beast></strong><p data-personal-profile-intro></p></div>
-      <div><a href="mijn-profiel.html#volgende-deur">Open mijn volgende deur →</a><a href="dierenquiz.html?profiel=wijzigen">Wijzig mijn profiel</a></div>
+    <section class="today-lab" id="vandaag" aria-labelledby="today-lab-title">
+      <header class="today-lab__head">
+        <div><p class="eyebrow">Vandaag in het lab</p><h2 id="today-lab-title">Eén ding tegelijk.</h2></div>
+        <div><time data-today-date></time><p>Je hoeft hier niets af te werken. Kies alleen hoeveel ruimte er vandaag werkelijk is.</p></div>
+      </header>
+      <div class="today-lab__modes" role="group" aria-label="Hoeveel ruimte heb je vandaag?">
+        <button type="button" data-today-mode="quick" aria-pressed="true"><span>02</span><strong>minuten</strong><small>Iets proberen</small></button>
+        <button type="button" data-today-mode="question" aria-pressed="false"><span>10</span><strong>minuten</strong><small>Een vraag volgen</small></button>
+        <button type="button" data-today-mode="week" aria-pressed="false"><span>07</span><strong>dagen</strong><small>Een spoor laten groeien</small></button>
+      </div>
+      <a class="today-lab__portal" href="#dagproef" data-today-link>
+        <span data-today-kicker>Een kleine proef</span>
+        <div><small data-today-label>Proef van vandaag</small><h3 data-today-title>De kleine omweg</h3><p data-today-copy>Eén verwachting, één observatie en verder niets dat moet.</p></div>
+        <strong data-today-action>Begin hier <span aria-hidden="true">→</span></strong>
+      </a>
+      <footer class="today-lab__foot">
+        <p data-today-status aria-live="polite">Eén kleine beweging is genoeg.</p>
+        <div><a href="#speelhallen">Liever spelen?</a><a href="#mijn-spoor">Open Mijn spoor</a></div>
+      </footer>
+      <div class="today-lab__profile" data-personal-profile hidden>
+        <img data-personal-profile-image src="" alt="">
+        <div><span>Jouw persoonlijke ingang</span><strong data-personal-profile-name></strong><small data-personal-profile-beast></small><p data-personal-profile-intro></p></div>
+        <a href="mijn-profiel.html#volgende-deur">Open mijn volgende deur →</a>
+      </div>
     </section>
-
-    <nav class="lab-clouds" id="lab-kiezer" aria-label="Kies je ingang in het Menslab">
-      <p>Hoeveel ruimte heb je vandaag?</p>
-      <a href="#dagproef"><span>2 minuten</span><strong>Iets kleins proberen</strong><small>zonder prestatiedruk</small></a>
-      <a href="#quizkast"><span>10 minuten</span><strong>Een vraag onderzoeken</strong><small>kort, diep of speels</small></a>
-      <a href="#weeklab"><span>7 dagen</span><strong>Een spoor volgen</strong><small>zeven losse haltes</small></a>
-    </nav>
 
     <section class="daily-lab" id="dagproef" aria-labelledby="daily-lab-title">
       <header class="daily-lab__head">
