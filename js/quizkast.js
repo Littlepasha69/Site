@@ -30,7 +30,7 @@
   const visualThemes = {
     'beweging-vandaag': {
       symbol: '↗',
-      note: 'Geen vragenlijst: jij verdeelt zelf waar de meeste beweging nodig is.',
+      note: 'Geen vragenlijst: jij verdeelt zelf welke concrete richting vandaag aandacht krijgt.',
       confirmations: []
     },
     'luisteren-of-repareren': {
@@ -61,6 +61,71 @@
   let reflection = '';
   let selectedResultId = '';
   let resultSaved = false;
+
+  const allQuizToggle = document.querySelector('[data-show-all-quizzes]');
+  const allQuizLibrary = document.querySelector('[data-all-quiz-library]');
+  const allQuizSearch = document.querySelector('[data-all-quiz-search]');
+  const allQuizCategory = document.querySelector('[data-all-quiz-category]');
+
+  function allQuizItems() {
+    const quick = quizzes.map(quiz => ({
+      href:`quizkast.html?quiz=${encodeURIComponent(quiz.id)}`,
+      title:quiz.title,
+      category:String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
+      duration:quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
+    }));
+    return quick.concat([
+      { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', category:'Dieptequiz', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
+      { href:'dierenquiz.html', title:'De Grote Beestenquiz', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype' }
+    ]);
+  }
+
+  function normalizeQuizText(value) {
+    return String(value || '').toLocaleLowerCase('nl').normalize('NFD').replace(/[\u0300-\u036f]/g, '');
+  }
+
+  function renderAllQuizzes() {
+    if (!allQuizLibrary || !allQuizSearch || !allQuizCategory) return;
+    const items = allQuizItems();
+    if (allQuizCategory.options.length === 1) {
+      [...new Set(items.map(item => item.category))].sort((a, b) => a.localeCompare(b, 'nl')).forEach(name => {
+        const option = document.createElement('option');
+        option.value = name;
+        option.textContent = name;
+        allQuizCategory.append(option);
+      });
+    }
+    const query = normalizeQuizText(allQuizSearch.value.trim());
+    const filtered = items.filter(item => (!allQuizCategory.value || item.category === allQuizCategory.value) && (!query || normalizeQuizText(`${item.title} ${item.category} ${item.search}`).includes(query)));
+    document.querySelector('[data-all-quiz-count]').textContent = `${filtered.length} ${filtered.length === 1 ? 'quiz' : 'quizzen'}`;
+    document.querySelector('[data-all-quiz-empty]').hidden = filtered.length > 0;
+    document.querySelector('[data-all-quiz-results]').replaceChildren(...filtered.map(item => {
+      const link = document.createElement('a');
+      link.href = item.href;
+      const category = document.createElement('span');
+      category.textContent = item.category;
+      const title = document.createElement('strong');
+      title.textContent = item.title;
+      const duration = document.createElement('small');
+      duration.textContent = `${item.duration} →`;
+      link.append(category, title, duration);
+      return link;
+    }));
+  }
+
+  allQuizToggle?.addEventListener('click', () => {
+    const willOpen = allQuizLibrary.hidden;
+    allQuizLibrary.hidden = !willOpen;
+    allQuizToggle.setAttribute('aria-expanded', String(willOpen));
+    allQuizToggle.textContent = willOpen ? 'Verberg alle quizzen ↑' : 'Bekijk alle quizzen en filter →';
+    if (willOpen) {
+      renderAllQuizzes();
+      allQuizSearch.focus();
+    }
+  });
+  allQuizSearch?.addEventListener('input', renderAllQuizzes);
+  allQuizCategory?.addEventListener('change', renderAllQuizzes);
 
   function readQuizProgress() {
     try { return JSON.parse(localStorage.getItem(quizProgressKey) || 'null'); }

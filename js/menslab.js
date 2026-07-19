@@ -33,13 +33,13 @@
     'Welke kleine verandering zou jouw dagelijks leven één procent lichter maken?'
   ];
   const dailyExperiments = [
-    { title:'De kleine omweg', prompt:'Doe één gewone handeling bewust in een andere volgorde. Merk op wanneer je automatische piloot het stuur probeert terug te pakken.', expectationQuestion:'Waar verwacht je dat je automatische piloot zich als eerste laat voelen?', expectationPlaceholder:'Denk aan haast, irritatie, twijfel of de neiging om toch de oude volgorde te nemen.', observationQuestion:'Waar nam de gewoonte het bijna over — en wat vertelde dat?', observationPlaceholder:'Beschrijf één concreet moment waarop je lichaam of aandacht al vooruitliep.' },
-    { title:'Tien seconden ruimte', prompt:'Wacht bij één niet-dringend bericht tien seconden voordat je antwoordt. Merk op wat je in die korte ruimte allemaal al wilde doen.', expectationQuestion:'Wat denk je dat die tien seconden in jou zullen oproepen?', expectationPlaceholder:'Verwacht je onrust, opluchting, schuldgevoel, haast of iets anders?', observationQuestion:'Wat gebeurde er werkelijk in de ruimte vóór je antwoord?', observationPlaceholder:'Welke impuls kwam eerst, wat veranderde en wat bleef even sterk?' },
-    { title:'Kijken zonder functie', prompt:'Kies een alledaags voorwerp en beschrijf het één minuut zonder te zeggen waarvoor het dient. Wat wordt zichtbaar wanneer nut even niet meedoet?', expectationQuestion:'Wat verwacht je moeilijk te vinden wanneer je even niet over nut mag spreken?', expectationPlaceholder:'Waar denk je dat je aandacht automatisch naartoe zal gaan?', observationQuestion:'Wat werd zichtbaar toen het voorwerp even niets hoefde te betekenen?', observationPlaceholder:'Noem een detail, associatie of ongemak dat je vooraf niet verwachtte.' },
-    { title:'De voorspelde gedachte', prompt:'Voorspel welke gedachte over vijf seconden zal opkomen. Wacht en vergelijk. Je voorspelling hoeft nergens goed in te zijn.', expectationQuestion:'Hoe voorspelbaar denk je dat je volgende gedachte werkelijk is?', expectationPlaceholder:'Wat verwacht je dat opkomt — en waarom juist dat?', observationQuestion:'Wat zegt het verschil tussen je voorspelling en je gedachte?', observationPlaceholder:'Was de gedachte verwacht, verwant, verrassend of moeilijk vast te pakken?' },
-    { title:'Eerst de vraag', prompt:'Vraag in één veilig gesprek of de ander wil dat je luistert, vragen stelt of meedenkt. Merk op wat die afstemming verandert.', expectationQuestion:'Wat hoop of vrees je dat er tussen jullie verandert wanneer je niet meteen invult wat de ander nodig heeft?', expectationPlaceholder:'Denk aan nabijheid, ongemak, duidelijkheid, afwijzing of jouw behoefte om nuttig te zijn.', observationQuestion:'Nadat je het werkelijk vroeg: wat merkte je bij de ander, in de sfeer en in jezelf?', observationPlaceholder:'Beschrijf wat je waarnam. Ook geen merkbaar verschil is informatie.' },
-    { title:'Een andere route', prompt:'Neem bij één kleine, vertrouwde verplaatsing een andere route. Wat merk je op zodra gewoonte minder kan overnemen?', expectationQuestion:'Wat verwacht je dat een onbekendere route met je aandacht of tempo doet?', expectationPlaceholder:'Denk je dat je alerter, onrustiger, trager of juist nieuwsgieriger wordt?', observationQuestion:'Wat merkte je op toen de bekende route je niet meer droeg?', observationPlaceholder:'Wat veranderde in je aandacht, lichaam, tijdsgevoel of omgeving?' },
-    { title:'De vriendelijkste tegenspraak', prompt:'Kies een lichte mening van jezelf en formuleer de sterkste redelijke tegenstem. Je hoeft daarna niet van mening te veranderen.', expectationQuestion:'Wat verwacht je dat er in jou gebeurt wanneer je jouw eigen gelijk serieus tegenspreekt?', expectationPlaceholder:'Verwacht je weerstand, nieuwsgierigheid, twijfel of de neiging jezelf te verdedigen?', observationQuestion:'Waar werd je standpunt ruimer — en waar bleef het zich verdedigen?', observationPlaceholder:'Welke tegenstem raakte iets, en welke voelde nog steeds onredelijk?' }
+    { title:'Vind de trekker', prompt:'Onderzoek één gewoonte die je vandaag werkelijk wilt onderbreken. Niet met wilskracht, maar door de situatie vlak vóór de automatische reactie te veranderen.', aim:'de prikkel vóór automatisch gedrag herkennen en één contextdetail aanpassen.', steps:['Kies één lichte, terugkerende reactie.','Benoem waar, wanneer of na welke prikkel ze meestal begint.','Verander vóór één volgend moment één zichtbaar contextdetail en probeer je alternatief eenmaal.'], mechanism:'Gewoonten worden mede opgeroepen door terugkerende contextprikkels. Onderzoek laat zien dat een contextverandering gewoon gedrag kan verstoren en zo tijdelijk meer ruimte voor een bewuste keuze kan geven.', boundary:'Dit is geen bewijs dat één omweg een gewoonte verandert. Herhaling, haalbaarheid en omstandigheden blijven bepalend.', sources:[['Wood, Tam & Guerrero Witt (2005) — context en gewoonte','https://pubmed.ncbi.nlm.nih.gov/15982113/']], expectationQuestion:'Welke concrete prikkel verwacht je vlak vóór je automatische reactie?', expectationPlaceholder:'Bijvoorbeeld: zodra ik mijn laptop sluit, grijp ik zonder nadenken naar mijn telefoon.', observationQuestion:'Wat gebeurde er toen je precies die situatie één keer veranderde?', observationPlaceholder:'Noteer gedrag: wat was de prikkel, wat deed je en waar nam de oude route het over?', nextQuestion:'Welke contextverandering test je bij de volgende herhaling?', nextPlaceholder:'Bijvoorbeeld: als ik mijn laptop sluit, leg ik mijn telefoon eerst buiten handbereik.' },
+    { title:'Tien seconden ruimte', prompt:'Bouw bij één niet-dringend bericht een korte pauze in tussen impuls en antwoord. Gebruik die pauze om te kiezen, niet om het perfecte antwoord te vinden.', aim:'een kritieke situatie vooraf koppelen aan een kleine, gekozen reactie.', steps:['Kies één soort niet-dringend bericht.','Maak je plan: “Als ik de drang voel meteen te antwoorden, dan leg ik mijn hand tien seconden naast mijn telefoon.”','Voer het plan eenmaal uit en kies daarna bewust: antwoorden, later antwoorden of niets doen.'], mechanism:'Als-danplannen koppelen een herkenbare situatie aan vooraf gekozen gedrag. Meta-analyses vinden gemiddeld betere doelrealisatie, al verschillen de effecten per doel, persoon en context.', boundary:'Tien seconden is hier een praktische proefduur, geen wetenschappelijk bewezen magisch getal en geen behandeling voor impulsiviteit.', sources:[['Gollwitzer & Sheeran (2006) — meta-analyse als-danplannen','https://www.socmot.uni-konstanz.de/publications/implementation-intentions-and-goal-achievement-meta-analysis-effects-and-processes']], expectationQuestion:'Wat verwacht je dat de pauze bij dit specifieke bericht oproept?', expectationPlaceholder:'Noem de situatie en je vermoedelijke eerste impuls.', observationQuestion:'Heb je de afgesproken pauze uitgevoerd, en welke keuze volgde erop?', observationPlaceholder:'Beschrijf wat je deed; rustiger voelen is geen vereiste.', nextQuestion:'Wil je hetzelfde plan behouden, kleiner maken of aanpassen?', nextPlaceholder:'Schrijf één aangepaste als-danzin.' },
+    { title:'De eerste twee minuten', prompt:'Kies iets nuttigs dat je uitstelt en voer alleen de kleinste zichtbare start uit. De opdracht is beginnen, niet afwerken.', aim:'de afstand tussen bedoeling en eerste waarneembare handeling verkleinen.', steps:['Kies één taak die licht en veilig genoeg is.','Maak de start zo klein dat ze binnen ongeveer twee minuten past.','Bepaal waar en wanneer je die start vandaag uitvoert — en doe alleen dat eerste stukje.'], mechanism:'Concreet plannen wanneer, waar en hoe je begint, helpt bedoelingen vaker in gedrag om te zetten. De limiet van twee minuten is een ontwerpkeuze om de proef klein te houden.', boundary:'Een kleine start lost geen uitputting, depressie, onveiligheid of structurele overbelasting op. Stop als de taak niet licht of veilig is.', sources:[['Gollwitzer & Sheeran (2006) — planning en doelrealisatie','https://www.socmot.uni-konstanz.de/publications/implementation-intentions-and-goal-achievement-meta-analysis-effects-and-processes']], expectationQuestion:'Welke kleinste zichtbare start ga je waar en wanneer uitvoeren?', expectationPlaceholder:'Bijvoorbeeld: na de lunch open ik het document en schrijf ik alleen de titel.', observationQuestion:'Begon je op het gekozen moment? Wat hielp of blokkeerde de eerste handeling?', observationPlaceholder:'Noteer uitvoering en obstakel, niet je karakteroordeel.', nextQuestion:'Wat is de eerstvolgende even kleine stap?', nextPlaceholder:'Eén werkwoord en één concreet moment zijn genoeg.' },
+    { title:'De als-danbrug', prompt:'Vertaal één vaag voornemen naar een herkenbaar moment en één uitvoerbare reactie. Test de zin vandaag eenmaal in het echt.', aim:'vooraf beslissen wat je doet wanneer een kans of hindernis verschijnt.', steps:['Kies iets wat je al wílt doen; deze proef maakt geen motivatie uit het niets.','Schrijf: “Als [concrete situatie], dan [klein gedrag].”','Zorg dat de situatie vandaag kan voorkomen en test het plan eenmaal.'], mechanism:'Implementatie-intenties zijn als-danplannen die een kritieke situatie aan doelgericht gedrag koppelen. Het gemiddelde effect is positief, maar een plan werkt niet automatisch wanneer het doel onduidelijk, onhaalbaar of niet echt gewenst is.', boundary:'Een zin is geen garantie. Zie mislukken als informatie over de prikkel, de stapgrootte of de omstandigheden.', sources:[['Gollwitzer & Sheeran (2006) — meta-analyse als-danplannen','https://www.socmot.uni-konstanz.de/publications/implementation-intentions-and-goal-achievement-meta-analysis-effects-and-processes']], expectationQuestion:'Welke exacte als-danzin ga je vandaag testen?', expectationPlaceholder:'Als … gebeurt, dan doe ik …', observationQuestion:'Verscheen de gekozen situatie, en volgde het geplande gedrag?', observationPlaceholder:'Ja, deels, nee of de situatie kwam niet — met één concrete toelichting.', nextQuestion:'Welke aanpassing maakt je volgende test realistischer?', nextPlaceholder:'Verfijn de prikkel of maak het gedrag kleiner.' },
+    { title:'Eerst de vraag', prompt:'Vraag in één veilig gesprek of de ander wil dat je luistert, vragen stelt of meedenkt. Volg het antwoord vijf minuten zonder van rol te wisselen.', aim:'steun afstemmen op wat de ander op dit moment als helpend aangeeft.', steps:['Kies een licht en veilig gesprek; niet een crisis of conflict met dwang.','Vraag: “Wil je dat ik luister, vragen stel of meedenk?”','Doe vijf minuten alleen wat de ander koos en vraag daarna of dat inderdaad hielp.'], mechanism:'Relatieonderzoek verbindt ervaren responsiviteit — zich begrepen, gewaardeerd en verzorgd voelen — met betere relationele uitkomsten. Deze precieze driekeuzezin is een praktische vertaling, niet zelf als interventie bewezen.', boundary:'Niet iedere ander weet of zegt wat die nodig heeft. Bij onveiligheid, controle of geweld is beter afstemmen geen passende oplossing en ligt de verantwoordelijkheid niet gelijk.', sources:[['Pauw et al. (2021) — responsiviteit in steuninteracties','https://pubmed.ncbi.nlm.nih.gov/33746855/'],['Selçuk et al. (2017) — responsiviteit en welzijn over tijd','https://pubmed.ncbi.nlm.nih.gov/28592909/']], expectationQuestion:'Wat hoop of vrees je dat er tussen jullie gebeurt wanneer je niet meteen invult wat de ander nodig heeft?', expectationPlaceholder:'Denk aan nabijheid, ongemak, duidelijkheid, afwijzing of jouw behoefte om nuttig te zijn.', observationQuestion:'Nadat je het werkelijk vroeg en vijf minuten probeerde: wat merkte je bij de ander, in de sfeer en in jezelf?', observationPlaceholder:'Beschrijf wat je waarnam. Ook geen merkbaar verschil is informatie.', nextQuestion:'Wat wil je in een volgend veilig gesprek herhalen of anders vragen?', nextPlaceholder:'Bijvoorbeeld: ik check na vijf minuten opnieuw in plaats van te blijven aannemen.' },
+    { title:'Leg de weg vrij', prompt:'Verander één ding in je omgeving zodat gewenst gedrag makkelijker begint of ongewenst automatisch gedrag één extra stap vraagt.', aim:'de omgeving laten meewerken in plaats van alles aan wilskracht over te laten.', steps:['Kies één klein gedrag dat je al wilt uitvoeren.','Leg één voorwerp, herinnering of hulpmiddel klaar — of maak de oude route één stap minder direct.','Test vandaag of die verandering je eerste handeling werkelijk beïnvloedt.'], mechanism:'Gedragswetenschap beschrijft prikkels en herinrichting van de fysieke omgeving als afzonderlijke gedragstechnieken. Contextonderzoek laat bovendien zien dat stabiele prikkels gewoonten mee oproepen.', boundary:'De techniekencatalogus benoemt onderdelen, maar bewijst niet dat elke omgevingsaanpassing voor elk doel effectief is. Daarom test je gedrag, niet alleen een goed gevoel over je plan.', sources:[['Michie et al. (2008) — taxonomie gedragstechnieken','https://pubmed.ncbi.nlm.nih.gov/18624603/'],['Wood et al. (2005) — contextprikkels en gewoonte','https://pubmed.ncbi.nlm.nih.gov/15982113/']], expectationQuestion:'Welke omgevingsverandering verwacht je dat één gedrag makkelijker of minder automatisch maakt?', expectationPlaceholder:'Noem het voorwerp of de prikkel én het gedrag dat erop moet volgen.', observationQuestion:'Veranderde de omgeving je feitelijke eerste handeling?', observationPlaceholder:'Wat lag of stond anders, en wat deed je vervolgens werkelijk?', nextQuestion:'Wat laat je liggen, verplaats je of verwijder je voor de volgende test?', nextPlaceholder:'Kies één concrete aanpassing, geen volledige make-over.' },
+    { title:'Kijk, leer, stel bij', prompt:'Doe één concrete actie die belangrijk voor je is, leg de uitvoering vast en pas daarna pas je volgende poging aan.', aim:'voortgang zichtbaar maken zonder van één resultaat een oordeel over jezelf te maken.', steps:['Kies één uitvoerbaar gedrag en voorspel of je het vandaag doet.','Voer het uit of merk eerlijk op dat het niet gebeurde.','Noteer één feit over de uitvoering en verander daarmee je volgende poging.'], mechanism:'Een meta-analyse van 138 experimentele studies vond dat interventies die voortgangsmonitoring verhogen gemiddeld ook doelrealisatie verbeteren; effecten waren groter wanneer uitkomsten fysiek werden vastgelegd.', boundary:'Meten helpt niet elk doel en kan bij sommige mensen druk of fixatie vergroten. Kies geen oefening rond eten, gewicht of dwang als registreren je klachten versterkt.', sources:[['Harkin et al. (2016) — meta-analyse voortgangsmonitoring','https://pubmed.ncbi.nlm.nih.gov/26479070/']], expectationQuestion:'Welk zichtbaar gedrag ga je vandaag wel of niet uitvoeren, en wanneer?', expectationPlaceholder:'Formuleer iets dat achteraf waarneembaar is.', observationQuestion:'Wat gebeurde er feitelijk — zonder verklaring of zelfoordeel?', observationPlaceholder:'Bijvoorbeeld: om 16.00 uur opende ik het bestand; ik werkte vier minuten.', nextQuestion:'Welke ene aanpassing test je de volgende keer?', nextPlaceholder:'Behoud wat hielp; wijzig één obstakel.' }
   ];
   const labKindLabels = { daily:'Proef van vandaag', brain:'Breinpret', together:'Jij & ik', reflection:'Reflectievraag', beast:'Beestenquiz', route:'Veranderroute' };
   const quizFitLabels = { raakt:'Raakt iets', deels:'Klopt gedeeltelijk', mist:'Mist iets belangrijks' };
@@ -61,7 +61,7 @@
       labSnapshots: [],
       drafts: {
         nextIntention: '',
-        daily: { key:'', expectation:'', observation:'' },
+        daily: { key:'', expectation:'', observation:'', nextAction:'', stage:'writing' },
         reflection: { index:0, note:'' },
         amusements: { brain:{ prompt:'', observation:'' }, together:{ prompt:'', observation:'' } }
       }
@@ -134,6 +134,7 @@
         prompt: typeof item.prompt === 'string' ? item.prompt.slice(0, 500) : '',
         expectation: typeof item.expectation === 'string' ? item.expectation.slice(0, 280) : '',
         observation: typeof item.observation === 'string' ? item.observation.slice(0, 500) : '',
+        nextAction: typeof item.nextAction === 'string' ? item.nextAction.slice(0, 220) : '',
         savedAt: item.savedAt
       }));
     }
@@ -143,7 +144,9 @@
       if (drafts.daily && typeof drafts.daily === 'object') clean.drafts.daily = {
         key: typeof drafts.daily.key === 'string' ? drafts.daily.key.slice(0, 80) : '',
         expectation: typeof drafts.daily.expectation === 'string' ? drafts.daily.expectation.slice(0, 280) : '',
-        observation: typeof drafts.daily.observation === 'string' ? drafts.daily.observation.slice(0, 280) : ''
+        observation: typeof drafts.daily.observation === 'string' ? drafts.daily.observation.slice(0, 280) : '',
+        nextAction: typeof drafts.daily.nextAction === 'string' ? drafts.daily.nextAction.slice(0, 220) : '',
+        stage: ['writing', 'planned', 'observing'].includes(drafts.daily.stage) ? drafts.daily.stage : (drafts.daily.observation ? 'observing' : 'writing')
       };
       if (drafts.reflection && typeof drafts.reflection === 'object') clean.drafts.reflection = {
         index: Number.isInteger(drafts.reflection.index) ? Math.max(0, Math.min(questions.length - 1, drafts.reflection.index)) : 0,
@@ -326,6 +329,11 @@
         const observation = document.createElement('em');
         observation.textContent = `Observatie: ${item.observation}`;
         row.append(observation);
+      }
+      if (item.nextAction) {
+        const nextAction = document.createElement('em');
+        nextAction.textContent = `Volgende stap: ${item.nextAction}`;
+        row.append(nextAction);
       }
       const remove = document.createElement('button');
       remove.type = 'button';
@@ -865,26 +873,36 @@
   document.querySelector('[data-daily-number]').textContent = `Vandaag · ${new Intl.DateTimeFormat('nl-BE', { day:'numeric', month:'long' }).format(today)}`;
   document.querySelector('[data-daily-title]').textContent = dailyExperiment.title;
   document.querySelector('[data-daily-prompt]').textContent = dailyExperiment.prompt;
+  document.querySelector('[data-daily-aim]').textContent = dailyExperiment.aim;
+  document.querySelector('[data-daily-steps]').replaceChildren(...dailyExperiment.steps.map(step => { const item = document.createElement('li'); item.textContent = step; return item; }));
+  document.querySelector('[data-daily-mechanism]').textContent = dailyExperiment.mechanism;
+  document.querySelector('[data-daily-boundary]').textContent = dailyExperiment.boundary;
+  document.querySelector('[data-daily-sources]').replaceChildren(...dailyExperiment.sources.map(([label, href]) => { const link = document.createElement('a'); link.href = href; link.target = '_blank'; link.rel = 'noopener'; link.textContent = `${label} ↗`; return link; }));
   document.querySelector('[data-daily-expectation-question]').textContent = dailyExperiment.expectationQuestion;
   document.querySelector('[data-daily-expectation]').placeholder = dailyExperiment.expectationPlaceholder;
   document.querySelector('[data-daily-observation-question]').textContent = dailyExperiment.observationQuestion;
   document.querySelector('[data-daily-observation]').placeholder = dailyExperiment.observationPlaceholder;
+  document.querySelector('[data-daily-next-question]').textContent = dailyExperiment.nextQuestion;
+  document.querySelector('[data-daily-next]').placeholder = dailyExperiment.nextPlaceholder;
   if (state.drafts.daily.key === dailyKey) {
     document.querySelector('[data-daily-expectation]').value = state.drafts.daily.expectation;
     document.querySelector('[data-daily-observation]').value = state.drafts.daily.observation;
-    if (state.drafts.daily.observation) {
+    document.querySelector('[data-daily-next]').value = state.drafts.daily.nextAction;
+    if (state.drafts.daily.stage === 'observing') {
       document.querySelector('[data-daily-after]').hidden = false;
       document.querySelector('[data-daily-plan]').hidden = true;
-    } else if (state.drafts.daily.expectation) {
+    } else if (state.drafts.daily.stage === 'planned') {
       document.querySelector('[data-daily-plan]').hidden = true;
       document.querySelector('[data-daily-pause]').hidden = false;
     }
-  } else state.drafts.daily = { key:dailyKey, expectation:'', observation:'' };
-  ['[data-daily-expectation]', '[data-daily-observation]'].forEach(selector => document.querySelector(selector)?.addEventListener('input', () => {
+  } else state.drafts.daily = { key:dailyKey, expectation:'', observation:'', nextAction:'', stage:'writing' };
+  ['[data-daily-expectation]', '[data-daily-observation]', '[data-daily-next]'].forEach(selector => document.querySelector(selector)?.addEventListener('input', () => {
     state.drafts.daily = {
       key:dailyKey,
       expectation:document.querySelector('[data-daily-expectation]').value.slice(0, 280),
-      observation:document.querySelector('[data-daily-observation]').value.slice(0, 280)
+      observation:document.querySelector('[data-daily-observation]').value.slice(0, 280),
+      nextAction:document.querySelector('[data-daily-next]').value.slice(0, 220),
+      stage:state.drafts.daily.stage || 'writing'
     };
     autosave(document.querySelector('[data-daily-status]'));
   }));
@@ -896,7 +914,7 @@
       document.querySelector('[data-daily-expectation]').focus();
       return;
     }
-    state.drafts.daily = { key:dailyKey, expectation:expectation.slice(0, 280), observation:'' };
+    state.drafts.daily = { key:dailyKey, expectation:expectation.slice(0, 280), observation:'', nextAction:'', stage:'planned' };
     saveProgress();
     renderToday();
     document.querySelector('[data-daily-plan]').hidden = true;
@@ -907,21 +925,25 @@
     const after = document.querySelector('[data-daily-after]');
     after.hidden = false;
     document.querySelector('[data-daily-pause]').hidden = true;
+    state.drafts.daily.stage = 'observing';
+    saveProgress();
     document.querySelector('[data-daily-observation]').focus();
   });
   document.querySelector('[data-save-daily]')?.addEventListener('click', () => {
     const expectation = document.querySelector('[data-daily-expectation]').value.trim();
     const observation = document.querySelector('[data-daily-observation]').value.trim();
+    const nextAction = document.querySelector('[data-daily-next]').value.trim();
     const status = document.querySelector('[data-daily-status]');
     if (!observation) {
       status.textContent = 'Noteer eerst kort wat je werkelijk merkte.';
       document.querySelector('[data-daily-observation]').focus();
       return;
     }
-    addLabSnapshot({ kind:'daily', title:dailyExperiment.title, prompt:dailyExperiment.prompt, expectation, observation });
-    state.drafts.daily = { key:dailyKey, expectation:'', observation:'' };
+    addLabSnapshot({ kind:'daily', title:dailyExperiment.title, prompt:dailyExperiment.prompt, expectation, observation, nextAction });
+    state.drafts.daily = { key:dailyKey, expectation:'', observation:'', nextAction:'', stage:'writing' };
     document.querySelector('[data-daily-expectation]').value = '';
     document.querySelector('[data-daily-observation]').value = '';
+    document.querySelector('[data-daily-next]').value = '';
     document.querySelector('[data-daily-after]').hidden = true;
     document.querySelector('[data-daily-pause]').hidden = true;
     document.querySelector('[data-daily-plan]').hidden = false;

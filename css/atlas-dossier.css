@@ -19,6 +19,7 @@
 .dossier-hero--dopamine { background:radial-gradient(circle at 80% 14%,rgba(243,203,104,.3),transparent 21rem),radial-gradient(circle at 12% 86%,rgba(219,145,176,.23),transparent 27rem),linear-gradient(134deg,#21172f,#53304d 52%,#884c3f); }
 .dossier-hero--parkinson { background:radial-gradient(circle at 80% 14%,rgba(241,200,107,.27),transparent 21rem),radial-gradient(circle at 14% 86%,rgba(111,165,151,.23),transparent 27rem),linear-gradient(134deg,#082831,#164a46 52%,#50304a); }
 .dossier-hero--addiction { background:radial-gradient(circle at 80% 14%,rgba(240,198,107,.3),transparent 21rem),radial-gradient(circle at 12% 86%,rgba(113,181,157,.2),transparent 27rem),linear-gradient(134deg,#101d2b,#35243f 51%,#77463f); }
+.dossier-hero--choice { background:radial-gradient(circle at 80% 14%,rgba(240,198,107,.31),transparent 21rem),radial-gradient(circle at 10% 88%,rgba(108,181,157,.22),transparent 28rem),linear-gradient(134deg,#101a2a,#34233f 50%,#6d3c45); }
 .dossier-hero::after { content:'';position:absolute;right:-16rem;bottom:-20rem;width:36rem;height:36rem;border:1px solid rgba(255,255,255,.18);border-radius:50%;box-shadow:0 0 0 4rem rgba(255,255,255,.025),0 0 0 8rem rgba(255,255,255,.018); }
 .dossier-hero__inner { position:relative;z-index:1;width:min(1180px,100%);margin:auto; }
 .dossier-breadcrumb { margin-bottom:clamp(2rem,4vw,3.5rem);display:flex;flex-wrap:wrap;gap:.5rem;color:rgba(255,255,255,.62);font-size:.78rem;font-weight:650; }
@@ -29,7 +30,7 @@
 .dossier-area>span { width:3rem;height:3rem;display:grid;place-items:center;border-radius:.9rem;background:rgba(255,255,255,.12);color:#f0c66b;font-size:1.45rem;font-weight:800; }
 .dossier-area svg { width:1.55rem;height:1.55rem;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round; }
 .dossier-area div { display:grid;gap:.12rem; }.dossier-area small { color:rgba(255,255,255,.52);font-size:.65rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase; }.dossier-area strong { color:white;font:650 1rem var(--serif); }
-.dossier-hero h1 { max-width:850px;margin:.6rem 0 1rem;font:700 clamp(3.35rem,7vw,6rem)/.92 var(--serif);letter-spacing:-.055em; }
+.dossier-hero h1 { max-width:850px;margin:.6rem 0 1rem;font:700 clamp(3.35rem,7vw,6rem)/.92 var(--serif);letter-spacing:-.055em;overflow-wrap:break-word; }
 .dossier-question { max-width:760px;margin:0;color:rgba(255,255,255,.78);font:500 clamp(1.2rem,2.7vw,1.65rem)/1.45 var(--serif); }
 .dossier-status { padding:1.2rem;border:1px solid rgba(255,255,255,.18);border-radius:1.1rem;background:rgba(255,255,255,.07);backdrop-filter:blur(8px); }
 .evidence-badge { width:max-content;max-width:100%;padding:.38rem .62rem;display:inline-flex;align-items:center;gap:.35rem;border-radius:999px;font-size:.68rem;font-weight:800;letter-spacing:.04em;text-transform:uppercase; }
@@ -76,6 +77,8 @@
 .dossier-graphic--parkinson figcaption { background:#092a2f; }
 .dossier-graphic--addiction { background:#1a1d2d; }
 .dossier-graphic--addiction figcaption { background:#171a29; }
+.dossier-graphic--choice { background:#101a2a; }
+.dossier-graphic--choice figcaption { background:#121b29; }
 .dossier-graphic--trauma { background:#173b3d; }
 .dossier-graphic--trauma figcaption { background:#123234; }
 .dossier-graphic--dissociation { background:#132f3d; }
@@ -280,6 +283,30 @@
 .classic-limit article:last-child { background:#fff8e9;border-color:#e3cb95; }
 .classic-limit h3 { margin:0 0 .6rem;color:var(--ink);font:650 1.4rem/1.15 var(--serif); }
 .classic-limit p { margin:0;color:var(--muted);font-size:.87rem;line-height:1.62; }
+.choice-layers { margin-top:1.3rem;display:grid;grid-template-columns:repeat(3,1fr);gap:.75rem; }
+.choice-layers article { min-height:13rem;padding:1.3rem;display:flex;flex-direction:column;border:1px solid var(--line);border-radius:1rem;background:linear-gradient(155deg,#fff,#eef3ef); }
+.choice-layers span { color:var(--copper);font-size:.68rem;font-weight:850;letter-spacing:.1em;text-transform:uppercase; }
+.choice-layers h3 { margin:auto 0 .55rem;color:var(--ink);font:650 1.4rem/1.15 var(--serif); }
+.choice-layers p { margin:0;color:var(--muted);font-size:.86rem;line-height:1.6; }
+.time-horizon { margin:2rem 0;display:grid;grid-template-columns:1fr auto 1fr;gap:.75rem;align-items:stretch; }
+.time-horizon article { min-height:13rem;padding:1.4rem;display:flex;flex-direction:column;border:1px solid #c9d8d2;border-radius:1rem;background:linear-gradient(155deg,#fff,#edf4ef); }
+.time-horizon article:last-child { border-color:#dfc9d7;background:linear-gradient(155deg,#fff,#f5edf3); }
+.time-horizon>i { align-self:center;color:var(--copper);font-size:1.7rem;font-style:normal; }
+.time-horizon span { color:var(--copper);font-size:.68rem;font-weight:850;letter-spacing:.11em; }
+.time-horizon strong { margin:auto 0 .65rem;color:var(--ink);font:650 clamp(1.4rem,2.7vw,1.8rem)/1.1 var(--serif); }
+.time-horizon p { margin:0;color:var(--muted);font-size:.86rem;line-height:1.6; }
+.choice-environment { border-radius:1.2rem;background:linear-gradient(135deg,#172f35,#36263e 58%,#5d334e); }
+.myth-verdict { margin:2rem 0;padding:clamp(1.4rem,4vw,2rem);display:grid;grid-template-columns:auto 1fr;gap:.8rem 1.2rem;align-items:start;border:1px solid #dfc784;border-radius:1.1rem;background:#fff8e7; }
+.myth-verdict span { padding:.3rem .55rem;border-radius:999px;background:#153f3e;color:#f0c66b;font-size:.65rem;font-weight:850;letter-spacing:.08em;text-transform:uppercase;white-space:nowrap; }
+.myth-verdict strong { color:var(--ink);font:650 1.15rem/1.35 var(--serif); }
+.thinker-dialogue--choice article:nth-child(even) { background:#4a2948; }
+.thinker-dialogue--choice article>p:last-child strong { color:#fff3cf; }
+.horizon-steps { margin:2rem 0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:.75rem;list-style:none; }
+.horizon-steps li { min-height:13rem;padding:1.3rem;display:grid;grid-template-columns:2.5rem 1fr;gap:1rem;border:1px solid var(--line);border-radius:1rem;background:#fff; }
+.horizon-steps li>span { width:2.4rem;height:2.4rem;display:grid;place-items:center;border-radius:.75rem;background:#153f3e;color:#f0c66b;font-weight:850; }
+.horizon-steps strong { display:block;margin:.25rem 0 .65rem;color:var(--ink);font:650 1.35rem/1.15 var(--serif); }
+.horizon-steps p { margin:0;color:var(--muted);font-size:.86rem;line-height:1.6; }
+.choice-frontier article:last-child { min-height:0; }
 .experiment-steps { margin:2rem 0;padding:0;display:grid;gap:.65rem;list-style:none; }.experiment-steps li { padding:1rem 0;display:grid;grid-template-columns:2.7rem 1fr;gap:1rem;border-bottom:1px solid var(--line); }.experiment-steps li>span { width:2.5rem;height:2.5rem;display:grid;place-items:center;border-radius:.75rem;background:var(--sage);color:var(--ink);font-weight:800; }.experiment-steps strong { color:var(--ink); }.experiment-steps p { margin:.25rem 0 0;color:var(--muted);font-size:.9rem; }
 .experiment-cta { margin-top:2rem;padding:clamp(1.4rem,4vw,2.2rem);display:grid;grid-template-columns:1fr auto;gap:1.5rem;align-items:center;border-radius:1.2rem;background:linear-gradient(125deg,#4a2948,#79484d);color:white; }.experiment-cta span { color:#f0c66b;font-size:.68rem;font-weight:800;letter-spacing:.1em;text-transform:uppercase; }.experiment-cta h3 { margin:.45rem 0;font:650 clamp(1.5rem,3vw,2.1rem) var(--serif); }.experiment-cta p { margin:0;color:rgba(255,255,255,.7); }.experiment-cta a { padding:.75rem 1rem;border-radius:999px;background:#f0c66b;color:var(--ink-dark);font-size:.84rem;font-weight:800;text-decoration:none;white-space:nowrap; }
 .help-boundary { padding:clamp(1.5rem,5vw,2.5rem);display:grid;grid-template-columns:1fr 1fr;gap:2rem;border:1px solid #e1c37d;border-radius:1.2rem;background:#fff8e9; }.help-boundary h2 { margin:.5rem 0 0!important;font-size:clamp(1.6rem,3vw,2.2rem)!important; }.help-boundary>p { margin:0;font:400 .95rem/1.65 var(--sans); }
@@ -290,8 +317,8 @@
 .related-dossiers__intro { max-width:680px;margin:-.35rem 0 1.5rem;color:var(--muted);font-size:.88rem;line-height:1.6; }
 .related-dossiers a { position:relative;overflow:hidden;min-height:13rem;padding:1.35rem;background:linear-gradient(145deg,#fff 0 68%,#eef3ef);transition:transform .25s ease,border-color .25s ease,box-shadow .25s ease; }.related-dossiers a::after { content:var(--route-index,'↗');position:absolute;right:.8rem;top:.35rem;color:rgba(9,42,41,.08);font:700 3.5rem/1 var(--serif); }.related-dossiers a:hover { z-index:1;border-color:#8ba69a;box-shadow:0 18px 40px rgba(9,42,41,.1);transform:translateY(-5px); }.related-dossiers a:hover::after { color:rgba(186,101,55,.16); }.related-dossiers strong { position:relative;z-index:1;max-width:90%;font-size:1.5rem;line-height:1.08; }.related-dossiers small { position:relative;z-index:1;line-height:1.45; }
 
-@media(max-width:900px){.dossier-hero__grid{grid-template-columns:1fr}.dossier-layout{grid-template-columns:1fr}.dossier-toc{position:static;max-height:none;padding:0;grid-template-columns:repeat(2,1fr);overflow:visible;border-right:0}.dossier-toc p{grid-column:1/-1}.dossier-toc__status{grid-column:1/-1}.summary-points{grid-template-columns:1fr}.summary-points div,.summary-points div:first-child{padding:1rem 0;border-left:0;border-top:1px solid var(--line)}.summary-points div:first-child{border-top:0}.related-dossiers>div{grid-template-columns:1fr 1fr}.help-boundary{grid-template-columns:1fr}}
-@media(max-width:620px){.dossier-hero{padding-top:3rem}.dossier-hero h1{font-size:clamp(2.6rem,11vw,3.8rem);letter-spacing:-.065em}.dossier-status dl div{align-items:flex-start;flex-direction:column;gap:.2rem}.dossier-status dd{text-align:left}.dossier-layout{width:min(100% - 1rem,1180px)}.dossier-toc{grid-template-columns:1fr 1fr}.dossier-summary{border-radius:1.1rem}.dossier-next{align-items:flex-start;flex-direction:column}.dossier-next>strong{max-width:100%;text-align:left}.dossier-graphic{margin-inline:-.25rem;border-radius:1rem}.plasticity-levels,.claim-grid,.thinker-dialogue,.related-dossiers>div,.origin-grid,.concept-compare,.change-ingredients,.consciousness-questions,.theory-grid,.metaphysics-grid,.frontier-grid,.frontier-boundary ul{grid-template-columns:1fr}.concept-compare article{min-height:12rem}.change-ingredients article:last-child,.metaphysics-grid article:last-child{grid-column:auto}.frontier-card{min-height:0}.emotion-process article:last-child{grid-column:auto}.experiment-cta{grid-template-columns:1fr}.experiment-cta a{justify-self:start}.source-list li{padding-left:3.2rem}.addiction-frontier article:last-child{min-height:0}}
+@media(max-width:900px){.dossier-hero__grid{grid-template-columns:minmax(0,1fr)}.dossier-layout{grid-template-columns:minmax(0,1fr)}.dossier-toc{position:static;max-height:none;padding:0;grid-template-columns:repeat(2,minmax(0,1fr));overflow:visible;border-right:0}.dossier-toc p{grid-column:1/-1}.dossier-toc__status{grid-column:1/-1}.summary-points{grid-template-columns:1fr}.summary-points div,.summary-points div:first-child{padding:1rem 0;border-left:0;border-top:1px solid var(--line)}.summary-points div:first-child{border-top:0}.related-dossiers>div{grid-template-columns:1fr 1fr}.help-boundary{grid-template-columns:1fr}}
+@media(max-width:620px){.dossier-hero{padding-top:3rem}.dossier-hero h1{font-size:clamp(2.6rem,11vw,3.8rem);letter-spacing:-.065em}.dossier-status{min-width:0;max-width:100%;overflow:hidden}.evidence-badge{white-space:normal}.dossier-status dl div{align-items:flex-start;flex-direction:column;gap:.2rem}.dossier-status dd{text-align:left}.dossier-layout{width:min(100% - 1rem,1180px)}.dossier-toc{grid-template-columns:repeat(2,minmax(0,1fr))}.dossier-toc a{min-width:0;overflow-wrap:anywhere}.dossier-summary{border-radius:1.1rem}.dossier-next{align-items:flex-start;flex-direction:column}.dossier-next>strong{max-width:100%;text-align:left}.dossier-graphic{margin-inline:-.25rem;border-radius:1rem}.plasticity-levels,.claim-grid,.thinker-dialogue,.related-dossiers>div,.origin-grid,.concept-compare,.change-ingredients,.consciousness-questions,.theory-grid,.metaphysics-grid,.frontier-grid,.frontier-boundary ul{grid-template-columns:1fr}.concept-compare article{min-height:12rem}.change-ingredients article:last-child,.metaphysics-grid article:last-child{grid-column:auto}.frontier-card{min-height:0}.emotion-process article:last-child{grid-column:auto}.experiment-cta{grid-template-columns:1fr}.experiment-cta a{justify-self:start}.source-list li{padding-left:3.2rem}.addiction-frontier article:last-child{min-height:0}}
 @media(max-width:900px){.hypothesis-flow,.frontier-checklist{grid-template-columns:1fr}.hypothesis-flow article{min-height:auto}}
 @media(max-width:900px){.update-loop{grid-template-columns:repeat(2,1fr)}.update-loop article{min-height:13rem}}
 @media(max-width:620px){.hypothesis-box{margin-inline:-.25rem}.hypothesis-flow{padding:.8rem}.hypothesis-box__question{margin:.8rem}.attachment-spectrum,.update-loop{grid-template-columns:1fr}.attachment-spectrum article,.update-loop article{min-height:0}}
@@ -301,6 +328,7 @@
 @media(max-width:620px){.thinker-collision>div{grid-template-columns:1fr}.thinker-dialogue--addiction article{min-height:0}}
 @media(max-width:900px){.identity-shift__steps,.silence-loop{grid-template-columns:1fr 1fr}.silence-loop article{min-height:10rem}}
 @media(max-width:620px){.norm-layers,.group-functions,.platform-signals,.dissent-conditions,.identity-shift__steps,.silence-loop,.classic-limit{grid-template-columns:1fr}.norm-layers article,.group-functions article,.platform-signals article,.dissent-conditions article,.identity-shift__steps article,.silence-loop article{min-height:0}}
+@media(max-width:620px){.choice-layers,.time-horizon,.horizon-steps{grid-template-columns:1fr}.choice-layers article,.time-horizon article,.horizon-steps li{min-height:0}.time-horizon>i{justify-self:center;transform:rotate(90deg)}.myth-verdict{grid-template-columns:1fr}.myth-verdict span{width:max-content}}
 @media(max-width:620px){.summary-points p,.identity-shift__steps p,.norm-layers p,.group-functions p,.platform-signals p,.dissent-conditions p,.relational-levels p,.self-change-map p,.regulation-grid p,.support-compass p{font-size:.9rem;line-height:1.6}}
 @media(max-width:620px){.science-lenses{grid-template-columns:1fr}.science-lenses article,.science-lenses article:last-child{grid-column:auto;min-height:0}.science-atlas{margin-inline:-.25rem}}
 @media(max-width:340px){.dossier-page{overflow-x:clip}}

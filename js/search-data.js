@@ -125,6 +125,12 @@ window.ONWIJZE_CONTENT = [
     url: 'denk-box11.html', tags: ['tijd', 'stress', 'vrijheid', 'persoonlijk'], image: 'images/wekker.png'
   },
   {
+    title: 'Keuze onder druk', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
+    summary: 'Hoe slaaptekort, pijn, craving, tijdsdruk, schaarste en ontwerp de keuzehorizon kunnen vernauwen — zonder wilskrachtmythe of schuld.',
+    url: 'onderwerpen/keuze-onder-druk.html', tags: ['keuze', 'beslissen', 'keuzestress', 'tijdsdruk', 'slaaptekort', 'pijn', 'craving', 'schaarste', 'armoede', 'agency', 'handelingsruimte', 'wilskracht', 'ego depletion', 'decision fatigue', 'uitstelkeuze', 'delay discounting', 'risico', 'keuzearchitectuur', 'default', 'frictie', 'herbert simon', 'kahneman', 'tversky', 'mullainathan', 'shafir', 'hanna pickard', 'lee hogarth'],
+    areaIcon: '↗', updated: '2026-07-19T13:20:00+03:00', featureImage: 'images/keuze-onder-druk-horizon.svg'
+  },
+  {
     title: 'Verslaving & craving', type: 'dossier', category: 'Leren & veranderen', level: 'Redelijk stevig',
     summary: 'Waarom verlangen kan blijven roepen: cue-leren, lichaam, stress, zorg en zes botsende hedendaagse denkers zonder dopaminehype of schuld.',
     url: 'onderwerpen/verslaving-craving.html', tags: ['verslaving', 'craving', 'verlangen', 'middelengebruik', 'alcohol', 'nicotine', 'opioiden', 'gokken', 'gamen', 'dopamine', 'wanting', 'liking', 'tolerantie', 'ontwenning', 'afhankelijkheid', 'gewoonte', 'stress', 'schadebeperking', 'naloxon', 'methadon', 'buprenorfine', 'semaglutide', 'herstel', 'kent berridge', 'nora volkow', 'marc lewis', 'hanna pickard', 'katie witkiewitz', 'carl erik fisher'],

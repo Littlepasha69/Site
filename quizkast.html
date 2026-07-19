@@ -6,10 +6,10 @@
   <meta name="description" content="Ontdek snelle, speelse reflectiequizzen over luisteren, kiezen, grenzen en mentale beweeglijkheid in de Quizkast van het Menslab.">
   <title>De Quizkast — Menslab</title>
   <link rel="stylesheet" href="css/site-2026.css?v=19">
-  <link rel="stylesheet" href="css/quizkast.css?v=9">
+  <link rel="stylesheet" href="css/quizkast.css?v=10">
   <script src="js/site-shell.js?v=17" defer></script>
-  <script src="js/quizkast-data.js?v=4" defer></script>
-  <script src="js/quizkast.js?v=7" defer></script>
+  <script src="js/quizkast-data.js?v=5" defer></script>
+  <script src="js/quizkast.js?v=9" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -29,13 +29,23 @@
     <section class="quiz-shelf" id="quizzen" data-quiz-shelf aria-labelledby="quiz-shelf-title">
       <div class="quiz-shelf__head"><div><p class="eyebrow">Vier snelle spiegels</p><h2 id="quiz-shelf-title">Welke spiegel trek je open?</h2></div><p>Antwoord vanuit wat meestal of vandaag herkenbaar voelt. Een vraag mag jou missen — en jij hebt het laatste woord over de uitslag.</p></div>
       <div class="quiz-shelf__grid">
-        <article class="quiz-card quiz-card--gold"><div class="quiz-preview quiz-preview--sparks" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><span>Vonkjes verdelen · ± 2 minuten</span><h3>Welke kleine beweging heb jij vandaag nodig?</h3><p>Verdeel vijf vonkjes over vertragen, benoemen, begrenzen, verbinden en kiezen.</p><button type="button" data-start-mini-quiz="beweging-vandaag">Bouw mijn verschuiving →</button></article>
+        <article class="quiz-card quiz-card--gold"><div class="quiz-preview quiz-preview--sparks" aria-hidden="true"><i>✦</i><i>✦</i><i>✦</i><i>✦</i><i>✦</i></div><span>Vonkjes verdelen · ± 2 minuten</span><h3>Wat wil je vandaag anders aanpakken?</h3><p>Verdeel vijf vonkjes: wil je vooral je tempo vertragen, iets benoemen, een grens zetten, contact zoeken of een keuze maken?</p><button type="button" data-start-mini-quiz="beweging-vandaag">Kies waar ik iets mee wil doen →</button></article>
         <article class="quiz-card quiz-card--green"><div class="quiz-preview quiz-preview--chat" aria-hidden="true"><i>“Vandaag was alles te veel.”</i><i>“Ik ben hier.”</i><b></b></div><span>Gesprekssimulatie · ± 3 minuten</span><h3>Luister jij — of begin je te repareren?</h3><p>Stap in zes kleine gesprekken en kies wat jij waarschijnlijk als eerste terugstuurt.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Open het gesprek →</button></article>
         <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--path" aria-hidden="true"><i>1</i><i>2</i><i>3</i><i>?</i></div><span>Keuzepad · ± 3 minuten</span><h3>Waar komt jouw ja vandaan?</h3><p>Kies op zes kruispunten welke stem het sterkst trekt — en welke eventueel meereist.</p><button type="button" data-start-mini-quiz="waar-komt-je-ja-vandaan">Loop mijn ja-route →</button></article>
         <article class="quiz-card quiz-card--blue"><div class="quiz-preview quiz-preview--wheel" aria-hidden="true"><i>JIJ?</i><b>⚙</b><b>◎</b><b>◇</b><b>✎</b></div><span>Stuurtafel · ± 2 minuten</span><h3>Wie zit er vandaag aan jouw stuur?</h3><p>Zet vier tijdelijke stemmen aan het stuur, bij de navigator, op de achterbank en op de radio.</p><button type="button" data-start-mini-quiz="wie-zit-aan-het-stuur">Maak de bezetting →</button></article>
       </div>
       <a class="depth-route" href="dieptequiz-ja.html"><span>Nieuw · ongeveer 8–10 minuten</span><strong>Waar komt jouw ja vandaan?</strong><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><small>Open de eerste dieptequiz →</small></a>
       <a class="beast-route" href="dierenquiz.html"><span>Meer tijd?</span><strong>Doe de Grote Beestenquiz</strong><small>35 vragen · 10–12 minuten →</small></a>
+      <button class="all-quiz-toggle" type="button" data-show-all-quizzes aria-expanded="false" aria-controls="alle-quizzen">Bekijk alle quizzen en filter →</button>
+      <section class="all-quiz-library" id="alle-quizzen" data-all-quiz-library hidden aria-labelledby="all-quiz-title">
+        <div class="all-quiz-library__head"><div><p class="eyebrow">De volledige Quizkast</p><h2 id="all-quiz-title">Vind de quiz die nu past.</h2></div><strong data-all-quiz-count></strong></div>
+        <div class="all-quiz-library__tools">
+          <label><span>Zoek op een woord</span><input type="search" data-all-quiz-search placeholder="Bijvoorbeeld: grenzen, luisteren of kiezen" autocomplete="off"></label>
+          <label><span>Filter op onderwerp</span><select data-all-quiz-category><option value="">Alle onderwerpen</option></select></label>
+        </div>
+        <div class="all-quiz-library__grid" data-all-quiz-results></div>
+        <p class="all-quiz-library__empty" data-all-quiz-empty hidden>Geen quiz gevonden. Probeer een ander woord of kies alle onderwerpen.</p>
+      </section>
     </section>
 
     <section class="mini-quiz" data-mini-quiz hidden tabindex="-1" aria-labelledby="mini-question-title">

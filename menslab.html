@@ -6,11 +6,11 @@
   <meta name="description" content="Oefen met zelfreflectie, mentale beweeglijkheid en kleine psychologische experimenten in het Menslab.">
   <title>Menslab — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/menslab.css?v=25">
+  <link rel="stylesheet" href="css/menslab.css?v=26">
   <script src="js/site-shell.js?v=17" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
   <script src="js/quizkast-data.js?v=8" defer></script>
-  <script src="js/menslab.js?v=21" defer></script>
+  <script src="js/menslab.js?v=22" defer></script>
 </head>
 <body>
   <site-header active="menslab"></site-header>
@@ -68,6 +68,14 @@
           <span data-daily-number>Proef 01</span>
           <h3 data-daily-title>De kleine omweg</h3>
           <p data-daily-prompt>Doe één gewone handeling bewust in een andere volgorde. Merk op wanneer je automatische piloot het stuur probeert terug te pakken.</p>
+          <p class="daily-lab__aim"><strong>Je oefent</strong><span data-daily-aim></span></p>
+          <ol class="daily-lab__steps" data-daily-steps></ol>
+          <details class="daily-lab__evidence">
+            <summary>Wetenschappelijke basis en grens</summary>
+            <p data-daily-mechanism></p>
+            <p class="daily-lab__boundary" data-daily-boundary></p>
+            <div data-daily-sources></div>
+          </details>
           <small>Overslaan is ook een geldige beweging. Stop wanneer dit niet licht of veilig voelt.</small>
         </div>
         <div class="daily-lab__fields">
@@ -76,11 +84,12 @@
           <div class="daily-lab__pause" data-daily-pause hidden><strong>Eerst proberen, dan terugkijken.</strong><p>Voer de kleine proef uit in een echt en veilig moment. Je verwachting blijft lokaal bewaard; kom daarna hier terug.</p><button type="button" data-daily-tried>Ik heb het echt geprobeerd — toon de terugblik</button></div>
           <div class="daily-lab__after" data-daily-after hidden>
             <label for="daily-observation"><span data-daily-observation-question>Wat merkte je werkelijk?</span><textarea id="daily-observation" data-daily-observation maxlength="280" rows="3" placeholder="Wat verraste, schuurde of bleef precies hetzelfde?"></textarea></label>
+            <label for="daily-next"><span data-daily-next-question>Wat wordt je volgende kleine stap?</span><textarea id="daily-next" data-daily-next maxlength="220" rows="2" placeholder="Maak je bevinding klein en uitvoerbaar."></textarea></label>
             <div><button type="button" data-save-daily>Bewaar in Mijn spoor</button><span data-daily-status aria-live="polite"></span></div>
           </div>
         </div>
       </div>
-      <p class="daily-lab__method"><strong>Waarom dit een lab is:</strong> een verwachting vooraf en een observatie achteraf helpen verschil zien tussen wat je voorspelde en wat er gebeurde. Eén poging bewijst niets; ze levert alleen nieuwe informatie.</p>
+      <p class="daily-lab__method"><strong>De vaste werkwijze:</strong> voorspel, voer één concreet gedrag uit, kijk terug en kies een vervolgstap. Eén poging bewijst niets; ze levert informatie waarmee je de volgende poging kunt bijstellen.</p>
     </section>
 
     <section class="quizkast-gateway" id="quizkast" aria-labelledby="quizkast-title">

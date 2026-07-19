@@ -3,14 +3,14 @@
   window.MENSLAB_QUIZZES = [
     {
       id: 'beweging-vandaag',
-      title: 'Welke kleine beweging heb jij vandaag nodig?',
-      eyebrow: 'Vandaag · kleine beweging',
+      title: 'Wat wil je vandaag anders aanpakken?',
+      eyebrow: 'Vandaag · vijf concrete richtingen',
       mode: 'allocation',
       tokenBudget: 5,
-      customEyebrow: 'Bouw je kleine verschuiving',
-      customTitle: 'Verdeel vijf vonkjes over wat vandaag ruimte vraagt.',
-      customIntro: 'Geef meerdere vonkjes aan iets dat hard trekt, één aan een kleine bijzaak of helemaal niets aan wat vandaag niet speelt. Je hoeft niet eerlijk te verdelen.',
-      customMissLabel: 'Geen van deze bewegingen past vandaag',
+      customEyebrow: 'Kies waar je iets mee wilt doen',
+      customTitle: 'Verdeel vijf vonkjes over wat vandaag jouw aandacht vraagt.',
+      customIntro: 'Geef meer vonkjes aan de richting waar je vandaag werkelijk iets mee wilt doen. Geef niets aan wat niet speelt. Je hoeft ze niet gelijk te verdelen.',
+      customMissLabel: 'Geen van deze richtingen past vandaag',
       customMissHelp: 'Dan forceren we geen richting en blijft de spiegel open.',
       gameOptions: [
         { result: 'vertragen', symbol: 'Ⅱ', label: 'Vertragen', copy: 'Ruimte tussen prikkel en reactie.' },
