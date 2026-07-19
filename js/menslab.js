@@ -13,7 +13,7 @@
   const siteStorageKeys = [
     progressStorageKey, previousStorageKey, legacyStorageKey,
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
-    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'dieptequiz-ja-progress-v1',
+    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1',
     'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1', 'menslab-exercise-drafts-v1',
     'onwijze-profile-v1', 'onwijze-next-door-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];

@@ -78,11 +78,11 @@
 
   function allQuizItems() {
     const quick = quizzes.filter(quiz => !quiz.archived).map(quiz => ({
-      href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
+      href:quiz.id === 'wie-zit-aan-het-stuur' ? 'speelhal/autospel.html' : `speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
-      type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
+      type:quiz.id === 'wie-zit-aan-het-stuur' ? 'Interactief reflectiespel' : quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
       category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 7 minuten' : quiz.mode === 'support' ? 'ongeveer 12–15 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 10–15 minuten' : quiz.mode === 'support' ? 'ongeveer 12–15 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
@@ -405,6 +405,10 @@
   }
 
   function startQuiz(id, forceFresh = false) {
+    if (id === 'wie-zit-aan-het-stuur') {
+      location.href = 'speelhal/autospel.html';
+      return;
+    }
     activeQuiz = quizzes.find(quiz => quiz.id === id);
     if (!activeQuiz) return;
     const stored = forceFresh ? null : readQuizProgress();

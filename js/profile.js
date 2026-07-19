@@ -15,7 +15,7 @@
   const doorCatalog = {
     'Brein & zenuwstelsel': {
       understand:[['onderwerpen/aandacht.html','Wat kiest jouw aandacht?','Aandacht is een toegangspoort naar wat voorgrond wordt.'],['onderwerpen/hersenen.html','Begin bij het brein','Een brede kaart voordat je een kleinere route kiest.']],
-      try:[['speelhal.html?quiz=wie-zit-aan-het-stuur','Wie heeft de autosleutels?','Een lichte proef waarin je de stemmen in je hoofd op andere stoelen zet.'],['speelhal.html?quiz=beweging-vandaag','Doe een kleine proef','Verdeel vijf vonkjes tussen mogelijke bewegingen.']],
+      try:[['speelhal/autospel.html','Wie heeft de autosleutels?','Een lichte proef waarin je de stemmen in je hoofd op andere stoelen zet.'],['speelhal.html?quiz=beweging-vandaag','Doe een kleine proef','Verdeel vijf vonkjes tussen mogelijke bewegingen.']],
       recognise:[['denk-box06.html','Het zenuwstelsel dat niet stilzit','Een persoonlijke tekst over drukte, overleven en een plek proberen te zijn.']]
     },
     'Emoties & herstel': {
@@ -35,7 +35,7 @@
     },
     'Bewustzijn & metafysica': {
       understand:[['onderwerpen/bewustzijn.html','Wat bedoelen we met bewustzijn?','Wetenschap, filosofie en de vragen die werkelijk openblijven.'],['onderwerpen/ervaring.html','Hoe wordt ervaring een wereld?','Een ingang via waarneming, betekenis en eerste-persoonsperspectief.']],
-      try:[['speelhal.html?quiz=wie-zit-aan-het-stuur','Wie praat er in je hoofd?','Een speelse proef met controle, verwachting en verrassing.'],['speelhal.html?quiz=beweging-vandaag','Verdeel vijf vonkjes','Niet om af te ronden, wel om beter te leren kijken.']],
+      try:[['speelhal/autospel.html','Wie praat er in je hoofd?','Een speelse proef met controle, verwachting en verrassing.'],['speelhal.html?quiz=beweging-vandaag','Verdeel vijf vonkjes','Niet om af te ronden, wel om beter te leren kijken.']],
       recognise:[['denk-box08.html','Kompas sterfelijkheid','Een filosofische tekst over eindigheid, verbondenheid en betekenis.']]
     },
     'Persoonlijke verhalen': {

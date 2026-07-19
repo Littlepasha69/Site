@@ -2,7 +2,7 @@
   const storageKeys = [
     'menslab-progress-v3', 'menslab-progress-v2', 'menslab-week-progress-v1',
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
-    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'dieptequiz-ja-progress-v1',
+    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1',
     'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1', 'menslab-exercise-drafts-v1',
     'onwijze-profile-v1', 'onwijze-next-door-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];
@@ -36,6 +36,7 @@
   const readingHistory = readJson('onwijze-reading-history-v1', []);
   const profile = readJson('onwijze-profile-v1', null);
   const quizProgress = readJson('quizkast-progress-v1', null);
+  const steeringProgress = readJson('onwijze-steering-game-v1', null);
   const beastProgress = readJson('beestenquiz-progress-v2', null);
   const depthProgress = readJson('dieptequiz-ja-progress-v1', null);
   const routeProgress = readJson('onwijze-veranderroute-v2', readJson('onwijze-veranderroute-v1', null));
@@ -136,6 +137,9 @@
     ...labSnapshots.map(item => ({ title:item.title || 'Bewaarde proef', href:exerciseHref(item), meta:item.kind === 'beast' ? 'Dierenprofiel' : item.kind === 'emotion-scene' ? 'Filmische scènekaart' : 'Proefnotitie', time:dateValue(item.savedAt) })),
     ...completedWeeks.map(item => ({ title:'Een week mentale rekbaarheid', href:'speelhal-week.html', meta:'Afgeronde weekroute', time:dateValue(item.completedAt) }))
   ].sort((a, b) => b.time - a.time);
+  if (steeringProgress?.version === 1 && steeringProgress.currentPhase === 'report') {
+    played.unshift({ title:'Wie zit er aan het stuur?', href:'speelhal/autospel.html', meta:'Ritverslag klaar', time:dateValue(steeringProgress.updatedAt) });
+  }
 
   const saved = [
     ...reading.filter(item => item.saved).map(item => ({ ...item, meta:item.kind || 'Bewaarde vondst' })),
@@ -145,6 +149,7 @@
 
   const unfinished = reading.filter(item => item.progress > 0 && item.progress < 99).map(item => ({ ...item, meta:`${Math.round(item.progress)}% gelezen` }));
   if (quizProgress?.quizId) unfinished.unshift({ title:'Een spel in de Speelhal', href:`speelhal.html?quiz=${encodeURIComponent(quizProgress.quizId)}`, meta:'Nog niet afgerond', time:dateValue(quizProgress.savedAt) });
+  if (steeringProgress?.version === 1 && steeringProgress.currentPhase && !['start', 'report'].includes(steeringProgress.currentPhase)) unfinished.unshift({ title:'Wie zit er aan het stuur?', href:'speelhal/autospel.html', meta:'Je rit staat nog open', time:dateValue(steeringProgress.updatedAt) });
   if (beastProgress && Array.isArray(beastProgress.answers) && beastProgress.answers.some(value => value !== null)) unfinished.unshift({ title:'De Grote Beestenquiz', href:'dierenquiz.html', meta:'Je profielspiegel staat nog open', time:Date.now() - 1 });
   if (depthProgress) unfinished.unshift({ title:'Waar komt jouw ja vandaan?', href:'dieptequiz-ja.html', meta:'Dieptequiz nog open', time:dateValue(depthProgress.savedAt) });
   if (routeProgress) unfinished.unshift({ title:'De Veranderroute', href:'veranderroute.html', meta:'Route nog open', time:dateValue(routeProgress.updatedAt || routeProgress.savedAt) });
