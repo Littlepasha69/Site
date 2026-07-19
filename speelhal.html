@@ -6,32 +6,34 @@
   <meta name="description" content="Ontdek quizzen, oefenbanken, gesprekssimulaties en keuzepaden in de verborgen Speelhal van De Onwijze Wijsheden.">
   <title>De Speelhal — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=27">
-  <link rel="stylesheet" href="css/quizkast.css?v=28">
-  <script src="js/site-shell.js?v=19" defer></script>
-  <script src="js/quizkast-data.js?v=12" defer></script>
-  <script src="js/quizkast.js?v=19" defer></script>
-  <script src="js/speelhal-intro.js?v=1" defer></script>
+  <link rel="stylesheet" href="css/quizkast.css?v=33">
+  <script src="js/site-shell.js?v=20" defer></script>
+  <script src="js/quizkast-data.js?v=13" defer></script>
+  <script src="js/quizkast.js?v=25" defer></script>
+  <script src="js/speelhal-intro.js?v=2" defer></script>
 </head>
 <body>
   <site-header active="spoor"></site-header>
   <main id="inhoud">
     <section class="dada-gate" data-dada-gate hidden aria-labelledby="dada-gate-title">
-      <div class="dada-gate__noise" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
-      <button class="dada-gate__skip" type="button" data-dada-finish>Sla de vreemde entree over →</button>
+      <div class="dada-gate__backdrop" aria-hidden="true"></div>
+      <div class="dada-gate__shards" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
+      <button class="dada-gate__skip" type="button" data-dada-finish>Genoeg. Zet de wereld stil.</button>
+      <button class="dada-gate__back" type="button" data-dada-back>← IK WIL TERUG</button>
       <div class="dada-gate__stage">
         <header>
-          <p>DE SPEELHAL HEEFT JE KLIK ONTVANGEN. HIJ ONTKENT ALLES.</p>
-          <h1 id="dada-gate-title">Je bent binnen.<br><em>Was dat de bedoeling?</em></h1>
-          <p>Hier spelen we met je aandacht, je attitude en de rollen waarin je soms verdwijnt. Niet om te bewijzen wie je bent. Wel om te zien wat er gebeurt wanneer een knop jou eerder leest dan jij de knop.</p>
+          <h1 id="dada-gate-title"><span>JE BENT BINNEN.</span><em>WAS DAT DE BEDOELING?</em></h1>
+          <p>Hier spelen we met je aandacht, je attitude, je automatische antwoorden en de rollen waarin je verdwijnt.<br><strong>Soms speelt er eentje terug.</strong></p>
         </header>
-        <div class="dada-gate__roles" aria-label="Vier verdacht herkenbare rollen">
-          <button type="button" data-dada-role data-dada-message="De controleur heeft alles rechtgezet. Behalve zichzelf."><span>01</span><strong>DE CONTROLEUR</strong><small>“Ik kijk alleen even waar dit eindigt.”</small></button>
-          <button type="button" data-dada-role data-dada-message="De pleaser koos jou. Alleen als dat voor jou oké is."><span>02</span><strong>DE PLEASER</strong><small>“Kies mij. Of gerust iemand anders.”</small></button>
-          <button type="button" data-dada-role data-dada-message="De reparateur heeft de entree opgelost. De uitgang is nu zoek."><span>03</span><strong>DE REPARATEUR</strong><small>“Geef me drie seconden en een tang.”</small></button>
-          <button type="button" data-dada-role data-dada-breakout data-dada-message="De nihilist zegt dat niets ertoe doet. Blijf wel van zijn knop."><span>00</span><strong>DE NIHILIST</strong><small>“Welke knop je kiest maakt toch niet uit.”</small></button>
+        <div class="dada-gate__roles" aria-label="Vijf verdacht herkenbare rollen">
+          <button type="button" data-dada-role="controleur" data-dada-message="De controleur heeft alles rechtgezet. Een dada-hand heeft het meteen weer scheef gehangen."><span>01</span><strong>DE CONTROLEUR</strong><small>“Eerst even orde scheppen.”</small></button>
+          <button type="button" data-dada-role="pleaser" data-dada-message="De pleaser wilde gekozen worden en heeft daar nu alweer spijt van."><span>02</span><strong>DE PLEASER</strong><small>“KIES MIJ”</small></button>
+          <button type="button" data-dada-role="fixer" data-dada-message="De fixer heeft een oplossing. Het probleem moet nog gevonden worden."><span>03</span><strong>DE FIXER</strong><small>“Ik heb het al bijna opgelost.”</small></button>
+          <button type="button" data-dada-role="twijfelaar" data-dada-message="De twijfelaar koos. Onder voorbehoud. Met terugwerkende kracht misschien."><span>04</span><strong>DE TWIJFELAAR</strong><small>“Wacht. Misschien die andere.”</small></button>
+          <button type="button" data-dada-role="nihilist" data-dada-breakout data-dada-message="Het maakt toch niets uit welke knop je kiest."><span>00</span><strong>DE NIHILIST</strong><small>“Het maakt toch niets uit.”</small></button>
         </div>
         <div class="dada-gate__console">
-          <p data-dada-narrator aria-live="polite">Kies een rol. Of bewijs de machine ongelijk door koppig niets te doen.</p>
+          <p data-dada-narrator aria-live="polite">Vijf keurige kaders. Wat kan er misgaan?</p>
           <button type="button" data-dada-enter><span>BEGIN WAAR JE DENKT DAT JE BEGINT</span><i aria-hidden="true">●</i></button>
         </div>
       </div>
@@ -57,7 +59,7 @@
         <article class="quiz-card quiz-card--green"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/luisteren-of-repareren-dada.png" alt=""></div><span>Gesprekssimulatie · ± 8 minuten</span><h3>Luister je nog — of heb je het al opgelost?</h3><p>Tien gesprekken over helpen, pleasen, grenzen en het stuur bij de ander laten.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Start de helpmachine →</button></article>
         <article class="quiz-card quiz-card--gold"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/beweging-vandaag-dada.png" alt=""></div><span>Interactief verdeelspel · ± 2 minuten</span><h3>Wat wil je vandaag anders aanpakken?</h3><p>Verdeel vijf vonkjes: wil je vertragen, iets benoemen, een grens zetten, contact zoeken of kiezen?</p><button type="button" data-start-mini-quiz="beweging-vandaag">Verdeel mijn vonkjes →</button></article>
         <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/waar-komt-je-ja-vandaan-dada.png" alt=""></div><span>Keuzepad · ± 3 minuten</span><h3>Waar komt jouw ja vandaan?</h3><p>Kies op zes kruispunten welke stem het sterkst trekt — en welke eventueel meereist.</p><button type="button" data-start-mini-quiz="waar-komt-je-ja-vandaan">Loop mijn ja-route →</button></article>
-        <article class="quiz-card quiz-card--blue"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/wie-zit-aan-het-stuur-dada.png" alt=""></div><span>Stuurtafel · ± 5 minuten</span><h3>Wie heeft vandaag de autosleutels?</h3><p>Benoem je innerlijke bemanning, kies de soundtrack en ontdek wat één stoel opschuiven verandert.</p><button type="button" data-start-mini-quiz="wie-zit-aan-het-stuur">Start de nachtrit →</button></article>
+        <article class="quiz-card quiz-card--blue"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/wie-zit-aan-het-stuur-dada.png" alt=""></div><span>Voor een probleem, gesprek of keuze · ± 7 minuten</span><h3>Moet je iets uitzoeken vóór je handelt?</h3><p>Breng één concrete situatie mee: iets wat blijft malen, een gesprek dat je moet voeren of een moment waarop je je wilt voorbereiden. De Stuurtafel helpt je vertragen en je volgende stap kiezen.</p><button type="button" data-start-mini-quiz="wie-zit-aan-het-stuur">Neem mijn situatie mee →</button></article>
         <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/dieptequiz-ja-dada.png" alt=""></div><span>Dieptequiz · 8–10 minuten</span><h3>Een ja is geen type.</h3><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><a href="dieptequiz-ja.html">Ga een laag dieper →</a></article>
       </div>
       <section class="longplay" aria-labelledby="longplay-title">
@@ -92,15 +94,16 @@
       <section class="steering-intro" data-steering-intro hidden aria-labelledby="steering-intro-title">
         <figure><img src="images/menslab/stuurtafel-nachtrit.png" alt="Vier speelse versies van dezelfde vrouw zitten als bestuurder, copiloot, achterbankcommentator en radiomaker in een auto op een nachtelijke weg."></figure>
         <div class="steering-intro__body">
-          <div class="steering-intro__lead"><p class="eyebrow">Stuurtafel · ongeveer 5 minuten</p><h1 id="steering-intro-title">Je bent niet één stem. Gelukkig maar.</h1><p>Neem één hanteerbaar probleem, gesprek of keuze. Je laat vier mogelijke reacties daar elk één zin over zeggen. Daarna geef je niet <em>mensen</em>, maar die vier zinnen een plaats in de wagen. Zo zie je beter welke reactie nu invloed heeft en welke reactie je bewust wilt raadplegen.</p><p class="steering-intro__joke">Je copiloot is dus niet je partner, je moeder of Jan van boekhouding. Het is een gedachte die de kaart mag vasthouden.</p></div>
+          <div class="steering-intro__lead"><p class="eyebrow">Stuurtafel · ongeveer 7 minuten</p><h1 id="steering-intro-title">Kijk naar je probleem vóór je erin verdwijnt.</h1><div class="steering-intro__why"><p>Bij een lastig gesprek, probleem of keuze klinkt er zelden maar één heldere gedachte. Een deel wil snel handelen. Een ander houdt rekening met iedereen. Nog een deel verwacht gevaar. En ergens probeert ook iets te onthouden wat jij belangrijk vindt.</p><p>Als dat allemaal tegelijk spreekt, voelt de luidste reactie al snel als de enige waarheid. <strong>Deze oefening haalt die reacties tijdelijk uit elkaar.</strong> Niet om de “echte jij” te vinden, maar om ruimte te maken tussen wat er gebeurt, wat er in je opkomt en wat je uiteindelijk wilt doen.</p></div><p class="steering-intro__joke"><strong>Wat is de Stuurtafel écht?</strong><br>Een korte schrijfoefening in perspectief nemen. Je onderzoekt één concrete situatie, bekijkt haar vanuit vier nuttige hoeken en beslist daarna welke reactie automatisch rijdt en welke informatie jij bewust wilt meenemen.</p></div>
           <div class="steering-lenses" aria-label="Psychologische ideeën achter de oefening">
             <article><span>01 · zelfafstand</span><h2>Een stoel afstand</h2><p>Experimenten suggereren dat spreken over jezelf vanop afstand kan helpen om een persoonlijk conflict wijzer en minder bedreigend te bekijken.</p><a href="https://pubmed.ncbi.nlm.nih.gov/24916084/">Bekijk het onderzoek ↗</a></article>
             <article><span>02 · ACT</span><h2>Een zin is geen bevel</h2><p>Bij cognitieve defusie oefen je om een gedachte als mentale gebeurtenis op te merken, zonder haar meteen te bestrijden of uit te voeren.</p><a href="https://pubmed.ncbi.nlm.nih.gov/38615492/">Bekijk de meta-analyse ↗</a></article>
             <article><span>03 · stoelwerk</span><h2>Posities zichtbaar maken</h2><p>Stoelwerk gebruikt fysieke posities om innerlijke spanning bespreekbaar te maken. Deze online versie leent alleen de metafoor; ze is geen therapie.</p><a href="https://pubmed.ncbi.nlm.nih.gov/37166937/">Bekijk de meta-analyse ↗</a></article>
           </div>
-          <div class="steering-intro__how"><p class="eyebrow">Wat ga je precies doen?</p><ol><li><strong>Zet één scène stil.</strong><span>Niet “mijn hele relatie”, wel “dat gesprek dat ik morgen moet voeren”.</span></li><li><strong>Laat vier reacties spreken.</strong><span>Reflex, relatieradar, alarmcentrale en kompas schrijven elk één korte zin.</span></li><li><strong>Verdeel invloed.</strong><span>Aan het stuur = bepaalt waarschijnlijk je gedrag. Copiloot = nuttige informatie. Achterbank = hoorbaar, niet beslissend.</span></li><li><strong>Stap uit.</strong><span>Je bekijkt de wagen alsof hij van iemand is die je graag ziet.</span></li></ol></div>
+          <div class="steering-intro__how"><p class="eyebrow">Zo werkt de oefening</p><ol><li><strong>Kies één moment.</strong><span>Niet “mijn hele relatie”, wel “morgen moet ik zeggen dat ik die extra taak niet overneem”.</span></li><li><strong>Beantwoord vier vragen.</strong><span>Wat wil je meteen doen? Met wie houd je rekening? Waarvoor ben je bang? Wat vind je belangrijk?</span></li><li><strong>Geef iedere zin een stoel.</strong><span>Bestuurder = automatische reactie. Copiloot = informatie die je bewust wilt gebruiken. Achterbank = aanwezig, niet beslissend.</span></li><li><strong>Bekijk het van buitenaf.</strong><span>Je spiegel toont de hele wagen en helpt je één kleine, haalbare volgende stap formuleren.</span></li></ol></div>
+          <section class="steering-examples" aria-labelledby="steering-examples-title"><div><p class="eyebrow">Drie mogelijke vertrekpunten</p><h2 id="steering-examples-title">Klein en concreet werkt beter.</h2><p>Je hoeft nog niets op te lossen. Kies alleen een scène die je in één of twee zinnen kunt beschrijven.</p></div><article><span>Moeilijk gesprek</span><strong>“Morgen moet ik mijn collega zeggen dat ik die extra taak niet overneem.”</strong><small>Gewenste richting: duidelijk nee zeggen zonder onnodig hard te worden.</small></article><article><span>Keuze</span><strong>“Vrijdag moet ik beslissen of ik die nieuwe functie aanneem.”</strong><small>Gewenste richting: kiezen vanuit wat haalbaar én belangrijk is, niet alleen vanuit haast.</small></article><article><span>Blijven malen</span><strong>“Ik lees dat bericht opnieuw en wil voor de derde keer uitleg sturen.”</strong><small>Gewenste richting: tot morgen wachten en dan beslissen of een antwoord nog nodig is.</small></article></section>
           <aside class="steering-intro__boundary"><strong>Wat dit spel niet doet</strong><p>Het deelt je niet op in echte persoonlijkheden en vervangt geen hulp. Gebruik een hanteerbaar dagelijks dilemma; niet je zwaarste traumatische herinnering of een acute onveilige situatie.</p></aside>
-          <div class="steering-intro__action"><button type="button" data-start-steering-game><span data-steering-start-label>START DE MOTOR</span><i aria-hidden="true">↗</i></button><p><strong>Jij schrijft de zinnen.</strong><br>De vier namen zijn alleen opstapjes en mogen volledig worden herschreven.</p></div>
+          <div class="steering-intro__action"><button class="steering-ignition" type="button" data-start-steering-game aria-label="Start de motor en open de Stuurtafel"><i aria-hidden="true">⏻</i><span data-steering-start-label>START</span><small>MOTOR</small></button><p><strong>Jij schrijft de zinnen.</strong><br>De vier namen zijn alleen opstapjes en mogen volledig worden herschreven. Zet je geluid aan voor de volledige, volstrekt onverantwoorde rijervaring.</p></div>
         </div>
       </section>
       <div data-standard-game>
@@ -120,7 +123,7 @@
         </article>
         <div class="mini-navigation"><button type="button" data-mini-previous>← Vorige</button><button type="button" data-mini-next disabled>Volgende →</button></div>
       </div>
-      <section class="mini-custom" data-custom-game hidden tabindex="-1" aria-labelledby="mini-custom-title"><button class="steering-back" type="button" data-back-to-steering-intro hidden>← Waarom doe ik dit ook alweer?</button><p class="eyebrow" data-custom-eyebrow></p><h2 id="mini-custom-title" data-custom-title></h2><p class="mini-custom__intro" data-custom-intro></p><div class="mini-custom__status" data-custom-status aria-live="polite"></div><div class="mini-custom__board" data-custom-board></div><div class="mini-custom__counterchoice"><button type="button" data-custom-misses aria-pressed="false"></button><span data-custom-misses-help></span></div><div class="mini-custom__actions"><button type="button" data-reset-custom>Maak het bord leeg</button><button type="button" data-finish-custom disabled>Bekijk mijn spiegel →</button></div></section>
+      <section class="mini-custom" data-custom-game hidden tabindex="-1" aria-labelledby="mini-custom-title"><button class="steering-back" type="button" data-back-to-steering-intro hidden>← Terug naar uitleg en voorbeelden</button><p class="eyebrow" data-custom-eyebrow></p><h2 id="mini-custom-title" data-custom-title></h2><p class="mini-custom__intro" data-custom-intro></p><div class="mini-custom__status" data-custom-status aria-live="polite"></div><div class="mini-custom__board" data-custom-board></div><div class="mini-custom__counterchoice"><button type="button" data-custom-misses aria-pressed="false"></button><span data-custom-misses-help></span></div><div class="mini-custom__actions"><button type="button" data-reset-custom>Maak het bord leeg</button><p class="steering-finish-help" data-steering-finish-help hidden aria-live="polite"></p><button type="button" data-finish-custom disabled>Bekijk mijn spiegel →</button></div></section>
     </section>
 
     <section class="mini-result" data-mini-result hidden tabindex="-1" aria-labelledby="mini-result-title">

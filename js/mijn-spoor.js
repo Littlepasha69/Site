@@ -44,11 +44,15 @@
   const labSnapshots = Array.isArray(track?.labSnapshots) ? track.labSnapshots : [];
   const completedWeeks = Array.isArray(track?.completedWeeks) ? track.completedWeeks : [];
   const profileBeast = window.BEAST_QUIZ?.beasts?.find(item => item.id === profile?.beastId || item.legacyIds?.includes(profile?.beastId));
+  const validProfile = Boolean(profile && (
+    (profile.version === 1 && profileBeast) ||
+    (profile.version === 2 && typeof profile.name === 'string' && profile.name.trim().length >= 2)
+  ));
 
   const guardTitle = document.querySelector('[data-guard-title]');
   const guardCopy = document.querySelector('[data-guard-copy]');
   const guardLink = document.querySelector('[data-guard-link]');
-  if (profile && profile.version === 1 && profileBeast && guardTitle && guardCopy && guardLink) {
+  if (validProfile && guardTitle && guardCopy && guardLink) {
     guardTitle.textContent = 'Je volledige spoor blijft hier.';
     guardCopy.textContent = 'Je profiel is aangemaakt. Wat je leest, speelt, bewaart of nog niet afmaakt blijft op dit apparaat beschikbaar tot jij het wist.';
     guardLink.href = 'mijn-profiel.html';
@@ -65,7 +69,7 @@
     const empty = document.querySelector('[data-profile-empty]');
     const ready = document.querySelector('[data-profile-ready]');
     const beast = profileBeast;
-    if (!profile || profile.version !== 1 || !beast) {
+    if (!validProfile) {
       empty.hidden = false;
       ready.hidden = true;
       return;
@@ -73,13 +77,31 @@
     empty.hidden = true;
     ready.hidden = false;
     const image = ready.querySelector('[data-profile-image]');
-    image.src = beast.image || `images/beasts/${beast.id}.jpg`;
-    image.alt = `Illustratie van ${beast.name}`;
+    if (profile.avatarMode === 'upload' && profile.avatarDataUrl) {
+      image.src = profile.avatarDataUrl;
+      image.alt = `Profielfoto van ${profile.name}`;
+    } else if (beast && (profile.version === 1 || profile.avatarMode === 'beast')) {
+      image.src = beast.image || `images/beasts/${beast.id}.jpg`;
+      image.alt = `Illustratie van ${beast.name}`;
+    } else {
+      image.src = 'images/mijn-spoor-profielrenaissance.png';
+      image.alt = 'Renaissancistische profielillustratie met geometrie, wetenschap en natuur.';
+    }
     ready.querySelector('[data-profile-owner]').textContent = profile.name || 'Jij';
-    ready.querySelector('[data-profile-beast]').textContent = beast.name;
-    ready.querySelector('[data-profile-intro]').textContent = profile.intro || `${beast.essence || beast.archetype} Dit profiel blijft een tijdelijke spiegel die met je mag meebewegen.`;
+    const readyTitle = ready.querySelector('[data-profile-ready-title]');
+    readyTitle.textContent = beast
+      ? `${profile.name || 'Jij'}, jouw ${beast.name.toLowerCase()} loopt al mee.`
+      : `${profile.name || 'Jij'}, je profiel groeit al met je spoor mee.`;
+    ready.querySelector('[data-profile-intro]').textContent = profile.intro || (beast
+      ? `${beast.essence || beast.archetype} Dit profiel blijft een tijdelijke spiegel die met je mag meebewegen.`
+      : 'Je naam, interesses en signatuur staan klaar. Het dier mag erbij komen wanneer je daar zin in hebt.');
+    const quizLink = ready.querySelector('[data-profile-quiz-link]');
+    if (quizLink) {
+      quizLink.href = beast ? 'dierenquiz.html?profiel=wijzigen' : 'dierenquiz.html';
+      quizLink.textContent = beast ? 'Doe de spiegel opnieuw' : 'Voeg mijn beest toe';
+    }
     const welcome = document.querySelector('[data-track-welcome]');
-    if (welcome) welcome.textContent = `Welkom terug, ${profile.name || beast.name}`;
+    if (welcome) welcome.textContent = `Welkom terug, ${profile.name || beast?.name || 'jij'}`;
   }
 
   const readingMap = new Map();

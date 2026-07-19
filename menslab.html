@@ -6,8 +6,8 @@
   <meta name="description" content="Mijn spoor brengt samen wat je leest, speelt, bewaart en nog wilt hervatten bij De Onwijze Wijsheden.">
   <title>Mijn spoor — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=27">
-  <link rel="stylesheet" href="css/mijn-spoor.css?v=6">
-  <script src="js/site-shell.js?v=19" defer></script>
+  <link rel="stylesheet" href="css/mijn-spoor.css?v=7">
+  <script src="js/site-shell.js?v=20" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
   <script src="js/mijn-spoor.js?v=2" defer></script>
 </head>
@@ -38,18 +38,18 @@
       <div class="profile-gateway__empty" data-profile-empty>
         <div class="profile-gateway__copy">
           <p class="eyebrow">Je spoor kan een gezicht krijgen</p>
-          <h2 id="profile-gateway-title">Welk beest kijkt terug?</h2>
-          <p>35 vragen, zeven persoonlijkheidslijnen en 24 levende, mythische of prehistorische beesten. Geen vast hokje: wel een speelse profielingang die jij zelf mag aanvullen en tegenspreken.</p>
-          <div><a href="dierenquiz.html">Ontdek mijn beest →</a><small>10–12 minuten · privé in deze browser</small></div>
+          <h2 id="profile-gateway-title">Maak eerst een plek. Het beest mag later komen.</h2>
+          <p>In een halve minuut krijgt je spoor een naam, interesses en een geometrische signatuur. Daarna kun je de 35 dierenvragen doen wanneer je daar werkelijk zin in hebt.</p>
+          <div><a href="mijn-profiel.html?nieuw=1">Maak mijn profiel →</a><small><a href="dierenquiz.html">Of begin meteen bij mijn beest</a></small></div>
         </div>
       </div>
       <article class="profile-gateway__ready" data-profile-ready hidden>
         <img data-profile-image src="" alt="">
         <div>
           <p class="eyebrow">Jouw profielingang</p>
-          <h2><span data-profile-owner></span>, jouw <strong data-profile-beast></strong> loopt al mee.</h2>
+          <h2 data-profile-ready-title><span data-profile-owner></span>, jouw <strong data-profile-beast></strong> loopt al mee.</h2>
           <p data-profile-intro></p>
-          <div><a href="mijn-profiel.html">Open mijn profiel →</a><a href="dierenquiz.html?profiel=wijzigen">Doe de spiegel opnieuw</a></div>
+          <div><a href="mijn-profiel.html">Open mijn profiel →</a><a href="dierenquiz.html?profiel=wijzigen" data-profile-quiz-link>Doe de spiegel opnieuw</a></div>
         </div>
       </article>
     </section>
@@ -113,9 +113,9 @@
 
     <section class="profile-guard" aria-labelledby="profile-guard-title">
       <div><p class="eyebrow">Bewaren of ciao</p><h2 id="profile-guard-title" data-guard-title>Vandaag onthouden. Morgen weer weg.</h2><p data-guard-copy>Zonder profiel bewaren we alleen wat je vandaag leest en speelt. Bij je eerste bezoek op een volgende dag verdwijnt die gastvoortgang automatisch. Wil je je volledige spoor houden? Maak dan je profiel.</p><small>Een profiel is een ingang, geen einduitspraak. Gebruik iedere spiegel als uitnodiging tot onderzoek, niet als diagnose of definitief oordeel.</small></div>
-      <a class="profile-guard__portrait" href="dierenquiz.html" data-guard-link aria-label="Maak een profiel en bewaar mijn volledige spoor">
+      <a class="profile-guard__portrait" href="mijn-profiel.html?nieuw=1" data-guard-link aria-label="Maak een profiel en bewaar mijn volledige spoor">
         <img src="images/mijn-spoor-profielrenaissance.png" alt="Renaissancistische tekening van een vrouwelijke onderzoeker tussen geometrische cirkels, sterrenkaarten, planten en anatomische schetslijnen.">
-        <span><small data-guard-button>Het profielatelier</small><strong data-guard-label>Maak mijn profiel aan</strong><b data-guard-note>35 vragen · schoonheid mag tegenspreken →</b></span>
+        <span><small data-guard-button>Het profielatelier</small><strong data-guard-label>Maak mijn profiel aan</strong><b data-guard-note>Naam · signatuur · eigen spoor →</b></span>
       </a>
     </section>
   </main>

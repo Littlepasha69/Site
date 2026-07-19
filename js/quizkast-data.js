@@ -165,9 +165,9 @@
       title: 'Wie heeft vandaag de autosleutels?',
       eyebrow: 'Psychologische afstand · tijdelijke bezetting',
       mode: 'ranking',
-      customEyebrow: 'Stuurtafel · één situatie, vier reacties',
-      customTitle: 'Zet geen mensen in de auto. Zet zinnen op een stoel.',
-      customIntro: 'Iedere kaart reageert op precies dezelfde rit. Schrijf wat die reactie in jou zegt en verdeel daarna hoeveel invloed ze vandaag krijgt.',
+      customEyebrow: 'Stuurtafel · begeleide oefening',
+      customTitle: 'Begin bij één echte situatie.',
+      customIntro: 'Kies iets kleins genoeg om nu te onderzoeken: één gesprek, probleem of keuze. Eerst beschrijf je wat er concreet gebeurt en waar je naartoe wilt. Daarna beantwoorden vier invalshoeken elk een andere vraag over diezelfde situatie. Er zijn geen juiste antwoorden.',
       customMissLabel: 'Mijn innerlijke wagenpark heeft ander personeel',
       customMissHelp: 'Ook geldig. Een metafoor moet jou helpen; jij hoeft niet in de metafoor te passen.',
       rankSeats: [
@@ -177,10 +177,10 @@
         { label: 'Achterbank · rechts', help: 'Ook aanwezig — zonder toegang tot pedalen of claxon.', weight: 1 }
       ],
       gameOptions: [
-        { result: 'motor', symbol: '⚙', label: 'De Reflex', copy: 'Wil snel handelen, vermijden, pleasen, fixen of bevriezen.', prompt: 'Wat wil je onmiddellijk doen, zeggen of juist vermijden?', placeholder: 'Ik wil nu meteen…' },
-        { result: 'situatielezer', symbol: '◎', label: 'De Relatieradar', copy: 'Scant reacties, verwachtingen, macht en mogelijke teleurstelling.', prompt: 'Met wiens reactie houd je rekening — en wat probeer je daar te regelen?', placeholder: 'Ik probeer te voorkomen dat…' },
-        { result: 'verhalenmaker', symbol: '!', label: 'De Alarmcentrale', copy: 'Maakt een risico groot genoeg om er zeker niet overheen te kijken.', prompt: 'Waarvoor probeert deze stem je te waarschuwen of beschermen?', placeholder: 'Pas op, want anders…' },
-        { result: 'kompasdrager', symbol: '◇', label: 'Het Kompas', copy: 'Kijkt voorbij de opluchting van nu naar wat belangrijk blijft.', prompt: 'Wat wil je belangrijk vinden in hoe je hiermee omgaat?', placeholder: 'Ook als dit lastig is, wil ik…' }
+        { result: 'motor', symbol: '⚙', label: 'De Reflex', copy: 'Je eerste impuls: handelen, vermijden, pleasen, fixen of bevriezen.', prompt: 'Maak af: wat wil je onmiddellijk doen, zeggen of vermijden?', placeholder: 'Bijvoorbeeld: “Zeg gewoon ja, dan is de spanning weg.”' },
+        { result: 'situatielezer', symbol: '◎', label: 'De Relatieradar', copy: 'Merkt op met wie je rekening houdt en welke reactie je probeert te voorkomen.', prompt: 'Maak af: met wiens reactie houd je rekening — en waarom?', placeholder: 'Bijvoorbeeld: “Als ik nee zeg, is mijn collega teleurgesteld.”' },
+        { result: 'verhalenmaker', symbol: '!', label: 'De Alarmcentrale', copy: 'Wijst op het risico waarvoor je jezelf probeert te beschermen.', prompt: 'Maak af: waarvoor waarschuwt deze reactie je?', placeholder: 'Bijvoorbeeld: “Pas op: straks vinden ze me moeilijk.”' },
+        { result: 'kompasdrager', symbol: '◇', label: 'Het Kompas', copy: 'Herinnert je aan hoe je met deze situatie wilt omgaan.', prompt: 'Maak af: wat wil je belangrijk blijven vinden, ook als het lastig is?', placeholder: 'Bijvoorbeeld: “Ik wil eerlijk zijn zonder hard te worden.”' }
       ],
       theoryHref: 'onderwerpen/persoonlijkheid.html',
       theoryLabel: 'Waarom je persoonlijkheid rijker is dan één type →',

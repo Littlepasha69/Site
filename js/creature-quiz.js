@@ -27,7 +27,7 @@
   function readProfile() {
     try {
       const parsed = JSON.parse(localStorage.getItem(profileStorageKey) || 'null');
-      return parsed && typeof parsed === 'object' && parsed.version === 1 ? parsed : null;
+      return parsed && typeof parsed === 'object' && (parsed.version === 1 || parsed.version === 2) ? parsed : null;
     } catch (_) { return null; }
   }
 
@@ -35,14 +35,16 @@
     const previous = readProfile();
     const now = new Date().toISOString();
     const payload = {
-      version: 1,
-      name: profileName.value.trim().slice(0, 50),
-      intro: profileIntro.value.trim().slice(0, 180),
+      ...(previous || {}),
+      version: 2,
+      name: profileName.value.trim().slice(0, 50) || previous?.name || beast.name,
+      intro: profileIntro.value.trim().slice(0, 180) || previous?.intro || '',
       interests: selected.slice(0, 3),
       beastId: beast.id,
       affinity: ranked[0]?.affinity || null,
       traitScores: currentTraits,
       kindred: ranked.slice(1, 3).map(match => ({ id:match.beast.id, affinity:match.affinity })),
+      avatarMode: previous?.avatarMode || 'beast',
       createdAt: previous?.createdAt || now,
       updatedAt: now
     };

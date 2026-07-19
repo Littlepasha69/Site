@@ -80,7 +80,10 @@ customElements.define('site-footer', SiteFooter);
   function hasProfile() {
     try {
       const profile = JSON.parse(localStorage.getItem(profileKey) || 'null');
-      return Boolean(profile && profile.version === 1 && profile.beastId);
+      return Boolean(profile && (
+        (profile.version === 1 && profile.beastId) ||
+        (profile.version === 2 && typeof profile.name === 'string' && profile.name.trim().length >= 2)
+      ));
     } catch (_) { return false; }
   }
 

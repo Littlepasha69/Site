@@ -15,6 +15,7 @@
   const customBoard = document.querySelector('[data-custom-board]');
   const customMissButton = document.querySelector('[data-custom-misses]');
   const customFinishButton = document.querySelector('[data-finish-custom]');
+  const steeringFinishHelp = document.querySelector('[data-steering-finish-help]');
   const resultSection = document.querySelector('[data-mini-result]');
   const resultContent = document.querySelector('[data-result-content]');
   const tieSection = document.querySelector('[data-result-tie]');
@@ -80,7 +81,7 @@
       title:quiz.title,
       type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
       category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.mode === 'support' ? 'ongeveer 8 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
+      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 7 minuten' : quiz.mode === 'support' ? 'ongeveer 8 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
@@ -209,6 +210,99 @@
     return activeQuiz.gameOptions.filter(option => !steeringMessage(option.result).trim());
   }
 
+  function playSteeringEngine() {
+    const ignition = document.querySelector('.steering-ignition');
+    ignition?.classList.remove('is-starting');
+    requestAnimationFrame(() => ignition?.classList.add('is-starting'));
+    window.setTimeout(() => ignition?.classList.remove('is-starting'), 1150);
+    try {
+      const AudioEngine = window.AudioContext || window.webkitAudioContext;
+      if (!AudioEngine) return;
+      const audio = new AudioEngine();
+      const now = audio.currentTime;
+      const master = audio.createGain();
+      const filter = audio.createBiquadFilter();
+      filter.type = 'lowpass';
+      filter.frequency.setValueAtTime(240, now);
+      master.gain.setValueAtTime(0.0001, now);
+      master.gain.exponentialRampToValueAtTime(0.14, now + 0.08);
+      master.gain.exponentialRampToValueAtTime(0.075, now + 0.48);
+      master.gain.exponentialRampToValueAtTime(0.0001, now + 1.05);
+      filter.connect(master).connect(audio.destination);
+      [42, 63, 86].forEach((frequency, index) => {
+        const motor = audio.createOscillator();
+        const motorGain = audio.createGain();
+        motor.type = index === 0 ? 'sawtooth' : 'square';
+        motor.frequency.setValueAtTime(frequency, now);
+        motor.frequency.exponentialRampToValueAtTime(frequency * 2.1, now + 0.32);
+        motor.frequency.exponentialRampToValueAtTime(frequency * 1.35, now + 0.92);
+        motorGain.gain.value = index === 0 ? 0.7 : 0.18;
+        motor.connect(motorGain).connect(filter);
+        motor.start(now + index * 0.025);
+        motor.stop(now + 1.08);
+      });
+      window.setTimeout(() => audio.close().catch(() => {}), 1200);
+    } catch (_) {}
+  }
+
+  function syncSteeringFinishControl() {
+    if (activeQuiz?.id !== 'wie-zit-aan-het-stuur') {
+      steeringFinishHelp.hidden = true;
+      customFinishButton.textContent = 'Bekijk mijn spiegel →';
+      return;
+    }
+    steeringFinishHelp.hidden = false;
+    if (customIsMissing()) {
+      customFinishButton.disabled = false;
+      customFinishButton.textContent = 'Bekijk mijn open spiegel →';
+      steeringFinishHelp.textContent = 'Je koos ervoor de autometafoor niet te gebruiken. Ook dat is een volledig antwoord.';
+      return;
+    }
+    const hasScene = Boolean(steeringDraft.problem.trim());
+    const missingMessages = steeringMissingMessages().length;
+    const missingSeats = answers.filter(value => value === null).length;
+    customFinishButton.disabled = !hasScene || missingMessages > 0 || missingSeats > 0;
+    if (!hasScene) {
+      customFinishButton.textContent = 'Vul eerst je situatie in';
+      steeringFinishHelp.textContent = 'Begin bij stap 1A: beschrijf één concreet moment.';
+    } else if (missingMessages) {
+      customFinishButton.textContent = `Nog ${missingMessages} reactie${missingMessages === 1 ? '' : 's'} invullen`;
+      steeringFinishHelp.textContent = 'Beantwoord bij stap 2 de vier vragen. Eén eerlijke zin per kaart is genoeg.';
+    } else if (missingSeats) {
+      customFinishButton.textContent = `Nog ${missingSeats} stoel${missingSeats === 1 ? '' : 'en'} kiezen`;
+      steeringFinishHelp.textContent = 'Je zinnen zijn klaar. Kies nu op iedere kaart een stoel via het menu. Slepen mag, maar hoeft niet.';
+    } else {
+      customFinishButton.textContent = 'Bekijk mijn spiegel →';
+      steeringFinishHelp.textContent = 'Alles staat. Je kunt nog wisselen, of de hele wagen van buitenaf bekijken.';
+    }
+  }
+
+  function syncSteeringSeatGate() {
+    if (activeQuiz?.id !== 'wie-zit-aan-het-stuur') return;
+    const missingMessages = steeringMissingMessages().length;
+    const ready = Boolean(steeringDraft.problem.trim()) && missingMessages === 0;
+    const panel = document.querySelector('.steering-seats');
+    const cabin = document.querySelector('.steering-cabin');
+    const tip = document.querySelector('.steering-placement-tip');
+    panel?.classList.toggle('is-locked', !ready);
+    if (cabin) cabin.hidden = !ready;
+    document.querySelectorAll('.steering-placement select').forEach(select => {
+      select.disabled = customIsMissing();
+    });
+    if (!tip) return;
+    const emphasis = document.createElement('strong');
+    if (ready) {
+      emphasis.textContent = 'Kies op iedere kaart een stoel via het menu.';
+      tip.replaceChildren(emphasis, document.createTextNode(' Slepen mag ook, maar hoeft niet.'));
+    } else {
+      emphasis.textContent = 'Deze stap staat nog even geparkeerd.';
+      const reason = steeringDraft.problem.trim()
+        ? ` Beantwoord eerst nog ${missingMessages} van de vier vragen hierboven.`
+        : ' Vul eerst je concrete situatie en de vier vragen hierboven in.';
+      tip.replaceChildren(emphasis, document.createTextNode(reason));
+    }
+  }
+
   function isCustomMode(quiz = activeQuiz) {
     return quiz?.mode === 'allocation' || quiz?.mode === 'ranking';
   }
@@ -328,7 +422,7 @@
     supportIntro.hidden = !showSupportIntro;
     steeringIntro.hidden = !showSteeringIntro;
     steeringBackButton.hidden = activeQuiz.id !== 'wie-zit-aan-het-stuur';
-    if (steeringStartLabel) steeringStartLabel.textContent = 'START DE MOTOR';
+    if (steeringStartLabel) steeringStartLabel.textContent = 'START';
     stage.setAttribute('aria-labelledby', showSteeringIntro ? 'steering-intro-title' : isCustomMode() ? 'mini-custom-title' : showSupportIntro ? 'support-intro-title' : 'mini-question-title');
     if (!isCustomMode() && !showSupportIntro) prepareJourney();
     saveButton.disabled = true;
@@ -590,15 +684,16 @@
     const nextSeat = answers.findIndex(value => value === null);
     const isSteering = activeQuiz.id === 'wie-zit-aan-het-stuur';
     const emptyMessages = isSteering ? steeringMissingMessages() : [];
+    const seatsReady = !isSteering || (Boolean(steeringDraft.problem.trim()) && emptyMessages.length === 0);
     document.querySelector('[data-custom-status]').textContent = missing
       ? 'Deze cast krijgt vandaag geen rol. Dat is een geldige uitkomst.'
       : isSteering && !steeringDraft.problem.trim()
-        ? 'Stap 1: zet eerst één concrete scène stil. Zonder rit weten de stemmen niet waarop ze reageren.'
+        ? 'Begin bij 1A: welk concrete moment wil je bekijken? Eén of twee zinnen zijn genoeg.'
         : isSteering && emptyMessages.length
-          ? `Stap 2: laat nog ${emptyMessages.length} reactie${emptyMessages.length === 1 ? '' : 's'} één korte zin zeggen over deze rit.`
+          ? `Je situatie staat. Beantwoord nu nog ${emptyMessages.length} van de vier vragen bij stap 2.`
       : nextSeat >= 0
-        ? isSteering ? `Nog ${answers.filter(value => value === null).length} stoel${answers.filter(value => value === null).length === 1 ? '' : 'en'} vrij. Sleep een stem of tik op “zet neer”.` : `Kies nu: ${activeQuiz.rankSeats[nextSeat].label}.`
-        : isSteering ? 'De wagen zit vol. Versleep gerust nog iemand — innerlijke carpoolregels zijn soepel.' : 'De tijdelijke bezetting staat. Je kunt nog een plaats vrijmaken.';
+        ? isSteering ? `De vier zinnen staan. Kies nog ${answers.filter(value => value === null).length} stoel${answers.filter(value => value === null).length === 1 ? '' : 'en'} via de menu’s op de kaarten. Slepen mag ook.` : `Kies nu: ${activeQuiz.rankSeats[nextSeat].label}.`
+        : isSteering ? 'De auto is ingevuld. Je spiegel is klaar — wisselen mag nog.' : 'De tijdelijke bezetting staat. Je kunt nog een plaats vrijmaken.';
     const moveToSeat = (resultId, targetIndex) => {
       if (missing || !isValidResult(resultId) || targetIndex < 0 || targetIndex >= answers.length) return;
       const previousIndex = answers.indexOf(resultId);
@@ -623,10 +718,14 @@
       }
       const chosen = activeQuiz.gameOptions.find(option => option.result === answers[index]);
       const value = document.createElement('strong');
-      value.textContent = chosen ? (isSteering ? steeringLabel(chosen.result) : chosen.label) : isSteering ? 'Sleep hier iemand neer' : 'Nog leeg';
+      value.textContent = chosen ? (isSteering ? steeringLabel(chosen.result) : chosen.label) : isSteering ? 'Nog geen reactie gekozen' : 'Nog leeg';
       if (chosen && isSteering) value.dataset.steeringResult = chosen.result;
       row.append(label, value);
       if (isSteering) {
+        const seatShape = document.createElement('i');
+        seatShape.className = 'steering-seat-shape';
+        seatShape.setAttribute('aria-hidden', 'true');
+        row.prepend(seatShape);
         row.addEventListener('dragover', event => {
           event.preventDefault();
           row.classList.add('is-dragover');
@@ -661,9 +760,9 @@
       castStep.textContent = '02';
       const castCopy = document.createElement('div');
       const castTitle = document.createElement('strong');
-      castTitle.textContent = 'Laat vier reacties antwoorden op jouw rit';
+      castTitle.textContent = 'Bekijk dezelfde situatie vanuit vier hoeken';
       const castHelp = document.createElement('small');
-      castHelp.textContent = 'Dit zijn geen persoonlijkheden. Het zijn vier functies die op hetzelfde moment iets anders kunnen opmerken.';
+      castHelp.textContent = 'Iedere kaart stelt één andere vraag over het concrete moment uit stap 1. Schrijf het eerste eerlijke antwoord dat in je opkomt; één zin is genoeg.';
       castCopy.append(castTitle, castHelp);
       castHeading.append(castStep, castCopy);
       cast.append(castHeading);
@@ -704,13 +803,13 @@
         const messageLabel = document.createElement('label');
         messageLabel.className = 'steering-message';
         const messagePrompt = document.createElement('span');
-        messagePrompt.textContent = option.prompt || 'Wat zegt deze reactie over jouw rit?';
+        messagePrompt.textContent = option.prompt || 'Wat merk je vanuit deze hoek aan de situatie?';
         const messageInput = document.createElement('textarea');
         messageInput.rows = 2;
         messageInput.maxLength = 160;
         messageInput.placeholder = option.placeholder || 'Eén korte zin…';
         messageInput.value = steeringMessage(option.result);
-        messageInput.setAttribute('aria-label', `${steeringLabel(option.result)} over deze rit`);
+        messageInput.setAttribute('aria-label', `${steeringLabel(option.result)} over deze situatie`);
         messageInput.addEventListener('pointerdown', event => event.stopPropagation());
         messageInput.addEventListener('keydown', event => event.stopPropagation());
         messageInput.addEventListener('input', event => {
@@ -718,25 +817,61 @@
           saveQuizProgress();
           const emptyCount = steeringMissingMessages().length;
           document.querySelector('[data-custom-status]').textContent = emptyCount
-            ? `Stap 2: laat nog ${emptyCount} reactie${emptyCount === 1 ? '' : 's'} één korte zin zeggen over deze rit.`
+            ? `Beantwoord nog ${emptyCount} van de vier vragen bij stap 2.`
             : answers.some(value => value === null)
-              ? 'Stap 3: verdeel nu invloed. Je verplaatst zinnen, geen mensen.'
-              : 'De wagen zit vol. Je kunt de spiegel openen of nog van stoel wisselen.';
-          customFinishButton.disabled = !steeringDraft.problem.trim() || emptyCount > 0 || answers.some(value => value === null);
+              ? 'De vier zinnen staan. Geef iedere reactie nu een stoel via het menu op de kaart.'
+              : 'De auto is ingevuld. Je kunt de spiegel openen of nog van stoel wisselen.';
+          syncSteeringFinishControl();
+          syncSteeringSeatGate();
         });
         messageLabel.append(messagePrompt, messageInput);
         nameLabel.after(messageLabel);
       }
-      const choose = document.createElement('button');
-      choose.type = 'button';
-      choose.disabled = missing || usedAt >= 0 || nextSeat < 0;
-      choose.textContent = usedAt >= 0 ? activeQuiz.rankSeats[usedAt].label : nextSeat >= 0 ? `Zet bij: ${activeQuiz.rankSeats[nextSeat].label}` : 'Geplaatst';
-      choose.addEventListener('click', () => {
-        burstFromElement(choose, option.symbol, 6);
-        const empty = answers.findIndex(value => value === null);
-        if (empty >= 0) moveToSeat(option.result, empty);
-      });
-      card.append(choose);
+      if (isSteering) {
+        const placement = document.createElement('label');
+        placement.className = 'steering-placement';
+        const placementTitle = document.createElement('span');
+        placementTitle.textContent = 'Geef deze reactie een stoel';
+        const placementSelect = document.createElement('select');
+        placementSelect.disabled = missing;
+        placementSelect.setAttribute('aria-label', `Stoel voor ${steeringLabel(option.result)}`);
+        const openOption = document.createElement('option');
+        openOption.value = '';
+        openOption.textContent = 'Kies een stoel…';
+        placementSelect.append(openOption, ...activeQuiz.rankSeats.map((seat, index) => {
+          const seatOption = document.createElement('option');
+          seatOption.value = String(index);
+          seatOption.textContent = seat.label;
+          return seatOption;
+        }));
+        placementSelect.value = usedAt >= 0 ? String(usedAt) : '';
+        placementSelect.addEventListener('pointerdown', event => event.stopPropagation());
+        placementSelect.addEventListener('change', event => {
+          if (event.currentTarget.value === '') {
+            const occupied = answers.indexOf(option.result);
+            if (occupied >= 0) {
+              answers[occupied] = null;
+              saveQuizProgress();
+              renderCustomGame();
+            }
+            return;
+          }
+          moveToSeat(option.result, Number(event.currentTarget.value));
+        });
+        placement.append(placementTitle, placementSelect);
+        card.append(placement);
+      } else {
+        const choose = document.createElement('button');
+        choose.type = 'button';
+        choose.disabled = missing || usedAt >= 0 || nextSeat < 0;
+        choose.textContent = usedAt >= 0 ? activeQuiz.rankSeats[usedAt].label : nextSeat >= 0 ? `Zet bij: ${activeQuiz.rankSeats[nextSeat].label}` : 'Geplaatst';
+        choose.addEventListener('click', () => {
+          burstFromElement(choose, option.symbol, 6);
+          const empty = answers.findIndex(value => value === null);
+          if (empty >= 0) moveToSeat(option.result, empty);
+        });
+        card.append(choose);
+      }
       cast.append(card);
     });
     if (isSteering) {
@@ -755,7 +890,10 @@
       setupHeading.append(setupStep, setupCopy);
       const starters = document.createElement('div');
       starters.className = 'steering-starters';
-      ['Ik moet iemand zeggen dat…', 'Ik twijfel of ik…', 'Ik blijf hangen in…'].forEach(starter => {
+      const starterTitle = document.createElement('strong');
+      starterTitle.textContent = 'Vastgelopen? Kies een beginzin:';
+      starters.append(starterTitle);
+      ['Ik moet iemand zeggen dat…', 'Ik twijfel of ik…', 'Ik blijf hangen in…', 'Ik wil iets doen, maar…', 'Iemand verwacht van mij dat…'].forEach(starter => {
         const starterButton = document.createElement('button');
         starterButton.type = 'button';
         starterButton.textContent = starter;
@@ -767,17 +905,18 @@
             problemInput.setSelectionRange(starter.length, starter.length);
             saveQuizProgress();
             document.querySelector('[data-custom-status]').textContent = steeringMissingMessages().length
-              ? `Goed. Laat nu de vier reacties elk één zin zeggen over “${starter}”.`
-              : 'Verdeel nu invloed. Je verplaatst zinnen, geen mensen.';
+              ? `Goed begin. Maak je zin concreet en beantwoord daarna de vier vragen.`
+              : 'De vier antwoorden staan. Geef iedere reactie nu een stoel.';
+            syncSteeringFinishControl();
           }
         });
         starters.append(starterButton);
       });
       const problemLabel = document.createElement('label');
       const problemTitle = document.createElement('span');
-      problemTitle.textContent = 'Welke rit speelt er? · verplicht';
+      problemTitle.textContent = '1A · Welk concrete moment wil je bekijken? · verplicht';
       const problemHelp = document.createElement('small');
-      problemHelp.textContent = 'Schrijf alsof een camera het begin van de scène moet herkennen.';
+      problemHelp.textContent = 'Wie is erbij, wat moet er gebeuren en wanneer? Schrijf alsof een camera het begin van het moment moet herkennen.';
       const problemInput = document.createElement('input');
       problemInput.type = 'text';
       problemInput.maxLength = 160;
@@ -785,17 +924,20 @@
       problemInput.value = steeringDraft.problem;
       problemInput.addEventListener('input', event => {
         steeringDraft.problem = event.currentTarget.value.slice(0, 160);
+        const windscreenScene = document.querySelector('.steering-windscreen strong');
+        if (windscreenScene) windscreenScene.textContent = steeringDraft.problem.trim() || 'Nog geen situatie ingevuld';
         saveQuizProgress();
         const emptyCount = steeringMissingMessages().length;
         document.querySelector('[data-custom-status]').textContent = steeringDraft.problem.trim()
-          ? emptyCount ? `Stap 2: laat nog ${emptyCount} reacties één korte zin zeggen over deze rit.` : 'Stap 3: verdeel nu invloed. Je verplaatst zinnen, geen mensen.'
-          : 'Stap 1: zet eerst één concrete scène stil. Zonder rit weten de stemmen niet waarop ze reageren.';
-        customFinishButton.disabled = !steeringDraft.problem.trim() || emptyCount > 0 || answers.some(value => value === null);
+          ? emptyCount ? `Je situatie staat. Beantwoord nu nog ${emptyCount} van de vier vragen bij stap 2.` : 'De vier zinnen staan. Geef iedere reactie nu een stoel.'
+          : 'Begin bij 1A: welk concrete moment wil je bekijken? Eén of twee zinnen zijn genoeg.';
+        syncSteeringFinishControl();
+        syncSteeringSeatGate();
       });
       problemLabel.append(problemTitle, problemHelp, problemInput);
       const aimLabel = document.createElement('label');
       const aimTitle = document.createElement('span');
-      aimTitle.textContent = 'Waar wil je naartoe? · optioneel';
+      aimTitle.textContent = '1B · Wat zou je aan het einde graag gedaan of besloten hebben? · optioneel';
       const aimHelp = document.createElement('small');
       aimHelp.textContent = 'Geen perfecte afloop — alleen wat je aan het einde graag gedaan, gezegd of besloten wilt hebben.';
       const aimInput = document.createElement('input');
@@ -810,9 +952,9 @@
       aimLabel.append(aimTitle, aimHelp, aimInput);
       const songLabel = document.createElement('label');
       const songTitle = document.createElement('span');
-      songTitle.textContent = 'Wat staat er op? · optioneel en volstrekt onwetenschappelijk';
+      songTitle.textContent = 'Extra · Welk nummer speelt er op de radio? · optioneel en volstrekt onwetenschappelijk';
       const songHelp = document.createElement('small');
-      songHelp.textContent = 'Het echte of denkbeeldige liedje van deze rit.';
+      songHelp.textContent = 'De echte of denkbeeldige soundtrack bij deze situatie.';
       const songInput = document.createElement('input');
       songInput.type = 'text';
       songInput.maxLength = 100;
@@ -825,22 +967,43 @@
       songLabel.append(songTitle, songHelp, songInput);
       setup.append(setupHeading, starters, problemLabel, aimLabel, songLabel);
       const seatPanel = document.createElement('section');
-      seatPanel.className = 'steering-seats';
+      seatPanel.className = `steering-seats${seatsReady ? '' : ' is-locked'}`;
       const seatHeading = document.createElement('div');
       seatHeading.className = 'steering-section-heading';
       const seatStep = document.createElement('span');
       seatStep.textContent = '03';
       const seatCopy = document.createElement('div');
       const seatTitle = document.createElement('strong');
-      seatTitle.textContent = 'Verdeel invloed, geen mensen';
+      seatTitle.textContent = 'Geef iedere reactie een plaats in de auto';
       const seatHelp = document.createElement('small');
-      seatHelp.textContent = 'De bestuurder is wat waarschijnlijk gebeurt op automatische piloot. De copiloot is wat je bewust wilt raadplegen.';
+      seatHelp.textContent = 'Aan het stuur zet je je automatische reactie. Als copiloot kies je informatie die je bewust wilt gebruiken. De andere twee reacties mogen mee zonder te beslissen.';
       seatCopy.append(seatTitle, seatHelp);
       seatHeading.append(seatStep, seatCopy);
-      seatPanel.append(seatHeading, seats);
+      const placementTip = document.createElement('p');
+      placementTip.className = 'steering-placement-tip';
+      placementTip.innerHTML = seatsReady
+        ? '<strong>Kies op iedere kaart een stoel via het menu.</strong> Slepen mag ook, maar hoeft niet.'
+        : `<strong>Deze stap staat nog even geparkeerd.</strong> ${steeringDraft.problem.trim() ? `Beantwoord eerst nog ${emptyMessages.length} van de vier vragen hierboven.` : 'Vul eerst je concrete situatie en de vier vragen hierboven in.'}`;
+      const cabin = document.createElement('div');
+      cabin.className = 'steering-cabin';
+      cabin.hidden = !seatsReady;
+      const carNose = document.createElement('div');
+      carNose.className = 'steering-car-nose';
+      carNose.setAttribute('aria-hidden', 'true');
+      carNose.innerHTML = '<i></i><strong>STUURTAFEL</strong><i></i>';
+      const windscreen = document.createElement('div');
+      windscreen.className = 'steering-windscreen';
+      const windscreenLabel = document.createElement('span');
+      windscreenLabel.textContent = 'Voorruit · jouw situatie';
+      const windscreenScene = document.createElement('strong');
+      windscreenScene.textContent = steeringDraft.problem.trim() || 'Nog geen situatie ingevuld';
+      windscreen.append(windscreenLabel, windscreenScene);
+      cabin.append(carNose, windscreen, seats);
+      seatPanel.append(seatHeading, placementTip, cabin);
       customBoard.replaceChildren(setup, cast, seatPanel);
     } else customBoard.replaceChildren(seats, cast);
-    customFinishButton.disabled = !missing && (answers.some(value => value === null) || (isSteering && (!steeringDraft.problem.trim() || steeringMissingMessages().length > 0)));
+    if (isSteering) syncSteeringFinishControl();
+    else customFinishButton.disabled = !missing && answers.some(value => value === null);
   }
 
   function renderCustomGame() {
@@ -853,6 +1016,8 @@
     customBoard.dataset.customMode = activeQuiz.mode;
     if (activeQuiz.mode === 'allocation') renderAllocationBoard();
     else renderRankingBoard();
+    syncSteeringFinishControl();
+    syncSteeringSeatGate();
     flashCustomStatus();
     customGame.focus?.({ preventScroll: true });
   }
@@ -1334,6 +1499,7 @@
     saveQuizProgress();
   });
   document.querySelector('[data-start-steering-game]')?.addEventListener('click', () => {
+    playSteeringEngine();
     steeringIntro.hidden = true;
     customGame.hidden = false;
     stage.setAttribute('aria-labelledby', 'mini-custom-title');
@@ -1344,7 +1510,7 @@
     customGame.hidden = true;
     steeringIntro.hidden = false;
     stage.setAttribute('aria-labelledby', 'steering-intro-title');
-    if (steeringStartLabel) steeringStartLabel.textContent = 'GA VERDER MET MIJN RIT';
+    if (steeringStartLabel) steeringStartLabel.textContent = 'VERDER';
     saveQuizProgress();
     steeringIntro.focus?.({ preventScroll: true });
     scrollTop();

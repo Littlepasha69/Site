@@ -77,7 +77,12 @@
 
   const profile = readJson(profileKey, null);
   const beast = data.beasts.find(item => item.id === profile?.beastId || item.legacyIds?.includes(profile?.beastId));
-  if (!profile || profile.version !== 1 || !beast) {
+  const validProfile = Boolean(profile && (
+    (profile.version === 1 && beast) ||
+    (profile.version === 2 && typeof profile.name === 'string' && profile.name.trim().length >= 2)
+  ));
+  const editorMode = new URLSearchParams(location.search).has('bewerken') || new URLSearchParams(location.search).has('nieuw');
+  if (!validProfile || editorMode) {
     empty.hidden = false;
     content.hidden = true;
     return;
@@ -86,12 +91,31 @@
   empty.hidden = true;
   content.hidden = false;
   const image = document.querySelector('[data-profile-image]');
-  image.src = beast.image || `images/beasts/${beast.id}.jpg`;
-  image.alt = `Illustratie van ${beast.name}, ${beast.archetype.toLowerCase()}`;
-  document.querySelector('[data-profile-world]').textContent = beast.world;
+  const signatureView = document.querySelector('[data-profile-signature-view]');
+  const initial = document.querySelector('[data-profile-initial]');
+  const useUploadedImage = profile.avatarMode === 'upload' && profile.avatarDataUrl;
+  const useBeastImage = beast && (profile.version === 1 || profile.avatarMode === 'beast');
+  if (useUploadedImage || useBeastImage) {
+    image.hidden = false;
+    signatureView.hidden = true;
+    image.src = useUploadedImage ? profile.avatarDataUrl : (beast.image || `images/beasts/${beast.id}.jpg`);
+    image.alt = useUploadedImage ? `Profielfoto van ${profile.name}` : `Illustratie van ${beast.name}, ${beast.archetype.toLowerCase()}`;
+  } else {
+    image.hidden = true;
+    signatureView.hidden = false;
+    signatureView.dataset.signature = profile.signature || 'orbit';
+    initial.textContent = profile.name.trim().charAt(0).toLocaleUpperCase('nl');
+  }
+  document.querySelector('[data-profile-world]').textContent = useBeastImage ? beast.world : (useUploadedImage ? 'Eigen profielbeeld' : 'Geometrische signatuur');
   document.querySelector('[data-profile-name]').textContent = profile.name;
-  document.querySelector('[data-profile-beast]').textContent = beast.name;
-  document.querySelector('[data-profile-archetype]').textContent = beast.archetype;
+  const beastLine = document.querySelector('[data-profile-beast-line]');
+  if (beast) {
+    beastLine.hidden = false;
+    document.querySelector('[data-profile-beast]').textContent = beast.name;
+    document.querySelector('[data-profile-archetype]').textContent = beast.archetype;
+  } else {
+    beastLine.hidden = true;
+  }
   document.querySelector('[data-profile-intro]').textContent = profile.intro || 'Ik ben hier om te onderzoeken wat beweegt, schuurt en nog niet helemaal te begrijpen valt.';
   document.querySelector('[data-profile-updated]').textContent = `Lokaal bijgewerkt op ${new Intl.DateTimeFormat('nl-BE', { day:'numeric', month:'long', year:'numeric' }).format(new Date(profile.updatedAt || profile.createdAt))}`;
   document.querySelector('[data-profile-interests]').replaceChildren(...(profile.interests || []).map(interest => {
@@ -100,11 +124,46 @@
     return tag;
   }));
 
-  document.querySelector('[data-profile-mirror-title]').textContent = `${beast.name}, ${beast.archetype.toLowerCase()}`;
-  document.querySelector('[data-profile-motto]').textContent = `“${beast.motto}”`;
-  document.querySelector('[data-profile-strength]').textContent = beast.strength;
-  document.querySelector('[data-profile-pitfall]').textContent = beast.pitfall;
-  document.querySelector('[data-profile-role]').textContent = beast.role;
+  const boundary = document.querySelector('[data-profile-boundary]');
+  boundary.innerHTML = beast
+    ? '<strong>Een vertrekpunt, geen paspoort.</strong> Dit beest laat zien welk antwoordpatroon tijdens de quiz het dichtst in de buurt kwam. Op een andere dag of in een andere omgeving kan er iets anders bewegen.'
+    : '<strong>Een vertrekpunt, geen paspoort.</strong> Wat je hier schreef is geen definitie van wie je bent. Het is een momentopname die mag verschuiven, groeien en zichzelf tegenspreken.';
+
+  const personalLabels = {
+    fear:'Grootste of raarste angst',
+    guilty:'Onverdedigbare guilty pleasure',
+    dream:'Grootste droom',
+    normal:'Voel je je meestal normaal?',
+    history:'Zoekgeschiedenis aan tafel?',
+    chaos:'Oorzaak van de chaos?'
+  };
+  const personalAnswers = [
+    ...Object.entries(profile.personal || {}),
+    ...Object.entries(profile.quick || {})
+  ].filter(([, value]) => typeof value === 'string' && value.trim());
+  if (personalAnswers.length) {
+    document.querySelector('[data-profile-personal-section]').hidden = false;
+    document.querySelector('[data-profile-personal-answers]').replaceChildren(...personalAnswers.map(([key, value]) => {
+      const article = document.createElement('article');
+      const small = document.createElement('span');
+      const text = document.createElement('p');
+      small.textContent = personalLabels[key] || key;
+      text.textContent = value;
+      article.append(small, text);
+      return article;
+    }));
+  }
+
+  if (beast) {
+    document.querySelector('[data-profile-mirror]').hidden = false;
+    document.querySelector('[data-profile-mirror-title]').textContent = `${beast.name}, ${beast.archetype.toLowerCase()}`;
+    document.querySelector('[data-profile-motto]').textContent = `“${beast.motto}”`;
+    document.querySelector('[data-profile-strength]').textContent = beast.strength;
+    document.querySelector('[data-profile-pitfall]').textContent = beast.pitfall;
+    document.querySelector('[data-profile-role]').textContent = beast.role;
+  } else {
+    document.querySelector('[data-profile-beast-invitation]').hidden = false;
+  }
 
   const kindredRoot = document.querySelector('[data-profile-kindred]');
   const kindred = (profile.kindred || []).map(match => ({ ...match, beast:data.beasts.find(item => item.id === match.id || item.legacyIds?.includes(match.id)) })).filter(match => match.beast);

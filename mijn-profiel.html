@@ -6,35 +6,162 @@
   <meta name="description" content="Jouw private profiel en persoonlijke ontdekspoor binnen De Onwijze Wijsheden.">
   <title>Mijn profiel — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=12">
-  <link rel="stylesheet" href="css/profile.css?v=2">
-  <script src="js/site-shell.js?v=19" defer></script>
+  <link rel="stylesheet" href="css/profile.css?v=3">
+  <script src="js/site-shell.js?v=20" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
-  <script src="js/profile.js?v=4" defer></script>
+  <script src="js/profile-editor.js?v=1" defer></script>
+  <script src="js/profile.js?v=5" defer></script>
 </head>
 <body class="profile-page">
   <site-header active="spoor"></site-header>
   <main id="inhoud">
-    <section class="profile-empty" data-profile-empty hidden>
-      <div><p class="eyebrow">Hier begint jouw plek</p><h1>Nog geen profiel. Wel al een open deur.</h1><p>De Beestenquiz geeft je een eerste speelse spiegel. Daarna groeit deze pagina mee met wat je leest, bewaart en probeert.</p><a href="dierenquiz.html">Ontdek mijn beest →</a></div>
-      <div class="profile-empty__mark" aria-hidden="true">?</div>
+    <section class="profile-editor" data-profile-empty data-profile-editor hidden>
+      <header class="profile-editor__intro">
+        <div>
+          <p class="eyebrow">Het profielatelier</p>
+          <h1 data-editor-title>Maak een plek die al van jou is.</h1>
+          <p>Geen diagnose en geen sollicitatieformulier. Alleen genoeg om je spoor te bewaren, je eigen ingangen te krijgen en later andere wonderlijke mensen te herkennen.</p>
+        </div>
+        <div class="profile-editor__orbit" aria-hidden="true"><span></span><i></i><b>Jij</b></div>
+      </header>
+
+      <form class="profile-form" data-direct-profile-form novalidate>
+        <section class="profile-form__panel profile-form__basics" aria-labelledby="profile-basics-title">
+          <div class="profile-form__number">01</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">De basis</p>
+            <h2 id="profile-basics-title">Hoe mogen we je noemen?</h2>
+            <div class="profile-form__grid">
+              <label><span>Naam of bijnaam <em>verplicht</em></span><input name="name" type="text" minlength="2" maxlength="42" autocomplete="nickname" required placeholder="Bijvoorbeeld: Nova"></label>
+              <label><span>E-mailadres <em>alleen voor jouw gekozen updates</em></span><input name="email" type="email" maxlength="120" autocomplete="email" placeholder="jij@voorbeeld.be"></label>
+            </div>
+            <label><span>Een zin over jou <em>mag ook vreemd, klein of onaf zijn</em></span><textarea name="intro" rows="3" maxlength="220" placeholder="Ik ben hier omdat..."></textarea></label>
+          </div>
+        </section>
+
+        <section class="profile-form__panel" aria-labelledby="profile-interests-title">
+          <div class="profile-form__number">02</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Voer voor Mijn spoor</p>
+            <h2 id="profile-interests-title">Waar blijft je hoofd vanzelf aan hangen?</h2>
+            <p class="profile-form__hint">Kies maximaal drie. We gebruiken ze om je volgende deuren voor te stellen.</p>
+            <div class="profile-choice-grid" data-interest-options>
+              <label><input type="checkbox" name="interests" value="Brein & zenuwstelsel"><span>Brein & zenuwstelsel</span></label>
+              <label><input type="checkbox" name="interests" value="Emoties & herstel"><span>Emoties & herstel</span></label>
+              <label><input type="checkbox" name="interests" value="Leren & veranderen"><span>Leren & veranderen</span></label>
+              <label><input type="checkbox" name="interests" value="Relaties & hechting"><span>Relaties & hechting</span></label>
+              <label><input type="checkbox" name="interests" value="Bewustzijn & metafysica"><span>Bewustzijn & metafysica</span></label>
+              <label><input type="checkbox" name="interests" value="Persoonlijke verhalen"><span>Persoonlijke verhalen</span></label>
+              <label><input type="checkbox" name="interests" value="Zelfonderzoek"><span>Zelfonderzoek</span></label>
+              <label><input type="checkbox" name="interests" value="Community bouwen"><span>Community bouwen</span></label>
+            </div>
+            <p class="profile-form__status" data-interest-status aria-live="polite"></p>
+          </div>
+        </section>
+
+        <section class="profile-form__panel profile-form__signature-panel" aria-labelledby="profile-signature-title">
+          <div class="profile-form__number">03</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Jouw geometrische signatuur</p>
+            <h2 id="profile-signature-title">Welke vorm voelt vandaag het meest als jij?</h2>
+            <div class="signature-options" data-signature-options>
+              <label><input type="radio" name="signature" value="orbit" checked><span class="signature-sigil" data-signature="orbit"><i></i></span><b>Baan</b></label>
+              <label><input type="radio" name="signature" value="spiral"><span class="signature-sigil" data-signature="spiral"><i></i></span><b>Spiraal</b></label>
+              <label><input type="radio" name="signature" value="facet"><span class="signature-sigil" data-signature="facet"><i></i></span><b>Facet</b></label>
+              <label><input type="radio" name="signature" value="compass"><span class="signature-sigil" data-signature="compass"><i></i></span><b>Kompas</b></label>
+              <label><input type="radio" name="signature" value="wave"><span class="signature-sigil" data-signature="wave"><i></i></span><b>Golf</b></label>
+              <label><input type="radio" name="signature" value="constellation"><span class="signature-sigil" data-signature="constellation"><i></i></span><b>Constellatie</b></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-form__panel profile-form__portrait-panel" aria-labelledby="profile-portrait-title">
+          <div class="profile-form__number">04</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Het portretatelier</p>
+            <h2 id="profile-portrait-title">Kies hoe je hier verschijnt.</h2>
+            <div class="profile-portrait-studio">
+              <div class="profile-portrait-preview" data-avatar-preview data-signature="orbit"><span data-avatar-initial>?</span><img data-avatar-image alt="Voorvertoning van je gekozen profielfoto" hidden></div>
+              <div class="profile-portrait-actions">
+                <label class="profile-upload"><input type="file" name="avatar" accept="image/*" data-avatar-input><span>Kies een eigen foto</span></label>
+                <button type="button" data-use-signature>Maak beeld van mijn signatuur</button>
+                <a href="dierenquiz.html">Of ontdek het dier in jou →</a>
+                <small>Een eigen foto wordt verkleind en alleen in deze browser bewaard. De dierenquiz kun je ook later doen.</small>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-form__panel" aria-labelledby="profile-personal-title">
+          <div class="profile-form__number">05</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Drie dingen die geen cv nodig heeft</p>
+            <h2 id="profile-personal-title">Een beetje echt is interessanter dan volledig.</h2>
+            <div class="profile-form__grid profile-form__grid--three">
+              <label><span>Wat is je grootste of raarste angst?</span><textarea name="fear" rows="4" maxlength="180" placeholder="Bijvoorbeeld: dat duiven samenspannen"></textarea></label>
+              <label><span>Wat is je onverdedigbare guilty pleasure?</span><textarea name="guilty" rows="4" maxlength="180" placeholder="Je hoeft het niet te verdedigen"></textarea></label>
+              <label><span>Wat is jouw grootste droom?</span><textarea name="dream" rows="4" maxlength="180" placeholder="Groot, klein of totaal onmogelijk"></textarea></label>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-form__panel" aria-labelledby="profile-quick-title">
+          <div class="profile-form__number">06</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Snel. Niet te lang nadenken.</p>
+            <h2 id="profile-quick-title">Drie volstrekt onwetenschappelijke vragen.</h2>
+            <div class="profile-quick-grid">
+              <fieldset><legend>Voel jij je meestal normaal?</legend><label><input type="radio" name="normal" value="Ja"><span>Ja</span></label><label><input type="radio" name="normal" value="Nee"><span>Nee</span></label><label><input type="radio" name="normal" value="Ik weiger de premisse"><span>Ik weiger de premisse</span></label></fieldset>
+              <fieldset><legend>Zou je je zoekgeschiedenis aan tafel durven voorlezen?</legend><label><input type="radio" name="history" value="Ja"><span>Ja</span></label><label><input type="radio" name="history" value="Nee"><span>Nee</span></label><label><input type="radio" name="history" value="Alleen na middernacht"><span>Alleen na middernacht</span></label></fieldset>
+              <fieldset><legend>Ben jij meestal de oorzaak van de chaos?</legend><label><input type="radio" name="chaos" value="Ja"><span>Ja</span></label><label><input type="radio" name="chaos" value="Nee"><span>Nee</span></label><label><input type="radio" name="chaos" value="Geen commentaar"><span>Geen commentaar</span></label></fieldset>
+            </div>
+          </div>
+        </section>
+
+        <section class="profile-form__panel profile-form__news" aria-labelledby="profile-news-title">
+          <div class="profile-form__number">07</div>
+          <div class="profile-form__fields">
+            <p class="eyebrow">Optioneel op de hoogte blijven</p>
+            <h2 id="profile-news-title">Waarvoor mogen we ooit bij je aankloppen?</h2>
+            <div class="profile-news-options">
+              <label><input type="checkbox" name="mailPreferences" value="atlas"><span>Nieuwe Atlasdossiers</span></label>
+              <label><input type="checkbox" name="mailPreferences" value="games"><span>Nieuwe spellen en proeven</span></label>
+              <label><input type="checkbox" name="mailPreferences" value="community"><span>Communitynieuws</span></label>
+              <label class="profile-news-options__all"><input type="checkbox" data-mail-all><span>Alles wat Onwijs is</span></label>
+            </div>
+            <small>Dit legt nu alleen je voorkeur lokaal vast; er wordt nog niets verstuurd. We koppelen dit pas aan een nieuwsbrief wanneer die bestaat en jij daar expliciet voor kiest.</small>
+          </div>
+        </section>
+
+        <footer class="profile-form__finish">
+          <label><input type="checkbox" name="localConsent" required><span>Bewaar dit profiel en mijn spoor op dit apparaat. Ik begrijp dat het voorlopig niet online of openbaar staat.</span></label>
+          <p data-form-error aria-live="polite"></p>
+          <div><button type="submit" data-profile-submit>Maak mijn plek</button><a href="menslab.html#mijn-spoor" data-profile-cancel hidden>Annuleer</a></div>
+        </footer>
+      </form>
     </section>
 
     <div data-profile-content hidden>
       <section class="profile-hero" aria-labelledby="profile-title">
-        <div class="profile-hero__image"><img data-profile-image src="" alt=""><span data-profile-world></span></div>
+        <div class="profile-hero__image"><img data-profile-image src="" alt="" hidden><div class="profile-signature-view" data-profile-signature-view data-signature="orbit"><span data-profile-initial>?</span></div><span data-profile-world></span></div>
         <div class="profile-hero__copy">
           <p class="eyebrow">Mijn plek in De Onwijze Wijsheden</p>
           <h1 id="profile-title" data-profile-name></h1>
-          <p class="profile-hero__beast"><span data-profile-beast></span> · <strong data-profile-archetype></strong></p>
+          <p class="profile-hero__beast" data-profile-beast-line><span data-profile-beast></span> · <strong data-profile-archetype></strong></p>
           <p class="profile-hero__intro" data-profile-intro></p>
           <div class="profile-hero__tags" data-profile-interests></div>
-          <div class="profile-hero__actions"><a href="dierenquiz.html?profiel=wijzigen">Wijzig mijn profiel</a><a href="menslab.html#mijn-spoor">Open Mijn spoor →</a></div>
+          <div class="profile-hero__actions"><a href="mijn-profiel.html?bewerken=1">Wijzig mijn profiel</a><a href="menslab.html#mijn-spoor">Open Mijn spoor →</a></div>
           <small data-profile-updated></small>
         </div>
       </section>
 
       <section class="profile-boundary">
-        <p><strong>Een vertrekpunt, geen paspoort.</strong> Dit beest laat zien welk antwoordpatroon tijdens de quiz het dichtst in de buurt kwam. Op een andere dag of in een andere omgeving kan er iets anders bewegen.</p>
+        <p data-profile-boundary><strong>Een vertrekpunt, geen paspoort.</strong> Dit profiel mag veranderen wanneer jij verandert.</p>
+      </section>
+
+      <section class="profile-personal" data-profile-personal-section hidden aria-labelledby="profile-personal-view-title">
+        <div><p class="eyebrow">Niet in vakjes te vangen</p><h2 id="profile-personal-view-title">Drie dingen die iets menselijks achterlaten.</h2></div>
+        <div class="profile-personal__answers" data-profile-personal-answers></div>
       </section>
 
       <section class="profile-next-door" id="volgende-deur" aria-labelledby="next-door-title">
@@ -68,7 +195,12 @@
         </div>
       </section>
 
-      <section class="profile-mirror" aria-labelledby="profile-mirror-title">
+      <section class="profile-beast-invitation" data-profile-beast-invitation hidden>
+        <div class="profile-beast-invitation__mark" aria-hidden="true"><span></span></div>
+        <div><p class="eyebrow">Je profiel heeft al een stem</p><h2>Wil je het ook een dier geven?</h2><p>De 35 vragen voegen een speelse dierenlaag toe aan je bestaande profiel. Niets wordt overschreven: je beest komt er gewoon bij wonen.</p><a href="dierenquiz.html">Ontdek mijn beest →</a></div>
+      </section>
+
+      <section class="profile-mirror" data-profile-mirror hidden aria-labelledby="profile-mirror-title">
         <div><p class="eyebrow">De eerste spiegel</p><h2 id="profile-mirror-title" data-profile-mirror-title></h2><blockquote data-profile-motto></blockquote></div>
         <dl><div><dt>Kracht</dt><dd data-profile-strength></dd></div><div><dt>Waar het kan schuren</dt><dd data-profile-pitfall></dd></div><div><dt>In een groep</dt><dd data-profile-role></dd></div></dl>
       </section>
