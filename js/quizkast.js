@@ -86,7 +86,7 @@
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
-      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'De emotionele routekaart', type:'Interactieve oefening', category:'Emoties & regulatie', duration:'ongeveer 5–10 minuten', search:'emotie lichaam betekenis impuls ruimte routekaart oefening spel' },
+      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'Spoel even terug', type:'Filmische oefening', category:'Emoties & zelfinzicht', duration:'ongeveer 15–20 minuten', search:'emotie lichaam betekenis impuls golf scène montage ondertiteling werkbank oefening spel' },
       { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', type:'Dieptequiz', category:'Keuzes', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
       { href:'veranderroute.html', title:'De Veranderroute', type:'Interactieve route', category:'Veranderen', duration:'ongeveer 10–15 minuten', search:'veranderen route experiment verwachting observatie beweging' },
       { href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Persoonlijkheidsspel', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype mythisch' }

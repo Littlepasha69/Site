@@ -20,7 +20,7 @@
     },
     'Emoties & herstel': {
       understand:[['onderwerpen/emotieregulatie.html','Wat gebeurt er vóór een reactie?','Volg de route van prikkel, betekenis en handelingsneiging.'],['onderwerpen/stress.html','Wanneer wordt belasting stress?','Onderzoek de wisselwerking tussen lichaam, context en draagkracht.']],
-      try:[['speelhal/oefeningen/emotionele-routekaart.html','Maak ruimte rond één moment','Leg situatie, lichaam, betekenis en impuls even naast elkaar.'],['speelhal.html?quiz=beweging-vandaag','Verdeel je aandacht','Geen oplossing, alleen kijken waar vandaag beweging zit.']],
+      try:[['speelhal/oefeningen/emotionele-routekaart.html','Spoel één moment even terug','Leg scène, ondertiteling, lichaam, emotionele golf en impuls even naast elkaar.'],['speelhal.html?quiz=beweging-vandaag','Verdeel je aandacht','Geen oplossing, alleen kijken waar vandaag beweging zit.']],
       recognise:[['denk-box09.html','Terugkwispelen','Over oude patronen die blijven aankloppen en het verlangen om anders te leven.']]
     },
     'Leren & veranderen': {
@@ -45,7 +45,7 @@
     },
     'Zelfonderzoek': {
       understand:[['onderwerpen/persoonlijkheid.html','Ben je een trek, toestand of verhaal?','Een rijker beeld van persoonlijkheid dan één score of type.']],
-      try:[['speelhal.html?quiz=waar-komt-je-ja-vandaan','Loop een onderzoeksvraag in','Geen score. Wel een vraag die even mag meelopen.'],['speelhal/oefeningen/emotionele-routekaart.html','Vergelijk verwachting met ervaring','Eerst uiteenleggen, dan kijken wat er werkelijk gebeurde.']],
+      try:[['speelhal.html?quiz=waar-komt-je-ja-vandaan','Loop een onderzoeksvraag in','Geen score. Wel een vraag die even mag meelopen.'],['speelhal/oefeningen/emotionele-routekaart.html','Leg één scène op de montagetafel','Scheid wat zichtbaar gebeurde van wat je brein erbij vertelde.']],
       recognise:[['denk-box14.html','Een avond met de drie Nancy’s','Een verhaal over meerdere versies van jezelf in één leven.']]
     },
     'Community bouwen': {

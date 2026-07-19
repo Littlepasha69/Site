@@ -127,16 +127,20 @@
   });
   const reading = [...readingMap.values()].sort((a, b) => b.time - a.time);
 
+  const exerciseHref = item => item.kind === 'emotion-scene'
+    ? `speelhal/oefeningen/emotionele-routekaart.html?kaart=${encodeURIComponent(item.savedAt || '')}#premiere`
+    : item.kind === 'beast' ? 'mijn-profiel.html' : 'speelhal.html';
+
   const played = [
     ...quizSnapshots.map(item => ({ title:item.quizTitle || item.resultTitle || 'Quizspiegel', href:'speelhal.html', meta:item.resultTitle || 'Bewaarde spiegel', time:dateValue(item.savedAt) })),
-    ...labSnapshots.map(item => ({ title:item.title || 'Bewaarde proef', href:item.kind === 'beast' ? 'mijn-profiel.html' : 'speelhal.html', meta:item.kind === 'beast' ? 'Dierenprofiel' : 'Proefnotitie', time:dateValue(item.savedAt) })),
+    ...labSnapshots.map(item => ({ title:item.title || 'Bewaarde proef', href:exerciseHref(item), meta:item.kind === 'beast' ? 'Dierenprofiel' : item.kind === 'emotion-scene' ? 'Filmische scènekaart' : 'Proefnotitie', time:dateValue(item.savedAt) })),
     ...completedWeeks.map(item => ({ title:'Een week mentale rekbaarheid', href:'speelhal-week.html', meta:'Afgeronde weekroute', time:dateValue(item.completedAt) }))
   ].sort((a, b) => b.time - a.time);
 
   const saved = [
     ...reading.filter(item => item.saved).map(item => ({ ...item, meta:item.kind || 'Bewaarde vondst' })),
     ...quizSnapshots.map(item => ({ title:item.resultTitle || item.quizTitle || 'Bewaarde spiegel', href:'speelhal.html', meta:'Speelhal · spiegel', time:dateValue(item.savedAt) })),
-    ...labSnapshots.map(item => ({ title:item.title || 'Bewaarde notitie', href:item.kind === 'beast' ? 'mijn-profiel.html' : 'speelhal.html', meta:'Mijn notitie', time:dateValue(item.savedAt) }))
+    ...labSnapshots.map(item => ({ title:item.title || 'Bewaarde notitie', href:exerciseHref(item), meta:item.kind === 'emotion-scene' ? 'Spoel even terug' : 'Mijn notitie', time:dateValue(item.savedAt) }))
   ].sort((a, b) => b.time - a.time);
 
   const unfinished = reading.filter(item => item.progress > 0 && item.progress < 99).map(item => ({ ...item, meta:`${Math.round(item.progress)}% gelezen` }));
@@ -144,7 +148,7 @@
   if (beastProgress && Array.isArray(beastProgress.answers) && beastProgress.answers.some(value => value !== null)) unfinished.unshift({ title:'De Grote Beestenquiz', href:'dierenquiz.html', meta:'Je profielspiegel staat nog open', time:Date.now() - 1 });
   if (depthProgress) unfinished.unshift({ title:'Waar komt jouw ja vandaan?', href:'dieptequiz-ja.html', meta:'Dieptequiz nog open', time:dateValue(depthProgress.savedAt) });
   if (routeProgress) unfinished.unshift({ title:'De Veranderroute', href:'veranderroute.html', meta:'Route nog open', time:dateValue(routeProgress.updatedAt || routeProgress.savedAt) });
-  if (exerciseDrafts && Object.keys(exerciseDrafts).length) unfinished.unshift({ title:'De emotionele routekaart', href:'speelhal/oefeningen/emotionele-routekaart.html', meta:'Oefenbank nog open', time:Date.now() - 2 });
+  if (exerciseDrafts && Object.keys(exerciseDrafts).length) unfinished.unshift({ title:'Spoel even terug', href:'speelhal/oefeningen/emotionele-routekaart.html', meta:'Montagetafel nog open', time:Date.now() - 2 });
 
   function renderList(name, items, emptyText) {
     const list = document.querySelector(`[data-list-${name}]`);
@@ -175,6 +179,48 @@
   renderList('played', played, 'Nog niets gespeeld. De rode knop weet waar de ingang is.');
   renderList('saved', saved, 'Nog niets bewaard. Alleen wat jij kiest, verschijnt hier.');
   renderList('unfinished', unfinished, 'Geen losse eindjes. Je mag iets nieuws laten trekken.');
+
+  function renderEmotionScenes() {
+    const section = document.querySelector('[data-emotion-scenes]');
+    const list = document.querySelector('[data-emotion-scene-list]');
+    if (!section || !list) return;
+    const scenes = labSnapshots.filter(item => item?.kind === 'emotion-scene' || item?.kind === 'exercise');
+    section.hidden = !scenes.length;
+    if (!scenes.length) return;
+    list.replaceChildren(...scenes.map(item => {
+      const article = document.createElement('article'); article.className = 'emotion-track-card';
+      const eyebrow = document.createElement('span'); eyebrow.textContent = item.version === 2 ? 'Spoel even terug · scènekaart' : 'Oude Werkbank-notitie';
+      const title = document.createElement('h3'); title.textContent = item.title || 'Een scène die ik wilde begrijpen';
+      const date = document.createElement('time'); date.dateTime = item.savedAt || ''; date.textContent = formatDate(item.savedAt);
+      article.append(eyebrow, title, date);
+      const rows = item.version === 2 ? [
+        ['Kantelpunt', item.turningPoint], ['Voorlopige emotienamen', Array.isArray(item.emotionNames) ? item.emotionNames.join(', ') : ''],
+        ['Eerste impuls', item.impulse], ['Werkelijk gedrag', item.actualAction], ['Golf aan het einde', item.waveEnd], ['Experimenteel shot', item.experimentalShot]
+      ] : [['Oude samenvatting', item.prompt || 'De oorspronkelijke Werkbank-notitie bevatte geen samenvatting.'], ['Observatie', item.observation], ['Volgende stap', item.nextAction]];
+      const dl = document.createElement('dl');
+      rows.filter(([, value]) => typeof value === 'string' && value.trim()).forEach(([label, value]) => {
+        const div = document.createElement('div'); const dt = document.createElement('dt'); const dd = document.createElement('dd');
+        dt.textContent = label; dd.textContent = value; div.append(dt, dd); dl.append(div);
+      });
+      if (!dl.children.length) { const p = document.createElement('p'); p.textContent = 'Deze bewaarde versie bevat weinig detail. Ze blijft behouden en kan veilig worden verwijderd.'; article.append(p); }
+      else article.append(dl);
+      const actions = document.createElement('div'); actions.className = 'emotion-track-card__actions';
+      if (item.version === 2 && item.data && item.privacyMode !== 'experiment-only') {
+        const open = document.createElement('a'); open.href = exerciseHref(item); open.textContent = 'Volledige kaart bekijken'; actions.append(open);
+      }
+      const remove = document.createElement('button'); remove.type = 'button'; remove.textContent = 'Verwijderen'; remove.setAttribute('aria-label', `Verwijder ${title.textContent}`);
+      remove.addEventListener('click', () => {
+        if (!confirm(`Wil je “${title.textContent}” uit Mijn spoor verwijderen?`)) return;
+        const progress = readJson('menslab-progress-v3', {}); const current = Array.isArray(progress.labSnapshots) ? progress.labSnapshots : [];
+        progress.labSnapshots = current.filter(snapshot => snapshot.savedAt !== item.savedAt);
+        try { localStorage.setItem('menslab-progress-v3', JSON.stringify(progress)); location.reload(); }
+        catch (_) { const message = document.querySelector('[data-emotion-scene-status]'); if (message) message.textContent = 'Verwijderen lukt niet in deze browser.'; }
+      });
+      actions.append(remove); article.append(actions); return article;
+    }));
+  }
+
+  renderEmotionScenes();
 
   function renderActive() {
     const active = unfinished[0] || reading[0] || played[0];

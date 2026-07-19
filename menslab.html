@@ -6,10 +6,10 @@
   <meta name="description" content="Mijn spoor brengt samen wat je leest, speelt, bewaart en nog wilt hervatten bij De Onwijze Wijsheden.">
   <title>Mijn spoor — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=28">
-  <link rel="stylesheet" href="css/mijn-spoor.css?v=8">
+  <link rel="stylesheet" href="css/mijn-spoor.css?v=9">
   <script src="js/site-shell.js?v=21" defer></script>
   <script src="js/creature-data.js?v=10" defer></script>
-  <script src="js/mijn-spoor.js?v=2" defer></script>
+  <script src="js/mijn-spoor.js?v=3" defer></script>
 </head>
 <body class="track-page">
   <site-header active="spoor"></site-header>
@@ -79,6 +79,12 @@
       </div>
     </section>
 
+    <section class="emotion-track" data-emotion-scenes hidden aria-labelledby="emotion-track-title">
+      <header class="track-section-head"><div><p class="eyebrow">Bewaarde montages</p><h2 id="emotion-track-title">Scènes die je wilde begrijpen.</h2></div><p>Alleen de versie die jij koos staat hier. Oude Werkbank-notities blijven bestaan, ook wanneer ze minder velden bevatten.</p></header>
+      <div class="emotion-track__grid" data-emotion-scene-list></div>
+      <p data-emotion-scene-status aria-live="polite"></p>
+    </section>
+
     <section class="track-worlds" aria-labelledby="track-worlds-title">
       <header class="track-section-head track-section-head--light">
         <div><p class="eyebrow">Twee geheime gangen</p><h2 id="track-worlds-title">Waar wil je even rondneuzen?</h2></div>
@@ -105,9 +111,9 @@
       <span class="latest-ride__stamp" aria-hidden="true">VERS VAN DE WERKBANK</span>
       <div class="latest-ride__copy">
         <p class="eyebrow"><span>Nieuw in de Speelhal</span><b aria-hidden="true">GEEN RECHTE LIJN</b></p>
-        <h2 id="latest-ride-title"><span>Leg één emotioneel moment</span><em>op de werkbank.</em></h2>
-        <p>De emotionele routekaart maakt situatie, lichaam, mogelijke emotie, betekenis en impuls zichtbaar — zonder te doen alsof één invulling de waarheid is.</p>
-        <a class="latest-ride__workbench" href="speelhal/oefeningen/emotionele-routekaart.html"><span>Open de nieuwste oefenbank</span><b aria-hidden="true">↗</b></a>
+        <h2 id="latest-ride-title"><span>Spoel één emotioneel moment</span><em>even terug.</em></h2>
+        <p>Leg een scène op de montagetafel en scheid wat zichtbaar gebeurde van de ondertiteling die je brein erbij zette — zonder te doen alsof één montage de waarheid is.</p>
+        <a class="latest-ride__workbench" href="speelhal/oefeningen/emotionele-routekaart.html"><span>Open Spoel even terug</span><b aria-hidden="true">↗</b></a>
       </div>
       <a class="latest-ride__enter" href="speelhal.html?entree=spoor" aria-label="Stap binnen in de Speelhal en bekijk alle attracties">
         <span>Verborgen toegang</span>

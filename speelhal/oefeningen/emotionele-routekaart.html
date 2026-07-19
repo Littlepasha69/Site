@@ -3,99 +3,162 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="description" content="Een rustige oefenbank in de Speelhal om een hanteerbaar emotioneel moment stap voor stap te onderzoeken zonder diagnose of score.">
-  <title>De emotionele routekaart — De Speelhal</title>
+  <meta name="description" content="Spoel één veilig te bekijken emotioneel moment terug en leg de scène, ondertiteling, golf en mogelijke ruimte naast elkaar.">
+  <title>Spoel even terug — De Speelhal</title>
   <link rel="stylesheet" href="../../css/site-2026.css?v=28">
-  <link rel="stylesheet" href="../../css/menslab-oefening.css?v=1">
+  <link rel="stylesheet" href="../../css/menslab-oefening.css?v=2">
   <script src="../../js/site-shell.js?v=21" defer></script>
-  <script src="../../js/menslab-oefening.js?v=2" defer></script>
+  <script src="../../js/menslab-oefening.js?v=3" defer></script>
 </head>
 <body>
   <site-header active="spoor" base="../../"></site-header>
   <main id="inhoud" class="practice-page" data-exercise-id="emotionele-routekaart">
     <header class="practice-hero">
       <div class="practice-hero__inner">
-        <nav class="practice-breadcrumb" aria-label="Kruimelpad"><a href="../../menslab.html">Mijn spoor</a><span aria-hidden="true">/</span><a href="../../speelhal.html">De Speelhal</a><span aria-hidden="true">/</span><span>Oefenbank</span></nav>
+        <nav class="practice-breadcrumb" aria-label="Kruimelpad"><a href="../../menslab.html">Mijn spoor</a><span aria-hidden="true">/</span><a href="../../speelhal.html">De Speelhal</a><span aria-hidden="true">/</span><span>Emoties &amp; zelfinzicht</span></nav>
         <div class="practice-hero__grid">
           <div>
-            <p class="eyebrow">Speelhal · Oefenbank 01</p>
-            <h1>Teken één emotionele route uit.</h1>
-            <p class="practice-hero__lead">Geen test en geen recept. Je legt één hanteerbaar moment uiteen, zodat situatie, lichaam, betekenis en impuls niet langer één dichte knoop hoeven te zijn.</p>
+            <p class="eyebrow">Emoties &amp; zelfinzicht · filmische oefening</p>
+            <h1>Spoel even terug.</h1>
+            <p class="practice-hero__lead">Leg één ongemakkelijk moment op de montagetafel. Scheid wat er gebeurde van wat je brein erbij vertelde. Ontdek hoe je emotie bewoog, wat je wilde doen en waar ruimte ontstond.</p>
           </div>
           <aside class="practice-card" aria-label="Praktische informatie">
-            <span>Zelfonderzoek</span>
-            <strong>Ongeveer 5–10 minuten</strong>
-            <p>Je antwoorden blijven alleen in deze browser. Je kunt tussendoor weggaan en later terugkomen.</p>
+            <span>Montagetafel</span><strong>Ongeveer 15–20 minuten</strong>
+            <p>Je concept blijft alleen in deze browser. Je mag stoppen, overslaan en later terugkomen.</p>
             <a href="../../onderwerpen/emotieregulatie.html#proberen">Lees eerst het dossier →</a>
           </aside>
         </div>
       </div>
     </header>
 
+    <section class="practice-opening" aria-label="Start van de oefening">
+      <p>Leg één emotioneel moment op de montagetafel. We bekijken wat er gebeurde, wat er vanbinnen meespeelde en waar de scène veranderde.</p>
+    </section>
+
     <section class="practice-boundary" aria-label="Veiligheidsgrens">
-      <strong>Kies klein genoeg.</strong>
-      <p>Neem een recent moment dat ongemakkelijk maar hanteerbaar is — niet je zwaarste of meest traumatische herinnering. Stop wanneer je duidelijk meer overspoeld, verdoofd of onveilig raakt.</p>
+      <strong>Kies een scène die klein genoeg is.</strong>
+      <p>Kies een recent moment dat ongemakkelijk was, maar dat je nu veilig kunt bekijken. Neem niet je zwaarste of meest traumatische herinnering.</p>
+      <button type="button" data-practice-stop-now>Stoppen voor nu</button>
     </section>
 
     <div class="practice-layout">
       <aside class="practice-progress" aria-label="Voortgang in deze oefening">
-        <p>Jouw route</p>
-        <strong><span data-practice-count>0</span> van 6 haltes aangeraakt</strong>
+        <p>Jouw filmstrook</p>
+        <strong><span data-practice-count>0</span> van 8 haltes aangeraakt</strong>
         <div aria-hidden="true"><i data-practice-bar></i></div>
         <ol>
-          <li><a href="#camera">Wat gebeurde er?</a></li>
-          <li><a href="#lichaam">Wat deed je lichaam?</a></li>
-          <li><a href="#namen">Welke namen passen?</a></li>
-          <li><a href="#betekenis">Wat stond op het spel?</a></li>
-          <li><a href="#ruimte">Waar zat ruimte?</a></li>
-          <li><a href="#waarden">Wat paste werkelijk?</a></li>
+          <li><a href="#scene">De scène</a></li><li><a href="#ondertiteling">De ondertiteling</a></li>
+          <li><a href="#binnenkant">De binnenkant</a></li><li><a href="#golf">De golf</a></li>
+          <li><a href="#inzet">Wat stond er op het spel?</a></li><li><a href="#takes">Twee takes</a></li>
+          <li><a href="#montage">De montage</a></li><li><a href="#tegenlezing">Een andere montage</a></li>
         </ol>
         <small data-practice-autosave aria-live="polite">Nog niets ingevuld.</small>
+        <button class="practice-progress__stop" type="button" data-practice-stop-now>Stoppen voor nu</button>
       </aside>
 
       <form class="practice-form" data-practice-form>
-        <section class="practice-stop" id="camera" data-practice-stop>
-          <span aria-hidden="true">01</span>
-          <div><p>De buitenkant</p><h2>Beschrijf alleen wat een camera zag.</h2><label for="route-camera">Welke woorden, handelingen of omstandigheden gingen aan je reactie vooraf?</label><textarea id="route-camera" name="camera" rows="4" maxlength="500" placeholder="Blijf eerst bij waarneembare details, zonder verklaring of oordeel."></textarea></div>
+        <section class="practice-stop" id="scene" data-practice-stop>
+          <span aria-hidden="true">01</span><div><p>De buitenkant</p><h2>Zet de scène neer.</h2>
+            <label for="scene-moment">Welk recent moment wil je bekijken?<textarea id="scene-moment" name="sceneMoment" rows="3" maxlength="360" placeholder="Tijdens een gesprek keek mijn vriendin plots naar haar telefoon."></textarea></label>
+            <div class="film-frames">
+              <label><b>Vlak ervoor</b><small>Wat zou een camera hier kunnen opnemen?</small><textarea name="frameBefore" rows="4" maxlength="420"></textarea></label>
+              <label class="film-frame--turn"><b>Het kantelpunt</b><small>Wat zou een camera hier kunnen opnemen?</small><textarea name="frameTurn" rows="4" maxlength="420" required aria-describedby="turn-help"></textarea></label>
+              <label><b>Vlak erna</b><small>Wat zou een camera hier kunnen opnemen?</small><textarea name="frameAfter" rows="4" maxlength="420"></textarea></label>
+            </div>
+            <p class="practice-note" id="turn-help">Een camera ziet woorden, handelingen en gebeurtenissen. Geen gedachten of bedoelingen.</p>
+          </div>
         </section>
 
-        <section class="practice-stop" id="lichaam" data-practice-stop>
-          <span aria-hidden="true">02</span>
-          <div><p>De binnenkant</p><h2>Merk het lichaam op.</h2><label for="route-body">Waar voelde je spanning, warmte, leegte, druk of beweging?</label><textarea id="route-body" name="body" rows="4" maxlength="400" placeholder="Noteer alleen wat je werkelijk merkte. ‘Ik weet het niet’ mag ook."></textarea></div>
+        <section class="practice-stop" id="ondertiteling" data-practice-stop>
+          <span aria-hidden="true">02</span><div><p>De betekenislaag</p><h2>Welke ondertiteling zette je brein erbij?</h2>
+            <div class="subtitle-frames" data-frame-recap></div>
+            <div class="film-frames film-frames--subtitles">
+              <label><b>Ondertiteling · vlak ervoor</b><textarea name="subtitleBefore" rows="3" maxlength="420" placeholder="Wat dacht, vreesde of besloot je dat dit betekende?"></textarea></label>
+              <label><b>Ondertiteling · kantelpunt</b><textarea name="subtitleTurn" rows="3" maxlength="420"></textarea></label>
+              <label><b>Ondertiteling · vlak erna</b><textarea name="subtitleAfter" rows="3" maxlength="420"></textarea></label>
+            </div>
+            <p class="practice-note">Je ondertiteling kan kloppen. De camera alleen kan dat niet bewijzen.</p><button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
 
-        <section class="practice-stop" id="namen" data-practice-stop>
-          <span aria-hidden="true">03</span>
-          <div><p>Voorlopige taal</p><h2>Probeer twee mogelijke namen.</h2><label for="route-names">Was het boosheid, teleurstelling, angst, schaamte, verdriet — of een mengeling?</label><textarea id="route-names" name="names" rows="3" maxlength="300" placeholder="Bijvoorbeeld: misschien irritatie én teleurstelling."></textarea></div>
+        <section class="practice-stop" id="binnenkant" data-practice-stop>
+          <span aria-hidden="true">03</span><div><p>De binnenkant</p><h2>Wat merkte je vanbinnen?</h2>
+            <fieldset><legend>Wat merkte je bewust als eerste op?</legend><div class="choice-grid">
+              <label><input type="radio" name="firstNotice" value="Iets in mijn lichaam">Iets in mijn lichaam</label><label><input type="radio" name="firstNotice" value="Een gedachte of verklaring">Een gedachte of verklaring</label><label><input type="radio" name="firstNotice" value="Een beeld of herinnering">Een beeld of herinnering</label><label><input type="radio" name="firstNotice" value="Een impuls om iets te doen">Een impuls om iets te doen</label><label><input type="radio" name="firstNotice" value="Iets anders">Iets anders</label><label><input type="radio" name="firstNotice" value="Ik weet het niet meer">Ik weet het niet meer</label>
+            </div></fieldset>
+            <fieldset><legend>Wat merkte je in je lichaam?</legend><p class="field-hint">Kies wat je bewust opmerkte en wanneer. Meerdere antwoorden mogen.</p><div class="signal-list" data-body-signals></div></fieldset>
+            <p class="practice-note">Dit gaat over wat je bewust opmerkte. Niet noodzakelijk over wat biologisch als eerste gebeurde.</p><button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
 
-        <section class="practice-stop" id="betekenis" data-practice-stop>
-          <span aria-hidden="true">04</span>
-          <div><p>Betekenis en beweging</p><h2>Wat leek er op het spel te staan?</h2><div class="practice-pair"><label for="route-meaning">Welke betekenis kreeg het moment?<textarea id="route-meaning" name="meaning" rows="3" maxlength="350" placeholder="Bijvoorbeeld: ik word niet serieus genomen."></textarea></label><label for="route-impulse">Wat wilde je onmiddellijk doen?<textarea id="route-impulse" name="impulse" rows="3" maxlength="350" placeholder="Naderen, aanvallen, weggaan, zwijgen, herstellen…"></textarea></label></div></div>
+        <section class="practice-stop" id="golf" data-practice-stop>
+          <span aria-hidden="true">04</span><div><p>Het verloop</p><h2>Hoe bewoog de emotionele golf?</h2>
+            <p class="field-hint">De cijfers zijn geen score. Ze tonen alleen hoe sterk de ervaring op ieder moment voelde.</p>
+            <div class="wave-editor" data-wave-editor></div><div class="emotion-wave" data-wave-chart aria-label="Emotionele golf"></div>
+            <fieldset><legend>Welke één tot drie voorlopige emotienamen zouden kunnen passen?</legend><div class="choice-grid choice-grid--emotion" data-emotion-choices></div></fieldset>
+            <label class="inline-own" for="emotion-own">Eigen woord<input id="emotion-own" name="emotionOwn" maxlength="80"></label>
+            <div class="emotion-timings" data-emotion-timings></div>
+            <p class="practice-note">Een emotienaam is hier een mogelijke titel, geen definitief antwoord.</p>
+            <fieldset><legend>Ontstond er een tweede emotie over de eerste emotie?</legend><div class="choice-grid">
+              <label><input type="radio" name="secondEmotion" value="Schaamte omdat ik boos was">Schaamte omdat ik boos was</label><label><input type="radio" name="secondEmotion" value="Schuld omdat ik opgelucht was">Schuld omdat ik opgelucht was</label><label><input type="radio" name="secondEmotion" value="Angst voor mijn verdriet">Angst voor mijn verdriet</label><label><input type="radio" name="secondEmotion" value="Nee">Nee</label><label><input type="radio" name="secondEmotion" value="Ik weet het niet">Ik weet het niet</label>
+            </div><label class="inline-own">Eigen antwoord<input name="secondEmotionOwn" maxlength="140"></label></fieldset>
+            <button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
 
-        <section class="practice-stop" id="ruimte" data-practice-stop>
-          <span aria-hidden="true">05</span>
-          <div><p>Mogelijke ruimte</p><h2>Maak drie plekken zichtbaar.</h2><p class="practice-stop__intro">Wat kon iets veranderen? Denk ook aan steun, timing of een grens — niet alleen aan gedachten.</p><div class="practice-trio"><label for="route-before">Vóór het moment<textarea id="route-before" name="before" rows="3" maxlength="280"></textarea></label><label for="route-during">Tijdens de golf<textarea id="route-during" name="during" rows="3" maxlength="280"></textarea></label><label for="route-after">Erna<textarea id="route-after" name="after" rows="3" maxlength="280"></textarea></label></div></div>
+        <section class="practice-stop" id="inzet" data-practice-stop>
+          <span aria-hidden="true">05</span><div><p>De inzet</p><h2>Waar leek deze scène over te gaan?</h2>
+            <fieldset><legend>Wat leek op dat moment belangrijk, bedreigd, geblokkeerd of dichtbij?</legend><div class="choice-grid" data-stakes></div></fieldset>
+            <fieldset><legend>Kwam iets belangrijks misschien juist dichterbij?</legend><div class="choice-grid" data-closer></div></fieldset>
+            <p class="practice-note">Dit toont wat de scène voor jou leek te betekenen. Niet wat objectief bewezen werd.</p><button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
 
-        <section class="practice-stop" id="waarden" data-practice-stop>
-          <span aria-hidden="true">06</span>
-          <div><p>Geen perfecte reactie</p><h2>Sluit af met één eerlijke vraag.</h2><label for="route-values">Welke reactie paste bij je waarden én bij wat op dat moment werkelijk mogelijk was?</label><textarea id="route-values" name="values" rows="4" maxlength="500" placeholder="Handelingsruimte is niet hetzelfde als onbeperkte controle."></textarea></div>
+        <section class="practice-stop" id="takes" data-practice-stop>
+          <span aria-hidden="true">06</span><div><p>De beweging</p><h2>Wat wilde je doen — en wat deed je?</h2>
+            <div class="take-cards"><fieldset><legend>Take 1 — De eerste impuls</legend><label>Wat wilde je onmiddellijk doen?<select name="impulse"><option value="">Kies of sla over</option></select></label><label class="inline-own">Iets anders<input name="impulseOwn" maxlength="160"></label></fieldset><fieldset><legend>Take 2 — Wat werkelijk gebeurde</legend><label>Wat deed je uiteindelijk?<textarea name="actualAction" rows="5" maxlength="500"></textarea></label></fieldset></div>
+            <p class="practice-note">Een impuls is nog geen handeling. Wat je werkelijk deed is niet automatisch beter of slechter.</p>
+            <div class="uncut-scene"><h3>De scène die niet gedraaid kon worden</h3><label>Was er iets wat je eigenlijk wilde doen, maar wat toen niet veilig, haalbaar of beschikbaar was?<textarea name="unavailableAction" rows="3" maxlength="420"></textarea></label><fieldset><legend>Wat maakte dat moeilijk?</legend><div class="choice-grid" data-constraints></div></fieldset><p>Niet iedere reactie is een volledig vrije keuze. De situatie bepaalt mee wat werkelijk mogelijk is.</p></div>
+            <button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
 
-        <section class="practice-save">
-          <div><p class="eyebrow">Jouw notitie</p><h2>Bewaar een momentopname, geen oordeel.</h2><p>De route verschijnt in <em>Mijn spoor</em> als bewaarde oefening. Eén ingevulde route bewijst geen patroon en zegt niet wie je bent.</p></div>
-          <div><button type="submit">Bewaar deze route in Mijn spoor</button><a href="../../menslab.html#mijn-spoor" data-practice-track-link>Open Mijn spoor →</a><p data-practice-status aria-live="polite"></p></div>
+        <section class="practice-stop" id="montage" data-practice-stop>
+          <span aria-hidden="true">07</span><div><p>De verandering</p><h2>Waar veranderde de scène?</h2>
+            <fieldset><legend>Wat maakte de emotionele golf sterker, zwakker of anders?</legend><div class="change-list" data-changes></div></fieldset>
+            <fieldset><legend>Waar bevond de golf zich aan het einde van deze scène?</legend><div class="choice-grid" data-wave-end></div></fieldset>
+            <p class="practice-note">Een emotie kan veranderen zonder dat het probleem opgelost is.</p><button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
         </section>
+
+        <section class="practice-stop" id="tegenlezing" data-practice-stop>
+          <span aria-hidden="true">08</span><div><p>De tegenlezing</p><h2>Kan dezelfde scène anders gemonteerd worden?</h2>
+            <p class="practice-stop__intro">Deze kaart toont hoe je het moment nu begrijpt. Ze bewijst niet waarom de emotie ontstond, wat een ander bedoelde of welke lezing de juiste is. Een andere lezing hoeft schadelijk of grensoverschrijdend gedrag nooit te vergoelijken.</p>
+            <label>Is er nog een andere verklaring mogelijk?<textarea name="alternativeReading" rows="4" maxlength="500"></textarea></label>
+            <div class="choice-grid"><label><input type="radio" name="alternativeChoice" value="Misschien miste ik toen informatie">Misschien miste ik toen informatie</label><label><input type="radio" name="alternativeChoice" value="Een andere emotienaam legt andere details bloot">Een andere emotienaam legt andere details bloot</label><label><input type="radio" name="alternativeChoice" value="Mijn eerste inschatting kan nog steeds kloppen">Mijn eerste inschatting kan nog steeds kloppen</label><label><input type="radio" name="alternativeChoice" value="Ik begrijp het nog niet">Ik begrijp het nog niet</label><label><input type="radio" name="alternativeChoice" value="Ik wil geen andere lezing toevoegen">Ik wil geen andere lezing toevoegen</label></div>
+            <div class="experimental-shot"><h3>Een experimenteel shot</h3><fieldset><legend>Als een gelijkaardige scène terugkomt, welk klein experiment zou je eventueel willen proberen?</legend><div class="choice-grid" data-experiments></div></fieldset><label class="inline-own">Eigen antwoord<input name="experimentOwn" maxlength="240"></label><p>Dit is geen opdracht of correcte reactie. Alleen iets wat je eventueel kunt uitproberen.</p></div>
+            <button class="skip-step" type="button" data-skip-step>Deze stap overslaan</button>
+          </div>
+        </section>
+
+        <section class="premiere" id="premiere" data-premiere hidden aria-labelledby="premiere-title">
+          <header><p class="eyebrow">De première</p><h2 id="premiere-title">De anatomie van jouw scène</h2><label for="scene-title">Geef je scène eventueel een titel<input id="scene-title" name="sceneTitle" maxlength="120" placeholder="Een scène die ik wilde begrijpen"></label></header>
+          <div class="premiere-card" data-premiere-card></div><div class="premiere-summary" data-premiere-summary></div>
+          <p class="premiere-boundary">Dit is één mogelijke montage van het moment. Ze toont hoe je het nu begrijpt, niet waarom alles werkelijk gebeurde of wat een ander bedoelde.</p>
+          <fieldset class="save-choices"><legend>Wat wil je lokaal bewaren?</legend>
+            <label><input type="radio" name="saveMode" value="full" checked>Volledige kaart bewaren</label><label><input type="radio" name="saveMode" value="without-scene">Bewaren zonder de oorspronkelijke vrije scènebeschrijving</label><label><input type="radio" name="saveMode" value="experiment-only">Alleen het experimentele shot bewaren</label><label><input type="radio" name="saveMode" value="none">Niets bewaren</label>
+          </fieldset>
+          <p class="local-note">Lokaal bewaren betekent dat de gegevens in deze browser blijven. Op een gedeeld toestel kunnen andere gebruikers van hetzelfde browserprofiel ze mogelijk zien.</p>
+          <div class="premiere-actions"><button type="button" data-save-premiere>Voer mijn keuze uit</button><a href="../../menslab.html#mijn-spoor">Open Mijn spoor →</a></div><p data-practice-status aria-live="polite"></p>
+        </section>
+
+        <div class="practice-finish"><button type="submit">Maak mijn premièrekaart</button><p>Alleen het kantelpunt is verplicht. Lege haltes blijven leeg; wij vullen niets voor je in.</p></div>
       </form>
     </div>
 
-    <section class="practice-aftercare">
-      <div><p class="eyebrow">Na de oefening</p><h2>Leg de route ook weer neer.</h2></div>
-      <p>Kijk even om je heen, beweeg of keer terug naar iets vertrouwds. Bij aanhoudende klachten, zelfbeschadiging, gevaar of onveiligheid is passende professionele of acute hulp belangrijker dan verder zelfonderzoek.</p>
-      <a href="../../onderwerpen/emotieregulatie.html#bronnen">Bekijk uitleg en bronnen in het Atlasdossier →</a>
-    </section>
+    <section class="practice-aftercare"><div><p class="eyebrow">Na de oefening</p><h2>Leg de scène ook weer neer.</h2></div><p>Kijk even om je heen, beweeg of keer terug naar iets vertrouwds. Bij aanhoudende klachten, zelfbeschadiging, gevaar of onveiligheid is passende professionele of acute hulp belangrijker dan verder zelfonderzoek.</p><a href="../../onderwerpen/emotieregulatie.html#bronnen">Bekijk uitleg en bronnen in het Atlasdossier →</a></section>
+
+    <div class="stop-dialog" data-stop-dialog hidden role="dialog" aria-modal="true" aria-labelledby="stop-title"><div><p class="eyebrow">Pauze</p><h2 id="stop-title">Je hoeft deze scène nu niet verder te bekijken.</h2><p>Richt je aandacht op waar je bent en zoek steun bij iemand die je vertrouwt of professionele hulp wanneer dat nodig is. Je concept blijft lokaal klaarstaan.</p><div><button type="button" data-stop-continue>Toch rustig verdergaan</button><a href="../../speelhal.html">De oefening verlaten</a></div></div></div>
   </main>
   <site-footer base="../../"></site-footer>
 </body>
