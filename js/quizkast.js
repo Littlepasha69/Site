@@ -73,15 +73,16 @@
     const quick = quizzes.map(quiz => ({
       href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
-      type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'Speelbord' : 'Quizspiegel',
+      type:quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
       category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
       duration:quiz.mode === 'support' ? 'ongeveer 8 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
-      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'De emotionele routekaart', type:'Oefenbank', category:'Emoties & regulatie', duration:'ongeveer 5–10 minuten', search:'emotie lichaam betekenis impuls ruimte routekaart oefening' },
+      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'De emotionele routekaart', type:'Interactieve oefening', category:'Emoties & regulatie', duration:'ongeveer 5–10 minuten', search:'emotie lichaam betekenis impuls ruimte routekaart oefening spel' },
       { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', type:'Dieptequiz', category:'Keuzes', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
-      { href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Grote quiz', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype' }
+      { href:'veranderroute.html', title:'De Veranderroute', type:'Interactieve route', category:'Veranderen', duration:'ongeveer 10–15 minuten', search:'veranderen route experiment verwachting observatie beweging' },
+      { href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Persoonlijkheidsspel', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype mythisch' }
     ]);
   }
 
@@ -110,7 +111,7 @@
     }
     const query = normalizeQuizText(allQuizSearch.value.trim());
     const filtered = items.filter(item => (!allQuizType.value || item.type === allQuizType.value) && (!allQuizCategory.value || item.category === allQuizCategory.value) && (!query || normalizeQuizText(`${item.title} ${item.type} ${item.category} ${item.search}`).includes(query)));
-    document.querySelector('[data-all-quiz-count]').textContent = `${filtered.length} ${filtered.length === 1 ? 'attractie' : 'attracties'}`;
+    document.querySelector('[data-all-quiz-count]').textContent = `${filtered.length} ${filtered.length === 1 ? 'spel' : 'spellen'}`;
     document.querySelector('[data-all-quiz-empty]').hidden = filtered.length > 0;
     document.querySelector('[data-all-quiz-results]').replaceChildren(...filtered.map(item => {
       const link = document.createElement('a');
@@ -130,8 +131,8 @@
     const willOpen = allQuizLibrary.hidden;
     allQuizLibrary.hidden = !willOpen;
     allQuizToggle.setAttribute('aria-expanded', String(willOpen));
-    allQuizToggle.querySelector('span').textContent = willOpen ? 'Selectiescherm open' : 'Arcade select';
-    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg de speelvloer' : 'Alle attracties & filters';
+    allQuizToggle.querySelector('span').textContent = willOpen ? 'Selectiescherm open' : 'Alle spelvormen · zoeken & filteren';
+    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg de speelvloer' : 'Vind het spel dat nu past';
     allQuizToggle.querySelector('i').textContent = willOpen ? 'CLOSE' : 'START';
     if (willOpen) {
       renderAllQuizzes();
