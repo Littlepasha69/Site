@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="nl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Een relationele horrorsimulatie over wat je doet wanneer iemand mogelijk teleurgesteld raakt. Geen score of type, wel één sociale alarmreactie in vertraagde opname.">
+  <title>O nee. Iemand zei: “Laat maar.” — De Onwijze Wijsheden</title>
+  <link rel="stylesheet" href="../css/site-2026.css?v=28">
+  <link rel="stylesheet" href="../css/laat-maar-game.css?v=1">
+  <script src="../js/site-shell.js?v=23" defer></script>
+  <script src="../js/laat-maar-game.js?v=1" defer></script>
+</head>
+<body class="laat-maar-page">
+  <site-header base="../" active="spoor"></site-header>
+  <main id="inhoud" class="horror-game" data-horror-game>
+    <div class="horror-progress" aria-label="Voortgang">
+      <a href="../speelhal.html">← Speelhal</a>
+      <div><i data-progress-bar></i></div>
+      <span data-progress-label>Voorfilm</span>
+    </div>
+
+    <section class="horror-hero" data-screen="intro" aria-labelledby="horror-title">
+      <div class="horror-hero__copy">
+        <p class="horror-kicker">Relationele horrorsimulatie · 6–8 minuten</p>
+        <h1 id="horror-title">O nee. Iemand zei:<br><em>“Laat maar.”</em></h1>
+        <p class="horror-lead">Geen monsters. Geen bloed. Alleen een zucht, een kort bericht en het plotselinge gevoel dat jij iets moet herstellen.</p>
+        <p>Kies je relationele horrorfilm en volg wat je doet wanneer iemand mogelijk teleurgesteld raakt. Niet om te ontdekken welk type je bent, maar om één sociale alarmreactie in vertraagde opname te bekijken.</p>
+        <ul class="horror-promises" aria-label="Eigenschappen van het spel">
+          <li>Lokaal en privé</li><li>Geen diagnose</li><li>Geen score</li>
+        </ul>
+        <button class="horror-primary" type="button" data-start>Activeer mijn alarmcentrale →</button>
+        <button class="horror-resume" type="button" data-resume hidden>Ga verder waar ik was →</button>
+        <details class="horror-safety"><summary>Wanneer speel je dit beter niet?</summary><p>Dit spel gaat over gewone, hanteerbare relationele spanning. Bij geweld, dwang, intimidatie, afhankelijkheid of reële onveiligheid is “duidelijker begrenzen” geen eenvoudige individuele oefening. Zoek dan steun die bij jouw situatie past.</p></details>
+      </div>
+      <div class="horror-hero__poster" aria-hidden="true">
+        <span>DE ONWIJZE WIJSHEDEN PRESENTEERT</span><strong>LAAT<br>MAAR</strong><i>een relationele rampenfilm<br>in veel te herkenbare kleuren</i><b>!</b>
+      </div>
+    </section>
+
+    <section class="game-screen" data-screen="lobby" hidden aria-labelledby="lobby-title">
+      <header class="screen-heading"><p>Akte I · het voorgevoel</p><h2 id="lobby-title">Kies je relationele horrorfilm.</h2><span>Welke scène laat jouw interne alarmcentrale doorgaans het snelst overuren draaien?</span></header>
+      <div class="scene-grid" data-scene-grid></div>
+    </section>
+
+    <section class="game-screen scene-screen" data-screen="first" hidden aria-labelledby="first-title">
+      <div class="scene-marquee"><span data-scene-label></span><b>NU IN DE ZAAL</b></div>
+      <header class="screen-heading"><p>Akte II · het signaal</p><h2 id="first-title" data-first-title></h2><blockquote data-first-message></blockquote><span data-first-prompt></span></header>
+      <div class="own-scene" data-own-scene hidden>
+        <label>Wat gebeurde er?<textarea data-own-event rows="3" maxlength="500" placeholder="Beschrijf alleen wat een camera had kunnen zien of horen."></textarea></label>
+        <label>Wat zei of deed de ander?<textarea data-own-cue rows="2" maxlength="300" placeholder="Zo letterlijk mogelijk."></textarea></label>
+        <label>Wat voelde hier ongemakkelijk aan?<textarea data-own-discomfort rows="2" maxlength="300" placeholder="Je hoeft het nog niet te verklaren."></textarea></label>
+      </div>
+      <div class="choice-list" data-first-choices></div>
+      <div class="screen-actions"><button type="button" class="horror-back" data-back>← Terug</button><button type="button" class="horror-primary" data-next disabled>Laat het tweede bericht binnenkomen →</button></div>
+    </section>
+
+    <section class="game-screen scene-screen" data-screen="second" hidden aria-labelledby="second-title">
+      <div class="incoming-cue" aria-hidden="true"><i></i><span>1 NIEUW BERICHT</span></div>
+      <header class="screen-heading"><p>Akte III · o nee</p><h2 id="second-title">Daar is het.</h2><blockquote data-second-message></blockquote><span>Wat doe je nu het meest waarschijnlijk? Kies wat herkenbaar is, niet wat je denkt dat gezond klinkt.</span></header>
+      <div class="choice-list" data-second-choices></div>
+      <div class="screen-actions"><button type="button" class="horror-back" data-back>← Vorige scène</button><button type="button" class="horror-primary" data-next disabled>Bekijk wat je probeerde te doen →</button></div>
+    </section>
+
+    <section class="game-screen" data-screen="function" hidden aria-labelledby="function-title">
+      <header class="screen-heading"><p>Akte IV · achter de schermen</p><h2 id="function-title">Wat hoopte je hiermee te bereiken?</h2><span>Kies maximaal twee functies. Dezelfde reactie kan uit heel verschillende bedoelingen ontstaan — daarom raden wij dit niet voor jou.</span></header>
+      <div class="function-grid" data-function-choices></div>
+      <fieldset class="certainty-box"><legend>Hoe zeker wist je wat de ander voelde?</legend><div data-certainty-choices></div></fieldset>
+      <div class="screen-actions"><button type="button" class="horror-back" data-back>← Vorige scène</button><button type="button" class="horror-primary" data-next disabled>Open de bagageband →</button></div>
+    </section>
+
+    <section class="game-screen baggage-screen" data-screen="baggage" hidden aria-labelledby="baggage-title">
+      <header class="screen-heading"><p>Akte V · verloren voorwerpen</p><h2 id="baggage-title">Wie droeg welke bagage?</h2><span>Verdeel elk stuk zoals het in die scène voelde. Niet zoals het volgens een handboek “hoort”.</span></header>
+      <div class="baggage-board" data-baggage-board></div>
+      <div class="screen-actions"><button type="button" class="horror-back" data-back>← Vorige scène</button><button type="button" class="horror-primary" data-next disabled>Spoel de scène terug →</button></div>
+    </section>
+
+    <section class="game-screen rewind-screen" data-screen="rewind" hidden aria-labelledby="rewind-title">
+      <header class="screen-heading"><p>Akte VI · tweede take</p><h2 id="rewind-title">De regisseur geeft je één herkansing.</h2><span>Niet om het perfecte antwoord te vinden. Alleen om één klein verschil te testen.</span></header>
+      <div class="choice-list choice-list--compact" data-rewind-choices></div>
+      <label class="own-line">Jouw eventuele nieuwe zin<textarea data-own-line rows="3" maxlength="300" placeholder="Bijvoorbeeld: “Ik hoor dat je teleurgesteld bent. Mijn antwoord blijft nee, maar ik wil wel later bellen.”"></textarea></label>
+      <div class="screen-actions"><button type="button" class="horror-back" data-back>← Naar de bagageband</button><button type="button" class="horror-primary" data-finish disabled>Rol de aftiteling →</button></div>
+    </section>
+
+    <section class="game-screen report-screen" data-screen="report" hidden aria-labelledby="report-title">
+      <header class="report-header"><p>Geen verdict · wel de beelden van één scène</p><h2 id="report-title">Jouw sociale noodprocedure</h2><span>Dit verslag beschrijft wat jij net koos. Het is geen meting van je persoonlijkheid en geen diagnose.</span></header>
+      <div data-report></div>
+
+      <section class="atlas-exit" aria-labelledby="atlas-exit-title">
+        <div><p>Verder kijken in de Menselijke Atlas</p><h3 id="atlas-exit-title">Waarom voelt harmonie soms als verdwijnen?</h3><p>Lees hoe afstemmen, zelfstilte, conflictvermijding en zorg voor verbinding elkaar kunnen raken — zonder elke vriendelijke aanpassing meteen pleasen te noemen.</p><a href="../onderwerpen/pleasen-harmonie.html">Open het Atlasdossier →</a></div>
+        <nav aria-label="Verwante Atlasdossiers"><a href="../onderwerpen/grenzen-moeilijke-gesprekken.html">Grenzen &amp; moeilijke gesprekken →</a><a href="../onderwerpen/luisteren-zonder-overnemen.html">Luisteren zonder overnemen →</a></nav>
+      </section>
+
+      <details class="method-box"><summary>Waar is deze oefening op gebaseerd?</summary><div data-method-copy></div></details>
+
+      <section class="cabinet-entry" aria-labelledby="cabinet-title"><span aria-hidden="true">☞</span><div><p>NA DE AFTITELING</p><h3 id="cabinet-title">Nog zin in meer horror?</h3><p>Vijf korte signalen. Geen nieuwe uitslag — alleen kijken wat je hoofd ervan maakt.</p><button type="button" data-open-cabinet>Betreed het Horrorkabinet →</button></div></section>
+      <div class="report-actions"><button type="button" data-restart>Speel een andere film</button><a href="../menslab.html#mijn-spoor">Bekijk Mijn spoor →</a></div>
+    </section>
+
+    <section class="horror-cabinet" data-screen="cabinet" hidden aria-labelledby="cabinet-screen-title">
+      <header><p>Verboden bij helder daglicht</p><h2 id="cabinet-screen-title">Het Horrorkabinet</h2><span data-cabinet-progress></span></header>
+      <div class="cabinet-card"><blockquote data-cabinet-cue></blockquote><fieldset><legend>Wat maakt je hoofd ervan?</legend><div data-cabinet-meaning></div></fieldset><fieldset><legend>Wat wil je onmiddellijk doen?</legend><div data-cabinet-action></div></fieldset><button type="button" class="horror-primary" data-cabinet-next disabled>Volgende vitrine →</button></div>
+      <div class="cabinet-end" data-cabinet-end hidden><h3>De uitgang bestaat.</h3><p>Je hoofd kan razendsnel betekenis maken van een zucht, stilte of punt. Dat betekent niet dat die betekenis fout is — wel dat signaal, interpretatie en actie drie verschillende stappen zijn.</p><button type="button" data-close-cabinet>Terug naar mijn verslag →</button></div>
+    </section>
+  </main>
+  <site-footer base="../"></site-footer>
+</body>
+</html>
