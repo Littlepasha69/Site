@@ -56,18 +56,10 @@
       <section class="arcade-floor" aria-label="Vier verdachte bedieningen">
         <div class="arcade-console" aria-label="Laat de Speelhal een spel aanwijzen">
           <article class="arcade-object arcade-object--banana">
-            <button type="button" data-arcade-pick="quick">
-              <span class="arcade-object__label">Druk hier voor een kleine ontregeling.</span>
-              <span class="arcade-object__plate" aria-hidden="true">
-                <svg class="banana-device" viewBox="0 0 320 230" role="img">
-                  <defs><linearGradient id="banana-gold" x1="0" x2="1"><stop stop-color="#f6d86c"/><stop offset=".55" stop-color="#dcae32"/><stop offset="1" stop-color="#8b6923"/></linearGradient></defs>
-                  <path class="banana-shadow" d="M66 91c28 69 98 92 176 48 17-9 33 5 24 22-50 89-174 73-225-23-11-22 7-54 25-47Z"/>
-                  <path class="banana-body" d="M61 77c29 70 99 94 177 49 17-10 33 5 23 23-51 88-177 69-225-27-10-21 7-53 25-45Z" fill="url(#banana-gold)"/>
-                  <path d="M57 77c-10-9-16-18-12-30 5-14 21-16 31-8 8 7 5 20-2 31" fill="#806129"/>
-                  <path d="M256 129c17-3 28 7 25 20-3 12-16 18-28 11" fill="#806129"/>
-                  <path class="banana-ink" d="M77 91c28 49 81 64 139 37M91 109c27 29 65 38 103 28"/>
-                  <g class="banana-notes"><path d="M50 193h80M190 39h74M226 27v24"/><text x="42" y="214">studie van een kleine afwijking</text><text x="195" y="61">buigpunt</text></g>
-                </svg>
+            <button type="button" data-arcade-pick="quick" aria-label="Druk hier voor een kleine ontregeling">
+              <span class="banana-button" aria-hidden="true">
+                <img class="banana-button__state banana-button__state--rest" src="images/speelhal/bananenknop-rust-v1.png" alt="" draggable="false">
+                <img class="banana-button__state banana-button__state--pressed" src="images/speelhal/bananenknop-ingedrukt-v1.png" alt="" draggable="false">
               </span>
             </button>
           </article>

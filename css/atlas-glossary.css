@@ -1,0 +1,44 @@
+.atlas-word-page { min-height:70vh;background:#fffdf8; }
+.atlas-word-top { padding:1rem;position:relative;overflow:hidden;background:linear-gradient(135deg,#0b3332,#174d49 58%,#4a2948);color:white; }
+.atlas-word-top::after { content:'?';position:absolute;right:clamp(1rem,8vw,8rem);top:-4rem;color:rgba(240,198,107,.1);font:700 18rem/1 var(--serif);transform:rotate(8deg);pointer-events:none; }
+.atlas-word-top__inner { width:min(1040px,100%);margin:auto;position:relative;z-index:1; }
+.atlas-word-back { width:max-content;max-width:100%;padding:.7rem 0;display:inline-flex;align-items:center;gap:.55rem;color:rgba(255,255,255,.78);font-size:.86rem;font-weight:750;text-decoration:none; }
+.atlas-word-back:hover { color:#f0c66b; }
+.atlas-word-back::before { content:'←';color:#f0c66b;font-size:1.1rem; }
+.atlas-word-intro { padding:clamp(3rem,7vw,5.5rem) 0 clamp(2.5rem,6vw,4.5rem); }
+.atlas-word-intro .eyebrow { color:#f0c66b; }
+.atlas-word-intro h1 { margin:.3rem 0 .8rem;font:700 clamp(3.4rem,9vw,7rem)/.88 var(--serif);letter-spacing:-.06em;overflow-wrap:anywhere; }
+.atlas-word-kind { margin:0;color:rgba(255,255,255,.68);font-size:.86rem;font-weight:700;letter-spacing:.05em; }
+.atlas-word-sheet { width:min(1040px,calc(100% - 2rem));margin:clamp(2rem,5vw,4rem) auto;display:grid;grid-template-columns:minmax(250px,.72fr) minmax(0,1.28fr);gap:clamp(2rem,6vw,5rem);align-items:start; }
+.atlas-word-card { position:sticky;top:1rem;padding:clamp(1.25rem,3vw,2rem);border:1px solid rgba(20,61,61,.16);border-radius:1.35rem;background:linear-gradient(145deg,#f0e7d8,#f8f1e7);box-shadow:0 20px 55px rgba(9,42,41,.1); }
+.atlas-word-card__label { margin:0;color:var(--copper);font-size:.68rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase; }
+.atlas-word-card blockquote { margin:1.2rem 0 1.5rem;color:var(--ink);font:650 clamp(1.35rem,3vw,1.8rem)/1.35 var(--serif); }
+.atlas-word-memory { margin:0;padding:1rem;border-left:4px solid var(--gold);background:rgba(255,255,255,.62);color:#405654;font-size:.9rem;line-height:1.55; }
+.atlas-word-memory strong { display:block;margin-bottom:.25rem;color:var(--ink); }
+.atlas-word-dossier { margin-top:1rem;padding:.75rem .9rem;display:block;border-radius:.7rem;background:var(--ink);color:white;font-size:.79rem;font-weight:800;text-decoration:none; }
+.atlas-word-dossier:hover { background:#245c56; }
+.atlas-word-body { min-width:0; }
+.atlas-word-section { padding:0 0 2.3rem;margin-bottom:2.3rem;border-bottom:1px solid var(--line); }
+.atlas-word-section:last-child { border-bottom:0; }
+.atlas-word-section>span { color:var(--copper);font-size:.66rem;font-weight:850;letter-spacing:.14em;text-transform:uppercase; }
+.atlas-word-section h2 { margin:.45rem 0 1rem;color:var(--ink);font:700 clamp(1.8rem,4vw,2.75rem)/1.05 var(--serif);letter-spacing:-.03em; }
+.atlas-word-section p { max-width:720px;margin:.65rem 0;color:#405654;font:400 clamp(1rem,1.7vw,1.1rem)/1.75 Georgia,serif; }
+.atlas-word-not { padding:1rem 1.1rem;border-left:4px solid #a95747;background:#fbf1ea; }
+.atlas-word-example { display:grid;grid-template-columns:.75fr 1.25fr;border:1px solid var(--line);border-radius:1rem;overflow:hidden; }
+.atlas-word-example>div { padding:1.2rem; }
+.atlas-word-example>div:first-child { background:#e3ece4; }
+.atlas-word-example small { color:var(--copper);font-size:.64rem;font-weight:850;letter-spacing:.12em;text-transform:uppercase; }
+.atlas-word-example p { margin:.45rem 0 0;font:500 1rem/1.6 var(--sans); }
+.atlas-word-sources { margin:1rem 0 0;padding:0;display:grid;gap:.5rem;list-style:none; }
+.atlas-word-sources a { color:var(--muted);font-size:.8rem;text-underline-offset:.2rem; }
+.atlas-word-sources a:hover { color:var(--copper); }
+.atlas-word-checked { display:block;margin-top:1rem;color:#758482;font-size:.7rem; }
+.atlas-word-missing { width:min(760px,calc(100% - 2rem));margin:4rem auto;padding:2rem;border:1px solid var(--line);border-radius:1rem;background:var(--paper);text-align:center; }
+.atlas-word-missing h1 { font:700 clamp(2rem,5vw,3.5rem)/1 var(--serif); }
+.atlas-word-missing a { color:var(--copper);font-weight:800; }
+
+@media (max-width:760px) {
+  .atlas-word-sheet { grid-template-columns:1fr; }
+  .atlas-word-card { position:static; }
+  .atlas-word-example { grid-template-columns:1fr; }
+}
