@@ -73,7 +73,7 @@ customElements.define('site-footer', SiteFooter);
   const exactProgressKeys = new Set([
     'menslab-progress-v3', 'menslab-progress-v2', 'menslab-week-progress-v1',
     'menslab-exercise-drafts-v1', 'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1',
-    'dieptequiz-ja-progress-v1', 'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1',
+    'dieptequiz-ja-progress-v1', 'onwijze-laat-maar-game-v1', 'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1',
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1', 'onwijze-laatste-spoor',
     'onwijze-next-door-v1'
   ]);

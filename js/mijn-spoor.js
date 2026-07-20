@@ -2,7 +2,7 @@
   const storageKeys = [
     'menslab-progress-v3', 'menslab-progress-v2', 'menslab-week-progress-v1',
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
-    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1',
+    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1', 'onwijze-laat-maar-game-v1',
     'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1', 'menslab-exercise-drafts-v1',
     'onwijze-profile-v1', 'onwijze-next-door-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];
@@ -39,6 +39,7 @@
   const steeringProgress = readJson('onwijze-steering-game-v1', null);
   const beastProgress = readJson('beestenquiz-progress-v2', null);
   const depthProgress = readJson('dieptequiz-ja-progress-v1', null);
+  const letItBeProgress = readJson('onwijze-laat-maar-game-v1', null);
   const routeProgress = readJson('onwijze-veranderroute-v2', readJson('onwijze-veranderroute-v1', null));
   const exerciseDrafts = readJson('menslab-exercise-drafts-v1', {});
   const quizSnapshots = Array.isArray(track?.quizSnapshots) ? track.quizSnapshots : [];
@@ -140,6 +141,9 @@
   if (steeringProgress?.version === 1 && steeringProgress.currentPhase === 'report') {
     played.unshift({ title:'Wie zit er aan het stuur?', href:'speelhal/autospel.html', meta:'Ritverslag klaar', time:dateValue(steeringProgress.updatedAt) });
   }
+  if (letItBeProgress?.version === 1 && letItBeProgress.phase === 'report') {
+    played.unshift({ title:'O nee. Iemand zei: “Laat maar.”', href:'speelhal/laat-maar.html', meta:'Sociale noodprocedure klaar', time:dateValue(letItBeProgress.updatedAt) });
+  }
 
   const saved = [
     ...reading.filter(item => item.saved).map(item => ({ ...item, meta:item.kind || 'Bewaarde vondst' })),
@@ -152,6 +156,7 @@
   if (steeringProgress?.version === 1 && steeringProgress.currentPhase && !['start', 'report'].includes(steeringProgress.currentPhase)) unfinished.unshift({ title:'Wie zit er aan het stuur?', href:'speelhal/autospel.html', meta:'Je rit staat nog open', time:dateValue(steeringProgress.updatedAt) });
   if (beastProgress && Array.isArray(beastProgress.answers) && beastProgress.answers.some(value => value !== null)) unfinished.unshift({ title:'De Grote Beestenquiz', href:'dierenquiz.html', meta:'Je profielspiegel staat nog open', time:Date.now() - 1 });
   if (depthProgress) unfinished.unshift({ title:'Waar komt jouw ja vandaan?', href:'dieptequiz-ja.html', meta:'Dieptequiz nog open', time:dateValue(depthProgress.savedAt) });
+  if (letItBeProgress?.version === 1 && letItBeProgress.sceneId && !['report'].includes(letItBeProgress.phase)) unfinished.unshift({ title:'O nee. Iemand zei: “Laat maar.”', href:'speelhal/laat-maar.html', meta:'Je horrorfilm staat nog open', time:dateValue(letItBeProgress.updatedAt) });
   if (routeProgress) unfinished.unshift({ title:'De Veranderroute', href:'veranderroute.html', meta:'Route nog open', time:dateValue(routeProgress.updatedAt || routeProgress.savedAt) });
   if (exerciseDrafts && Object.keys(exerciseDrafts).length) unfinished.unshift({ title:'Spoel even terug', href:'speelhal/oefeningen/emotionele-routekaart.html', meta:'Montagetafel nog open', time:Date.now() - 2 });
 

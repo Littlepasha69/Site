@@ -142,6 +142,7 @@
     },
     {
       id: 'waar-komt-je-ja-vandaan',
+      archived: true,
       title: 'Waar komt jouw ja vandaan?',
       eyebrow: 'Keuzes · motivatie',
       mode: 'path',

@@ -30,7 +30,7 @@
     },
     'Relaties & hechting': {
       understand:[['onderwerpen/hechting.html','Wat ontstaat er tussen twee mensen?','Nabijheid en afstand als relationele beweging, niet als vast type.'],['onderwerpen/de-ander-verandert-je.html','Hoe verandert een ander jou?','Invloed, steun en autonomie zonder een verborgen ware zelf te beloven.']],
-      try:[['speelhal.html?quiz=luisteren-of-repareren','Probeer eerst af te stemmen','Vraag in een veilig gesprek: luisteren, vragen of meedenken?'],['speelhal.html?quiz=waar-komt-je-ja-vandaan','Onderzoek een ja','Een route die helpt opmerken vóór je hoeft te besluiten.']],
+      try:[['speelhal.html?quiz=luisteren-of-repareren','Probeer eerst af te stemmen','Vraag in een veilig gesprek: luisteren, vragen of meedenken?'],['speelhal/laat-maar.html','Bekijk je alarmreactie','Wat doe je wanneer iemand mogelijk teleurgesteld raakt?']],
       recognise:[['denk-box05.html','Lieve Mama','Een brief over verbondenheid en wat soms verdwijnt wanneer we spreken.']]
     },
     'Bewustzijn & metafysica': {
@@ -40,12 +40,12 @@
     },
     'Persoonlijke verhalen': {
       understand:[['denkstukken.html','Hoe werkt een persoonlijk verhaal?','Verken ervaringen als betekenis, niet als universeel bewijs.']],
-      try:[['speelhal.html?quiz=waar-komt-je-ja-vandaan','Leg één vraag naast je verhaal','Kijk wat verandert wanneer je niet meteen een conclusie zoekt.']],
+      try:[['speelhal/laat-maar.html','Leg één scène naast je verhaal','Kijk wat je doet zodra verbinding even onzeker voelt.']],
       recognise:[['denk-box14.html','Een avond met de drie Nancy’s','Een nachtelijke rit langs oude reflexen en terugkeren naar jezelf.'],['denkstukken.html','Dwaal tussen de Denkstukken','Kies het verhaal waarvan de titel iets bij je wakker maakt.']]
     },
     'Zelfonderzoek': {
       understand:[['onderwerpen/persoonlijkheid.html','Ben je een trek, toestand of verhaal?','Een rijker beeld van persoonlijkheid dan één score of type.']],
-      try:[['speelhal.html?quiz=waar-komt-je-ja-vandaan','Loop een onderzoeksvraag in','Geen score. Wel een vraag die even mag meelopen.'],['speelhal/oefeningen/emotionele-routekaart.html','Leg één scène op de montagetafel','Scheid wat zichtbaar gebeurde van wat je brein erbij vertelde.']],
+      try:[['speelhal/laat-maar.html','Betreed een relationele horrorfilm','Geen score. Wel één sociale alarmreactie in vertraagde opname.'],['speelhal/oefeningen/emotionele-routekaart.html','Leg één scène op de montagetafel','Scheid wat zichtbaar gebeurde van wat je brein erbij vertelde.']],
       recognise:[['denk-box14.html','Een avond met de drie Nancy’s','Een verhaal over meerdere versies van jezelf in één leven.']]
     },
     'Community bouwen': {

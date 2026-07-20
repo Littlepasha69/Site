@@ -13,7 +13,7 @@
   const siteStorageKeys = [
     progressStorageKey, previousStorageKey, legacyStorageKey,
     'onwijze-atlas-footprints-v1', 'onwijze-reading-history-v1',
-    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1',
+    'beestenquiz-progress-v2', 'quizkast-progress-v1', 'onwijze-steering-game-v1', 'dieptequiz-ja-progress-v1', 'onwijze-laat-maar-game-v1',
     'onwijze-veranderroute-v2', 'onwijze-veranderroute-v1', 'menslab-exercise-drafts-v1',
     'onwijze-profile-v1', 'onwijze-next-door-v1', 'onwijze-laatste-spoor', 'onwijze-ingang-gezien'
   ];
@@ -537,7 +537,7 @@
     const search = document.querySelector('[data-quiz-library-search]');
     const category = document.querySelector('[data-quiz-library-category]');
     if (!results || !search || !category) return;
-    const items = (Array.isArray(window.MENSLAB_QUIZZES) ? window.MENSLAB_QUIZZES : []).map(quiz => ({
+    const items = (Array.isArray(window.MENSLAB_QUIZZES) ? window.MENSLAB_QUIZZES : []).filter(quiz => !quiz.archived).map(quiz => ({
       id:quiz.id,
       href:`speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
       title:quiz.title,
@@ -546,6 +546,10 @@
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     items.push({
+      id:'laat-maar', href:'speelhal/laat-maar.html', category:'Relaties & gesprekken', duration:'ongeveer 6–8 minuten',
+      title:'O nee. Iemand zei: “Laat maar.”',
+      search:'pleasen harmonie spanning teleurstelling grens afwijzing relationele horrorsimulatie'
+    },{
       id:'diepte-ja', href:'dieptequiz-ja.html', category:'Dieptequiz', duration:'ongeveer 8–10 minuten',
       title:'Een ja is geen type. Wat beslist er allemaal mee?',
       search:'ja keuze context motivatie grenzen verantwoordelijkheid dieptequiz'

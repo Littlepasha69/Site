@@ -10,6 +10,11 @@ window.ONWIJZE_CONTENT = [
     url: 'speelhal.html', tags: ['speelhal', 'menslab', 'quizzen', 'oefeningen', 'gesprekssimulaties', 'keuzes', 'experimenten']
   },
   {
+    title: 'O nee. Iemand zei: “Laat maar.”', type: 'spel', category: 'Speelhal',
+    summary: 'Een relationele horrorsimulatie over wat je doet wanneer iemand mogelijk teleurgesteld raakt — zonder score, type of diagnose.',
+    url: 'speelhal/laat-maar.html', tags: ['pleasen', 'harmonie', 'teleurstelling', 'grenzen', 'afwijzing', 'relationele spanning', 'horrorsimulatie']
+  },
+  {
     title: 'Een week mentale rekbaarheid', type: 'route', category: 'Speelhal',
     summary: 'Zeven lichte haltes rond voorspellen, vertragen, anders kijken en opnieuw proberen — zonder perfecte reeks.',
     url: 'speelhal-week.html', tags: ['week', 'mentale rekbaarheid', 'experiment', 'speelhal', 'veranderen']

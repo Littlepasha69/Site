@@ -86,6 +86,7 @@
       search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
     }));
     return quick.concat([
+      { href:'speelhal/laat-maar.html', title:'O nee. Iemand zei: “Laat maar.”', type:'Relationele horrorsimulatie', category:'Relaties & gesprekken', duration:'ongeveer 6–8 minuten', search:'pleasen harmonie spanning teleurstelling grens afwijzing laat maar horror simulatie' },
       { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'Spoel even terug', type:'Filmische oefening', category:'Emoties & zelfinzicht', duration:'ongeveer 15–20 minuten', search:'emotie lichaam betekenis impuls golf scène montage ondertiteling werkbank oefening spel' },
       { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', type:'Dieptequiz', category:'Keuzes', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
       { href:'veranderroute.html', title:'De Veranderroute', type:'Interactieve route', category:'Veranderen', duration:'ongeveer 10–15 minuten', search:'veranderen route experiment verwachting observatie beweging' },
@@ -405,6 +406,10 @@
   }
 
   function startQuiz(id, forceFresh = false) {
+    if (id === 'waar-komt-je-ja-vandaan') {
+      location.href = 'speelhal/laat-maar.html';
+      return;
+    }
     if (id === 'wie-zit-aan-het-stuur') {
       location.href = 'speelhal/autospel.html';
       return;
@@ -1724,5 +1729,6 @@
   document.querySelector('[data-choose-another]').addEventListener('click', showShelf);
   saveButton.addEventListener('click', saveResultToTrack);
   const requestedQuiz = new URLSearchParams(window.location.search).get('quiz');
-  if (requestedQuiz && quizzes.some(quiz => quiz.id === requestedQuiz)) startQuiz(requestedQuiz);
+  if (requestedQuiz === 'waar-komt-je-ja-vandaan') location.replace('speelhal/laat-maar.html');
+  else if (requestedQuiz && quizzes.some(quiz => quiz.id === requestedQuiz)) startQuiz(requestedQuiz);
 })();
