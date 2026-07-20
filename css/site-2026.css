@@ -466,6 +466,14 @@ button, input { font: inherit; }
 /* Compact Atlasgebied-pictogram bij uitgelichte dossiers. */
 .content-label__icon{width:1.05em;height:1.05em;display:inline-block;vertical-align:-.18em;fill:none;stroke:currentColor;stroke-width:1.55;stroke-linecap:round;stroke-linejoin:round}
 
+/* Het nieuwste spel verhuisde uit de Speelhal naar Ontdekken. */
+.home-newest-game{width:min(1180px,calc(100% - 2rem));min-height:34rem;margin:clamp(3rem,7vw,6rem) auto;padding:0;position:relative;isolation:isolate;overflow:hidden;display:grid;grid-template-columns:1.08fr .92fr;border-radius:2rem;background:#102d2b;color:#fff8e9;box-shadow:0 24px 60px rgba(30,55,51,.22)}
+.home-newest-game::after{content:"";position:absolute;z-index:-1;right:-7rem;top:-8rem;width:25rem;aspect-ratio:1;border:1px solid rgba(246,205,101,.32);border-radius:50%;box-shadow:0 0 0 55px rgba(246,205,101,.05),0 0 0 110px rgba(246,205,101,.035)}
+.home-newest-game__art{min-height:34rem;position:relative;overflow:hidden}.home-newest-game__art::after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 56%,#102d2b 100%)}.home-newest-game__art img{width:100%;height:100%;display:block;object-fit:cover}
+.home-newest-game__copy{padding:clamp(1.5rem,4vw,3.5rem);align-self:center;position:relative}.home-newest-game__copy .eyebrow{color:#f2cb63}.home-newest-game__copy>span{color:#ddc5b3;font-size:.63rem;font-weight:900;letter-spacing:.1em}.home-newest-game__copy h2{max-width:9ch;margin:.5rem 0;color:#fff8e9;font:700 clamp(3.2rem,6vw,5.5rem)/.86 var(--serif);letter-spacing:-.055em}.home-newest-game__copy p:not(.eyebrow){max-width:34rem;color:rgba(255,248,233,.76);line-height:1.65}.home-newest-game__copy a{width:fit-content;margin-top:1rem;padding:.85rem 1rem;display:inline-block;border-radius:.2rem;background:#efc95e;color:#173f3b;font-weight:850;text-decoration:none;box-shadow:5px 6px 0 #9f3d35}.home-newest-game__copy a:hover{background:#fff8e9;transform:translateY(-2px)}
+@media(max-width:800px){.home-newest-game{grid-template-columns:1fr}.home-newest-game__art{min-height:23rem}.home-newest-game__art::after{background:linear-gradient(180deg,transparent 55%,#102d2b 100%)}.home-newest-game__copy{margin-top:-4rem}}
+@media(max-width:520px){.home-newest-game{width:min(100% - 1rem,1180px);border-radius:1.2rem}.home-newest-game__art{min-height:19rem}.home-newest-game__copy h2{font-size:clamp(3rem,16vw,4.3rem)}}
+
 /* Mobiele eindcontrole: laat zoekveld en navigatie ook op 320px echt krimpen. */
 @media (max-width: 620px) {
   .discovery-search,

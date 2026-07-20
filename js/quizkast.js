@@ -70,28 +70,33 @@
   let supportRound = 1;
   let steeringDraft = { problem:'', aim:'', song:'', labels:{}, messages:{} };
 
-  const allQuizToggle = document.querySelector('[data-show-all-quizzes]');
   const allQuizLibrary = document.querySelector('[data-all-quiz-library]');
   const allQuizSearch = document.querySelector('[data-all-quiz-search]');
   const allQuizType = document.querySelector('[data-all-quiz-type]');
   const allQuizCategory = document.querySelector('[data-all-quiz-category]');
+  const cabinetDrawer = document.querySelector('[data-cabinet-drawer]');
+  const familyButtons = [...document.querySelectorAll('[data-family]')];
+  const arcadeReveal = document.querySelector('[data-arcade-reveal]');
+  const arcadePickButtons = [...document.querySelectorAll('[data-arcade-pick]')];
+  const arcadeSurpriseButton = document.querySelector('[data-arcade-surprise]');
+  const arcadeDoubt = document.querySelector('[data-arcade-doubt]');
+  const arcadeDoubtCopy = document.querySelector('[data-arcade-doubt-copy]');
+  const arcadeTrustButtons = [...document.querySelectorAll('[data-arcade-trust]')];
+  let lastArcadeMode = 'surprise';
+  let arcadeDoubtStep = 0;
 
   function allQuizItems() {
-    const quick = quizzes.filter(quiz => !quiz.archived).map(quiz => ({
-      href:quiz.id === 'wie-zit-aan-het-stuur' ? 'speelhal/autospel.html' : `speelhal.html?quiz=${encodeURIComponent(quiz.id)}`,
-      title:quiz.title,
-      type:quiz.id === 'wie-zit-aan-het-stuur' ? 'Interactief reflectiespel' : quiz.mode === 'support' || quiz.mode === 'conversation' ? 'Gesprekssimulatie' : quiz.mode === 'path' ? 'Keuzepad' : quiz.mode === 'allocation' ? 'Interactief verdeelspel' : quiz.mode === 'ranking' ? 'Interactieve stuurtafel' : 'Quizspiegel',
-      category:quiz.id === 'luisteren-of-repareren' ? 'Relaties & gesprekken' : String(quiz.eyebrow || 'Andere vragen').split('·')[0].trim(),
-      duration:quiz.id === 'wie-zit-aan-het-stuur' ? 'ongeveer 10–15 minuten' : quiz.mode === 'support' ? 'ongeveer 12–15 minuten' : quiz.mode === 'allocation' || quiz.mode === 'ranking' ? 'ongeveer 2 minuten' : 'ongeveer 3 minuten',
-      search:[quiz.title, quiz.eyebrow, ...Object.values(quiz.results || {}).map(result => `${result.title || ''} ${result.summary || ''}`)].join(' ')
-    }));
-    return quick.concat([
-      { href:'speelhal/laat-maar.html', title:'O nee. Iemand zei: “Laat maar.”', type:'Relationele horrorsimulatie', category:'Relaties & gesprekken', duration:'ongeveer 6–8 minuten', search:'pleasen harmonie spanning teleurstelling grens afwijzing laat maar horror simulatie' },
-      { href:'speelhal/oefeningen/emotionele-routekaart.html', title:'Spoel even terug', type:'Filmische oefening', category:'Emoties & zelfinzicht', duration:'ongeveer 15–20 minuten', search:'emotie lichaam betekenis impuls golf scène montage ondertiteling werkbank oefening spel' },
-      { href:'dieptequiz-ja.html', title:'Een ja is geen type. Wat beslist er allemaal mee?', type:'Dieptequiz', category:'Keuzes', duration:'ongeveer 8–10 minuten', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context' },
-      { href:'veranderroute.html', title:'De Veranderroute', type:'Interactieve route', category:'Veranderen', duration:'ongeveer 10–15 minuten', search:'veranderen route experiment verwachting observatie beweging' },
-      { href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Persoonlijkheidsspel', category:'Persoonlijkheid', duration:'ongeveer 10–12 minuten', search:'beestenquiz persoonlijkheid patronen dieren spiegel archetype mythisch' }
-    ]);
+    return [
+      { id:'beweging-vandaag', href:'speelhal.html?quiz=beweging-vandaag', title:'Wat wil je vandaag anders aanpakken?', type:'Check-in', mode:'quick', category:'Vandaag', duration:'± 2 minuten', copy:'Verdeel vijf vonkjes over vertragen, benoemen, begrenzen, verbinden en kiezen.', search:'vonkjes vandaag vertragen benoemen grens contact kiezen licht kort' },
+      { id:'luisteren-of-repareren', href:'speelhal.html?quiz=luisteren-of-repareren', title:'Luister je nog — of heb je het al opgelost?', type:'Simulatie', mode:'investigate', category:'Relaties & gesprekken', duration:'± 12–15 minuten', copy:'Speel zes gesprekken en zie wat er verandert wanneer je luistert, helpt, herstelt of begrenst.', search:'luisteren helpen repareren gesprek steun afstemmen herstel grens' },
+      { id:'laat-maar', href:'speelhal/laat-maar.html', title:'O nee. Iemand zei: “Laat maar.”', type:'Keuzeverhaal', mode:'investigate', category:'Relaties & gesprekken', duration:'± 6–8 minuten', copy:'Volg een relationele horrorfilm en onderzoek wat jij probeert te herstellen wanneer teleurstelling dreigt.', search:'pleasen harmonie spanning teleurstelling afwijzing laat maar horror keuze verhaal' },
+      { id:'autospel', href:'speelhal/autospel.html', title:'Wie zit er aan het stuur?', type:'Werkbank', mode:'real', category:'Keuzes & innerlijk conflict', duration:'± 10–15 minuten', copy:'Leg één echt kruispunt neer en geef reflex, relatieradar, kompas en verhalenmaker elk een plaats.', search:'auto stuur stemmen conflict dilemma kruispunt situatie eigen moment' },
+      { id:'dieptequiz-ja', href:'dieptequiz-ja.html', title:'Een ja is geen type.', type:'Spiegelspel', mode:'investigate', category:'Keuzes', duration:'± 8–10 minuten', copy:'Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk meespeelt.', search:'ja keuze motivatie grenzen verantwoordelijkheid draagkracht context spiegel' },
+      { id:'beestenquiz', href:'dierenquiz.html', title:'De Grote Beestenquiz', type:'Spiegelspel', mode:'investigate', category:'Persoonlijkheid', duration:'± 10–12 minuten', copy:'Maak een speels dierenprofiel van patronen die vandaag in je antwoorden opvallen.', search:'beestenquiz persoonlijkheid patronen dieren profiel archetype mythisch' },
+      { id:'emotionele-routekaart', href:'speelhal/oefeningen/emotionele-routekaart.html', title:'Spoel even terug', type:'Werkbank', mode:'real', category:'Emoties & zelfinzicht', duration:'± 15–20 minuten', copy:'Leg één moment op de montagetafel en haal gebeurtenis, betekenis, lichaam, emotie en impuls even uiteen.', search:'emotie lichaam betekenis impuls golf scène montage ondertiteling eigen moment werkbank' },
+      { id:'weekroute', href:'speelhal-week.html', title:'Een week mentale rekbaarheid', type:'Route & experiment', mode:'real', category:'Veranderen', duration:'7 dagen · lichte haltes', copy:'Zeven lichte haltes rond voorspellen, vertragen, anders kijken en opnieuw proberen.', search:'week route experiment mentale rekbaarheid voorspellen vertragen proberen' },
+      { id:'veranderroute', href:'veranderroute.html', title:'De Veranderroute', type:'Route & experiment', mode:'real', category:'Veranderen', duration:'± 10–15 minuten', copy:'Ga van iets dat schuurt naar één kleine, haalbare proef met ruimte om terug te keren.', search:'veranderen route experiment verwachting observatie beweging gewoonte' }
+    ];
   }
 
   function normalizeQuizText(value) {
@@ -124,32 +129,136 @@
     document.querySelector('[data-all-quiz-results]').replaceChildren(...filtered.map(item => {
       const link = document.createElement('a');
       link.href = item.href;
+      link.dataset.family = item.type;
       const category = document.createElement('span');
       category.textContent = `${item.type} · ${item.category}`;
       const title = document.createElement('strong');
       title.textContent = item.title;
+      const copy = document.createElement('p');
+      copy.textContent = item.copy;
       const duration = document.createElement('small');
       duration.textContent = `${item.duration} →`;
-      link.append(category, title, duration);
+      link.append(category, title, copy, duration);
       return link;
     }));
   }
 
-  allQuizToggle?.addEventListener('click', () => {
-    const willOpen = allQuizLibrary.hidden;
-    allQuizLibrary.hidden = !willOpen;
-    allQuizToggle.setAttribute('aria-expanded', String(willOpen));
-    allQuizToggle.querySelector('span').textContent = willOpen ? 'Selectiescherm open' : 'Alle spelvormen · zoeken & filteren';
-    allQuizToggle.querySelector('[data-all-quiz-toggle-label]').textContent = willOpen ? 'Verberg de speelvloer' : 'Vind het spel dat nu past';
-    allQuizToggle.querySelector('i').textContent = willOpen ? 'CLOSE' : 'START';
-    if (willOpen) {
-      renderAllQuizzes();
-      allQuizSearch.focus();
-    }
-  });
   allQuizSearch?.addEventListener('input', renderAllQuizzes);
-  allQuizType?.addEventListener('change', renderAllQuizzes);
+  allQuizType?.addEventListener('change', () => {
+    familyButtons.forEach(button => button.setAttribute('aria-pressed', String(button.dataset.family === allQuizType.value)));
+    renderAllQuizzes();
+  });
   allQuizCategory?.addEventListener('change', renderAllQuizzes);
+  familyButtons.forEach(button => button.addEventListener('click', () => {
+    familyButtons.forEach(item => item.setAttribute('aria-pressed', String(item === button)));
+    allQuizType.value = button.dataset.family;
+    renderAllQuizzes();
+    if (cabinetDrawer) {
+      cabinetDrawer.hidden = false;
+      cabinetDrawer.classList.toggle('is-catalog', button.dataset.family === '');
+    }
+    familyButtons.forEach(item => item.setAttribute('aria-expanded', String(item === button)));
+    cabinetDrawer?.scrollIntoView({ behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'nearest' });
+  }));
+
+  function readLocalJson(key) {
+    try { return JSON.parse(localStorage.getItem(key) || 'null'); }
+    catch (_) { return null; }
+  }
+
+  function chooseArcadeGame(mode) {
+    const catalog = allQuizItems();
+    const eligible = mode === 'surprise' ? catalog : catalog.filter(item => item.mode === mode);
+    if (!eligible.length || !arcadeReveal) return;
+    let previous = '';
+    try { previous = sessionStorage.getItem('onwijze-arcade-last-pick-v1') || ''; } catch (_) {}
+    const fresh = eligible.length > 1 ? eligible.filter(item => item.id !== previous) : eligible;
+    const selected = fresh[Math.floor(Math.random() * fresh.length)];
+    try { sessionStorage.setItem('onwijze-arcade-last-pick-v1', selected.id); } catch (_) {}
+    lastArcadeMode = mode;
+    arcadeReveal.querySelector('[data-arcade-reveal-meta]').textContent = `${selected.type} · ${selected.category} · ${selected.duration}`;
+    arcadeReveal.querySelector('[data-arcade-reveal-title]').textContent = selected.title;
+    arcadeReveal.querySelector('[data-arcade-reveal-copy]').textContent = selected.copy;
+    const link = arcadeReveal.querySelector('[data-arcade-reveal-link]');
+    link.href = selected.href;
+    arcadeReveal.hidden = false;
+    arcadeReveal.classList.remove('is-revealed');
+    requestAnimationFrame(() => arcadeReveal.classList.add('is-revealed'));
+    arcadeReveal.scrollIntoView({ behavior:matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block:'center' });
+  }
+
+  function closeArcadeDoubt() {
+    if (!arcadeDoubt) return;
+    arcadeDoubt.hidden = true;
+    arcadeDoubt.classList.remove('is-offended');
+    arcadeSurpriseButton?.setAttribute('aria-expanded', 'false');
+  }
+
+  function openArcadeDoubt() {
+    if (!arcadeDoubt || !arcadeDoubtCopy) return;
+    arcadeDoubtStep = 0;
+    arcadeDoubt.hidden = false;
+    arcadeDoubt.classList.remove('is-offended');
+    arcadeDoubtCopy.textContent = 'Vertrouw je deze knop werkelijk?';
+    arcadeTrustButtons.forEach(item => { item.hidden = false; });
+    if (arcadeTrustButtons[0]) arcadeTrustButtons[0].textContent = 'Ja';
+    if (arcadeTrustButtons[1]) arcadeTrustButtons[1].textContent = 'Nee';
+    arcadeSurpriseButton?.setAttribute('aria-expanded', 'true');
+    arcadeTrustButtons[0]?.focus({ preventScroll:true });
+  }
+
+  arcadePickButtons.forEach(button => button.addEventListener('click', () => {
+    closeArcadeDoubt();
+    chooseArcadeGame(button.dataset.arcadePick);
+  }));
+  arcadeSurpriseButton?.addEventListener('click', openArcadeDoubt);
+  arcadeTrustButtons.forEach(button => button.addEventListener('click', () => {
+    if (arcadeDoubtStep === 0 && button.dataset.arcadeTrust === 'yes') {
+      closeArcadeDoubt();
+      chooseArcadeGame('surprise');
+      return;
+    }
+    if (arcadeDoubtStep === 0) {
+      arcadeDoubtStep = 1;
+      arcadeDoubtCopy.textContent = 'Ben je daar wel heel zeker van?';
+      arcadeTrustButtons[0].textContent = 'Nee';
+      arcadeTrustButtons[1].textContent = 'Ook nee';
+      return;
+    }
+    arcadeDoubtCopy.textContent = 'Jammer. De knop had net vertrouwen in jou gekregen.';
+    arcadeDoubt.classList.add('is-offended');
+    arcadeTrustButtons.forEach(item => { item.hidden = true; });
+    arcadeSurpriseButton?.setAttribute('aria-expanded', 'false');
+  }));
+  document.querySelector('[data-arcade-pick-again]')?.addEventListener('click', () => chooseArcadeGame(lastArcadeMode));
+
+  function syncArcadeResume() {
+    const control = document.querySelector('[data-arcade-resume]');
+    if (!control) return;
+    const catalog = allQuizItems();
+    const candidates = [];
+    const quickProgress = readLocalJson('quizkast-progress-v1');
+    if (quickProgress?.quizId) {
+      const item = catalog.find(game => game.id === quickProgress.quizId || (quickProgress.quizId === 'wie-zit-aan-het-stuur' && game.id === 'autospel'));
+      if (item) candidates.push({ ...item, savedAt:quickProgress.savedAt || '' });
+    }
+    const steering = readLocalJson('onwijze-steering-game-v1');
+    if (steering?.updatedAt) candidates.push({ ...catalog.find(game => game.id === 'autospel'), savedAt:steering.updatedAt });
+    const horror = readLocalJson('onwijze-laat-maar-game-v1');
+    if (horror?.updatedAt && horror.phase !== 'intro') candidates.push({ ...catalog.find(game => game.id === 'laat-maar'), savedAt:horror.updatedAt });
+    const depth = readLocalJson('dieptequiz-ja-progress-v1');
+    if (depth) candidates.push({ ...catalog.find(game => game.id === 'dieptequiz-ja'), savedAt:depth.savedAt || '' });
+    const route = readLocalJson('onwijze-veranderroute-v2');
+    if (route) candidates.push({ ...catalog.find(game => game.id === 'veranderroute'), savedAt:route.savedAt || route.updatedAt || '' });
+    const latest = candidates.filter(Boolean).sort((a, b) => Date.parse(b.savedAt || 0) - Date.parse(a.savedAt || 0))[0];
+    if (!latest?.href) return;
+    control.href = latest.href;
+    control.querySelector('[data-arcade-resume-title]').textContent = latest.title;
+    control.hidden = false;
+  }
+
+  syncArcadeResume();
+  renderAllQuizzes();
 
   function readQuizProgress() {
     try { return JSON.parse(localStorage.getItem(quizProgressKey) || 'null'); }
