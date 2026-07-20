@@ -6,11 +6,11 @@
   <meta name="description" content="Ontdek quizzen, oefenbanken, gesprekssimulaties en keuzepaden in de verborgen Speelhal van De Onwijze Wijsheden.">
   <title>De Speelhal — De Onwijze Wijsheden</title>
   <link rel="stylesheet" href="css/site-2026.css?v=28">
-  <link rel="stylesheet" href="css/quizkast.css?v=35">
+  <link rel="stylesheet" href="css/quizkast.css?v=36">
   <script src="js/site-shell.js?v=23" defer></script>
   <script src="js/support-simulation-data.js?v=1" defer></script>
   <script src="js/quizkast-data.js?v=15" defer></script>
-  <script src="js/quizkast.js?v=29" defer></script>
+  <script src="js/quizkast.js?v=30" defer></script>
   <script src="js/speelhal-intro.js?v=3" defer></script>
 </head>
 <body>
@@ -40,46 +40,74 @@
       </div>
     </section>
 
-    <section class="quizkast-hero" data-quiz-home>
-      <div>
-        <p class="eyebrow">Verborgen achter Mijn spoor · spelen om iets te ontdekken</p>
-        <h1>Welkom in de Speelhal.</h1>
-        <p>Quizzen, oefenbanken, gespreksmachines en keuzepaden. Kies waar je vandaag goesting in hebt — zonder dat één spel vertelt wie je bent.</p>
-        <a href="#quizzen">Kies een attractie ↓</a><a class="quizkast-hero__back" href="menslab.html">← Terug naar Mijn spoor</a>
+    <section class="arcade-floor" data-quiz-home aria-labelledby="arcade-title">
+      <div class="arcade-status" aria-label="Status van de speelhal">
+        <p><span>PLAYER</span><strong>JIJ</strong></p>
+        <p><span>SPOOR</span><strong data-arcade-profile-state>GASTMODUS</strong></p>
+        <p><span>SPELREGEL</span><strong>GEEN DIAGNOSE</strong></p>
+        <p><span>LAATSTE WOORD</span><strong>VAN JOU</strong></p>
       </div>
-      <ul aria-label="Kenmerken van de Speelhal"><li><strong>2–10</strong> minuten</li><li><strong>Spelen</strong> met echte vragen</li><li><strong>Nooit</strong> een diagnose</li></ul>
-      <div class="quizkast-hero__constellation" aria-hidden="true"><i>✦</i><i>?</i><i>↗</i><i>◌</i><i>JA</i><i>JIJ</i></div>
-    </section>
-    <div class="quiz-ticker" aria-hidden="true"><div><span>✦ VONKJES VERDELEN</span><span>◌ ANTWOORD TERUG</span><span>JA? KIES JE ROUTE</span><span>◎ WIE RIJDT ER?</span><span>✦ SPREEK DE SPIEGEL TEGEN</span><span>✦ VONKJES VERDELEN</span><span>◌ ANTWOORD TERUG</span><span>JA? KIES JE ROUTE</span><span>◎ WIE RIJDT ER?</span><span>✦ SPREEK DE SPIEGEL TEGEN</span></div></div>
-
-    <section class="quiz-shelf" id="quizzen" data-quiz-shelf aria-labelledby="quiz-shelf-title">
-      <div class="quiz-shelf__head"><div><p class="eyebrow">Nieuwste eerst · maximaal zes</p><h2 id="quiz-shelf-title">Waar stap je binnen?</h2></div><p>De recentste spellen, routes en simulaties staan vooraan. Speel, oefen of probeer iets uit — jij houdt het laatste woord over wat je meeneemt.</p></div>
-      <button class="dada-replay" type="button" data-dada-replay>↺ Speel de vreemde entree opnieuw</button>
-      <div class="quiz-shelf__grid">
-        <article class="quiz-card quiz-card--gold quiz-card--newest"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/emotionele-routekaart-dada.png" alt=""></div><span>Filmische psychologische oefening · 15–20 minuten</span><h3>Spoel even terug</h3><p>Leg één ongemakkelijk moment op de montagetafel en zie hoe gebeurtenis, ondertiteling, lichaam, emotie en impuls samen bewogen.</p><a href="speelhal/oefeningen/emotionele-routekaart.html">Leg mijn scène neer →</a></article>
-        <article class="quiz-card quiz-card--green"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/luisteren-of-repareren-dada.png" alt=""></div><span>Gesprekssimulatie · ± 12–15 minuten</span><h3>Luister je nog — of heb je het al opgelost?</h3><p>Zes gesprekken over afstemmen, praktisch helpen, verantwoordelijkheid, herstel en grenzen.</p><button type="button" data-start-mini-quiz="luisteren-of-repareren">Start de helpmachine →</button></article>
-        <article class="quiz-card quiz-card--gold"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/beweging-vandaag-dada.png" alt=""></div><span>Interactief verdeelspel · ± 2 minuten</span><h3>Wat wil je vandaag anders aanpakken?</h3><p>Verdeel vijf vonkjes: wil je vertragen, iets benoemen, een grens zetten, contact zoeken of kiezen?</p><button type="button" data-start-mini-quiz="beweging-vandaag">Verdeel mijn vonkjes →</button></article>
-        <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/waar-komt-je-ja-vandaan-dada.png" alt=""></div><span>Relationele horrorsimulatie · 6–8 minuten</span><h3>O nee. Iemand zei: “Laat maar.”</h3><p>Kies je relationele horrorfilm en bekijk wat jij probeert te herstellen wanneer iemand mogelijk teleurgesteld raakt.</p><a href="speelhal/laat-maar.html">Activeer mijn alarmcentrale →</a></article>
-        <article class="quiz-card quiz-card--blue"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/wie-zit-aan-het-stuur-dada.png" alt=""></div><span>Keuze &amp; innerlijk conflict · 10–15 minuten</span><h3>Wie zit er aan het stuur?</h3><p>Laat vier innerlijke stemmen afzonderlijk spreken, ontdek wat iedere stem probeert te beschermen en kies een kleine, voorlopige testrit.</p><a href="speelhal/autospel.html">Begin de rit →</a></article>
-        <article class="quiz-card quiz-card--plum"><div class="quiz-preview quiz-preview--art" aria-hidden="true"><img src="images/speelhal/dieptequiz-ja-dada.png" alt=""></div><span>Dieptequiz · 8–10 minuten</span><h3>Een ja is geen type.</h3><p>Onderzoek verlangen, zorg, druk, draagkracht en hoeveel keuze er werkelijk is.</p><a href="dieptequiz-ja.html">Ga een laag dieper →</a></article>
+      <header class="arcade-floor__intro">
+        <p class="eyebrow">Dada-arcade voor het menselijk binnenwerk</p>
+        <h1 id="arcade-title">Waar heb jij<br>nu goesting in?</h1>
+        <p>Je hoeft geen spel te kennen. Bedien één verdachte machine en de Speelhal wijst iets aan. Je krijgt altijd eerst te zien wat ze gekozen heeft.</p>
+        <button class="dada-replay" type="button" data-dada-replay>↺ De vreemde entree nog eens</button>
+      </header>
+      <div class="arcade-console" aria-label="Vier ingangen naar een willekeurig passend spel">
+        <article class="arcade-machine arcade-machine--quick">
+          <span class="arcade-machine__number">01</span><div class="arcade-machine__art" aria-hidden="true"><i></i><b>2–5</b><i></i></div>
+          <div><p>Kort &amp; licht</p><h2>Een kleine ontregeling, alstublieft.</h2><small>Ik wil even spelen zonder mijn hele ziel open te schroeven.</small></div>
+          <button type="button" data-arcade-pick="quick"><span>DRUK VOOR EEN KLEINE ONTREGELING</span><i aria-hidden="true"></i></button>
+        </article>
+        <article class="arcade-machine arcade-machine--investigate">
+          <span class="arcade-machine__number">02</span><div class="arcade-machine__art" aria-hidden="true"><i></i><b>?</b><i></i></div>
+          <div><p>Iets onderzoeken</p><h2>Zet het verdachte licht aan.</h2><small>Ik wil zien hoe ik reageer of welk patroon in mijn antwoorden terugkomt.</small></div>
+          <button type="button" data-arcade-pick="investigate"><span>ZET HET VERDACHTE LICHT AAN</span><i aria-hidden="true"></i></button>
+        </article>
+        <article class="arcade-machine arcade-machine--real">
+          <span class="arcade-machine__number">03</span><div class="arcade-machine__art" aria-hidden="true"><i></i><b>!</b><i></i></div>
+          <div><p>Iets echt meenemen</p><h2>Voer de machine één echt moment.</h2><small>Ik heb een situatie, probleem of gewoonte waar ik mee wil werken.</small></div>
+          <button type="button" data-arcade-pick="real"><span>VOER DE MACHINE ÉÉN ECHT MOMENT</span><i aria-hidden="true"></i></button>
+        </article>
+        <article class="arcade-machine arcade-machine--surprise">
+          <span class="arcade-machine__number">04</span><div class="arcade-machine__art" aria-hidden="true"><i></i><b>¿</b><i></i></div>
+          <div><p>Verras me</p><h2>Ik weiger een goede reden te hebben.</h2><small>Laat de machine iets aanwijzen. Onverantwoord, maar wel efficiënt.</small></div>
+          <button type="button" data-arcade-pick="surprise"><span>IK VERTROUW DEZE MACHINE TEN ONRECHTE</span><i aria-hidden="true"></i></button>
+        </article>
       </div>
-      <section class="longplay" aria-labelledby="longplay-title">
-        <header><p class="eyebrow">Iets langer op de speelvloer</p><h2 id="longplay-title">Geen losse klik. Een kleine route.</h2><p>Voor wanneer je niet alleen een snelle spiegel wilt, maar meerdere momenten naast elkaar wilt leggen.</p></header>
-        <div>
-          <a href="speelhal-week.html"><span>7 dagen · lokaal bewaard</span><strong>Een week mentale rekbaarheid</strong><p>Zeven lichte haltes rond voorspellen, vertragen, anders kijken en opnieuw proberen. Geen perfecte reeks nodig.</p><b>Start mijn week →</b></a>
-          <a href="veranderroute.html"><span>Keuzeroute · meerdere haltes</span><strong>De Veranderroute</strong><p>Ga van iets dat schuurt naar één haalbare volgende beweging — met ruimte voor twijfel, context en terugkeren.</p><b>Kies mijn route →</b></a>
-        </div>
+      <section class="arcade-reveal" data-arcade-reveal hidden aria-live="polite" aria-labelledby="arcade-reveal-title">
+        <div class="arcade-reveal__stamp">TOEVAL<br>HEEFT<br>GESPROKEN</div>
+        <div><p data-arcade-reveal-meta></p><h2 id="arcade-reveal-title" data-arcade-reveal-title></h2><p data-arcade-reveal-copy></p></div>
+        <div class="arcade-reveal__actions"><a data-arcade-reveal-link href="#">Open dit spel →</a><button type="button" data-arcade-pick-again>Nog eens aan de machine draaien</button></div>
       </section>
-      <button class="all-quiz-toggle" type="button" data-show-all-quizzes aria-expanded="false" aria-controls="alle-quizzen"><span>Alle spelvormen · zoeken &amp; filteren</span><strong data-all-quiz-toggle-label>Vind het spel dat nu past</strong><i aria-hidden="true">START</i></button>
-      <section class="all-quiz-library" id="alle-quizzen" data-all-quiz-library hidden aria-labelledby="all-quiz-title">
-        <div class="all-quiz-library__head"><div><p class="eyebrow">De volledige speelvloer</p><h2 id="all-quiz-title">Vind het spel dat nu past.</h2></div><strong data-all-quiz-count></strong></div>
-        <div class="all-quiz-library__tools">
-          <label><span>Zoek op een woord</span><input type="search" data-all-quiz-search placeholder="Bijvoorbeeld: emoties, grenzen of gesprek" autocomplete="off"></label>
-          <label><span>Wat wil je doen?</span><select data-all-quiz-type><option value="">Alle spelvormen</option></select></label>
-          <label><span>Filter op onderwerp</span><select data-all-quiz-category><option value="">Alle onderwerpen</option></select></label>
+      <a class="arcade-resume" data-arcade-resume hidden href="#"><span>SAVE FILE GEVONDEN</span><strong data-arcade-resume-title></strong><small>Verdergaan waar de machine je verloor →</small></a>
+      <div class="quiz-ticker" aria-hidden="true"><div><span>✦ GEEN UITSLAG HEEFT GEZAG</span><span>◉ BEDIEN OP EIGEN RISICO</span><span>¿ TWIJFEL IS TOEGESTAAN</span><span>↗ JIJ BESLIST WAT KLOPT</span><span>✦ GEEN UITSLAG HEEFT GEZAG</span><span>◉ BEDIEN OP EIGEN RISICO</span><span>¿ TWIJFEL IS TOEGESTAAN</span><span>↗ JIJ BESLIST WAT KLOPT</span></div></div>
+    </section>
+
+    <section class="quiz-shelf arcade-afterfloor" id="quizzen" data-quiz-shelf aria-labelledby="quiz-shelf-title">
+      <section class="arcade-newest" aria-labelledby="quiz-shelf-title">
+        <div class="arcade-newest__art"><img src="images/speelhal/emotionele-routekaart-dada.png" alt="Een dadaïstische montagetafel vol ogen, pijlen en losse scènes."></div>
+        <div class="arcade-newest__copy"><p class="eyebrow">Vers uit het achterkamertje</p><span>NIEUW SPEL · WERKBANK · 15–20 MINUTEN</span><h2 id="quiz-shelf-title">Spoel even terug.</h2><p>Leg één ongemakkelijk moment op de montagetafel. Niet om de enige juiste verklaring te vinden, wel om gebeurtenis, ondertiteling, lichaam, emotie en impuls even uit elkaar te halen.</p><a href="speelhal/oefeningen/emotionele-routekaart.html">Leg mijn scène op de snijtafel →</a></div>
+      </section>
+
+      <section class="all-quiz-library arcade-cabinet" id="alle-quizzen" data-all-quiz-library aria-labelledby="all-quiz-title">
+        <header class="arcade-cabinet__head"><div><p class="eyebrow">Kan je niet kiezen?</p><h2 id="all-quiz-title">Kies dan zelf.</h2><p>Open een familielade, zoek op een woord of laat alles tegelijk knipperen. De vorm zegt wat je gaat dóén; het onderwerp zegt waarover.</p></div><strong data-all-quiz-count></strong></header>
+        <nav class="family-marquee" data-family-marquee aria-label="Kies een spelfamilie">
+          <button type="button" data-family="" aria-pressed="true"><i>00</i><span>Alles door elkaar</span><small>De volledige kast</small></button>
+          <button type="button" data-family="Check-in" aria-pressed="false"><i>01</i><span>Check-in</span><small>Kort landen</small></button>
+          <button type="button" data-family="Spiegelspel" aria-pressed="false"><i>02</i><span>Spiegelspel</span><small>Patronen bekijken</small></button>
+          <button type="button" data-family="Keuzeverhaal" aria-pressed="false"><i>03</i><span>Keuzeverhaal</span><small>Een pad volgen</small></button>
+          <button type="button" data-family="Simulatie" aria-pressed="false"><i>04</i><span>Simulatie</span><small>Reacties uitproberen</small></button>
+          <button type="button" data-family="Werkbank" aria-pressed="false"><i>05</i><span>Werkbank</span><small>Eigen materiaal</small></button>
+          <button type="button" data-family="Route &amp; experiment" aria-pressed="false"><i>06</i><span>Route &amp; experiment</span><small>Iets meenemen</small></button>
+        </nav>
+        <div class="all-quiz-library__tools arcade-mixer">
+          <label><span>Kanaal A · zoeklicht</span><input type="search" data-all-quiz-search placeholder="emoties, grenzen, gesprek…" autocomplete="off"></label>
+          <label><span>Kanaal B · familie</span><select data-all-quiz-type><option value="">Alle zes families</option></select></label>
+          <label><span>Kanaal C · onderwerp</span><select data-all-quiz-category><option value="">Alle onderwerpen</option></select></label>
         </div>
-        <div class="all-quiz-library__grid" data-all-quiz-results></div>
-        <p class="all-quiz-library__empty" data-all-quiz-empty hidden>Geen spel gevonden. Probeer een ander woord of zet de filters terug open.</p>
+        <div class="all-quiz-library__grid arcade-cabinet__games" data-all-quiz-results></div>
+        <p class="all-quiz-library__empty" data-all-quiz-empty hidden>Deze combinatie zit niet in de kast. Draai één filter terug of probeer een ander woord.</p>
       </section>
     </section>
 
@@ -162,13 +190,24 @@
       </div>
     </section>
 
-    <section class="quiz-method" aria-labelledby="quiz-method-title">
+    <section class="quiz-method arcade-manual" aria-labelledby="quiz-method-title">
+      <div class="arcade-manual__plate"><span>HANDLEIDING</span><small>voor mogelijk onbetrouwbare machines</small></div>
       <div class="quiz-method__copy">
-        <p class="eyebrow">Goed om te weten</p>
-        <h2 id="quiz-method-title">Een spiegel is geen meetinstrument.</h2>
-        <p>Deze quizzen zijn niet gevalideerd en berekenen geen objectieve persoonlijkheid. Ze ordenen jouw keuzes tot een tijdelijke reflectieroute. Een vraag, speelbord of uitslag mag jou missen — jouw tegenspraak hoort bij het resultaat.</p>
-        <a href="bronnenbeleid.html">Zo werken onze quizzen →</a>
+        <p class="eyebrow">Lees dit vóór of na het indrukken</p>
+        <h2 id="quiz-method-title">De machine mag zich vergissen.</h2>
+        <ol>
+          <li><b>01</b><span><strong>Geen diagnose.</strong> Geen enkel spel berekent objectief wie jij bent.</span></li>
+          <li><b>02</b><span><strong>Geen uitslag heeft het laatste woord.</strong> Dat blijf jij houden.</span></li>
+          <li><b>03</b><span><strong>Een vraag mag je situatie missen.</strong> Context is geen foutmelding.</span></li>
+          <li><b>04</b><span><strong>Je tegenspraak hoort bij het resultaat.</strong> Ook “dit klopt niet” is informatie.</span></li>
+        </ol>
+        <a href="bronnenbeleid.html">Bekijk hoe de machines gebouwd worden →</a>
       </div>
+    </section>
+
+    <section class="arcade-exit" aria-labelledby="arcade-exit-title">
+      <div class="arcade-exit__door" aria-hidden="true"><i></i><b>UIT?</b><span></span></div>
+      <div><p class="eyebrow">Uitgang · waarschijnlijk</p><h2 id="arcade-exit-title">Genoeg gespeeld met je binnenkant?</h2><p>In Mijn spoor wordt het stil. Daar vind je terug wat je las, speelde, bewaarde of nog niet afmaakte.</p><a href="menslab.html">Bewaar mijn buit in Mijn spoor →</a><a class="arcade-exit__quiet" href="home.html">Ik verdwijn zonder fanfare</a></div>
     </section>
   </main>
   <site-footer></site-footer>
