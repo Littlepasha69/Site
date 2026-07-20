@@ -210,15 +210,15 @@
   arcadePickButtons.forEach(button => button.addEventListener('click', () => {
     closeArcadeDoubt();
     if (button.dataset.arcadePick === 'quick') {
-      if (button.classList.contains('is-pressed')) return;
+      if (button.classList.contains('is-pressed') || button.classList.contains('is-rebounding')) return;
       button.classList.remove('is-rebounding');
       button.classList.add('is-pressed');
       window.setTimeout(() => {
         button.classList.remove('is-pressed');
         button.classList.add('is-rebounding');
-        chooseArcadeGame('quick');
-      }, 120);
-      window.setTimeout(() => button.classList.remove('is-rebounding'), 650);
+      }, 145);
+      window.setTimeout(() => chooseArcadeGame('quick'), 610);
+      window.setTimeout(() => button.classList.remove('is-rebounding'), 720);
       return;
     }
     chooseArcadeGame(button.dataset.arcadePick);
